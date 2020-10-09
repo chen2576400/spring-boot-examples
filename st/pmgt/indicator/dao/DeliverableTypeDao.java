@@ -3,7 +3,7 @@ package com.st.pmgt.indicator.dao;
 import com.pisx.tundra.foundation.fc.model.ObjectIdentifier;
 import com.st.pmgt.indicator.model.STDeliverableType;
 import org.springframework.data.jpa.repository.JpaRepository;
-import sun.security.util.ObjectIdentifier;
+
 
 /**
  * @ClassName DeliverableTypeDao
