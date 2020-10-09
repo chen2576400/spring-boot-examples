@@ -1,4 +1,4 @@
-package com.st.pmgt.indicator.model;
+package st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.inf.container.model.PIContained;
@@ -66,12 +66,7 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
     /**
      * 指标源
      */
-    @Embedded   //引入该实体
-    @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "sourceIndicatorRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "sourceIndicatorRefClass", nullable = true))
-    })
-    ObjectReference sourceIndicatorReference;
+    private String sourceindicator;
 
 
     /**
@@ -140,22 +135,6 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
         this.inWeight = inWeight;
     }
 
-    public ObjectReference getSourceIndicatorReference() {
-        return sourceIndicatorReference;
-    }
-
-    public void setSourceIndicatorReference(ObjectReference sourceIndicatorReference) {
-        this.sourceIndicatorReference = sourceIndicatorReference;
-    }
-
-    public PIProject getSourceIndicator() {
-        return (PIProject) sourceIndicatorReference.getObject();
-    }
-
-    public void setSourceIndicator(PIProject project) throws PIException {
-        this.sourceIndicatorReference = ObjectReference.newObjectReference(project);
-    }
-
     public ObjectReference getProjectInstanceOTIndicatorRef() {
         return projectInstanceOTIndicatorRef;
     }
@@ -164,11 +143,11 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
         this.projectInstanceOTIndicatorRef = projectInstanceOTIndicatorRef;
     }
 
-    public STProjectInstanceOTIndicator getProjectInstanceOTIndicator() {
-        return (STProjectInstanceOTIndicator) projectInstanceOTIndicatorRef.getObject();
+    public com.st.pmgt.indicator.model.STProjectInstanceOTIndicator getProjectInstanceOTIndicator() {
+        return (com.st.pmgt.indicator.model.STProjectInstanceOTIndicator) projectInstanceOTIndicatorRef.getObject();
     }
 
-    public void setProjectInstanceOTIndicatorRef(STProjectInstanceOTIndicator projectInstanceOTIndicator) throws PIException {
+    public void setProjectInstanceOTIndicatorRef(com.st.pmgt.indicator.model.STProjectInstanceOTIndicator projectInstanceOTIndicator) throws PIException {
         this.projectInstanceOTIndicatorRef = ObjectReference.newObjectReference(projectInstanceOTIndicator);
     }
 
