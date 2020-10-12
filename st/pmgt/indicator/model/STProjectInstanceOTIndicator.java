@@ -91,23 +91,14 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     @Column(nullable = true, unique = false)
     private Double difficultyValue;
 
-    public Double getBreadth() {
-        return breadth;
-    }
 
-    public void setBreadth(Double breadth) {
-        this.breadth = breadth;
-    }
 
-    public void setReporter(PIPrincipalReference reporter) {
-        this.reporter = reporter;
-    }
 
     /**
      * 广度
      */
     @Column(nullable = true)
-    private Double breadth = 0D;
+    private Integer breadth;
 
 
     /**
@@ -377,5 +368,17 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
     public void setCompetenceReference(STProCompetence competence) throws PIException {
         this.competenceReference = ObjectReference.newObjectReference(competence);
+    }
+
+    public Integer getBreadth() {
+        return breadth;
+    }
+
+    public void setBreadth(Integer breadth) {
+        this.breadth = breadth;
+    }
+
+    public void setReporter(PIPrincipalReference reporter) {
+        this.reporter = reporter;
     }
 }
