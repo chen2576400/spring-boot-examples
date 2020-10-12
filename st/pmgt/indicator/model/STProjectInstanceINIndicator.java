@@ -1,4 +1,4 @@
-package st.pmgt.indicator.model;
+package com.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.inf.container.model.PIContained;
@@ -143,11 +143,11 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
         this.projectInstanceOTIndicatorRef = projectInstanceOTIndicatorRef;
     }
 
-    public com.st.pmgt.indicator.model.STProjectInstanceOTIndicator getProjectInstanceOTIndicator() {
-        return (com.st.pmgt.indicator.model.STProjectInstanceOTIndicator) projectInstanceOTIndicatorRef.getObject();
+    public STProjectInstanceOTIndicator getProjectInstanceOTIndicator() {
+        return (STProjectInstanceOTIndicator) projectInstanceOTIndicatorRef.getObject();
     }
 
-    public void setProjectInstanceOTIndicatorRef(com.st.pmgt.indicator.model.STProjectInstanceOTIndicator projectInstanceOTIndicator) throws PIException {
+    public void setProjectInstanceOTIndicatorRef(STProjectInstanceOTIndicator projectInstanceOTIndicator) throws PIException {
         this.projectInstanceOTIndicatorRef = ObjectReference.newObjectReference(projectInstanceOTIndicator);
     }
 

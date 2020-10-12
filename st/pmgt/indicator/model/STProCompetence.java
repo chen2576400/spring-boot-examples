@@ -21,14 +21,30 @@ public class STProCompetence extends PIPmgtObject implements Serializable {
      */
     @Column(nullable = true, unique = false)
     private String name;
-
+    
     /**
      * 职能部门
      */
     @Embedded   //引入该实体
     @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "planRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "planRefClass", nullable = true))
+            @AttributeOverride(name = "key.id", column = @Column(name = "obsRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "obsRefClass", nullable = true))
     })
-    ObjectReference aaaReference;//todo
+    ObjectReference obsReference;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ObjectReference getObsReference() {
+        return obsReference;
+    }
+
+    public void setObsReference(ObjectReference obsReference) {
+        this.obsReference = obsReference;
+    }
 }

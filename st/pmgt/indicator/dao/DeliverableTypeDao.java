@@ -4,7 +4,6 @@ import com.pisx.tundra.foundation.fc.model.ObjectIdentifier;
 import com.st.pmgt.indicator.model.STDeliverableType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
 /**
  * @ClassName DeliverableTypeDao
  * @Description:
