@@ -1,4 +1,4 @@
-package com.st.pmgt.indicator.service;
+package ext.st.pmgt.indicator.service;
 
 import com.pisx.tundra.foundation.fc.collections.PIArrayList;
 import com.pisx.tundra.foundation.fc.collections.PICollection;
@@ -8,9 +8,10 @@ import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import com.st.pmgt.indicator.dao.ProjectIndicatorDao;
-import com.st.pmgt.indicator.dao.ProjectInstanceINIndicatorDao;
-import com.st.pmgt.indicator.dao.ProjectInstanceOTIndicatorDao;
+import ext.st.pmgt.indicator.dao.ProjectIndicatorDao;
+import ext.st.pmgt.indicator.dao.ProjectInstanceINIndicatorDao;
+import ext.st.pmgt.indicator.dao.ProjectInstanceOTIndicatorDao;
+import ext.st.pmgt.indicator.service.STIndicatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

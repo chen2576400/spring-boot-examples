@@ -1,4 +1,4 @@
-package com.st.pmgt.indicator.model;
+package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.inf.container.model.PIContained;
@@ -126,7 +126,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
 
     /**
-     * 交付物类型编码
+     * 汇报偏差
      */
     @Column(name = "deviationReport", nullable = true, unique = false)
     private String deviationReport;
@@ -145,7 +145,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     private Integer completionStatus;
 
     /**
-     * 交付物类型编码
+     * 汇报时间
      */
     @Column(nullable = true)
     private Timestamp reportTime;

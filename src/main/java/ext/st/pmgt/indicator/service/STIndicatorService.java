@@ -1,4 +1,4 @@
-package com.st.pmgt.indicator.service;
+package ext.st.pmgt.indicator.service;
 
 import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.util.PIException;

@@ -1,4 +1,4 @@
-package com.st.pmgt.indicator.model;
+package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.inf.container.model.PIContained;
