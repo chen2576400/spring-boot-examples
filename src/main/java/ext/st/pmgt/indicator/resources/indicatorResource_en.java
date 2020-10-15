@@ -3,6 +3,7 @@ package ext.st.pmgt.indicator.resources;
 
 
 import com.pisx.tundra.foundation.util.resource.PIListResourceBundle;
+import com.pisx.tundra.foundation.util.resource.RBComment;
 import com.pisx.tundra.foundation.util.resource.RBEntry;
 import com.pisx.tundra.foundation.util.resource.RBUUID;
 

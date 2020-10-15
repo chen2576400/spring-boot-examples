@@ -1,5 +1,6 @@
 package ext.st.pmgt.indicator.builders;
 
+import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIMessage;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
@@ -8,10 +9,19 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
+import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
+import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
+import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import com.pisx.tundra.pmgt.resource.PIResourceHelper;
+import com.pisx.tundra.pmgt.resource.model.PIObs;
+import com.pisx.tundra.pmgt.resource.model.PIResource;
+import com.pisx.tundra.pmgt.resource.service.PIResourceUpAndDownService;
+import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName PlanActivityOTIndicatorTableBuilder
@@ -23,7 +33,8 @@ import java.util.ArrayList;
 public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-        return new ArrayList<>();
+        PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
+        return STIndicatorHelper.service.findProjectOTIndicatorByPlanActivity(piPlanActivity);
     }
 
     @Override

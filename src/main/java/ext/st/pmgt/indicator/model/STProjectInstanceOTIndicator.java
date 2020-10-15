@@ -45,7 +45,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     /**
      * 指标定义
      */
-    @Column( nullable = true, unique = false)
+    @Column(nullable = true, unique = false)
     private String definition;
 
     /**
@@ -86,12 +86,10 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     private Double standardDeviationValue;
 
     /**
-     * 困难度值
+     * 标准困难度值
      */
     @Column(nullable = true, unique = false)
-    private Double difficultyValue;
-
-
+    private Double standardDifficultyValue;
 
 
     /**
@@ -126,10 +124,16 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
 
     /**
-     * 汇报偏差
+     * 偏差汇报
      */
-    @Column(name = "deviationReport", nullable = true, unique = false)
-    private String deviationReport;
+    @Column(nullable = true, unique = false)
+    private Double deviationReport;
+
+    /**
+     * 困难度汇报
+     */
+    @Column(nullable = true, unique = false)
+    private Double difficultyReport;
 
     @Embedded   //引入该实体
     @AttributeOverrides({
@@ -166,7 +170,6 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
             @AttributeOverride(name = "key.classname", column = @Column(name = "containerRefClass", nullable = false))
     })
     PIContainerRef containerReference;  //ProjectContainerRef
-
 
 
     public String getCode() {
@@ -209,15 +212,6 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
         this.standardDeviationValue = standardDeviationValue;
     }
 
-    public Double getDifficultyValue() {
-        return difficultyValue;
-    }
-
-    public void setDifficultyValue(Double difficultyValue) {
-        this.difficultyValue = difficultyValue;
-    }
-
-
     public Double getCriticality() {
         return criticality;
     }
@@ -242,12 +236,28 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
         this.planDeliverableReference = planDeliverableReference;
     }
 
-    public String getDeviationReport() {
+    public Double getStandardDifficultyValue() {
+        return standardDifficultyValue;
+    }
+
+    public void setStandardDifficultyValue(Double standardDifficultyValue) {
+        this.standardDifficultyValue = standardDifficultyValue;
+    }
+
+    public Double getDeviationReport() {
         return deviationReport;
     }
 
-    public void setDeviationReport(String deviationReport) {
+    public void setDeviationReport(Double deviationReport) {
         this.deviationReport = deviationReport;
+    }
+
+    public Double getDifficultyReport() {
+        return difficultyReport;
+    }
+
+    public void setDifficultyReport(Double difficultyReport) {
+        this.difficultyReport = difficultyReport;
     }
 
     public Integer getCompletionStatus() {
@@ -304,8 +314,8 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     public void setContainer(PIContainer container) throws PIException {
         if (container instanceof PIProjectContainer) {
             containerReference = PIContainerRef.newPIContainerRef(container);
-        }else {
-            String msg= "the container is not PIProjectContainer, not allowed to set.";
+        } else {
+            String msg = "the container is not PIProjectContainer, not allowed to set.";
             throw new PIException(msg);
         }
     }
@@ -314,8 +324,8 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     public void setContainerReference(PIContainerRef containerReference) throws PIException {
         if (containerReference.getObject() instanceof PIProjectContainer) {
             this.containerReference = containerReference;
-        }else {
-            String msg= "the container is not PIProjectContainer, not allowed to set.";
+        } else {
+            String msg = "the container is not PIProjectContainer, not allowed to set.";
             throw new PIException(msg);
         }
     }
@@ -327,7 +337,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
     @Override
     public PIContainer getContainer() {
-        return  (PIContainer)containerReference.getObject();
+        return (PIContainer) containerReference.getObject();
     }
 
     public ObjectReference getProjectReference() {

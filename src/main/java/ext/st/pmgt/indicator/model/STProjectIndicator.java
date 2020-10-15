@@ -113,12 +113,11 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
         this.enabled = enabled;
     }
 
-    @Override
     public PIContainerRef getContainerReference() {
         return containerReference;
     }
 
-    @Override
+
     public void setContainer(PIContainer container) throws PIException {
         if (container instanceof OrgContainer) {
             containerReference = PIContainerRef.newPIContainerRef(container);
@@ -128,7 +127,6 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
         }
     }
 
-    @Override
     public void setContainerReference(PIContainerRef containerReference) throws PIException {
         if (containerReference.getObject() instanceof OrgContainer) {
             this.containerReference = containerReference;
@@ -138,12 +136,10 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
         }
     }
 
-    @Override
     public String getContainerName() {
         return containerReference.getName();
     }
 
-    @Override
     public PIContainer getContainer() {
         return (PIContainer) containerReference.getObject();
     }

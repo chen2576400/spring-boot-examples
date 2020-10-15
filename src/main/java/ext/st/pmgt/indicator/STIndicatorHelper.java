@@ -2,7 +2,6 @@ package ext.st.pmgt.indicator;
 
 import com.TundraApplication;
 import ext.st.pmgt.indicator.service.STIndicatorService;
-import ext.st.pmgt.indicator.service.STIndicatorServiceImpl;
 
 import java.io.Serializable;
 
@@ -17,7 +16,7 @@ public class STIndicatorHelper implements Serializable {
     public static STIndicatorService service;
 
     static {
-        service = (STIndicatorService) TundraApplication.getApplicationContext().getBean(STIndicatorServiceImpl.class);
+        service = (STIndicatorService) TundraApplication.getApplicationContext().getBean(STIndicatorService.class);
     }
 
     public STIndicatorHelper() {

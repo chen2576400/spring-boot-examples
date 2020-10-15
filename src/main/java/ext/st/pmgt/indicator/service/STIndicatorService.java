@@ -23,4 +23,10 @@ public interface STIndicatorService {
     PICollection findProjectOTIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException;
 
     PICollection findProjectOTIndicatorByPlanDeliverable(PIPlanDeliverable planDeliverable) throws PIException;
+
+    //api1
+    Object api1(String planid) throws PIException;
+
+    //api1
+//    Object api2(String planid) throws PIException;
 }

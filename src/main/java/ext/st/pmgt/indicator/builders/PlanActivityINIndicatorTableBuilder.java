@@ -8,7 +8,10 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
+import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import ext.st.pmgt.indicator.STIndicatorHelper;
+import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
 import java.util.ArrayList;
@@ -23,7 +26,8 @@ import java.util.ArrayList;
 public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-        return new ArrayList<>();
+        PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
+        return STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
     }
 
     @Override
@@ -33,7 +37,7 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.setEntities(componentData);
 //        tableConfig.setToolbarActionModel("allUsersToolbarSet");
         tableConfig.setId("planActivityINIndicator");
-        tableConfig.setObjectType(STProjectInstanceOTIndicator.class);
+        tableConfig.setObjectType(STProjectInstanceINIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(),"IN_INDICATOR_TABLE",null,params.getLocale()));
         tableConfig.enableSelect();
 //        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
