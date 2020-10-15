@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actionmodels>
+<!--    -->
+<!--    <model name="pmgtProjectRelatedDocAndProduct" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">-->
+<!--        <action name="relatedReferenceDocuments"  type="pi-pmgt-project"/>-->
+<!--        <action name="relatedDescribedByDocuments"  type="pi-pmgt-project"/>-->
+<!--        <action name="relatedProducts"  type="pi-pmgt-project"/>-->
+<!--    </model>-->
+
+</actionmodels>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listofactions>
+    <actionsgroup name="st-pmgt-indicator" class="" resourceBundle="com.st.pmgt.indicator.resources.indicatorActionsRB">
+        <action name="planActivityOTIndicator" ajaxActionClass="refresh=true" selectRequired="true">
+            <component name="com.st.pmgt.indicator.builders.PlanActivityOTIndicatorTableBuilder" windowType="page"/>
+        </action>
+        <action name="planActivityINIndicator" ajaxActionClass="refresh=true">
+            <component name="com.st.pmgt.indicator.builders.PlanActivityOTIndicatorTableBuilder" windowType="page"/>
+        </action>
+    </actionsgroup>
+</listofactions>
