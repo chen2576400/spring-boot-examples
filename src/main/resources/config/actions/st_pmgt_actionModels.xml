@@ -6,5 +6,6 @@
 <!--        <action name="relatedDescribedByDocuments"  type="pi-pmgt-project"/>-->
 <!--        <action name="relatedProducts"  type="pi-pmgt-project"/>-->
 <!--    </model>-->
+    <!--菜单-->
 
 </actionmodels>

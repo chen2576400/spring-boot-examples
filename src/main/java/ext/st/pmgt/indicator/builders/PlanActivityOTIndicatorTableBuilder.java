@@ -44,7 +44,7 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.setEntities(componentData);
 //        tableConfig.setToolbarActionModel("allUsersToolbarSet");
         tableConfig.setId("planActivityOTIndicator");
-        tableConfig.setObjectType(STProjectInstanceOTIndicator.class);
+        tableConfig.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(),"OT_INDICATOR_TABLE",null,params.getLocale()));
         tableConfig.enableSelect();
 //        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
