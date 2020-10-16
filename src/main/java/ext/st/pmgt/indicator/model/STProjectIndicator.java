@@ -130,12 +130,16 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
         }
     }
 
-    public void setContainerReference(PIContainerRef containerReference) throws PIException {
+    public void setContainerReference(PIContainerRef containerReference)  {
         if (containerReference.getObject() instanceof OrgContainer) {
             this.containerReference = containerReference;
         }else {
             String msg= "the container is not Organization Container, not allowed to set.";
-            throw new PIException(msg);
+            try {
+                throw new PIException(msg);
+            } catch (PIException e) {
+                e.printStackTrace();
+            }
         }
     }
 
