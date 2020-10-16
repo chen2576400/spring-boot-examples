@@ -204,4 +204,9 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
         return (PIContainer) containerReference.getObject();
     }
 
+    public static STProjectInstanceINIndicator newSTProjectInstanceINIndicator() throws PIException {
+        STProjectInstanceINIndicator obj = new STProjectInstanceINIndicator();
+        obj.initialize();
+        return obj;
+    }
 }

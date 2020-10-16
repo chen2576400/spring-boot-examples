@@ -1,5 +1,6 @@
 package ext.st.pmgt.indicator.model;
 
+import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
 
 import javax.persistence.Column;
@@ -57,5 +58,11 @@ public class STDeviation extends PIPmgtObject implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public static STDeviation newSTDeviation() throws PIException {
+        STDeviation obj = new STDeviation();
+        obj.initialize();
+        return obj;
     }
 }

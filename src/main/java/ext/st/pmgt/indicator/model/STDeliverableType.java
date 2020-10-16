@@ -1,5 +1,6 @@
 package ext.st.pmgt.indicator.model;
 
+import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
 
 import javax.persistence.Column;
@@ -44,5 +45,11 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public static STDeliverableType newSTDeliverableType() throws PIException {
+        STDeliverableType obj = new STDeliverableType();
+        obj.initialize();
+        return obj;
     }
 }

@@ -1,6 +1,7 @@
 package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
 
 import javax.persistence.*;
@@ -46,5 +47,11 @@ public class STProCompetence extends PIPmgtObject implements Serializable {
 
     public void setObsReference(ObjectReference obsReference) {
         this.obsReference = obsReference;
+    }
+
+    public static STProCompetence newSTProCompetence() throws PIException {
+        STProCompetence obj = new STProCompetence();
+        obj.initialize();
+        return obj;
     }
 }

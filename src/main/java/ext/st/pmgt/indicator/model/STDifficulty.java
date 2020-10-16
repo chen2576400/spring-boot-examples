@@ -58,4 +58,10 @@ public class STDifficulty extends PIPmgtObject implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public static STDifficulty newSTDifficulty() throws PIException {
+        STDifficulty obj = new STDifficulty();
+        obj.initialize();
+        return obj;
+    }
 }

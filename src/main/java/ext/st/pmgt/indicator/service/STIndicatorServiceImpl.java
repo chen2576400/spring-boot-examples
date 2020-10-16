@@ -44,6 +44,9 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     @Autowired
     private PIPlanDao piPlanDao;
 
+    @Autowired
+    private PIPlanActivityDao piPlanActivityDaolanDao;
+
     @Override
     public PICollection findProjectINIndicatorByProject(PIProject project) throws PIException {
         PIArrayList result = new PIArrayList();
@@ -103,6 +106,8 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         String planOid = PIPlan.class.getName()+":"+planid;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         ObjectReference planReference = (ObjectReference)referenceFactory.getReference(planOid);
+        piPlanActivityDaolanDao.fin
+
         List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanReference(planReference);
         List<Map> result = new ArrayList<>();
         HashMap<String, String> map = new HashMap<>();

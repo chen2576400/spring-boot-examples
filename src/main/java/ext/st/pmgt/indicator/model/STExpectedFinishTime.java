@@ -148,5 +148,11 @@ public class STExpectedFinishTime extends PIPmgtObject implements Serializable {
         reporter = reporter;
     }
 
+    public static STExpectedFinishTime newSTExpectedFinishTime() throws PIException {
+        STExpectedFinishTime obj = new STExpectedFinishTime();
+        obj.initialize();
+        return obj;
+    }
+
 
 }

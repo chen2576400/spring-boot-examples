@@ -391,4 +391,10 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     public void setReporter(PIPrincipalReference reporter) {
         this.reporter = reporter;
     }
+
+    public static STProjectInstanceOTIndicator newSTProjectInstanceOTIndicator() throws PIException {
+        STProjectInstanceOTIndicator obj = new STProjectInstanceOTIndicator();
+        obj.initialize();
+        return obj;
+    }
 }
