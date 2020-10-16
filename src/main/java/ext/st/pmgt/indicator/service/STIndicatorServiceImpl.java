@@ -106,7 +106,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         String planOid = PIPlan.class.getName()+":"+planid;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         ObjectReference planReference = (ObjectReference)referenceFactory.getReference(planOid);
-        piPlanActivityDaolanDao.fin
+//        piPlanActivityDaolanDao.fin
 
         List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanReference(planReference);
         List<Map> result = new ArrayList<>();
