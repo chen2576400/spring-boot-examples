@@ -10,12 +10,12 @@
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <action name="editExpectedFinishTime">
-            <component name="ext.st.pmgt.indicator.builders.EditPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="page"/>
-            <command className="ext.st.pmgt.indicator.processors.EditPlanActivitySTExpectedFinishTimeProcessor"/>
+        <action name="reportExpectedFinishTime">
+            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="page"/>
+            <command className="ext.st.pmgt.indicator.processors.ReportPlanActivitySTExpectedFinishTimeProcessor"/>
         </action>
         <action name="pertReport">
-            <component name="ext.st.pmgt.indicator.builders.EditPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="page"/>
+            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="page"/>
         </action>
     </actionsgroup>
 </listofactions>

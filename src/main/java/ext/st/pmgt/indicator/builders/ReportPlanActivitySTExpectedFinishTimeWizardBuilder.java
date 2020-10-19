@@ -18,13 +18,13 @@ import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
 /**
- * @ClassName EditPlanActivitySTExpectedFinishTimeWizardBuilder
+ * @ClassName ReportPlanActivitySTExpectedFinishTimeWizardBuilder
  * @Description:
  * @Author LiuMX
  * @Date 2020/10/19
  * @Version V1.0
  **/
-public class EditPlanActivitySTExpectedFinishTimeWizardBuilder extends AbstractComponentBuilder {
+public class ReportPlanActivitySTExpectedFinishTimeWizardBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         return params.getNfCommandBean().getSourceObject();
@@ -34,17 +34,16 @@ public class EditPlanActivitySTExpectedFinishTimeWizardBuilder extends AbstractC
     public ComponentConfig buildComponentConfig(Object componentData, ComponentParams params) throws PIException {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         WizardConfig wizardConfig = componentConfigFactory.newWizardConfig(params);
-        wizardConfig.setId("editPlanActivitySTExpectedFinishTime");
+        wizardConfig.setId("reportPlanActivitySTExpectedFinishTime");
         try {
             StepConfig step = wizardConfig.newStep();
-            step.setId("editPlanActivitySTExpectedFinishTimeWizardBuilderStep1");
+            step.setId("reportPlanActivitySTExpectedFinishTimeWizardBuilderStep1");
             LayoutConfig layout = componentConfigFactory.newLayoutConfig(params);
             layout.setPrimaryClassName(STExpectedFinishTime.class);
-            layout.setEntity((PIPlanActivity) componentData);
-            layout.setId("editPlanActivitySTExpectedFinishTimeWizardBuilderLayout");
-            layout.setTitle("editPlanActivitySTExpectedFinishTime");
+            layout.setId("reportPlanActivitySTExpectedFinishTimeWizardBuilderLayout");
+            layout.setTitle("reportPlanActivitySTExpectedFinishTime");
 
-            layout.addField("expectedFinishTime",0);
+            layout.addField("expectedFinishTime","预计完成时间");
             step.addLayout(layout);
         } catch (Exception e) {
             e.printStackTrace();

@@ -22,7 +22,7 @@
     </model>
 
     <model name="planDropDown" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="editExpectedFinishTime" type="st-pmgt-act"  shortcut="true"/>
+        <action name="reportExpectedFinishTime" type="st-pmgt-act"  shortcut="true"/>
         <action name="pertReport" type="st-pmgt-act"  shortcut="true"/>
     </model>
 

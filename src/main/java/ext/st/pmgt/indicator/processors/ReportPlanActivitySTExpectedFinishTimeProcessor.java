@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component("editPlanActivitySTExpectedFinishTimeProcessor")
-public class EditPlanActivitySTExpectedFinishTimeProcessor extends DefaultUpdateFormProcessor {
+public class ReportPlanActivitySTExpectedFinishTimeProcessor extends DefaultUpdateFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         STExpectedFinishTime expectedFinishTime = (STExpectedFinishTime)list.get(0);
