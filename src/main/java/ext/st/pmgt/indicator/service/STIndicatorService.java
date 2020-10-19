@@ -7,6 +7,8 @@ import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 
+import java.sql.Timestamp;
+
 
 public interface STIndicatorService {
 
@@ -27,6 +29,9 @@ public interface STIndicatorService {
     //api1
     Object api1(String planid) throws PIException;
 
-    //api1
-//    Object api2(String planid) throws PIException;
+    //api2
+    Object api2(String planid) throws PIException;
+
+    //api3
+    Object api3(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException;
 }
