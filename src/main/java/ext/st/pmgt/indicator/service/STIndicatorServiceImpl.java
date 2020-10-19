@@ -192,10 +192,10 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         List<Map<String, Object>> result1 = new ArrayList<>();
         for (PIResourceAssignment piResourceAssignment : result) {
             HashMap<String, Object> map = new HashMap<>();
-            PIPlanActivity plannable = (PIPlanActivity) piResourceAssignment.getPlannable();
-            List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) plannable));
-            List<STProjectInstanceINIndicator> inIndicators = (List) projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) plannable));
-            map.put("任务", plannable);
+            PIPlanActivity planActivity = (PIPlanActivity) piResourceAssignment.getPlannable();
+            List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) planActivity));
+            List<STProjectInstanceINIndicator> inIndicators = (List) projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) planActivity));
+            map.put("任务", planActivity);
             map.put("OT", otIndicators);
             map.put("IN", inIndicators);
             map.put("员工", user);
@@ -204,5 +204,10 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         return JSONObject.toJSONString(result1, SerializerFeature.DisableCircularReferenceDetect);
 
 
+    }
+
+    @Override
+    public Object api4(String planid) throws PIException {
+        return null;
     }
 }
