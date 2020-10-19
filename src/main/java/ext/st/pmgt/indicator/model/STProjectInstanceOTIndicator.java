@@ -143,7 +143,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     ObjectReference projectReference;
 
     /**
-     * 完成状态（0,1,2）
+     * 完成状态（0,1,2）-->发布次数
      */
     @Column(nullable = true, unique = true)
     private Integer completionStatus;

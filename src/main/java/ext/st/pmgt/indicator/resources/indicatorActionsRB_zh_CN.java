@@ -5,7 +5,7 @@ import com.pisx.tundra.foundation.util.resource.RBEntry;
 import com.pisx.tundra.foundation.util.resource.RBUUID;
 
 
-@RBUUID("com.st.pmgt.indicator.resources.indicatorActionsRB_zh_CN")
+@RBUUID("ext.st.pmgt.indicator.resources.indicatorActionsRB_zh_CN")
 public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
 
     @RBEntry("OT指标")

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actionmodels>
-<!--    -->
-<!--    <model name="pmgtProjectRelatedDocAndProduct" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">-->
-<!--        <action name="relatedReferenceDocuments"  type="pi-pmgt-project"/>-->
-<!--        <action name="relatedDescribedByDocuments"  type="pi-pmgt-project"/>-->
-<!--        <action name="relatedProducts"  type="pi-pmgt-project"/>-->
-<!--    </model>-->
+
+    <model name="pi-pmgtPlanActivityInfoPageTabSet" resource="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="details" type="pi-pmgt-act"/>
+        <!--<action name="attachments" type="pi-pmgt-enterprise"/>-->
+        <action name="resourceAssignments" type="pi-pmgt-act"/>
+        <action name="relationships" type="pi-pmgt-act"/>
+        <action name="resourceHours" type="pi-pmgt-act"/>
+        <action name="listDeliverablesForActivity" type="pi-pmgt-act"/>
+        <action name="relatedReferenceDocuments" type="pi-pmgt-act"/>
+        <action name="planActivityExpenses" type="pi-pmgt-act"/>
+        <action name="baselines" type="pi-pmgt-act"/>
+        <action name="plannableCostSummary" type="pi-pmgt-cost"/>
+        <action name="listProjectIssuesForActivity" type="pi-pmgt-act"/>
+        <action name="listProjectChangeRequestsForActivity" type="pi-pmgt-act"/>
+        <action name="listProjectRisksForAct" type="pi-pmgt-risk"/>
+        <!--<action name="listPlanActivityShareLinksForSource" type="pi-pmgt-act"/>-->
+        <!--   OT IN指标table     -->
+        <action name="planActivityOTIndicator" type="st-pmgt-indicator"/>
+        <action name="planActivityINIndicator" type="st-pmgt-indicator"/>
+    </model>
 
 </actionmodels>

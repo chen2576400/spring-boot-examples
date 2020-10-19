@@ -11,7 +11,7 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("指标编码")
     public static final String OTIndicator_01= "STProjectInstanceOTIndicator.code.value";
     @RBEntry("指标描述")
-    public static final String OTIndicator_02= "STProjectInstanceOTIndicator.decription.value";
+    public static final String OTIndicator_02= "STProjectInstanceOTIndicator.description.value";
     @RBEntry("标准偏差")
     public static final String OTIndicator_03= "STProjectInstanceOTIndicator.standardDeviationValue.value";
     @RBEntry("标准困难度")
@@ -20,7 +20,7 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("指标编码")
     public static final String INIndicator_01= "STProjectInstanceINIndicator.code.value";
     @RBEntry("指标描述")
-    public static final String INIndicator_02= "STProjectInstanceINIndicator.decription.value";
+    public static final String INIndicator_02= "STProjectInstanceINIndicator.description.value";
     @RBEntry("权重")
     public static final String INIndicator_03= "STProjectInstanceINIndicator.inWeight.value";
 

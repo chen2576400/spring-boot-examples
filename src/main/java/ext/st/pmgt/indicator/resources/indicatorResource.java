@@ -7,7 +7,7 @@ import com.pisx.tundra.foundation.util.resource.RBEntry;
 import com.pisx.tundra.foundation.util.resource.RBUUID;
 
 
-@RBUUID("com.st.pmgt.indicator.resources.indicatorResource")
+@RBUUID("ext.st.pmgt.indicator.resources.indicatorResource")
 public final class indicatorResource extends PIListResourceBundle
 {
 
