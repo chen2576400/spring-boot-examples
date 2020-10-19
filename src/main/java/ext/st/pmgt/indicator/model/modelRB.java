@@ -23,4 +23,7 @@ public class modelRB extends PIListResourceBundle {
     @RBEntry("权重")
     public static final String INIndicator_03= "STProjectInstanceINIndicator.inWeight.value";
 
+    @RBEntry("expectedFinishTime")
+    public static final String STExpectedFinishTime_01= "STExpectedFinishTime.expectedFinishTime.value";
+
 }
