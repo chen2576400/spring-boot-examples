@@ -34,4 +34,7 @@ public interface STIndicatorService {
 
     //api3
     Object api3(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException;
+
+    //api4
+    Object api4(String planid) throws PIException;
 }

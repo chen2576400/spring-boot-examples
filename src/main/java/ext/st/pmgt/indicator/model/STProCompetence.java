@@ -28,10 +28,10 @@ public class STProCompetence extends PIPmgtObject implements Serializable {
      */
     @Embedded   //引入该实体
     @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "obsRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "obsRefClass", nullable = true))
+            @AttributeOverride(name = "key.id", column = @Column(name = "departmentRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "departmentRefClass", nullable = true))
     })
-    ObjectReference obsReference;
+    ObjectReference departmentReference;
 
     public String getName() {
         return name;
@@ -41,12 +41,12 @@ public class STProCompetence extends PIPmgtObject implements Serializable {
         this.name = name;
     }
 
-    public ObjectReference getObsReference() {
-        return obsReference;
+    public ObjectReference getDepartmentReference() {
+        return departmentReference;
     }
 
-    public void setObsReference(ObjectReference obsReference) {
-        this.obsReference = obsReference;
+    public void setDepartmentReference(ObjectReference departmentReference) {
+        this.departmentReference = departmentReference;
     }
 
     public static STProCompetence newSTProCompetence() throws PIException {
