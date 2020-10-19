@@ -48,16 +48,6 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
 
 
     /**
-     * OT项目计划实例
-     */
-    @Embedded   //引入该实体
-    @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "planInstanceRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "planInstanceRefClass", nullable = true))
-    })
-    ObjectReference planInstanceReference;
-
-    /**
      * IN权重
      */
     @Column(nullable = true, unique = false)
@@ -93,14 +83,6 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
             @AttributeOverride(name = "key.classname", column = @Column(name = "containerRefClass", nullable = false))
     })
     PIContainerRef containerReference;  //ProjectContainerRef
-
-    public ObjectReference getPlanInstanceReference() {
-        return planInstanceReference;
-    }
-
-    public void setPlanInstanceReference(ObjectReference planInstanceReference) {
-        this.planInstanceReference = planInstanceReference;
-    }
 
     public ObjectReference getProjectReference() {
         return projectReference;
