@@ -7,18 +7,22 @@ import com.pisx.tundra.foundation.org.model.PIPrincipalReference;
 import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
+import com.pisx.tundra.netfactory.mvc.components.DefaultCreateFormProcessor;
 import com.pisx.tundra.netfactory.mvc.components.DefaultUpdateFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.model.STExpectedFinishTime;
+import ext.st.pmgt.indicator.resources.indicatorResource;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-@Component("editPlanActivitySTExpectedFinishTimeProcessor")
-public class ReportPlanActivitySTExpectedFinishTimeProcessor extends DefaultUpdateFormProcessor {
+@Component
+public class ReportPlanActivitySTExpectedFinishTimeProcessor extends DefaultCreateFormProcessor {
+    private static final String RESOURCE = indicatorResource.class.getName();
+
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         STExpectedFinishTime expectedFinishTime = (STExpectedFinishTime)list.get(0);

@@ -27,7 +27,8 @@ import ext.st.pmgt.indicator.resources.indicatorResource;
 public class ReportPlanActivitySTExpectedFinishTimeWizardBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-        return params.getNfCommandBean().getSourceObject();
+//        return params.getNfCommandBean().getSourceObject();
+        return null;
     }
 
     @Override
@@ -41,9 +42,9 @@ public class ReportPlanActivitySTExpectedFinishTimeWizardBuilder extends Abstrac
             LayoutConfig layout = componentConfigFactory.newLayoutConfig(params);
             layout.setPrimaryClassName(STExpectedFinishTime.class);
             layout.setId("reportPlanActivitySTExpectedFinishTimeWizardBuilderLayout");
-            layout.setTitle("reportPlanActivitySTExpectedFinishTime");
+            layout.setTitle("汇报预计完成时间");
 
-            layout.addField("expectedFinishTime","预计完成时间");
+            layout.addField("expectedFinishTime",new ExpectedFinishTimeDateHandler());
             step.addLayout(layout);
         } catch (Exception e) {
             e.printStackTrace();
