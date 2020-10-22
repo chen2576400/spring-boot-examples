@@ -13,10 +13,13 @@ import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.model.STExpectedFinishTime;
 import ext.st.pmgt.indicator.resources.indicatorResource;
+import io.micrometer.core.instrument.util.TimeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -28,13 +31,12 @@ public class ReportPlanActivitySTExpectedFinishTimeProcessor extends DefaultCrea
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         try {
             Object data = params.getNfCommandBean().getLayoutFields().get("expectedFinishTime");
-            if (data == null || StringUtils.isBlank(data.toString()))
+            if (data==null || StringUtils.isBlank(data.toString()))
                 return new ResponseWrapper(ResponseWrapper.FAILED, "", null);
-            STExpectedFinishTime expectedFinishTime = (STExpectedFinishTime) list.get(0);
-
-            Timestamp timestamp = Timestamp.valueOf(data.toString());
+            STExpectedFinishTime expectedFinishTime = (STExpectedFinishTime)list.get(0);
+            Timestamp timestamp = new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse(data.toString()).getTime());
             expectedFinishTime.setExpectedFinishTime(timestamp);
-            PIPlanActivity planActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
+            PIPlanActivity planActivity = (PIPlanActivity)params.getNfCommandBean().getSourceObject();
             expectedFinishTime.setPlanActivityReference(planActivity);
             expectedFinishTime.setPlanReference(planActivity.getRootReference());
             expectedFinishTime.setProjectReference(planActivity.getProjectReference());
@@ -42,7 +44,7 @@ public class ReportPlanActivitySTExpectedFinishTimeProcessor extends DefaultCrea
             expectedFinishTime.setReporter(PIPrincipalReference.newPIPrincipalReference(principal));
             expectedFinishTime.setReportTime(new Timestamp(new Date().getTime()));
             STExpectedFinishTime finishTime = PersistenceHelper.service.save(expectedFinishTime);
-        } catch (PIException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "", null);
