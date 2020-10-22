@@ -17,6 +17,13 @@ import java.io.Serializable;
 @Entity
 @Table
 public class STProCompetence extends PIPmgtObject implements Serializable {
+
+    static final String CLASSNAME = STProCompetence.class.getName();
+
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
     /**
      * 专业能力
      */
@@ -48,6 +55,7 @@ public class STProCompetence extends PIPmgtObject implements Serializable {
     public void setDepartmentReference(ObjectReference departmentReference) {
         this.departmentReference = departmentReference;
     }
+
 
     public static STProCompetence newSTProCompetence() throws PIException {
         STProCompetence obj = new STProCompetence();

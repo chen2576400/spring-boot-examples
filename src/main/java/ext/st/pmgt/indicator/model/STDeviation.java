@@ -2,6 +2,7 @@ package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
+import com.pisx.tundra.pmgt.plan.model.AbstractPIPlanActivity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,10 +19,16 @@ import java.io.Serializable;
 @Entity
 @Table
 public class STDeviation extends PIPmgtObject implements Serializable {
+    static final String CLASSNAME = STDeviation.class.getName();
+
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
     /**
      * 指标编码
      */
-    @Column(nullable = true, unique = true)
+    @Column(nullable = true, unique = false)
     private String code;
 
     /**

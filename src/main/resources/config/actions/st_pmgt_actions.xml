@@ -15,7 +15,13 @@
             <command className="ext.st.pmgt.indicator.processors.ReportPlanActivitySTExpectedFinishTimeProcessor"/>
         </action>
         <action name="pertReport">
-            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="page"/>
+            <component name="ext.st.pmgt.indicator.builders.PERTWizardBulder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.PERTProcessor"/>
+        </action>
+        <action name="createDeliverable">
+            <component name="ext.st.pmgt.indicator.builders.CreateDeliverableWizardBuilder"
+                       windowType="popup"/>
+<!--            <command className="com.pisx.tundra.pmgt.deliverable.processors.CreateDeliverableFormProcessor"/>-->
         </action>
     </actionsgroup>
 </listofactions>

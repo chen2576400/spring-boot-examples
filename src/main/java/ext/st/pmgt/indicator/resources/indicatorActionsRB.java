@@ -32,4 +32,10 @@ public class indicatorActionsRB extends PIListResourceBundle {
     public static final String act_06 = "st-pmgt-act.pertReport.icon";
 
 
+    @RBEntry("createDeliverable")
+    public static final String act_042 = "st-pmgt-act.createDeliverable.description";
+    @RBEntry("createDeliverable")
+    public static final String act_053 = "st-pmgt-act.createDeliverable.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String act_064 = "st-pmgt-act.createDeliverable.icon";
 }

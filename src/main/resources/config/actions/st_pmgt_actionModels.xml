@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actionmodels>
 
-    <model name="pi-pmgtPlanActivityInfoPageTabSet" resource="com.pisx.tundra.pmgt.pmgtActionsRB">
+    <model name="pi-pmgtPlanActivityInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="details" type="pi-pmgt-act"/>
         <!--<action name="attachments" type="pi-pmgt-enterprise"/>-->
         <action name="resourceAssignments" type="pi-pmgt-act"/>
@@ -24,6 +24,12 @@
     <model name="planDropDown" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="reportExpectedFinishTime" type="st-pmgt-act"  shortcut="true"/>
         <action name="pertReport" type="st-pmgt-act"  shortcut="true"/>
+    </model>
+
+    <model name="deliverablesForActivityToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="deleteDeliverables" type="pi-pmgt-project" shortcut="true"/>
+        <action name="createDeliverable" type="st-pmgt-act" shortcut="true"/>
+        <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>
     </model>
 
 </actionmodels>

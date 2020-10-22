@@ -13,4 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Version V1.0
  **/
 public interface DeliverableTypeDao extends JpaRepository<STDeliverableType, ObjectIdentifier> {
+    STDeliverableType findByName(String s);
+    STDeliverableType findByNameEquals(String s);
 }

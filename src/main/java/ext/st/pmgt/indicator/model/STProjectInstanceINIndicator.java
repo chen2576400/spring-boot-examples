@@ -25,6 +25,11 @@ import java.io.Serializable;
 public class STProjectInstanceINIndicator extends PIPmgtObject implements Serializable, PIContained {
 
     static final String CLASSNAME = STProjectInstanceINIndicator.class.getName();
+
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
     /**
      * 任务
      */
@@ -54,9 +59,10 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
     private Double inWeight;
 
     /**
-     * 指标源
+     * 项目实例OT指标编码
      */
     private String sourceindicator;
+
 
 
     /**

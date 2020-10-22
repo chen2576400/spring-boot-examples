@@ -7,6 +7,7 @@ import com.pisx.tundra.foundation.fc.collections.PIArrayList;
 import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.PIReference;
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
@@ -17,16 +18,15 @@ import com.pisx.tundra.pmgt.plan.dao.PIPlanActivityDao;
 import com.pisx.tundra.pmgt.plan.dao.PIPlanDao;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import com.pisx.tundra.pmgt.plan.model.PIPlanRootable;
 import com.pisx.tundra.pmgt.plan.model.PIPlannable;
 import com.pisx.tundra.pmgt.project.dao.PIProjectDao;
 import com.pisx.tundra.pmgt.project.model.PIPmgtBaselineType;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.resource.model.PIResource;
-import ext.st.pmgt.indicator.dao.ProjectIndicatorDao;
-import ext.st.pmgt.indicator.dao.ProjectInstanceINIndicatorDao;
-import ext.st.pmgt.indicator.dao.ProjectInstanceOTIndicatorDao;
-import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
-import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import ext.st.pmgt.indicator.STIndicatorHelper;
+import ext.st.pmgt.indicator.dao.*;
+import ext.st.pmgt.indicator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +35,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,6 +58,12 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     private ProjectInstanceOTIndicatorDao projectOTIndicatorDao;
 
     @Autowired
+    private DeliverableTypeDao deliverableTypeDao;
+
+    @Autowired
+    private ProCompetenceDao proCompetenceDao;
+
+    @Autowired
     private PIPlanDao piPlanDao;
 
     @Autowired
@@ -64,6 +71,9 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
     @Autowired
     private PIProjectDao projectDao;
+
+    @Autowired
+    private ExpectedFinishTimeDao expectedFinishTimeDao;
 
     @Override
     public PICollection findProjectINIndicatorByProject(PIProject project) throws PIException {
@@ -114,6 +124,13 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         return result;
     }
 
+    @Override
+    public PICollection findProjectOTIndicatorByPlanActivityAndPlan(PIPlanActivity planActivity, PIPlan plan) throws PIException {
+        PIArrayList result = new PIArrayList();
+        result.addAll(projectOTIndicatorDao.findByPlanActivityReferenceAndPlanReference(ObjectReference.newObjectReference(planActivity),ObjectReference.newObjectReference(plan)));
+        return result;
+    }
+
 
     /*
      *参数：planid(数字)
@@ -130,12 +147,36 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             HashMap<String, Object> map = new HashMap<>();
             List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) planactivity));
             List<STProjectInstanceINIndicator> inIndicators = (List) projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) planactivity));
-            map.put("任务", planactivity);
-            map.put("OT", otIndicators);
-            map.put("IN", inIndicators);
+            map.put("任务id", ((PIPlanActivity) planactivity).getOid());
+            map.put("任务名称", ((PIPlanActivity) planactivity).getName());
+//            map.put("ot",otIndicators);
+//            map.put("in",inIndicators);
+            List<Map<String, Object>> otList = new ArrayList<>();
+            for (STProjectInstanceOTIndicator otIndicator : otIndicators) {
+                HashMap<String, Object> otMap = new HashMap<>();
+                otMap.put("完成状态",otIndicator.getCompletionStatus());
+                otMap.put("标准困难度",otIndicator.getStandardDifficultyValue());
+                otMap.put("汇报困难度",otIndicator.getDifficultyReport());
+                otMap.put("标准偏差值",otIndicator.getStandardDifficultyValue());
+                otMap.put("汇报偏差值",otIndicator.getDifficultyReport());
+                otMap.put("广度",otIndicator.getBreadth());
+                otMap.put("关建度",otIndicator.getCriticality());
+                otList.add(otMap);
+            }
+            map.put("OT",otList);
+
+            List<Map<String, Object>> inList = new ArrayList<>();
+            for (STProjectInstanceINIndicator inIndicator : inIndicators) {
+                HashMap<String, Object> inMap = new HashMap<>();
+                inMap.put("权重",inIndicator.getInWeight());
+                inList.add(inMap);
+            }
+            map.put("in",inList);
+
             result.add(map);
         }
         return JSONObject.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect);
+//        return result;
     }
 
     /*
@@ -150,7 +191,20 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIPlan plan = (PIPlan) referenceFactory.getReference(planOid).getObject();
         PIProject project = plan.getProject();
+
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("项目名称",project.getProjectName());
+        result.put("项目启动时间和当前日期差",getTime(new Timestamp(System.currentTimeMillis()),project.getStartDate()));
+        result.put("项目周期",getTime(plan.getTargetEndDate(),plan.getTargetStartDate()));
+        result.put("预实比",String.valueOf(project.getBudgetCost()-project.getActualCost()));
         return JSONObject.toJSONString(project, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    private Integer getTime(Timestamp t1,Timestamp t2){
+        long t = t1.getTime()-t2.getTime();
+        int days=(int) (t/(1000*60*60*24));
+        return days;
     }
 
     /*
@@ -162,7 +216,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     public Object api3(String userId,Timestamp actualStartDate,Timestamp actualEndDate) throws PIException {
         String userOid = PIUser.class.getName() + ":" + userId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
-        PIUser user = (PIUser) referenceFactory.getReference(userId).getObject();
+        PIUser user = (PIUser) referenceFactory.getReference(userOid).getObject();
         EntityManager em = PersistenceHelper.service.getEntityManager();
         List<PIResourceAssignment> result = new ArrayList();
         try {
@@ -193,12 +247,35 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         for (PIResourceAssignment piResourceAssignment : result) {
             HashMap<String, Object> map = new HashMap<>();
             PIPlanActivity planActivity = (PIPlanActivity) piResourceAssignment.getPlannable();
-            List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) planActivity));
-            List<STProjectInstanceINIndicator> inIndicators = (List) projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference((PIPlanActivity) planActivity));
-            map.put("任务", planActivity);
-            map.put("OT", otIndicators);
-            map.put("IN", inIndicators);
-            map.put("员工", user);
+
+            List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(planActivity));
+            List<STProjectInstanceINIndicator> inIndicators = (List) projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(planActivity));
+            map.put("任务id", planActivity.getOid());
+            map.put("任务名称", planActivity.getName());
+//            map.put("ot",otIndicators);
+//            map.put("in",inIndicators);
+            List<Map<String, Object>> otList = new ArrayList<>();
+            for (STProjectInstanceOTIndicator otIndicator : otIndicators) {
+                HashMap<String, Object> otMap = new HashMap<>();
+                otMap.put("完成状态",otIndicator.getCompletionStatus());
+                otMap.put("标准困难度",otIndicator.getStandardDifficultyValue());
+                otMap.put("汇报困难度",otIndicator.getDifficultyReport());
+                otMap.put("标准偏差值",otIndicator.getStandardDifficultyValue());
+                otMap.put("汇报偏差值",otIndicator.getDifficultyReport());
+                otMap.put("广度",otIndicator.getBreadth());
+                otMap.put("关建度",otIndicator.getCriticality());
+                otList.add(otMap);
+            }
+            map.put("OT",otList);
+
+            List<Map<String, Object>> inList = new ArrayList<>();
+            for (STProjectInstanceINIndicator inIndicator : inIndicators) {
+                HashMap<String, Object> inMap = new HashMap<>();
+                inMap.put("权重",inIndicator.getInWeight());
+                inList.add(inMap);
+            }
+            map.put("in",inList);
+
             result1.add(map);
         }
         return JSONObject.toJSONString(result1, SerializerFeature.DisableCircularReferenceDetect);
@@ -207,7 +284,52 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public Object api4(String planid) throws PIException {
-        return null;
+    public Object api4(String activityId) throws PIException {
+        String actId = PIPlan.class.getName() + ":" + activityId;
+        ReferenceFactory referenceFactory = new ReferenceFactory();
+        PIPlanActivity act = (PIPlanActivity) referenceFactory.getReference(actId).getObject();
+        PIPlan plan = (PIPlan) act.getRoot();
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("预估开始时间",act.getTargetStartDate());
+        result.put("截至时间",act.getTargetEndDate());
+        result.put("权重",getTime(plan.getTargetEndDate(),plan.getTargetStartDate()));
+
+        List<STExpectedFinishTime> expectTime = (List)getExpextTimeByActivity(act);
+        List<String> timeList = expectTime.stream().map(item->new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(item.getExpectedFinishTime())).collect(Collectors.toList());
+        result.put("预估完成时间",timeList);
+        result.put("实际开始时间",act.getActualStartDate());
+
+        return JSONObject.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @Override
+    public Collection getAllDeliverableType() {
+        return deliverableTypeDao.findAll();
+    }
+
+    @Override
+    public STProCompetence getProContenceByName(String name) {
+        return proCompetenceDao.findByNameEquals(name);
+    }
+
+    @Override
+    public STDeliverableType findDeliverableTypeByCode(String s) {
+        return deliverableTypeDao.findByNameEquals(s);
+    }
+
+    @Override
+    public STProjectInstanceOTIndicator getOTByCode(String s) {
+        return projectOTIndicatorDao.findByCode(s);
+    }
+
+    @Override
+    public Collection getExpextTimeByActivity(PIPlanActivity act) throws PIException {
+        return expectedFinishTimeDao.findByPlanActivityReference(ObjectReference.newObjectReference(act));
+    }
+
+    @Override
+    public Collection getOTByDeliverableType(STDeliverableType deliverableType) throws PIException {
+        return projectOTIndicatorDao.findByDeliverableTypeReference(ObjectReference.newObjectReference(deliverableType));
     }
 }

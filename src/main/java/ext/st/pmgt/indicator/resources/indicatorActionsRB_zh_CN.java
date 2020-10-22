@@ -32,4 +32,12 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("img/pmgt/add.gif")
     public static final String act_06 = "st-pmgt-act.pertReport.icon";
 
+
+    @RBEntry("创建交付对象")
+    public static final String act_042 = "st-pmgt-act.createDeliverable.description";
+    @RBEntry("创建交付对象")
+    public static final String act_053 = "st-pmgt-act.createDeliverable.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String act_064 = "st-pmgt-act.createDeliverable.icon";
+
 }

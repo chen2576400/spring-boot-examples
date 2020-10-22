@@ -18,10 +18,17 @@ import java.io.Serializable;
 @Entity
 @Table
 public class STDifficulty extends PIPmgtObject implements Serializable {
+
+    static final String CLASSNAME = STDifficulty.class.getName();
+
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
     /**
      * 指标编码
      */
-    @Column(nullable = true, unique = true)
+    @Column(nullable = true, unique = false)
     private String code;
 
     /**

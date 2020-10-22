@@ -5,8 +5,9 @@ import com.pisx.tundra.foundation.util.resource.RBEntry;
 import com.pisx.tundra.foundation.util.resource.RBUUID;
 
 
-@RBUUID("com.st.pmgt.indicator.model.modelRB_zh_CN")
+@RBUUID("ext.st.pmgt.indicator.model.modelRB_zh_CN")
 public class modelRB_zh_CN extends PIListResourceBundle {
+
 
     @RBEntry("指标编码")
     public static final String OTIndicator_01= "STProjectInstanceOTIndicator.code.value";
@@ -16,6 +17,8 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     public static final String OTIndicator_03= "STProjectInstanceOTIndicator.standardDeviationValue.value";
     @RBEntry("标准困难度")
     public static final String OTIndicator_04= "STProjectInstanceOTIndicator.difficultyValue.value";
+    @RBEntry("汇报偏差")
+    public static final String OTIndicator_05= "STProjectInstanceOTIndicator.deviationReport.value";
 
     @RBEntry("指标编码")
     public static final String INIndicator_01= "STProjectInstanceINIndicator.code.value";

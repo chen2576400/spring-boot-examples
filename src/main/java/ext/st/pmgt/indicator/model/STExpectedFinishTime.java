@@ -23,7 +23,12 @@ import java.sql.Timestamp;
 @Entity
 @Table
 public class STExpectedFinishTime extends PIPmgtObject implements Serializable {
+    static final String CLASSNAME = STExpectedFinishTime.class.getName();
 
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
     /*
      * 项目
      * */

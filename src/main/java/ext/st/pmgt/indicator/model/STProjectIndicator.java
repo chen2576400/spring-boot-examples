@@ -26,6 +26,10 @@ import java.io.Serializable;
 public class STProjectIndicator extends PIPmgtObject implements Serializable, PIContained {
     static final String CLASSNAME = STProjectIndicator.class.getName();
 
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
     /**
      * 指标编码
      */
@@ -72,9 +76,7 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
     })
     PIContainerRef containerReference;  //OrgContainer
 
-    public static String getCLASSNAME() {
-        return CLASSNAME;
-    }
+
 
     public String getCode() {
         return code;
@@ -197,10 +199,6 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
         return null;
     }
 
-    @Override
-    public String getConceptualClassname() {
-        return null;
-    }
 
     public static STProjectIndicator newSTProjectIndicator() throws PIException {
         STProjectIndicator obj = new STProjectIndicator();

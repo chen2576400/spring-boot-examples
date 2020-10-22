@@ -1,6 +1,7 @@
 package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.inf.container.model.PIContained;
 import com.pisx.tundra.foundation.inf.container.model.PIContainer;
 import com.pisx.tundra.foundation.inf.container.model.PIContainerRef;
@@ -27,8 +28,14 @@ import java.sql.Timestamp;
 @Entity
 @Table
 public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serializable, PIContained {
-
     static final String CLASSNAME = STProjectInstanceOTIndicator.class.getName();
+
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
+
+
 
     /**
      * 指标编码
@@ -105,11 +112,16 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     @Column(nullable = true, unique = false)
     private Double criticality = 0D;
 
+
     /**
      * 交付物类型编码
      */
-    @Column(name = "deliverableTypeCode", nullable = true, unique = false)
-    private String deliverableTypeCode;
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "deliverableTypeRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "deliverableTypeClass", nullable = true))
+    })
+    ObjectReference deliverableTypeReference;
 
 
     /**
@@ -220,12 +232,17 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
         this.criticality = criticality;
     }
 
-    public String getDeliverableTypeCode() {
-        return deliverableTypeCode;
+    public ObjectReference getDeliverableTypeReference() {
+        return deliverableTypeReference;
     }
 
-    public void setDeliverableTypeCode(String deliverableTypeCode) {
-        this.deliverableTypeCode = deliverableTypeCode;
+    public void setDeliverableTypeReference(ObjectReference deliverableTypeReference) {
+        this.deliverableTypeReference = deliverableTypeReference;
+    }
+
+    public String getDeliverableTypeCode() {
+        STDeliverableType object = (STDeliverableType) deliverableTypeReference.getObject();
+        return object.getCode();
     }
 
     public ObjectReference getPlanDeliverableReference() {

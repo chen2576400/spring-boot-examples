@@ -18,7 +18,12 @@ import java.io.Serializable;
 @Entity
 @Table
 public class STDeliverableType extends PIPmgtObject implements Serializable {
+    static final String CLASSNAME = STDeliverableType.class.getName();
 
+    @Override
+    public String getConceptualClassname() {
+        return CLASSNAME;
+    }
     /**
      * 名称
      */
