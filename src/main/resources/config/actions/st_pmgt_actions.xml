@@ -11,7 +11,8 @@
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="reportExpectedFinishTime">
-            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="popup"/>
+            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder"
+                       windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.ReportPlanActivitySTExpectedFinishTimeProcessor"/>
         </action>
         <action name="pertReport">
@@ -21,7 +22,17 @@
         <action name="createDeliverable">
             <component name="ext.st.pmgt.indicator.builders.CreateDeliverableWizardBuilder"
                        windowType="popup"/>
-<!--            <command className="com.pisx.tundra.pmgt.deliverable.processors.CreateDeliverableFormProcessor"/>-->
+            <!--            <command className="com.pisx.tundra.pmgt.deliverable.processors.CreateDeliverableFormProcessor"/>-->
         </action>
     </actionsgroup>
+
+    <actionsgroup name="st-pmgt-ot" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+        <action name="addOT" beforeJS="buttonEvent">
+            <command className="ext.st.pmgt.indicator.processors.ImportOTIndicatorProcessor"/>
+        </action>
+        <action name="saveOT" beforeJS="buttonEvent">
+            <command className="ext.st.pmgt.indicator.processors.SaveOTIndicatorProcessor"/>
+        </action>
+    </actionsgroup>
+
 </listofactions>

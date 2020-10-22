@@ -40,4 +40,17 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("img/pmgt/add.gif")
     public static final String act_064 = "st-pmgt-act.createDeliverable.icon";
 
+    @RBEntry("新增OT指标")
+    public static final String act_0421 = "st-pmgt-ot.addOT.description";
+    @RBEntry("新增OT指标")
+    public static final String act_0532 = "st-pmgt-ot.addOT.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String act_0643 = "st-pmgt-ot.addOT.icon";
+
+    @RBEntry("保存")
+    public static final String act_04211 = "st-pmgt-ot.saveOT.description";
+    @RBEntry("保存")
+    public static final String act_05322 = "st-pmgt-ot.saveOT.tooltip";
+    @RBEntry("img/pmgt/save.gif")
+    public static final String act_06433 = "st-pmgt-ot.saveOT.icon";
 }

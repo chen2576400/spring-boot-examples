@@ -43,15 +43,11 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
 //        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
 //        tableConfig.setRightMenuName("deliverablesForPlanToolBarSet",params);
 
+
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
-        columnconfig.setName("code");
-        columnconfig.haveInfoPageLink();
+        columnconfig.setName("projectInstanceOTIndicator.code");
+        columnconfig.setLabel("ot指标编码");
         tableConfig.addColumn(columnconfig);
-
-        ColumnConfig columnconfig3 = componentConfigFactory.newColumnConfig();
-        columnconfig3.setName("description");
-        tableConfig.addColumn(columnconfig3);
-
 
         ColumnConfig columnconfig33 = componentConfigFactory.newColumnConfig();
         columnconfig33.setName("inWeight");

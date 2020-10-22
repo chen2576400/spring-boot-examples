@@ -34,7 +34,9 @@ public class ReportPlanActivitySTExpectedFinishTimeProcessor extends DefaultCrea
             if (data==null || StringUtils.isBlank(data.toString()))
                 return new ResponseWrapper(ResponseWrapper.FAILED, "", null);
             STExpectedFinishTime expectedFinishTime = (STExpectedFinishTime)list.get(0);
-            Timestamp timestamp = new Timestamp(new SimpleDateFormat("yyyy-MM-dd").parse(data.toString()).getTime());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = simpleDateFormat.parse(data.toString());
+            Timestamp timestamp = new Timestamp(date.getTime());
             expectedFinishTime.setExpectedFinishTime(timestamp);
             PIPlanActivity planActivity = (PIPlanActivity)params.getNfCommandBean().getSourceObject();
             expectedFinishTime.setPlanActivityReference(planActivity);

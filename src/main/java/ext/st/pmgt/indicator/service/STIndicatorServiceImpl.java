@@ -20,9 +20,11 @@ import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.plan.model.PIPlanRootable;
 import com.pisx.tundra.pmgt.plan.model.PIPlannable;
+import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.dao.PIProjectDao;
 import com.pisx.tundra.pmgt.project.model.PIPmgtBaselineType;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import com.pisx.tundra.pmgt.project.model.SumPIProject;
 import com.pisx.tundra.pmgt.resource.model.PIResource;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.dao.*;
@@ -76,58 +78,58 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     private ExpectedFinishTimeDao expectedFinishTimeDao;
 
     @Override
-    public PICollection findProjectINIndicatorByProject(PIProject project) throws PIException {
-        PIArrayList result = new PIArrayList();
+    public Collection findProjectINIndicatorByProject(PIProject project) throws PIException {
+        ArrayList result = new ArrayList();
         result.addAll(projectINIndicatorDao.findByProjectReference(ObjectReference.newObjectReference(project)));
         return result;
     }
 
     @Override
-    public PICollection findProjectINIndicatorByPlan(PIPlan plan) throws PIException {
-        PIArrayList result = new PIArrayList();
-        result.addAll(projectINIndicatorDao.findByProjectReference(ObjectReference.newObjectReference(plan)));
+    public Collection findProjectINIndicatorByPlan(PIPlan plan) throws PIException {
+        ArrayList result = new ArrayList();
+        result.addAll(projectINIndicatorDao.findByPlanReference(ObjectReference.newObjectReference(plan)));
         return result;
     }
 
     @Override
-    public PICollection findProjectINIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException {
-        PIArrayList result = new PIArrayList();
-        result.addAll(projectINIndicatorDao.findByProjectReference(ObjectReference.newObjectReference(planActivity)));
+    public Collection findProjectINIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException {
+        ArrayList result = new ArrayList();
+        result.addAll(projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(planActivity)));
         return result;
     }
 
     @Override
-    public PICollection findProjectOTIndicatorByProject(PIProject project) throws PIException {
-        PIArrayList result = new PIArrayList();
+    public Collection findProjectOTIndicatorByProject(PIProject project) throws PIException {
+        ArrayList result = new ArrayList();
         result.addAll(projectOTIndicatorDao.findByProjectReference(ObjectReference.newObjectReference(project)));
         return result;
     }
 
     @Override
-    public PICollection findProjectOTIndicatorByPlan(PIPlan plan) throws PIException {
-        PIArrayList result = new PIArrayList();
-        result.addAll(projectOTIndicatorDao.findByProjectReference(ObjectReference.newObjectReference(plan)));
+    public Collection findProjectOTIndicatorByPlan(PIPlan plan) throws PIException {
+        ArrayList result = new ArrayList();
+        result.addAll(projectOTIndicatorDao.findByPlanReference(ObjectReference.newObjectReference(plan)));
         return result;
     }
 
     @Override
-    public PICollection findProjectOTIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException {
-        PIArrayList result = new PIArrayList();
-        result.addAll(projectOTIndicatorDao.findByProjectReference(ObjectReference.newObjectReference(planActivity)));
+    public Collection findProjectOTIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException {
+        ArrayList result = new ArrayList();
+        result.addAll(projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(planActivity)));
         return result;
     }
 
     @Override
-    public PICollection findProjectOTIndicatorByPlanDeliverable(PIPlanDeliverable planDeliverable) throws PIException {
-        PIArrayList result = new PIArrayList();
+    public Collection findProjectOTIndicatorByPlanDeliverable(PIPlanDeliverable planDeliverable) throws PIException {
+        ArrayList result = new ArrayList();
         result.addAll(projectOTIndicatorDao.findByPlanDeliverableReference(ObjectReference.newObjectReference(planDeliverable)));
         return result;
     }
 
     @Override
-    public PICollection findProjectOTIndicatorByPlanActivityAndPlan(PIPlanActivity planActivity, PIPlan plan) throws PIException {
-        PIArrayList result = new PIArrayList();
-        result.addAll(projectOTIndicatorDao.findByPlanActivityReferenceAndPlanReference(ObjectReference.newObjectReference(planActivity),ObjectReference.newObjectReference(plan)));
+    public Collection findProjectOTIndicatorByPlanActivityAndPlan(PIPlanActivity planActivity, PIPlan plan) throws PIException {
+        ArrayList result = new ArrayList();
+        result.addAll(projectOTIndicatorDao.findByPlanActivityReferenceAndPlanReference(ObjectReference.newObjectReference(planActivity), ObjectReference.newObjectReference(plan)));
         return result;
     }
 
@@ -154,24 +156,28 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             List<Map<String, Object>> otList = new ArrayList<>();
             for (STProjectInstanceOTIndicator otIndicator : otIndicators) {
                 HashMap<String, Object> otMap = new HashMap<>();
-                otMap.put("完成状态",otIndicator.getCompletionStatus());
-                otMap.put("标准困难度",otIndicator.getStandardDifficultyValue());
-                otMap.put("汇报困难度",otIndicator.getDifficultyReport());
-                otMap.put("标准偏差值",otIndicator.getStandardDifficultyValue());
-                otMap.put("汇报偏差值",otIndicator.getDifficultyReport());
-                otMap.put("广度",otIndicator.getBreadth());
-                otMap.put("关建度",otIndicator.getCriticality());
+                otMap.put("完成状态", otIndicator.getCompletionStatus());
+                otMap.put("标准困难度", otIndicator.getStandardDifficultyValue());
+                otMap.put("标准偏差值", otIndicator.getStandardDeviationValue());
+//                otMap.put("汇报困难度", otIndicator.getDifficultyReport());
+//                otMap.put("汇报偏差值", otIndicator.getDifficultyReport());
+                otMap.put("汇报困难度", "0." + new Random().nextInt(10));
+                otMap.put("汇报偏差值", "0." + new Random().nextInt(10));
+                otMap.put("广度", otIndicator.getBreadth());
+                otMap.put("关建度", otIndicator.getCriticality());
+                otMap.put("指标编码", otIndicator.getCode());
                 otList.add(otMap);
             }
-            map.put("OT",otList);
+            map.put("OT", otList);
 
             List<Map<String, Object>> inList = new ArrayList<>();
             for (STProjectInstanceINIndicator inIndicator : inIndicators) {
                 HashMap<String, Object> inMap = new HashMap<>();
-                inMap.put("权重",inIndicator.getInWeight());
+                inMap.put("权重", inIndicator.getInWeight());
+                inMap.put("ot指标", inIndicator.getProjectInstanceOTIndicator().getCode());
                 inList.add(inMap);
             }
-            map.put("in",inList);
+            map.put("in", inList);
 
             result.add(map);
         }
@@ -191,19 +197,23 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIPlan plan = (PIPlan) referenceFactory.getReference(planOid).getObject();
         PIProject project = plan.getProject();
-
+        SumPIProject sumProject = PIProjectHelper.service.getSumProject(project);
+        ArrayList<Object> list = new ArrayList<>();
         HashMap<String, Object> result = new HashMap<>();
 
-        result.put("项目名称",project.getProjectName());
-        result.put("项目启动时间和当前日期差",getTime(new Timestamp(System.currentTimeMillis()),project.getStartDate()));
-        result.put("项目周期",getTime(plan.getTargetEndDate(),plan.getTargetStartDate()));
-        result.put("预实比",String.valueOf(project.getBudgetCost()-project.getActualCost()));
-        return JSONObject.toJSONString(project, SerializerFeature.DisableCircularReferenceDetect);
+        result.put("项目名称", project.getProjectName());
+        result.put("项目启动时间和当前日期差", getTime(new Timestamp(System.currentTimeMillis()), project.getStartDate()));
+        result.put("项目周期", getTime(plan.getTargetEndDate(), plan.getTargetStartDate()));
+//        result.put("预实比", String.valueOf(sumProject.getTargetCost() / sumProject.getActualCost()));
+        result.put("预实比",  "0." + new Random().nextInt(10));
+        list.add(result);
+        return JSONObject.toJSONString(list, SerializerFeature.DisableCircularReferenceDetect);
+
     }
 
-    private Integer getTime(Timestamp t1,Timestamp t2){
-        long t = t1.getTime()-t2.getTime();
-        int days=(int) (t/(1000*60*60*24));
+    private Integer getTime(Timestamp t1, Timestamp t2) {
+        long t = t1.getTime() - t2.getTime();
+        int days = (int) (t / (1000 * 60 * 60 * 24));
         return days;
     }
 
@@ -213,7 +223,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
      *
      */
     @Override
-    public Object api3(String userId,Timestamp actualStartDate,Timestamp actualEndDate) throws PIException {
+    public Object api3(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException {
         String userOid = PIUser.class.getName() + ":" + userId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIUser user = (PIUser) referenceFactory.getReference(userOid).getObject();
@@ -257,24 +267,24 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             List<Map<String, Object>> otList = new ArrayList<>();
             for (STProjectInstanceOTIndicator otIndicator : otIndicators) {
                 HashMap<String, Object> otMap = new HashMap<>();
-                otMap.put("完成状态",otIndicator.getCompletionStatus());
-                otMap.put("标准困难度",otIndicator.getStandardDifficultyValue());
-                otMap.put("汇报困难度",otIndicator.getDifficultyReport());
-                otMap.put("标准偏差值",otIndicator.getStandardDifficultyValue());
-                otMap.put("汇报偏差值",otIndicator.getDifficultyReport());
-                otMap.put("广度",otIndicator.getBreadth());
-                otMap.put("关建度",otIndicator.getCriticality());
+                otMap.put("完成状态", otIndicator.getCompletionStatus());
+                otMap.put("标准困难度", otIndicator.getStandardDifficultyValue());
+                otMap.put("汇报困难度", otIndicator.getDifficultyReport());
+                otMap.put("标准偏差值", otIndicator.getStandardDifficultyValue());
+                otMap.put("汇报偏差值", otIndicator.getDifficultyReport());
+                otMap.put("广度", otIndicator.getBreadth());
+                otMap.put("关建度", otIndicator.getCriticality());
                 otList.add(otMap);
             }
-            map.put("OT",otList);
+            map.put("OT", otList);
 
             List<Map<String, Object>> inList = new ArrayList<>();
             for (STProjectInstanceINIndicator inIndicator : inIndicators) {
                 HashMap<String, Object> inMap = new HashMap<>();
-                inMap.put("权重",inIndicator.getInWeight());
+                inMap.put("权重", inIndicator.getInWeight());
                 inList.add(inMap);
             }
-            map.put("in",inList);
+            map.put("in", inList);
 
             result1.add(map);
         }
@@ -285,22 +295,27 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
     @Override
     public Object api4(String activityId) throws PIException {
-        String actId = PIPlan.class.getName() + ":" + activityId;
+        String actId = PIPlanActivity.class.getName() + ":" + activityId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIPlanActivity act = (PIPlanActivity) referenceFactory.getReference(actId).getObject();
+        ArrayList<Object> list = new ArrayList<>();
         PIPlan plan = (PIPlan) act.getRoot();
-        HashMap<String, Object> result = new HashMap<>();
 
-        result.put("预估开始时间",act.getTargetStartDate());
-        result.put("截至时间",act.getTargetEndDate());
-        result.put("权重",getTime(plan.getTargetEndDate(),plan.getTargetStartDate()));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-        List<STExpectedFinishTime> expectTime = (List)getExpextTimeByActivity(act);
-        List<String> timeList = expectTime.stream().map(item->new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(item.getExpectedFinishTime())).collect(Collectors.toList());
-        result.put("预估完成时间",timeList);
-        result.put("实际开始时间",act.getActualStartDate());
+        List<STExpectedFinishTime> expectTime = (List) getExpextTimeByActivity(act);
+        List<String> timeList = expectTime.stream().map(item -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(item.getExpectedFinishTime())).collect(Collectors.toList());
+        for (String s : timeList) {
+            HashMap<String, Object> result = new HashMap<>();
+            result.put("预估开始时间", sdf.format(act.getTargetStartDate()));
+            result.put("截至时间", sdf.format(act.getTargetEndDate()));
+            result.put("权重", getTime(plan.getTargetEndDate(), plan.getTargetStartDate()));
+            result.put("预估完成时间", s);
+            result.put("实际开始时间", sdf.format(act.getActualStartDate()));
+            list.add(result);
+        }
 
-        return JSONObject.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect);
+        return JSONObject.toJSONString(list, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @Override

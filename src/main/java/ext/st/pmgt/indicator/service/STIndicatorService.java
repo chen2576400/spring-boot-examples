@@ -18,21 +18,21 @@ import java.util.List;
 
 public interface STIndicatorService {
 
-    PICollection findProjectINIndicatorByProject(PIProject project) throws PIException;
+    Collection findProjectINIndicatorByProject(PIProject project) throws PIException;
 
-    PICollection findProjectINIndicatorByPlan(PIPlan plan) throws PIException;
+    Collection findProjectINIndicatorByPlan(PIPlan plan) throws PIException;
 
-    PICollection findProjectINIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException;
+    Collection findProjectINIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException;
 
-    PICollection findProjectOTIndicatorByProject(PIProject project) throws PIException;
+    Collection findProjectOTIndicatorByProject(PIProject project) throws PIException;
 
-    PICollection findProjectOTIndicatorByPlan(PIPlan plan) throws PIException;
+    Collection findProjectOTIndicatorByPlan(PIPlan plan) throws PIException;
 
-    PICollection findProjectOTIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException;
+    Collection findProjectOTIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException;
 
-    PICollection findProjectOTIndicatorByPlanDeliverable(PIPlanDeliverable planDeliverable) throws PIException;
+    Collection findProjectOTIndicatorByPlanDeliverable(PIPlanDeliverable planDeliverable) throws PIException;
 
-    PICollection findProjectOTIndicatorByPlanActivityAndPlan(PIPlanActivity planActivity,PIPlan plan) throws PIException;
+    Collection findProjectOTIndicatorByPlanActivityAndPlan(PIPlanActivity planActivity,PIPlan plan) throws PIException;
     //api1
 
     Object api1(String planid) throws PIException;

@@ -22,14 +22,20 @@
     </model>
 
     <model name="planDropDown" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="reportExpectedFinishTime" type="st-pmgt-act"  shortcut="true"/>
-        <action name="pertReport" type="st-pmgt-act"  shortcut="true"/>
+        <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
+        <action name="pertReport" type="st-pmgt-act" shortcut="true"/>
     </model>
 
     <model name="deliverablesForActivityToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="deleteDeliverables" type="pi-pmgt-project" shortcut="true"/>
         <action name="createDeliverable" type="st-pmgt-act" shortcut="true"/>
         <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>
+    </model>
+
+
+    <model name="otTableToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="addOT" type="st-pmgt-ot" shortcut="true"/>
+        <action name="saveOT" type="st-pmgt-ot" shortcut="true"/>
     </model>
 
 </actionmodels>

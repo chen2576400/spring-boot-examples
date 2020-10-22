@@ -53,6 +53,8 @@ public class STController extends BaseController {
     @RequestMapping(value = "/getDataByActivityId", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getPert(@RequestParam(value = "activityId", required = false) String activityId) throws Exception {
+        //todo testUrl:http://localhost:8080/st/getDataByActivityId?activityId=5897
+
         return STIndicatorHelper.service.api4(activityId);
     }
 

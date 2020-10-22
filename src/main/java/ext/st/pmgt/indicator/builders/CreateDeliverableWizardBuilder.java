@@ -21,6 +21,7 @@ import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STDeliverableType;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 
+import java.util.Collection;
 import java.util.List;
 
 public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
@@ -82,26 +83,28 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
             step3.setId("otStep");
             TableConfig tableConfig1 = componentConfigFactory.newTableConfig(params);
             tableConfig1.setId("OTTable");
-            tableConfig1.setTableTitle("交付物类别");
+            tableConfig1.setTableTitle("OT指标");
             tableConfig1.haveBorder();
             tableConfig1.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
             tableConfig1.enableSelect();
             tableConfig1.setSingleSelect(true);
             tableConfig1.setHeight("450px");
+            tableConfig1.setToolbarActionModel("otTableToolBarSet",params);
 
             ColumnConfig column11 = componentConfigFactory.newColumnConfig();
             column11.setName("code");
+//            column11.enableEdit();
             tableConfig1.addColumn(column11);
 
             ColumnConfig column22 = componentConfigFactory.newColumnConfig();
             column22.setName("description");
+//            column22.enableEdit();
             tableConfig1.addColumn(column22);
 
             ColumnConfig column3 = componentConfigFactory.newColumnConfig();
             column3.setName("deviationReport");
             column3.enableEdit();
             tableConfig1.addColumn(column3);
-
 
             step3.children(tableConfig1);
 
@@ -113,7 +116,7 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
 
     private List getDeliverable(ComponentParams params) throws PIException {
         PIPlanActivity planAct = (PIPlanActivity) params.getNfCommandBean().getPagePrimaryObject();
-        PICollection result = STIndicatorHelper.service.findProjectOTIndicatorByPlanActivityAndPlan(planAct, (PIPlan) planAct.getRoot());
-        return (List) result.persistableCollection();
+        Collection result = STIndicatorHelper.service.findProjectOTIndicatorByPlanActivityAndPlan(planAct, (PIPlan) planAct.getRoot());
+        return (List) result;
     }
 }

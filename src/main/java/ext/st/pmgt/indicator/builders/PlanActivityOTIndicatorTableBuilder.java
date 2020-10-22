@@ -52,7 +52,7 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
-        columnconfig.haveInfoPageLink();
+//        columnconfig.haveInfoPageLink();
         tableConfig.addColumn(columnconfig);
 
         ColumnConfig columnconfig3 = componentConfigFactory.newColumnConfig();
@@ -64,8 +64,16 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.addColumn(columnconfig32);
 
         ColumnConfig columnconfig33 = componentConfigFactory.newColumnConfig();
-        columnconfig33.setName("difficultyValue");
+        columnconfig33.setName("standardDifficultyValue");
         tableConfig.addColumn(columnconfig33);
+
+        ColumnConfig columnconfig4 = componentConfigFactory.newColumnConfig();
+        columnconfig4.setName("deviationReport");
+        tableConfig.addColumn(columnconfig4);
+
+        ColumnConfig columnconfig5 = componentConfigFactory.newColumnConfig();
+        columnconfig5.setName("difficultyReport");
+        tableConfig.addColumn(columnconfig5);
 
         return tableConfig;
     }
