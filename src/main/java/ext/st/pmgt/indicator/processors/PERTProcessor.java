@@ -17,6 +17,7 @@ import java.util.List;
  **/
 @Component
 public class PERTProcessor extends DefaultObjectFormProcessor {
+
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         return new ResponseWrapper(ResponseWrapper.DIRECT, "", "http://www.baidu.com");

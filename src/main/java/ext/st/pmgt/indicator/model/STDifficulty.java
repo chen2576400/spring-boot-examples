@@ -35,7 +35,7 @@ public class STDifficulty extends PIPmgtObject implements Serializable {
      * 标准偏差值
      */
     @Column(nullable = true, unique = false)
-    private Double value;
+    private Double value = 0D;
 
     /**
      * 偏差描述

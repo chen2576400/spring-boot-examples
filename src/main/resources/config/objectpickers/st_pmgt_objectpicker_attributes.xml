@@ -1,0 +1,18 @@
+<!-- PI-ALM Object picker-->
+<ComponentID id="objPicker">
+    <ObjectType id="com.pisx.tundra.foundation.org.model.PIGroup">
+        <SearchCriteriaAttributes>
+            <Attributes>
+                <Name>name</Name>
+                <DisplayName>Name</DisplayName>
+                <IsSearchable>true</IsSearchable>
+            </Attributes>
+            <Attributes>
+                <Name>description</Name>
+                <DisplayName>Description</DisplayName>
+                <IsSearchable>false</IsSearchable>
+            </Attributes>
+        </SearchCriteriaAttributes>
+    </ObjectType>
+
+</ComponentID>

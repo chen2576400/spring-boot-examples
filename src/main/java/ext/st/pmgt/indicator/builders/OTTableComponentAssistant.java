@@ -33,8 +33,6 @@ import static com.alibaba.fastjson.serializer.SerializerFeature.WriteNullStringA
 public class OTTableComponentAssistant implements ComponentAssistant {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Resource
-    private CetcService cetcService;
 
     public ResponseWrapper<?> execute(ComponentParams params) throws PIException {
         JSONObject ajaxData = params.getAjaxData();
@@ -44,11 +42,15 @@ public class OTTableComponentAssistant implements ComponentAssistant {
         if (params.getNfCommandBean().getSelectedObjects().size()>0){
             STDeliverableType selectDT = (STDeliverableType) params.getNfCommandBean().getSelectedObjects().get(0);
             List<STProjectInstanceOTIndicator> ots = (List) STIndicatorHelper.service.getOTByDeliverableType(selectDT);
+
+
+
             for (STProjectInstanceOTIndicator ot : ots) {
                 Row row = new Row();
                 row.put("code",ot.getCode());
                 row.put("description",ot.getDecription());
                 row.put("deviationReport",ot.getDeviationReport());
+                row.put("difficultyReport",ot.getDifficultyReport());
                 row.setRowKey(ot.getOid());
                 rows.add(row);
             }

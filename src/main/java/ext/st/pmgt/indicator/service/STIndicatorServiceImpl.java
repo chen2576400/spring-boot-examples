@@ -324,6 +324,15 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
+    public Collection getDeliverableTypeByAct(PIPlanActivity act) throws PIException {
+        List<STProjectInstanceOTIndicator> otIndacators = (List)projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(act));
+        List<STDeliverableType> result = otIndacators.stream().map(item-> item.getDeliverableType()).collect(Collectors.toList());
+        HashSet<Object> set = new HashSet<>();
+        set.addAll(result);
+        return set;
+    }
+
+    @Override
     public STProCompetence getProContenceByName(String name) {
         return proCompetenceDao.findByNameEquals(name);
     }

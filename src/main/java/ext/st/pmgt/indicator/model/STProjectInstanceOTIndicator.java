@@ -36,7 +36,6 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
 
-
     /**
      * 指标编码
      */
@@ -90,13 +89,13 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
      * 标准偏差值
      */
     @Column(nullable = true, unique = false)
-    private Double standardDeviationValue;
+    private Double standardDeviationValue = 0D;
 
     /**
      * 标准困难度值
      */
     @Column(nullable = true, unique = false)
-    private Double standardDifficultyValue;
+    private Double standardDifficultyValue = 0D;
 
 
     /**
@@ -139,13 +138,13 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
      * 偏差汇报
      */
     @Column(nullable = true, unique = false)
-    private Double deviationReport;
+    private Double deviationReport = 0D;
 
     /**
      * 困难度汇报
      */
     @Column(nullable = true, unique = false)
-    private Double difficultyReport;
+    private Double difficultyReport = 0D;
 
     @Embedded   //引入该实体
     @AttributeOverrides({
@@ -240,9 +239,9 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
         this.deliverableTypeReference = deliverableTypeReference;
     }
 
-    public String getDeliverableTypeCode() {
+    public STDeliverableType getDeliverableType() {
         STDeliverableType object = (STDeliverableType) deliverableTypeReference.getObject();
-        return object.getCode();
+        return object;
     }
 
     public ObjectReference getPlanDeliverableReference() {
@@ -338,7 +337,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     @Override
-    public void setContainerReference(PIContainerRef containerReference)  {
+    public void setContainerReference(PIContainerRef containerReference) {
         if (containerReference.getObject() instanceof PIProjectContainer) {
             this.containerReference = containerReference;
         } else {

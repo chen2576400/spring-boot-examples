@@ -48,6 +48,8 @@ public interface STIndicatorService {
 
     Collection getAllDeliverableType();
 
+    Collection getDeliverableTypeByAct(PIPlanActivity act) throws PIException;
+
     STProCompetence getProContenceByName(String name);
 
     STDeliverableType findDeliverableTypeByCode(String s);

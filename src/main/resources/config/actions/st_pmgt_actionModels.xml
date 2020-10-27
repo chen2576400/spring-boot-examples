@@ -34,7 +34,7 @@
 
 
     <model name="otTableToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="addOT" type="st-pmgt-ot" shortcut="true"/>
+<!--        <action name="addOT" type="st-pmgt-ot" shortcut="true"/>-->
         <action name="saveOT" type="st-pmgt-ot" shortcut="true"/>
     </model>
 

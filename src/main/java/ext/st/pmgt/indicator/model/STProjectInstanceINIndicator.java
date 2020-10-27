@@ -56,7 +56,7 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
      * IN权重
      */
     @Column(nullable = true, unique = false)
-    private Double inWeight;
+    private Double inWeight = 0D;
 
     /**
      * 项目实例OT指标编码

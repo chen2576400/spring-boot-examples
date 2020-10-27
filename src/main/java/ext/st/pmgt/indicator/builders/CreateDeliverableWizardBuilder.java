@@ -59,7 +59,7 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
             TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
             tableConfig.setId("deliverableTypeTable");
 //            tableConfig.setEntities(getDeliverable(params));
-            tableConfig.setEntities(STIndicatorHelper.service.getAllDeliverableType());
+            tableConfig.setEntities(STIndicatorHelper.service.getDeliverableTypeByAct((PIPlanActivity) params.getNfCommandBean().getSourceObject()));
             tableConfig.setTableTitle("交付物类别");
             tableConfig.haveBorder();
             tableConfig.setPrimaryObjectType(STDeliverableType.class);
@@ -76,14 +76,14 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
             tableConfig.addColumn(column2);
 
             step1.children(tableConfig);
-            step1.setHandler("OTTableComponentAssistant");
+            step1.setComponentAssistantBeanName("OTTableComponentAssistant");
 
             //step3
             StepConfig step3 = wizardConfig.newStep();
             step3.setId("otStep");
             TableConfig tableConfig1 = componentConfigFactory.newTableConfig(params);
             tableConfig1.setId("OTTable");
-            tableConfig1.setTableTitle("OT指标");
+//            tableConfig1.setTableTitle("OT指标");
             tableConfig1.haveBorder();
             tableConfig1.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
             tableConfig1.enableSelect();
@@ -105,6 +105,11 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
             column3.setName("deviationReport");
             column3.enableEdit();
             tableConfig1.addColumn(column3);
+
+            ColumnConfig column4 = componentConfigFactory.newColumnConfig();
+            column4.setName("difficultyReport");
+            column4.enableEdit();
+            tableConfig1.addColumn(column4);
 
             step3.children(tableConfig1);
 
