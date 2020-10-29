@@ -67,8 +67,8 @@ public class SaveOTIndicatorProcessor extends DefaultObjectFormProcessor {
                 if (ot.getPlanReference()!=null){
                     newOT.setPlanReference(ot.getPlanReference());
                 }
-                if (ot.getDecription()!=null){
-                    newOT.setDecription(ot.getDecription());
+                if (ot.getDescription()!=null){
+                    newOT.setDecription(ot.getDescription());
                 }
                 if (ot.getDefinition()!=null){
                     newOT.setDefinition(ot.getDefinition());

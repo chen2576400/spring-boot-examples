@@ -7,6 +7,12 @@
         <action name="planActivityOTIndicator">
             <component name="ext.st.pmgt.indicator.builders.PlanActivityOTIndicatorTableBuilder" windowType="page"/>
         </action>
+
+        <action name="importIndicator">
+            <component name="ext.st.pmgt.indicator.builders.ImportIndicatorWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.ImportIndicatorProcessor"/>
+        </action>
+
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
@@ -21,7 +27,11 @@
         </action>
         <action name="createDeliverable">
             <component name="ext.st.pmgt.indicator.builders.CreateDeliverableWizardBuilder" windowType="popup"/>
-            <command className="com.pisx.tundra.pmgt.deliverable.processors.CreateDeliverableFormProcessor"/>
+            <command className="ext.st.pmgt.indicator.processors.CreateDeliverableProcessor"/>
+        </action>
+        <action name="documentPicker">
+            <component name="ext.st.pmgt.indicator.builders.PIDocumentPickerWizardBuilder"  windowType="popup"/>
+            <command className="com.pisx.tundra.pmgt.project.processors.ObjectPickerCallBackProcessor"/>
         </action>
     </actionsgroup>
 

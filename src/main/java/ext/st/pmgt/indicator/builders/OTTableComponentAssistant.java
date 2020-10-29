@@ -48,7 +48,7 @@ public class OTTableComponentAssistant implements ComponentAssistant {
             for (STProjectInstanceOTIndicator ot : ots) {
                 Row row = new Row();
                 row.put("code",ot.getCode());
-                row.put("description",ot.getDecription());
+                row.put("description",ot.getDescription());
                 row.put("deviationReport",ot.getDeviationReport());
                 row.put("difficultyReport",ot.getDifficultyReport());
                 row.setRowKey(ot.getOid());

@@ -18,6 +18,7 @@ import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
+import ext.st.pmgt.indicator.datahandlers.DeliverablePickerHandler;
 import ext.st.pmgt.indicator.model.STDeliverableType;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 
@@ -45,8 +46,8 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
             layout.addField("name")
                     .addField("description")
                     .addField("url")
-                    .addField("deliverableTypeReference", new DeliverableTypePickerHandler())
-                    .addField("planDeliverableReference", new PlanDeliverablePickerHandler())
+//                    .addField("deliverableTypeReference", new DeliverableTypePickerHandler())
+                    .addField("subjectReference", new DeliverablePickerHandler())
 //                    .addField("deliverableTemplate")
                     .addField("necessity");
             step.addLayout(layout);

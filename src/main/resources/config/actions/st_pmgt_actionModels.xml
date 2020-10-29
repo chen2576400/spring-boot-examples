@@ -38,4 +38,13 @@
         <action name="saveOT" type="st-pmgt-ot" shortcut="true"/>
     </model>
 
+    <model name="PIPlan_info_page_menus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="importPlan2" type="pi-pmgt-project"/>
+        <action name="importIndicator" type="st-pmgt-indicator"/>
+        <!--<action name="importPlan" type="pi-pmgt-project"/>-->
+        <!--<action name="planRename" type="pi-pmgt-project"/>-->
+        <!--<action name="exportPlan" type="pi-pmgt-project"/>-->
+        <!--<action name="deletePlan" type="pi-pmgt-project"/>-->
+    </model>
+
 </actionmodels>

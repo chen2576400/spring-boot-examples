@@ -17,6 +17,16 @@ public class indicatorActionsRB extends PIListResourceBundle {
     @RBEntry("INIndicator")
     public static final String Indicator_04 = "st-pmgt-indicator.planActivityINIndicator.tooltip";
 
+
+    @RBEntry("ImportIndicator")
+    public static final String Indicator_034 = "st-pmgt-indicator.importIndicator.description";
+    @RBEntry("ImportIndicator")
+    public static final String Indicator_043 = "st-pmgt-indicator.importIndicator.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String Indicator_044 = "st-pmgt-indicator.importIndicator.icon";
+
+
+
     @RBEntry("reportExpectedFinishTime")
     public static final String act_01 = "st-pmgt-act.reportExpectedFinishTime.description";
     @RBEntry("reportExpectedFinishTime")
@@ -31,6 +41,12 @@ public class indicatorActionsRB extends PIListResourceBundle {
     @RBEntry("img/pmgt/add.gif")
     public static final String act_06 = "st-pmgt-act.pertReport.icon";
 
+    @RBEntry("documentPicker")
+    public static final String act_046 = "st-pmgt-act.documentPicker.description";
+    @RBEntry("documentPicker")
+    public static final String act_057= "st-pmgt-act.documentPicker.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String act_068 = "st-pmgt-act.documentPicker.icon";
 
     @RBEntry("createDeliverable")
     public static final String act_042 = "st-pmgt-act.createDeliverable.description";
@@ -52,4 +68,7 @@ public class indicatorActionsRB extends PIListResourceBundle {
     public static final String act_05322 = "st-pmgt-ot.saveOT.tooltip";
     @RBEntry("img/pmgt/save.gif")
     public static final String act_06433 = "st-pmgt-ot.saveOT.icon";
+
+
+
 }

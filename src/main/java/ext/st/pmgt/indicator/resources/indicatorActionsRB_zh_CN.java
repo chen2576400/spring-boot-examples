@@ -18,6 +18,14 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("IN指标")
     public static final String Indicator_04 = "st-pmgt-indicator.planActivityINIndicator.tooltip";
 
+    @RBEntry("导入量化指标")
+    public static final String Indicator_034 = "st-pmgt-indicator.importIndicator.description";
+    @RBEntry("导入量化指标")
+    public static final String Indicator_043 = "st-pmgt-indicator.importIndicator.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String Indicator_044 = "st-pmgt-indicator.importIndicator.icon";
+
+
     @RBEntry("预计完成时间填写")
     public static final String act_01 = "st-pmgt-act.reportExpectedFinishTime.description";
     @RBEntry("预计完成时间填写")
@@ -31,7 +39,7 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     public static final String act_05= "st-pmgt-act.pertReport.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String act_06 = "st-pmgt-act.pertReport.icon";
-
+    
 
     @RBEntry("创建交付对象")
     public static final String act_042 = "st-pmgt-act.createDeliverable.description";

@@ -46,7 +46,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
      * 指标描述
      */
     @Column(nullable = true, unique = false)
-    private String decription;
+    private String description;
 
     /**
      * 指标定义
@@ -191,12 +191,12 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
         this.code = code;
     }
 
-    public String getDecription() {
-        return decription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
+    public void setDecription(String description) {
+        this.description = description;
     }
 
     public String getDefinition() {
