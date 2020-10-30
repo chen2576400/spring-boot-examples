@@ -25,6 +25,13 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("img/pmgt/add.gif")
     public static final String Indicator_044 = "st-pmgt-indicator.importIndicator.icon";
 
+    @RBEntry("指标汇报")
+    public static final String Indicator_0314 = "st-pmgt-indicator.indicatorReport.description";
+    @RBEntry("指标汇报")
+    public static final String Indicator_0243 = "st-pmgt-indicator.indicatorReport.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String Indicator_0344 = "st-pmgt-indicator.indicatorReport.icon";
+
 
     @RBEntry("预计完成时间填写")
     public static final String act_01 = "st-pmgt-act.reportExpectedFinishTime.description";

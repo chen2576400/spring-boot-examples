@@ -43,16 +43,16 @@ public class CreateDeliverableProcessor extends DefaultCreateFormProcessor {
             PIPlanDeliverable deliverable = (PIPlanDeliverable) list.get(0);
             Map<String,Object> combMap=params.getNfCommandBean().getLayoutFields();
 
-            String subjectOid = (String) combMap.get("planDeliverableReference");
+//            String subjectOid = (String) combMap.get("subjectReference");
 //            String  typeName=(String)textbMap.get(CommonConstants.CONS_PICKER_TYPE_HIDDEN_ID);
 //            ArrayList<String> template=(ArrayList<String>)combMap.get("deliverableTemplateReference");
             PIObject subObject=null;
-            if(subjectOid!=null&&subjectOid.length()>0) {
-                NfOid groupOid = NfOid.parse(subjectOid);
-                subObject =groupOid!=null? PIPlanDeliverableHelper.service.getPlanDeliverablesById(groupOid.getId()) : null;
-            }
+//            if(subjectOid!=null&&subjectOid.length()>0) {
+//                NfOid groupOid = NfOid.parse(subjectOid);
+//                subObject =groupOid!=null? PIPlanDeliverableHelper.service.getPlanDeliverablesById(groupOid.getId()) : null;
+//            }
             try {
-                deliverable.setSubject(subObject);
+//                deliverable.setSubject(subObject);
 
                 // set deliverable type
 //                if(typeName!=null&&typeName.trim().length()>0){

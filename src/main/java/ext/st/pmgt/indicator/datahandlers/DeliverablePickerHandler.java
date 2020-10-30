@@ -1,5 +1,7 @@
 package ext.st.pmgt.indicator.datahandlers;
 
+import com.pisx.tundra.foundation.doc.model.PIDocument;
+import com.pisx.tundra.foundation.enterprise.model.RevisionControlled;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.actionmodel.NfAction;
@@ -9,6 +11,7 @@ import com.pisx.tundra.netfactory.mvc.components.input.InputElement;
 import com.pisx.tundra.netfactory.mvc.handler.DefaultDataHandler;
 import com.pisx.tundra.netfactory.util.action.NfActionHelper;
 import com.pisx.tundra.netfactory.util.misc.URLFactory;
+import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 
 public class DeliverablePickerHandler extends DefaultDataHandler {
 
@@ -18,6 +21,15 @@ public class DeliverablePickerHandler extends DefaultDataHandler {
         inputElement.attribute(elementAttribute -> {
             elementAttribute.addStyle("width:150px;");
         });
+        if (datum!=null&&datum instanceof PIPlanDeliverable){//编辑页面是需要回填到input框
+            PIPlanDeliverable context = (PIPlanDeliverable) datum;
+            RevisionControlled subject = (RevisionControlled) context.getSubject();
+            try {
+                inputElement.setValue(context.getSubject().getOid(),subject.getVersionIdentifier().getValue());
+            } catch (PIException e) {
+                e.printStackTrace();
+            }
+        }
 
         ImgElement rightImg = ImgElement.instance();
         rightImg.attribute(imgAttribute -> {

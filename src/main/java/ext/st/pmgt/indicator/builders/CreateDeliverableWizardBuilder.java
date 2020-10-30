@@ -53,66 +53,66 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
             step.addLayout(layout);
 
 
-            //step2
-            StepConfig step1 = wizardConfig.newStep();
-            step1.setId("deliverableTypeStep");
-
-            TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
-            tableConfig.setId("deliverableTypeTable");
-//            tableConfig.setEntities(getDeliverable(params));
-            tableConfig.setEntities(STIndicatorHelper.service.getDeliverableTypeByAct((PIPlanActivity) params.getNfCommandBean().getSourceObject()));
-            tableConfig.setTableTitle("交付物类别");
-            tableConfig.haveBorder();
-            tableConfig.setPrimaryObjectType(STDeliverableType.class);
-            tableConfig.enableSelect();
-            tableConfig.setSingleSelect(true);
-            tableConfig.setHeight("450px");
-
-            ColumnConfig column1 = componentConfigFactory.newColumnConfig();
-            column1.setName("name");
-            tableConfig.addColumn(column1);
-
-            ColumnConfig column2 = componentConfigFactory.newColumnConfig();
-            column2.setName("code");
-            tableConfig.addColumn(column2);
-
-            step1.children(tableConfig);
-            step1.setComponentAssistantBeanName("OTTableComponentAssistant");
-
-            //step3
-            StepConfig step3 = wizardConfig.newStep();
-            step3.setId("otStep");
-            TableConfig tableConfig1 = componentConfigFactory.newTableConfig(params);
-            tableConfig1.setId("OTTable");
-//            tableConfig1.setTableTitle("OT指标");
-            tableConfig1.haveBorder();
-            tableConfig1.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
-            tableConfig1.enableSelect();
-            tableConfig1.setSingleSelect(true);
-            tableConfig1.setHeight("450px");
-            tableConfig1.setToolbarActionModel("otTableToolBarSet",params);
-
-            ColumnConfig column11 = componentConfigFactory.newColumnConfig();
-            column11.setName("code");
-//            column11.enableEdit();
-            tableConfig1.addColumn(column11);
-
-            ColumnConfig column22 = componentConfigFactory.newColumnConfig();
-            column22.setName("description");
-//            column22.enableEdit();
-            tableConfig1.addColumn(column22);
-
-            ColumnConfig column3 = componentConfigFactory.newColumnConfig();
-            column3.setName("deviationReport");
-            column3.enableEdit();
-            tableConfig1.addColumn(column3);
-
-            ColumnConfig column4 = componentConfigFactory.newColumnConfig();
-            column4.setName("difficultyReport");
-            column4.enableEdit();
-            tableConfig1.addColumn(column4);
-
-            step3.children(tableConfig1);
+//            //step2
+//            StepConfig step1 = wizardConfig.newStep();
+//            step1.setId("deliverableTypeStep");
+//
+//            TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
+//            tableConfig.setId("deliverableTypeTable");
+////            tableConfig.setEntities(getDeliverable(params));
+//            tableConfig.setEntities(STIndicatorHelper.service.getDeliverableTypeByAct((PIPlanActivity) params.getNfCommandBean().getSourceObject()));
+//            tableConfig.setTableTitle("交付物类别");
+//            tableConfig.haveBorder();
+//            tableConfig.setPrimaryObjectType(STDeliverableType.class);
+//            tableConfig.enableSelect();
+//            tableConfig.setSingleSelect(true);
+//            tableConfig.setHeight("450px");
+//
+//            ColumnConfig column1 = componentConfigFactory.newColumnConfig();
+//            column1.setName("name");
+//            tableConfig.addColumn(column1);
+//
+//            ColumnConfig column2 = componentConfigFactory.newColumnConfig();
+//            column2.setName("code");
+//            tableConfig.addColumn(column2);
+//
+//            step1.children(tableConfig);
+//            step1.setComponentAssistantBeanName("OTTableComponentAssistant");
+//
+//            //step3
+//            StepConfig step3 = wizardConfig.newStep();
+//            step3.setId("otStep");
+//            TableConfig tableConfig1 = componentConfigFactory.newTableConfig(params);
+//            tableConfig1.setId("OTTable");
+////            tableConfig1.setTableTitle("OT指标");
+//            tableConfig1.haveBorder();
+//            tableConfig1.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
+//            tableConfig1.enableSelect();
+//            tableConfig1.setSingleSelect(true);
+//            tableConfig1.setHeight("450px");
+//            tableConfig1.setToolbarActionModel("otTableToolBarSet",params);
+//
+//            ColumnConfig column11 = componentConfigFactory.newColumnConfig();
+//            column11.setName("code");
+////            column11.enableEdit();
+//            tableConfig1.addColumn(column11);
+//
+//            ColumnConfig column22 = componentConfigFactory.newColumnConfig();
+//            column22.setName("description");
+////            column22.enableEdit();
+//            tableConfig1.addColumn(column22);
+//
+//            ColumnConfig column3 = componentConfigFactory.newColumnConfig();
+//            column3.setName("deviationReport");
+//            column3.enableEdit();
+//            tableConfig1.addColumn(column3);
+//
+//            ColumnConfig column4 = componentConfigFactory.newColumnConfig();
+//            column4.setName("difficultyReport");
+//            column4.enableEdit();
+//            tableConfig1.addColumn(column4);
+//
+//            step3.children(tableConfig1);
 
         } catch (Exception e) {
             e.printStackTrace();

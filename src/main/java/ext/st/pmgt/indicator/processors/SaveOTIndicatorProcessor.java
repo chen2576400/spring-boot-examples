@@ -19,6 +19,8 @@ import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +39,6 @@ public class SaveOTIndicatorProcessor extends DefaultObjectFormProcessor {
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         //判断当前登录用户和任务所属用户时否为同一人
         PIPrincipal principal = SessionHelper.service.getPrincipal();
-        PIPlanActivity act = (PIPlanActivity) params.getNfCommandBean().getPagePrimaryObject();
 //        List<PIResourceAssignment> allResourceAssignments = (List) PIAssignmentHelper.service.getAllResourceAssignments(act);
 //        List<PIUser> actUsers = allResourceAssignments.stream().map(item -> item.getRsrc().getUser()).collect(Collectors.toList());
 //        if (!actUsers.contains(principal)) {
@@ -48,62 +49,71 @@ public class SaveOTIndicatorProcessor extends DefaultObjectFormProcessor {
         for (Map<String, Object> tableRow : tableRows) {
             ReferenceFactory factory = new ReferenceFactory();
             STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) factory.getReference(tableRow.get("pi_row_key").toString()).getObject();
-            String reprotValue = tableRow.get("deviationReport").toString();
-            String difValue = tableRow.get("difficultyReport").toString();
-            if (!ot.getDeviationReport().equals(Double.valueOf(reprotValue))||!ot.getDifficultyReport().equals(Double.valueOf(difValue))) {
+            String deviationReport = tableRow.get("deviationReport").toString();
+            String difficultyReport = tableRow.get("difficultyReport").toString();
+            double devValue = 0;
+            double difValue = 0;
+            try {
+                devValue = NumberFormat.getPercentInstance().parse(deviationReport).doubleValue();
+                difValue = NumberFormat.getPercentInstance().parse(difficultyReport).doubleValue();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (!ot.getDeviationReport().equals(devValue) || !ot.getDifficultyReport().equals(difValue)) {
                 STProjectInstanceOTIndicator newOT = STProjectInstanceOTIndicator.newSTProjectInstanceOTIndicator();
-                if (ot.getContainerReference()!=null){
+                if (ot.getContainerReference() != null) {
                     newOT.setContainerReference(ot.getContainerReference());
                 }
-                if (ot.getProjectReference()!=null){
+                if (ot.getProjectReference() != null) {
                     newOT.setProjectReference(ot.getProjectReference());
                 }
-                if (ot.getPlanActivityReference()!=null){
+                if (ot.getPlanActivityReference() != null) {
                     newOT.setPlanActivityReference(ot.getPlanActivityReference());
                 }
-                if (ot.getCompetenceReference()!=null){
+                if (ot.getCompetenceReference() != null) {
                     newOT.setCompetenceReference(ot.getCompetenceReference());
                 }
-                if (ot.getPlanReference()!=null){
+                if (ot.getPlanReference() != null) {
                     newOT.setPlanReference(ot.getPlanReference());
                 }
-                if (ot.getDescription()!=null){
+                if (ot.getDescription() != null) {
                     newOT.setDecription(ot.getDescription());
                 }
-                if (ot.getDefinition()!=null){
+                if (ot.getDefinition() != null) {
                     newOT.setDefinition(ot.getDefinition());
                 }
-                if (ot.getDeliverableTypeReference()!=null){
+                if (ot.getDeliverableTypeReference() != null) {
                     newOT.setDeliverableTypeReference(ot.getDeliverableTypeReference());
                 }
-                if (ot.getBreadth()!=null){
+                if (ot.getBreadth() != null) {
                     newOT.setBreadth(ot.getBreadth());
                 }
-                if (ot.getCode()!=null){
+                if (ot.getCode() != null) {
                     newOT.setCode(ot.getCode());
                 }
-                if (ot.getCriticality()!=null){
+                if (ot.getCriticality() != null) {
                     newOT.setCriticality(ot.getCriticality());
                 }
-                if (ot.getStandardDifficultyValue()!=null){
+                if (ot.getStandardDifficultyValue() != null) {
                     newOT.setStandardDifficultyValue(ot.getStandardDifficultyValue());
                 }
-                if (ot.getStandardDeviationValue()!=null){
+                if (ot.getStandardDeviationValue() != null) {
                     newOT.setStandardDeviationValue(ot.getStandardDeviationValue());
                 }
-                if (ot.getCompletionStatus()!=null){
+                if (ot.getCompletionStatus() != null) {
                     newOT.setCompletionStatus(ot.getCompletionStatus());
                 }
-                if (ot.getPlanDeliverableReference()!=null){
+                if (ot.getPlanDeliverableReference() != null) {
                     newOT.setPlanDeliverableReference(ot.getPlanDeliverableReference());
                 }
-                if (StringUtils.isNotEmpty(reprotValue)){
-                    newOT.setDeviationReport(Double.valueOf(reprotValue));
+                if (StringUtils.isNotEmpty(deviationReport)) {
+                    newOT.setDeviationReport(devValue);
                 }
-                if (StringUtils.isNotEmpty(difValue)){
-                    newOT.setDifficultyReport(Double.valueOf(difValue));
+                if (StringUtils.isNotEmpty(difficultyReport)) {
+                    newOT.setDeviationReport(difValue);
                 }
                 newOT.setReportTime(new Timestamp(System.currentTimeMillis()));
+                newOT.setReporter(SessionHelper.service.getPrincipalReference());
                 newOT.setCreator(SessionHelper.service.getPrincipalReference());
                 newOT.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
                 PersistenceHelper.service.save(newOT);

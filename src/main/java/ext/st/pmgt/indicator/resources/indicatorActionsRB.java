@@ -27,6 +27,15 @@ public class indicatorActionsRB extends PIListResourceBundle {
 
 
 
+    @RBEntry("indicatorReport")
+    public static final String Indicator_0314 = "st-pmgt-indicator.indicatorReport.description";
+    @RBEntry("indicatorReport")
+    public static final String Indicator_0243 = "st-pmgt-indicator.indicatorReport.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String Indicator_0344 = "st-pmgt-indicator.indicatorReport.icon";
+
+
+
     @RBEntry("reportExpectedFinishTime")
     public static final String act_01 = "st-pmgt-act.reportExpectedFinishTime.description";
     @RBEntry("reportExpectedFinishTime")
@@ -68,6 +77,14 @@ public class indicatorActionsRB extends PIListResourceBundle {
     public static final String act_05322 = "st-pmgt-ot.saveOT.tooltip";
     @RBEntry("img/pmgt/save.gif")
     public static final String act_06433 = "st-pmgt-ot.saveOT.icon";
+
+
+    @RBEntry("ot交付物")
+    public static final String act_042211 = "st-pmgt-ot.listDeliverablesForOT.description";
+    @RBEntry("ot交付物")
+    public static final String act_053322 = "st-pmgt-ot.listDeliverablesForOT.tooltip";
+    @RBEntry("img/pmgt/save.gif")
+    public static final String act_064433 = "st-pmgt-ot.listDeliverablesForOT.icon";
 
 
 

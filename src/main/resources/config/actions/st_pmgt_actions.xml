@@ -13,6 +13,11 @@
             <command className="ext.st.pmgt.indicator.processors.ImportIndicatorProcessor"/>
         </action>
 
+        <action name="indicatorReport">
+            <component name="ext.st.pmgt.indicator.builders.IndicatorReportWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.IndicatorReportProcessor"/>
+        </action>
+
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
@@ -42,6 +47,10 @@
         <action name="saveOT" beforeJS="buttonEvent">
             <command className="ext.st.pmgt.indicator.processors.SaveOTIndicatorProcessor"/>
         </action>
+        <action name="listDeliverablesForOT" beforeJS="buttonEvent">
+            <component name="ext.st.pmgt.indicator.builders.PlanDeliverablesForOTTableBuilder" windowType="page"/>
+        </action>
+
     </actionsgroup>
 
 </listofactions>

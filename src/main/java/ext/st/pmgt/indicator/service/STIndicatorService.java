@@ -9,6 +9,7 @@ import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.indicator.model.STDeliverableType;
 import ext.st.pmgt.indicator.model.STProCompetence;
+import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 
 import java.sql.Timestamp;
@@ -59,4 +60,13 @@ public interface STIndicatorService {
     Collection getExpextTimeByActivity(PIPlanActivity act) throws PIException;
 
     Collection getOTByDeliverableType(STDeliverableType deliverableType) throws PIException;
+
+    Collection getPlanDeliverablesByOT(STProjectInstanceOTIndicator ot) throws PIException;
+
+
+    Collection getDeviationByOTCode(String code);
+
+    Collection getDifficultyByOTCode(String code);
+
+    Collection findOTByIN(STProjectInstanceINIndicator in) throws PIException;
 }

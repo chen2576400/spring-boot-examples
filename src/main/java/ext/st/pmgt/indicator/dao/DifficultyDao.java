@@ -4,6 +4,8 @@ import com.pisx.tundra.foundation.fc.model.ObjectIdentifier;
 import ext.st.pmgt.indicator.model.STDifficulty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Collection;
+
 /**
  * @ClassName DifficultyDao
  * @Description:
@@ -12,4 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Version V1.0
  **/
 public interface DifficultyDao extends JpaRepository<STDifficulty, ObjectIdentifier> {
+    Collection findByCodeEquals(String code);
 }

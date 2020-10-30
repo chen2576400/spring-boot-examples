@@ -14,6 +14,7 @@ import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIRuntimeException;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
+import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverableLink;
 import com.pisx.tundra.pmgt.plan.dao.PIPlanActivityDao;
 import com.pisx.tundra.pmgt.plan.dao.PIPlanDao;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
@@ -26,11 +27,13 @@ import com.pisx.tundra.pmgt.project.model.PIPmgtBaselineType;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.project.model.SumPIProject;
 import com.pisx.tundra.pmgt.resource.model.PIResource;
+import com.pisx.tundra.pmgt.resource.model.PIResourceShiftPeriod;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.dao.*;
 import ext.st.pmgt.indicator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xmlunit.diff.Diff;
 
 
 import javax.persistence.EntityManager;
@@ -71,11 +74,18 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     @Autowired
     private PIPlanActivityDao piPlanActivityDaolanDao;
 
+
     @Autowired
     private PIProjectDao projectDao;
 
     @Autowired
     private ExpectedFinishTimeDao expectedFinishTimeDao;
+
+    @Autowired
+    private DeviationDao deviationDao;
+
+    @Autowired
+    private DifficultyDao difficultyDao;
 
     @Override
     public Collection findProjectINIndicatorByProject(PIProject project) throws PIException {
@@ -173,8 +183,8 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             List<Map<String, Object>> inList = new ArrayList<>();
             for (STProjectInstanceINIndicator inIndicator : inIndicators) {
                 HashMap<String, Object> inMap = new HashMap<>();
-                inMap.put("权重", inIndicator.getInWeight());
-                inMap.put("ot指标", inIndicator.getProjectInstanceOTIndicator().getCode());
+                inMap.put("权重", inIndicator.getWeights());
+//                inMap.put("ot指标", inIndicator.getProjectInstanceOTIndicator().getCode());
                 inList.add(inMap);
             }
             map.put("in", inList);
@@ -281,7 +291,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             List<Map<String, Object>> inList = new ArrayList<>();
             for (STProjectInstanceINIndicator inIndicator : inIndicators) {
                 HashMap<String, Object> inMap = new HashMap<>();
-                inMap.put("权重", inIndicator.getInWeight());
+                inMap.put("权重", inIndicator.getWeights());
                 inList.add(inMap);
             }
             map.put("in", inList);
@@ -355,5 +365,46 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     @Override
     public Collection getOTByDeliverableType(STDeliverableType deliverableType) throws PIException {
         return projectOTIndicatorDao.findByDeliverableTypeReference(ObjectReference.newObjectReference(deliverableType));
+    }
+
+    @Override
+    public Collection getPlanDeliverablesByOT(STProjectInstanceOTIndicator ot) throws PIException {
+        Collection qr = PersistenceHelper.service.navigate(ot, "roleB", PIPlanDeliverableLink.class, true);
+        return qr;
+    }
+
+    @Override
+    public Collection getDeviationByOTCode(String code) {
+        return deviationDao.findByCodeEquals(code);
+    }
+
+    @Override
+    public Collection getDifficultyByOTCode(String code) {
+        return difficultyDao.findByCodeEquals(code);
+    }
+
+    @Override
+    public Collection findOTByIN(STProjectInstanceINIndicator in) throws PIException {
+
+        String code = ((STProjectInstanceINIndicator) in).getOtCode();
+        PIPlan plan = ((STProjectInstanceINIndicator) in).getProjectPlanInstance();
+        List result = new ArrayList();
+        EntityManager em = PersistenceHelper.service.getEntityManager();
+
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery criteriaQuery = cb.createQuery();
+            Root root = criteriaQuery.from(STProjectInstanceOTIndicator.class);
+            Path key1 = root.get("code");
+            Path key2 = root.get("planReference").get("key");
+            criteriaQuery.select(root).where(cb.equal(key1, code),cb.equal(key2,plan.getObjectIdentifier()));//升序
+            TypedQuery query = em.createQuery(criteriaQuery);
+            result.addAll(query.getResultList());
+        } catch (Exception e) {
+            throw new PIException(e);
+        } finally {
+            em.close();
+        }
+        return result;
     }
 }

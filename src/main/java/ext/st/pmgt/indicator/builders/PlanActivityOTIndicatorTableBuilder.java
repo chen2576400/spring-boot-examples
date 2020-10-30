@@ -52,12 +52,13 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
-//        columnconfig.haveInfoPageLink();
+        columnconfig.haveInfoPageLink();
         tableConfig.addColumn(columnconfig);
 
         ColumnConfig columnconfig3 = componentConfigFactory.newColumnConfig();
         columnconfig3.setName("description");
         tableConfig.addColumn(columnconfig3);
+
 
         ColumnConfig columnconfig32 = componentConfigFactory.newColumnConfig();
         columnconfig32.setName("standardDeviationValue");

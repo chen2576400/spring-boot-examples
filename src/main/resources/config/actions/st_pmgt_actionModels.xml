@@ -38,13 +38,19 @@
         <action name="saveOT" type="st-pmgt-ot" shortcut="true"/>
     </model>
 
-    <model name="PIPlan_info_page_menus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="importPlan2" type="pi-pmgt-project"/>
-        <action name="importIndicator" type="st-pmgt-indicator"/>
-        <!--<action name="importPlan" type="pi-pmgt-project"/>-->
-        <!--<action name="planRename" type="pi-pmgt-project"/>-->
-        <!--<action name="exportPlan" type="pi-pmgt-project"/>-->
-        <!--<action name="deletePlan" type="pi-pmgt-project"/>-->
+
+
+    <model name="otIndicatorInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="listDeliverablesForOT" type="st-pmgt-ot"/>
+    </model>
+
+
+    <model name="deliverablesForActivityMenus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+<!--        <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
+<!--        <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
+<!--        <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
+<!--        <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>-->
+        <action name="indicatorReport" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
 </actionmodels>

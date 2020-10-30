@@ -6,6 +6,7 @@ import com.pisx.tundra.foundation.inf.container.model.PIContainer;
 import com.pisx.tundra.foundation.inf.container.model.PIContainerRef;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
+import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlannable;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
@@ -42,7 +43,7 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
 
 
     /**
-     * 项目计划
+     * 计划
      */
     @Embedded   //引入该实体
     @AttributeOverrides({
@@ -56,24 +57,34 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
      * IN权重
      */
     @Column(nullable = true, unique = false)
-    private Double inWeight = 0D;
+    private Double weights = 0D;
+
+
+    /**
+     * ot项目计划实例-->PIPlan(暂时与planReference相同)
+     */
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "projectPlanInstanceRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "projectPlanInstanceRefClass", nullable = true))
+    })
+    ObjectReference projectPlanInstanceRef;
+
+    /**
+     * 指标源（固定为项目）
+     */
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "indicatorSourceRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "indicatorSourceRefClass", nullable = true))
+    })
+    ObjectReference IndicatorSourceRef;
 
     /**
      * 项目实例OT指标编码
      */
-    private String sourceindicator;
-
-
-
-    /**
-     * 项目实例OT指标
-     */
-    @Embedded   //引入该实体
-    @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "projectInstanceOTIndicatorRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "projectInstanceOTIndicatorRefClass", nullable = true))
-    })
-    ObjectReference projectInstanceOTIndicatorRef;
+    @Column
+    private String otCode;
 
     @Embedded   //引入该实体
     @AttributeOverrides({
@@ -115,28 +126,12 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
         this.planReference = planReference;
     }
 
-    public Double getInWeight() {
-        return inWeight;
+    public String getOtCode() {
+        return otCode;
     }
 
-    public void setInWeight(Double inWeight) {
-        this.inWeight = inWeight;
-    }
-
-    public ObjectReference getProjectInstanceOTIndicatorRef() {
-        return projectInstanceOTIndicatorRef;
-    }
-
-    public void setProjectInstanceOTIndicatorRef(ObjectReference projectInstanceOTIndicatorRef) {
-        this.projectInstanceOTIndicatorRef = projectInstanceOTIndicatorRef;
-    }
-
-    public STProjectInstanceOTIndicator getProjectInstanceOTIndicator() {
-        return (STProjectInstanceOTIndicator) projectInstanceOTIndicatorRef.getObject();
-    }
-
-    public void setProjectInstanceOTIndicatorRef(STProjectInstanceOTIndicator projectInstanceOTIndicator) throws PIException {
-        this.projectInstanceOTIndicatorRef = ObjectReference.newObjectReference(projectInstanceOTIndicator);
+    public void setOtCode(String otCode) {
+        this.otCode = otCode;
     }
 
     public PIPlannable getPlanActivity() {
@@ -155,6 +150,46 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
 
     public PIProject getProject() {
         return (projectReference != null) ? (PIProject) projectReference.getObject() : getPlanActivity().getProject();
+    }
+
+    public Double getWeights() {
+        return weights;
+    }
+
+    public void setWeights(Double weights) {
+        this.weights = weights;
+    }
+
+    public ObjectReference getProjectPlanInstanceRef() {
+        return projectPlanInstanceRef;
+    }
+
+    public void setProjectPlanInstanceRef(ObjectReference projectPlanInstanceRef) {
+        this.projectPlanInstanceRef = projectPlanInstanceRef;
+    }
+
+    public PIPlan getProjectPlanInstance() {
+        return (PIPlan) projectPlanInstanceRef.getObject();
+    }
+
+    public void setProjectPlanInstance(PIPlan plan) throws PIException {
+        this.projectPlanInstanceRef = ObjectReference.newObjectReference(plan);
+    }
+
+    public ObjectReference getIndicatorSourceRef() {
+        return IndicatorSourceRef;
+    }
+
+    public void setIndicatorSourceRef(ObjectReference indicatorSourceRef) {
+        IndicatorSourceRef = indicatorSourceRef;
+    }
+
+    public PIProject getIndicatorSource() {
+        return (PIProject) IndicatorSourceRef.getObject();
+    }
+
+    public void setIndicatorSourceRef(PIProject project) throws PIException {
+        IndicatorSourceRef = ObjectReference.newObjectReference(project);
     }
 
     @Override
