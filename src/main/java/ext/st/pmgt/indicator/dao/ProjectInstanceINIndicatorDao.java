@@ -18,5 +18,5 @@ public interface ProjectInstanceINIndicatorDao extends JpaRepository<STProjectIn
     Collection findByProjectReference(ObjectReference projectRef);
     Collection findByPlanReference(ObjectReference planRef);
     Collection findByPlanActivityReference(ObjectReference planActivityRef);
-    STProjectInstanceINIndicator findByProjectInstanceOTIndicatorRef(ObjectReference otIndicator);
+
 }
