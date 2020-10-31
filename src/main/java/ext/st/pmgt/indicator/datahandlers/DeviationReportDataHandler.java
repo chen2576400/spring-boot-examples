@@ -34,32 +34,11 @@ public class DeviationReportDataHandler extends DefaultDataHandler {
     @Override
     public Object getDataValue(String columnName, Object datum, ComponentParams params) throws PIException {
 
-
-        STProjectInstanceOTIndicator ot = null;
-        List<STDeviation> deviations = null;
-        if (datum != null && datum instanceof STProjectInstanceOTIndicator) {
-            ot = (STProjectInstanceOTIndicator) datum;
-            deviations = (List<STDeviation>) STIndicatorHelper.service.getDeviationByOTCode(ot.getCode());
-        }
-
         List<Option> options = new ArrayList<>();
-        if (deviations != null) {
-            for (STDeviation deviation : deviations) {
-                Option option = new Option().setLabel(deviation.getOid()).setValue(NumberFormat.getPercentInstance().format(deviation.getValue()));
-                options.add(option);
-            }
-        }
-
         SelectElement selectElement0 = SelectElement.instance(columnName);
         selectElement0.setOptions(options);
-        if (ot != null) {
-            selectElement0.setDefaultOption(new Option().setLabel(ot.getOid()).setValue(NumberFormat.getPercentInstance().format(ot.getDeviationReport())));
-        }
-        selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:150px;"));
-
-
+        selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:100px;"));
         return selectElement0;
-//        }
-//        return DataHandlerHelper.getDefaultDataValue(columnName, datum, params);
+
     }
 }

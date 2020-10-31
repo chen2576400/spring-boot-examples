@@ -76,7 +76,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
 
             PIPlanDeliverable sourceObj = (PIPlanDeliverable) componentData;
             RevisionControlled revisionControlled = (RevisionControlled) sourceObj.getSubject();
-            List<PIDocument> versions = (List<PIDocument>) VersionControlHelper.service.allIterationsOf(((RevisionControlled) sourceObj.getSubject()).getMaster());
+            List<PIDocument> versions = (List<PIDocument>) VersionControlHelper.service.allIterationsOf(revisionControlled.getMaster());
 
             List<Option> options = new ArrayList<>();
             for (PIDocument version : versions) {
@@ -101,7 +101,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
 ///////////////////////
             //step2
             StepConfig step1 = wizardConfig.newStep();
-            step1.setId("deliverableTypeStep");
+            step1.setId("IndicatorReportStep3");
 
             TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
             tableConfig.setId("deliverableTypeTable");
@@ -127,7 +127,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
 
             //step3
             StepConfig step3 = wizardConfig.newStep();
-            step3.setId("otStep");
+            step3.setId("IndicatorReportStep4");
             TableConfig tableConfig1 = componentConfigFactory.newTableConfig(params);
             tableConfig1.setId("OTTable");
 //            tableConfig1.setTableTitle("OT指标");
@@ -152,6 +152,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
 
             ColumnConfig column222 = componentConfigFactory.newColumnConfig();
             column222.setName("standardDifficultyValue");
+            column222.enableSort();
             tableConfig1.addColumn(column222);
 
             ColumnConfig column3 = componentConfigFactory.newColumnConfig();
@@ -162,13 +163,13 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
 
             ColumnConfig column4 = componentConfigFactory.newColumnConfig();
             column4.setName("difficultyReport");
-//            column4.setDataHandler(new DifficultyReportDataHandler());
+            column4.setDataHandler(new DifficultyReportDataHandler());
             column4.enableEdit();
             tableConfig1.addColumn(column4);
 
             ColumnConfig column5 = componentConfigFactory.newColumnConfig();
-            column5.isSortable();
             column5.setName("reportTime");
+            column5.enableSort();
             tableConfig1.addColumn(column5);
 
             step3.children(tableConfig1);

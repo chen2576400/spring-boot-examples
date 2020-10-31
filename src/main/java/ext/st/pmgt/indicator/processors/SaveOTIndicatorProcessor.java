@@ -1,5 +1,6 @@
 package ext.st.pmgt.indicator.processors;
 
+import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.Persistable;
@@ -49,17 +50,13 @@ public class SaveOTIndicatorProcessor extends DefaultObjectFormProcessor {
         for (Map<String, Object> tableRow : tableRows) {
             ReferenceFactory factory = new ReferenceFactory();
             STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) factory.getReference(tableRow.get("pi_row_key").toString()).getObject();
-            String deviationReport = tableRow.get("deviationReport").toString();
-            String difficultyReport = tableRow.get("difficultyReport").toString();
-            double devValue = 0;
-            double difValue = 0;
-            try {
-                devValue = NumberFormat.getPercentInstance().parse(deviationReport).doubleValue();
-                difValue = NumberFormat.getPercentInstance().parse(difficultyReport).doubleValue();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            if (!ot.getDeviationReport().equals(devValue) || !ot.getDifficultyReport().equals(difValue)) {
+            JSONObject deviationObj = (JSONObject) tableRow.get("deviationReport");
+            JSONObject difficultyObj = (JSONObject) tableRow.get("difficultyReport");
+            String deviationReport = deviationObj.get("value").toString();
+            String difficultyReport = difficultyObj.get("value").toString();
+
+            if (!ot.getDeviationReport().toString().equals(deviationReport)||!ot.getDifficultyReport().toString().equals(difficultyReport)) {
+
                 STProjectInstanceOTIndicator newOT = STProjectInstanceOTIndicator.newSTProjectInstanceOTIndicator();
                 if (ot.getContainerReference() != null) {
                     newOT.setContainerReference(ot.getContainerReference());
@@ -106,12 +103,9 @@ public class SaveOTIndicatorProcessor extends DefaultObjectFormProcessor {
                 if (ot.getPlanDeliverableReference() != null) {
                     newOT.setPlanDeliverableReference(ot.getPlanDeliverableReference());
                 }
-                if (StringUtils.isNotEmpty(deviationReport)) {
-                    newOT.setDeviationReport(devValue);
-                }
-                if (StringUtils.isNotEmpty(difficultyReport)) {
-                    newOT.setDeviationReport(difValue);
-                }
+
+                newOT.setDeviationReport(Double.valueOf(deviationReport));
+                newOT.setDifficultyReport(Double.valueOf(difficultyReport));
                 newOT.setReportTime(new Timestamp(System.currentTimeMillis()));
                 newOT.setReporter(SessionHelper.service.getPrincipalReference());
                 newOT.setCreator(SessionHelper.service.getPrincipalReference());

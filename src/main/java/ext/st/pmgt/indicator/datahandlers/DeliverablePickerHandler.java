@@ -25,7 +25,7 @@ public class DeliverablePickerHandler extends DefaultDataHandler {
             PIPlanDeliverable context = (PIPlanDeliverable) datum;
             RevisionControlled subject = (RevisionControlled) context.getSubject();
             try {
-                inputElement.setValue(context.getSubject().getOid(),subject.getVersionIdentifier().getValue());
+                inputElement.setValue(subject.getOid(),subject.getName());
             } catch (PIException e) {
                 e.printStackTrace();
             }
