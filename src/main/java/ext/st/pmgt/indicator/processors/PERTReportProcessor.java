@@ -16,7 +16,7 @@ import java.util.List;
  * @Version V1.0
  **/
 @Component
-public class PERTProcessor extends DefaultObjectFormProcessor {
+public class PERTReportProcessor extends DefaultObjectFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {

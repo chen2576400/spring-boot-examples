@@ -17,7 +17,7 @@ import com.pisx.tundra.pmgt.project.model.PIPmgtBaselineType;
  * @Date 2020/10/21
  * @Version V1.0
  **/
-public class PERTWizardBulder extends AbstractComponentBuilder {
+public class ReportWizardBulder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         return null;
@@ -27,14 +27,14 @@ public class PERTWizardBulder extends AbstractComponentBuilder {
     public ComponentConfig buildComponentConfig(Object componentData, ComponentParams params) throws PIException {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         WizardConfig wizardConfig = componentConfigFactory.newWizardConfig(params);
-        wizardConfig.setId("pertWizard");
+        wizardConfig.setId("reportWizard");
 
         try {
             StepConfig step = wizardConfig.newStep();
-            step.setId("pertStep");
+            step.setId("reportStep");
             LayoutConfig layout = componentConfigFactory.newLayoutConfig(params);
             layout.setPrimaryClassName(PIPmgtBaselineType.class);
-            layout.setId("pertLayout");
+            layout.setId("reportLayout");
             step.addLayout(layout);
         } catch (Exception e) {
             e.printStackTrace();

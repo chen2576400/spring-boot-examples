@@ -23,7 +23,7 @@
 
     <model name="planDropDown" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
-        <action name="pertReport" type="st-pmgt-act" shortcut="true"/>
+        <action name="pertReport" type="st-report" shortcut="true"/>
     </model>
 
     <model name="deliverablesForActivityToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
@@ -51,6 +51,13 @@
 <!--        <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
 <!--        <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>-->
         <action name="indicatorReport" type="st-pmgt-indicator" shortcut="true"/>
+    </model>
+
+
+    <model name="projectsTableToolBar" resourceBundle="com.pisx.tundra.pmgt.project.resources.projectActionsRB">
+        <action name="createProject" type="pi-pmgt-project" shortcut="true"/>
+        <action name="exportExcel" type="uiComponent"/>
+        <action name="projectRiskReport" type="st-report" shortcut="true"/>
     </model>
 
 </actionmodels>

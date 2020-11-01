@@ -40,13 +40,26 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("img/pmgt/edit.gif")
     public static final String act_03 = "st-pmgt-act.reportExpectedFinishTime.icon";
 
-    @RBEntry("pert报表")
-    public static final String act_04 = "st-pmgt-act.pertReport.description";
-    @RBEntry("pert报表")
-    public static final String act_05= "st-pmgt-act.pertReport.tooltip";
-    @RBEntry("img/pmgt/add.gif")
-    public static final String act_06 = "st-pmgt-act.pertReport.icon";
-    
+    @RBEntry("PERT报表")
+    public static final String act_04 = "st-report.pertReport.description";
+    @RBEntry("PERT报表")
+    public static final String act_05= "st-report.pertReport.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_06 = "st-report.pertReport.icon";
+
+    @RBEntry("部门风险系数表")
+    public static final String act_104 = "st-report.projectRiskReport.description";
+    @RBEntry("部门风险系数表")
+    public static final String act_025= "st-report.projectRiskReport.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_036 = "st-report.projectRiskReport.icon";
+
+    @RBEntry("部门风险系数表")
+    public static final String act_1304 = "st-report.departmentRiskReport.description";
+    @RBEntry("部门风险系数表")
+    public static final String act_0425= "st-report.departmentRiskReport.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_0356 = "st-report.departmentRiskReport.icon";
 
     @RBEntry("创建交付对象")
     public static final String act_042 = "st-pmgt-act.createDeliverable.description";

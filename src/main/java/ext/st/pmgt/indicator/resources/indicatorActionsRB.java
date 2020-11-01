@@ -44,11 +44,25 @@ public class indicatorActionsRB extends PIListResourceBundle {
     public static final String act_03 = "st-pmgt-act.reportExpectedFinishTime.icon";
 
     @RBEntry("pertReport")
-    public static final String act_04 = "st-pmgt-act.pertReport.description";
+    public static final String act_04 = "st-report.pertReport.description";
     @RBEntry("pertReport")
-    public static final String act_05= "st-pmgt-act.pertReport.tooltip";
-    @RBEntry("img/pmgt/add.gif")
-    public static final String act_06 = "st-pmgt-act.pertReport.icon";
+    public static final String act_05= "st-report.pertReport.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_06 = "st-report.pertReport.icon";
+
+    @RBEntry("projectRiskReport")
+    public static final String act_104 = "st-report.projectRiskReport.description";
+    @RBEntry("projectRiskReport")
+    public static final String act_025= "st-report.projectRiskReport.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_036 = "st-report.projectRiskReport.icon";
+
+    @RBEntry("departmentRiskReport")
+    public static final String act_1304 = "st-report.departmentRiskReport.description";
+    @RBEntry("departmentRiskReport")
+    public static final String act_0425= "st-report.departmentRiskReport.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_0356 = "st-report.departmentRiskReport.icon";
 
     @RBEntry("documentPicker")
     public static final String act_046 = "st-pmgt-act.documentPicker.description";
