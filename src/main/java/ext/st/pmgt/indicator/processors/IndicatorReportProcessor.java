@@ -2,6 +2,9 @@ package ext.st.pmgt.indicator.processors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.fc.model.PIReference;
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
 import com.pisx.tundra.foundation.org.model.PIPrincipal;
 import com.pisx.tundra.foundation.session.SessionHelper;
@@ -9,6 +12,7 @@ import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
+import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
@@ -28,19 +32,24 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        JSONObject ajaxData = params.getAjaxData();
-//        return new ResponseWrapper(ResponseWrapper.SUCCESS, "", null);
+        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
+        PIPlanDeliverable deliverable = null;
+        if (sourceObject instanceof PIPlanDeliverable) {
+            deliverable = (PIPlanDeliverable) sourceObject;
+        }
+        //1.版本有没有改变
+        JSONObject versionObj = (JSONObject) params.getNfCommandBean().getComponentData("indicator_report_layout2").getLayoutFields().get("currentVersion");
+        String currentVersion = versionObj.get("value").toString();
+        PIReference reference = new ReferenceFactory().getReference(currentVersion);
+        if (!reference.equals(deliverable.getSubjectReference())) {
+            //版本有改变
+            deliverable.setSubjectReference((ObjectReference) reference);
+            PersistenceHelper.service.save(deliverable);
 
-//        //判断当前登录用户和任务所属用户时否为同一人
-//        PIPrincipal principal = SessionHelper.service.getPrincipal();
-////        List<PIResourceAssignment> allResourceAssignments = (List) PIAssignmentHelper.service.getAllResourceAssignments(act);
-////        List<PIUser> actUsers = allResourceAssignments.stream().map(item -> item.getRsrc().getUser()).collect(Collectors.toList());
-////        if (!actUsers.contains(principal)) {
-////            return new ResponseWrapper(ResponseWrapper.FAILED, "无法修改", null);
-////        }
+        }
 
-        List<Map<String, Object>> tableRows = (List<Map<String, Object>>) params.getAjaxData().getJSONObject("componentsData").getJSONObject("indicator_report_step4").getJSONObject("o_t_table").get("rows");
-
+        //2.汇报偏差，汇报困难度有没有改变
+        List<Map<String, Object>> tableRows = params.getNfCommandBean().getComponentData("o_t_table").getTableRows();
         for (Map<String, Object> tableRow : tableRows) {
             ReferenceFactory factory = new ReferenceFactory();
             STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) factory.getReference(tableRow.get("pi_row_key").toString()).getObject();
@@ -49,7 +58,8 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
             String deviationReport = deviationObj.get("value").toString();
             String difficultyReport = difficultyObj.get("value").toString();
 
-            if (!ot.getDeviationReport().toString().equals(deviationReport)||!ot.getDifficultyReport().toString().equals(difficultyReport)) {
+            //2.汇报偏差，汇报困难度有没有改变
+            if (!ot.getDeviationReport().toString().equals(deviationReport) || !ot.getDifficultyReport().toString().equals(difficultyReport)) {
 
                 STProjectInstanceOTIndicator newOT = STProjectInstanceOTIndicator.newSTProjectInstanceOTIndicator();
                 if (ot.getContainerReference() != null) {

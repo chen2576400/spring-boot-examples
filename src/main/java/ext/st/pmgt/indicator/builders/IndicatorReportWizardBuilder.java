@@ -83,16 +83,16 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
                 Option opt1 = new Option().setLabel(version.getVersionIdentifier().getVersionId() + "." + version.getVersionIdentifier().getVersionLevel()).setValue(version.getOid());
                 options.add(opt1);
             }
-            SelectElement selectElement0 = SelectElement.instance("allVersions");
+            SelectElement selectElement0 = SelectElement.instance("currentVersion");
             selectElement0.setOptions(options);
-            selectElement0.setDefaultOption(new Option().setLabel(revisionControlled.getVersionIdentifier().getVersionId() + "." + revisionControlled.getVersionIdentifier().getVersionLevel()).setValue(sourceObj.getSubject().getOid()));
+            selectElement0.setDefaultOption(new Option().setLabel(revisionControlled.getVersionIdentifier().getVersionId() + "." + revisionControlled.getVersionIdentifier().getVersionLevel()).setValue(revisionControlled.getOid()));
             selectElement0.attribute(elementAttribute -> elementAttribute.setStyle("cursor: pointer;display:inline-block;" +
                     "padding: 3px 6px;text-align: right;width: 200px;vertical-align: middle;"));
 
             LabelElement labelElement0 = LabelElement.instance();
             labelElement0.text("当前版本");
             labelElement0.attribute(elementAttribute -> elementAttribute.setStyle("cursor: pointer;display:inline-block;" +
-                    "padding: 3px 6px;text-align: right;width: 200px;vertical-align: middle;"));
+                    "padding: 3px 6px;text-align: center;width: 70px;vertical-align: middle;"));
             layout1.addElement(labelElement0);
             layout1.addElement(selectElement0);
 
