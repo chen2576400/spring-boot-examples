@@ -37,7 +37,7 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
             result.addAll(STIndicatorHelper.service.findOTByIN((STProjectInstanceINIndicator)in));
         }
 
-        return STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
+        return result;
     }
 
     @Override

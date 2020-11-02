@@ -130,13 +130,11 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
             step3.setId("IndicatorReportStep4");
             TableConfig tableConfig1 = componentConfigFactory.newTableConfig(params);
             tableConfig1.setId("OTTable");
-//            tableConfig1.setTableTitle("OT指标");
+            tableConfig1.setTableTitle("OT指标");
             tableConfig1.haveBorder();
             tableConfig1.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
-            tableConfig1.enableSelect();
-            tableConfig1.setSingleSelect(true);
             tableConfig1.setHeight("450px");
-            tableConfig1.setToolbarActionModel("otTableToolBarSet", params);
+//            tableConfig1.setToolbarActionModel("otTableToolBarSet", params);
 
             ColumnConfig column11 = componentConfigFactory.newColumnConfig();
             column11.setName("code");
@@ -170,6 +168,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
             ColumnConfig column5 = componentConfigFactory.newColumnConfig();
             column5.setName("reportTime");
             column5.enableSort();
+            column5.isSortable();
             tableConfig1.addColumn(column5);
 
             step3.children(tableConfig1);

@@ -47,9 +47,9 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("img/pmgt/report.gif")
     public static final String act_06 = "st-report.pertReport.icon";
 
-    @RBEntry("部门风险系数表")
+    @RBEntry("项目风险系数表")
     public static final String act_104 = "st-report.projectRiskReport.description";
-    @RBEntry("部门风险系数表")
+    @RBEntry("项目风险系数表")
     public static final String act_025= "st-report.projectRiskReport.tooltip";
     @RBEntry("img/pmgt/report.gif")
     public static final String act_036 = "st-report.projectRiskReport.icon";

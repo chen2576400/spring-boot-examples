@@ -54,13 +54,10 @@
             <component name="ext.st.pmgt.indicator.builders.ReportWizardBulder" windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.PERTReportProcessor"/>
         </action>
-        projectRiskReport
         <action name="projectRiskReport" beforeJS="buttonEvent" selectRequired="true">
-            <component name="ext.st.pmgt.indicator.builders.ReportWizardBulder" windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.ProjectRiskReportProcessor"/>
         </action>
         <action name="departmentRiskReport" beforeJS="buttonEvent" selectRequired="true">
-            <component name="ext.st.pmgt.indicator.builders.ReportWizardBulder" windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.DepartmentRiskReportProcessor"/>
         </action>
     </actionsgroup>

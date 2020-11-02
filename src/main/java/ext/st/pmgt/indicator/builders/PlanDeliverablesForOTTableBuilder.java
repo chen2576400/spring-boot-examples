@@ -1,5 +1,6 @@
 package ext.st.pmgt.indicator.builders;
 
+import com.google.common.collect.Lists;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIMessage;
@@ -31,7 +32,16 @@ import java.util.List;
 public class PlanDeliverablesForOTTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-        return STIndicatorHelper.service.getPlanDeliverablesByOT((STProjectInstanceOTIndicator) params.getNfCommandBean().getSourceObject());
+        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
+        List result = new ArrayList();
+        if (sourceObject instanceof STProjectInstanceOTIndicator) {
+            STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) sourceObject;
+            PIPlanDeliverable deliverable = ot.getPlanDeliverable();
+            if (deliverable!=null){
+                result.add(deliverable);
+            }
+        }
+        return result;
 
     }
 

@@ -1,11 +1,13 @@
 package ext.st.pmgt.indicator.processors;
 
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,6 +22,11 @@ public class ProjectRiskReportProcessor extends DefaultObjectFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        return new ResponseWrapper(ResponseWrapper.DIRECT, "", "http://www.baidu.com");
+        List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("url","http://www.baidu.com");
+        map.put("width","900px");
+        map.put("height","750px");
+        return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);
     }
 }
