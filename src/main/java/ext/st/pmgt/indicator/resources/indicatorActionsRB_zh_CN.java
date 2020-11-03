@@ -31,6 +31,8 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     public static final String Indicator_0243 = "st-pmgt-indicator.indicatorReport.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String Indicator_0344 = "st-pmgt-indicator.indicatorReport.icon";
+    @RBEntry("height=900,width=750")
+    public static final String Indicator_0544 = "st-pmgt-indicator.indicatorReport.moreurlinfo";
 
 
     @RBEntry("预计完成时间填写")
