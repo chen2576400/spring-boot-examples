@@ -1,6 +1,6 @@
 package ext.st.pmgt.indicator;
 
-import com.TundraApplication;
+
 import com.pisx.tundra.foundation.util.ApplicationContextUtil;
 import ext.st.pmgt.indicator.service.STIndicatorService;
 
