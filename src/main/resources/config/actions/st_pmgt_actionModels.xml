@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actionmodels>
 
+
+    <model name="tundra-top-menu" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <submodel name="sysManage-Menu" type="privilegeManages"/>
+        <submodel name="projectMgmt" type="pi-pmgt-project"/>
+    </model>
+
     <model name="pi-pmgtPlanActivityInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="details" type="pi-pmgt-act"/>
         <!--<action name="attachments" type="pi-pmgt-enterprise"/>-->

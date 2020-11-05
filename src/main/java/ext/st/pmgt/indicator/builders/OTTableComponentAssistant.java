@@ -1,11 +1,6 @@
 package ext.st.pmgt.indicator.builders;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cetc.pbi.model.CetcAttribute;
-import com.cetc.pbi.model.CetcAttributeValue;
-import com.cetc.pbi.model.CetcProductConfig;
-import com.cetc.pbi.processors.DataTypeSwitcher;
-import com.cetc.pbi.service.CetcService;
 import com.google.common.collect.Lists;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentAssistant;
