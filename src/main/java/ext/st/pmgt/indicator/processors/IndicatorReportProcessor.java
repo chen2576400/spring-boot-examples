@@ -37,18 +37,18 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
         if (sourceObject instanceof PIPlanDeliverable) {
             deliverable = (PIPlanDeliverable) sourceObject;
         }
-        //1.版本有没有改变
+
         JSONObject versionObj = (JSONObject) params.getNfCommandBean().getComponentData("indicator_report_layout2").getLayoutFields().get("currentVersion");
         String currentVersion = versionObj.get("value").toString();
         PIReference reference = new ReferenceFactory().getReference(currentVersion);
+        //版本发生改变
         if (!reference.equals(deliverable.getSubjectReference())) {
-            //版本有改变
             deliverable.setSubjectReference((ObjectReference) reference);
             PersistenceHelper.service.save(deliverable);
 
         }
 
-        //2.汇报偏差，汇报困难度有没有改变
+
         List<Map<String, Object>> tableRows = params.getNfCommandBean().getComponentData("o_t_table").getTableRows();
         for (Map<String, Object> tableRow : tableRows) {
             ReferenceFactory factory = new ReferenceFactory();
@@ -58,7 +58,7 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
             String deviationReport = deviationObj.get("value").toString();
             String difficultyReport = difficultyObj.get("value").toString();
 
-            //2.汇报偏差，汇报困难度有没有改变
+            //2.汇报偏差，汇报困难度发生改变
             if (!ot.getDeviationReport().toString().equals(deviationReport) || !ot.getDifficultyReport().toString().equals(difficultyReport)) {
 
                 STProjectInstanceOTIndicator newOT = STProjectInstanceOTIndicator.newSTProjectInstanceOTIndicator();

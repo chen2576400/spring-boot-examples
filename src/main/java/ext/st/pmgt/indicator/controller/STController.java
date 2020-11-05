@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * @ClassName STController
@@ -33,11 +35,11 @@ public class STController extends BaseController {
         return STIndicatorHelper.service.api1(planId);
     }
 
-    @RequestMapping(value = "/getDataByPlan2", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/getDataByProject", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Object getDataByPlan2(@RequestParam(value = "planId", required = false) String planId) throws Exception {
-        //todo testUrl:http://localhost:8080/st/getDataByPlan2?planId=5706
-        return STIndicatorHelper.service.api2(planId);
+    public Object getDataByProject(@RequestParam(value = "projectId", required = false) String projectId) throws Exception {
+        //todo testUrl:http://localhost:8080/st/getDataByProject?projectId=5706
+        return STIndicatorHelper.service.api2(projectId);
     }
 
     @RequestMapping(value = "/getDataByUser", produces = "application/json;charset=UTF-8")
@@ -46,8 +48,11 @@ public class STController extends BaseController {
                                 @RequestParam(value = "time1", required = false) String time1,
                                 @RequestParam(value = "time2", required = false) String time2
                                 ) throws Exception {
-        //todo testUrl:http://localhost:8080/st/getDataByUser?userId=PiDim
-        return STIndicatorHelper.service.api3(userId,new Timestamp(System.currentTimeMillis()),new Timestamp(System.currentTimeMillis()));
+        //todo testUrl:http://localhost:8080/st/getDataByUser?userId=917&time1=???&time2=???
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Timestamp date1 = new Timestamp(simpleDateFormat.parse(time1).getTime());
+        Timestamp date2 = new Timestamp(simpleDateFormat.parse(time2).getTime());
+        return STIndicatorHelper.service.api3(userId,date1,date1);
     }
 
     @RequestMapping(value = "/getDataByActivityId", produces = "application/json;charset=UTF-8")

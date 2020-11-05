@@ -40,7 +40,7 @@ public class DeliverablePickerHandler extends DefaultDataHandler {
 
         //componentId 传给objpicker
         NfAction action = NfActionHelper.service.getActionByActionsgroupAndActionName("st-pmgt-act", "documentPicker");
-        String url = URLFactory.getHREFContainContainerOid(action,params.getNfCommandBean().getSourceObject());
+        String url = URLFactory.getActionHref(action,params.getNfCommandBean().getSourceObject());
         rightImg.backFill(url, columnName);
 
         DivElement content = DivElement.instance();

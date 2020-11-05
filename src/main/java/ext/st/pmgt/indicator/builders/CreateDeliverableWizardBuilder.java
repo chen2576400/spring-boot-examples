@@ -13,7 +13,6 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.deliverable.datahandlers.DeliverableTypePickerHandler;
-import com.pisx.tundra.pmgt.deliverable.datahandlers.PlanDeliverablePickerHandler;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
