@@ -22,7 +22,8 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     public static final String OTIndicator_06 = "STProjectInstanceOTIndicator.difficultyReport.value";
     @RBEntry("汇报时间")
     public static final String OTIndicator_07 = "STProjectInstanceOTIndicator.reportTime.value";
-
+    @RBEntry("交付物")
+    public static final String OTIndicator_08= "STProjectInstanceOTIndicator.planDeliverableReference.value";
 
     @RBEntry("权重")
     public static final String INIndicator_03 = "STProjectInstanceINIndicator.inWeight.value";

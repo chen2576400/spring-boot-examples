@@ -60,7 +60,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
             layout.setEntity((PIPlanDeliverable) componentData);
             layout.addField("name")
                     .addField("description")
-                    .addField("url")
+//                    .addField("url")
 //                    .addField("deliverableTypeReference", new DeliverableTypePickerHandler())
                     .addField("subjectReference", new DeliverablePickerHandler())
 //                    .addField("deliverableTemplate")

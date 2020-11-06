@@ -79,6 +79,12 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         columnconfig5.setName("difficultyReport");
         tableConfig.addColumn(columnconfig5);
 
+        ColumnConfig columnconfig6 = componentConfigFactory.newColumnConfig();
+        columnconfig6.setName("planDeliverable.name");
+        columnconfig6.setLabel("交付物");
+        columnconfig6.haveInfoPageLink();
+        tableConfig.addColumn(columnconfig6);
+
         return tableConfig;
     }
 }
