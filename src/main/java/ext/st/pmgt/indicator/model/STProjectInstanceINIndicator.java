@@ -101,6 +101,34 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
     })
     PIContainerRef containerReference;  //ProjectContainerRef
 
+    /**
+     * 输出评定
+     */
+    @Column
+    private String otRating;
+
+    /**
+     * 评定描述
+     */
+    @Column
+    private String ratingDescription;
+
+    public String getOtRating() {
+        return otRating;
+    }
+
+    public void setOtRating(String otRating) {
+        this.otRating = otRating;
+    }
+
+    public String getRatingDescription() {
+        return ratingDescription;
+    }
+
+    public void setRatingDescription(String ratingDescription) {
+        this.ratingDescription = ratingDescription;
+    }
+
     public ObjectReference getProjectReference() {
         return projectReference;
     }

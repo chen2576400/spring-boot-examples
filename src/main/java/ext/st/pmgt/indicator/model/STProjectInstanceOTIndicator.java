@@ -156,8 +156,8 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     /**
      * 完成状态（0,1,2）-->发布次数
      */
-    @Column(nullable = true, unique = true)
-    private Integer completionStatus;
+    @Column
+    private Integer completionStatus = 0;
 
     /**
      * 汇报时间
