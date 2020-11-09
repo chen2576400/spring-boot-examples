@@ -27,7 +27,12 @@ public class modelRB extends PIListResourceBundle {
 
 
     @RBEntry("权重")
-    public static final String INIndicator_03= "STProjectInstanceINIndicator.inWeight.value";
+    public static final String INIndicator_03= "STProjectInstanceINIndicator.weights.value";
+    @RBEntry("输出评定")
+    public static final String INIndicator_04= "STProjectInstanceINIndicator.otRating.value";
+    @RBEntry("评定描述")
+    public static final String INIndicator_05= "STProjectInstanceINIndicator.ratingDescription.value";
+
 
     @RBEntry("预计完成时间")
     public static final String STExpectedFinishTime_01= "STExpectedFinishTime.expectedFinishTime.value";

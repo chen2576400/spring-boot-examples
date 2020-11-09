@@ -68,5 +68,9 @@ public interface STIndicatorService {
 
     Collection getDifficultyByOTCode(String code);
 
-    Collection findOTByIN(STProjectInstanceINIndicator in) throws PIException;
+    Collection getOTByIN(STProjectInstanceINIndicator in) throws PIException;
+
+    STProjectInstanceINIndicator getINByActRef(ObjectReference actRef);
+
+    STProjectInstanceINIndicator getInByOT(STProjectInstanceOTIndicator ot);
 }

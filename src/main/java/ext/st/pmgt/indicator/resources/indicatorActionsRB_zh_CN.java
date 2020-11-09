@@ -8,6 +8,17 @@ import com.pisx.tundra.foundation.util.resource.RBUUID;
 @RBUUID("ext.st.pmgt.indicator.resources.indicatorActionsRB_zh_CN")
 public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
 
+    @RBEntry("系统管理")
+    public static final String CONSTANT_O511 = "privilegeManages.sysManage-Menu.description";
+    @RBEntry("系统管理")
+    public static final String CONSTANT_O621 = "privilegeManages.sysManage-Menu.tooltip";
+
+    @RBEntry("项目管理")
+    public static final String CONSTANT_O411 = "pi-pmgt-project.projectMgmt.description";
+    @RBEntry("项目管理")
+    public static final String CONSTANT_O321 = "pi-pmgt-project.projectMgmt.tooltip";
+
+
     @RBEntry("OT指标")
     public static final String Indicator_01 = "st-pmgt-indicator.planActivityOTIndicator.description";
     @RBEntry("OT指标")
@@ -83,4 +94,12 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     public static final String act_05322 = "st-pmgt-ot.saveOT.tooltip";
     @RBEntry("img/pmgt/save.gif")
     public static final String act_06433 = "st-pmgt-ot.saveOT.icon";
+
+    @RBEntry("添加评定")
+    public static final String act_0421211 = "st-pmgt-indicator.addRating.description";
+    @RBEntry("添加评定")
+    public static final String act_0523322 = "st-pmgt-indicator.addRating.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String act_0643433 = "st-pmgt-indicator.addRating.icon";
+
 }

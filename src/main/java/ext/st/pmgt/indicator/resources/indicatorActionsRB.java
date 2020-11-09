@@ -7,6 +7,17 @@ import com.pisx.tundra.foundation.util.resource.RBUUID;
 @RBUUID("ext.st.pmgt.indicator.resources.indicatorActionsRB")
 public class indicatorActionsRB extends PIListResourceBundle {
 
+    @RBEntry("SystemMgmt")
+    public static final String CONSTANT_O511 = "privilegeManages.sysManage-Menu.description";
+    @RBEntry("SystemMgmt")
+    public static final String CONSTANT_O621 = "privilegeManages.sysManage-Menu.tooltip";
+
+    @RBEntry("ProjectMgmt")
+    public static final String CONSTANT_O411 = "pi-pmgt-project.projectMgmt.description";
+    @RBEntry("ProjectMgmt")
+    public static final String CONSTANT_O321 = "pi-pmgt-project.projectMgmt.tooltip";
+
+
     @RBEntry("OTIndicator")
     public static final String Indicator_01 = "st-pmgt-indicator.planActivityOTIndicator.description";
     @RBEntry("OTIndicator")
@@ -102,6 +113,11 @@ public class indicatorActionsRB extends PIListResourceBundle {
     @RBEntry("img/pmgt/save.gif")
     public static final String act_064433 = "st-pmgt-ot.listDeliverablesForOT.icon";
 
-
+    @RBEntry("添加评定")
+    public static final String act_0421211 = "st-pmgt-indicator.addRating.description";
+    @RBEntry("添加评定")
+    public static final String act_0523322 = "st-pmgt-indicator.addRating.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String act_0643433 = "st-pmgt-indicator.addRating.icon";
 
 }

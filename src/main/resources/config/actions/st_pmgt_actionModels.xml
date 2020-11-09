@@ -2,12 +2,12 @@
 <actionmodels>
 
 
-    <model name="tundra-top-menu" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+    <model name="tundra-top-menu" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <submodel name="sysManage-Menu" type="privilegeManages"/>
         <submodel name="projectMgmt" type="pi-pmgt-project"/>
     </model>
 
-    <model name="pi-pmgtPlanActivityInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+    <model name="pi-pmgtPlanActivityInfoPageTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="details" type="pi-pmgt-act"/>
         <!--<action name="attachments" type="pi-pmgt-enterprise"/>-->
         <action name="resourceAssignments" type="pi-pmgt-act"/>
@@ -27,43 +27,50 @@
         <action name="planActivityINIndicator" type="st-pmgt-indicator"/>
     </model>
 
-    <model name="planDropDown" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+    <model name="planDropDown" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
         <action name="pertReport" type="st-report" shortcut="true"/>
     </model>
 
-    <model name="deliverablesForActivityToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+    <model name="deliverablesForActivityToolBarSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="deleteDeliverables" type="pi-pmgt-project" shortcut="true"/>
         <action name="createDeliverable" type="st-pmgt-act" shortcut="true"/>
         <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>
     </model>
 
 
-    <model name="otTableToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-<!--        <action name="addOT" type="st-pmgt-ot" shortcut="true"/>-->
+    <model name="otTableToolBarSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+        <!--        <action name="addOT" type="st-pmgt-ot" shortcut="true"/>-->
         <action name="saveOT" type="st-pmgt-ot" shortcut="true"/>
     </model>
 
 
-
-    <model name="otIndicatorInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+    <model name="otIndicatorInfoPageTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="listDeliverablesForOT" type="st-pmgt-ot"/>
     </model>
 
 
-    <model name="deliverablesForActivityMenus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-<!--        <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
-<!--        <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
-<!--        <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
-<!--        <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>-->
+    <model name="deliverablesForActivityMenus" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+        <!--        <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
+        <!--        <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
+        <!--        <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
+        <!--        <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>-->
         <action name="indicatorReport" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
 
-    <model name="projectsTableToolBar" resourceBundle="com.pisx.tundra.pmgt.project.resources.projectActionsRB">
+    <model name="projectsTableToolBar" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="createProject" type="pi-pmgt-project" shortcut="true"/>
         <action name="exportExcel" type="uiComponent"/>
         <action name="projectRiskReport" type="st-report" shortcut="true"/>
+    </model>
+
+    <model name="inTableToolBar" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+        <action name="exportExcel" type="uiComponent"/>
+    </model>
+
+    <model name="INTableMenu" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+        <action name="addRating" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
 </actionmodels>

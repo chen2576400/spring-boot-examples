@@ -8,8 +8,6 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
-import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
@@ -34,7 +32,7 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         Collection ins = STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
         List result = new ArrayList<>();
         for (Object in : ins) {
-            result.addAll(STIndicatorHelper.service.findOTByIN((STProjectInstanceINIndicator)in));
+            result.addAll(STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator)in));
         }
 
         return result;
@@ -49,8 +47,8 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(),"IN_INDICATOR_TABLE",null,params.getLocale()));
         tableConfig.enableSelect();
-//        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
-//        tableConfig.setRightMenuName("deliverablesForPlanToolBarSet",params);
+        tableConfig.setToolbarActionModel("inTableToolBar");
+        tableConfig.setRightMenuName("INTableMenu",params);
 
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
@@ -84,6 +82,11 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         columnconfig6.setLabel("交付物");
         columnconfig6.haveInfoPageLink();
         tableConfig.addColumn(columnconfig6);
+
+
+        ColumnConfig columnconfig7 = componentConfigFactory.newColumnConfig();
+        columnconfig7.setName("reportTime");
+        tableConfig.addColumn(columnconfig7);
 
         return tableConfig;
     }

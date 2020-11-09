@@ -10,6 +10,7 @@ import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
+import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlannable;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
@@ -213,6 +214,14 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
     public void setPlanReference(ObjectReference planReference) {
         this.planReference = planReference;
+    }
+
+    public PIPlan getPlan() {
+        return (PIPlan) planReference.getObject();
+    }
+
+    public void setPlan(PIPlan plan) throws PIException {
+        this.planReference = ObjectReference.newObjectReference(plan);
     }
 
     public Double getStandardDeviationValue() {

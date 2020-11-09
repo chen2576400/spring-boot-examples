@@ -17,6 +17,10 @@
             <component name="ext.st.pmgt.indicator.builders.IndicatorReportWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.IndicatorReportProcessor"/>
         </action>
+        <action name="addRating">
+            <component name="ext.st.pmgt.indicator.builders.AddRatingWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.AddRatingProcessor"/>
+        </action>
 
     </actionsgroup>
 

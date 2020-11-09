@@ -17,6 +17,7 @@ import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,14 +42,36 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
         JSONObject versionObj = (JSONObject) params.getNfCommandBean().getComponentData("indicator_report_layout2").getLayoutFields().get("currentVersion");
         String currentVersion = versionObj.get("value").toString();
         PIReference reference = new ReferenceFactory().getReference(currentVersion);
-        //版本发生改变
-        if (!reference.equals(deliverable.getSubjectReference())) {
+
+        if (!reference.equals(deliverable.getSubjectReference())) {//版本发生改变
             deliverable.setSubjectReference((ObjectReference) reference);
             PersistenceHelper.service.save(deliverable);
-
+            List<STProjectInstanceOTIndicator> newOTs = updateOT(params);
+            if (newOTs.size()>0){
+                for (STProjectInstanceOTIndicator newOT : newOTs) {
+                    newOT.setCompletionStatus(newOT.getCompletionStatus()+1);
+                }
+                PersistenceHelper.service.save(newOTs);
+            }else {//版本变了，没有修改指标
+                //todo
+            }
+        }else {//版本未改变
+            List<STProjectInstanceOTIndicator> newOTs = updateOT(params);
+            if (newOTs.size()>0){
+                for (STProjectInstanceOTIndicator newOT : newOTs) {
+                    newOT.setCompletionStatus(newOT.getCompletionStatus()+1);
+                }
+                PersistenceHelper.service.save(newOTs);
+            }
         }
 
 
+
+        return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "汇报成功！", null);
+    }
+
+    private List<STProjectInstanceOTIndicator> updateOT(ComponentParams params) throws PIException {
+        List<STProjectInstanceOTIndicator> result = new ArrayList<>();
         List<Map<String, Object>> tableRows = params.getNfCommandBean().getComponentData("o_t_table").getTableRows();
         for (Map<String, Object> tableRow : tableRows) {
             ReferenceFactory factory = new ReferenceFactory();
@@ -114,10 +137,10 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
                 newOT.setReporter(SessionHelper.service.getPrincipalReference());
                 newOT.setCreator(SessionHelper.service.getPrincipalReference());
                 newOT.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
-                PersistenceHelper.service.save(newOT);
+                result.add(newOT);
             }
         }
-        return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "汇报成功！", null);
+        return result;
     }
 
 

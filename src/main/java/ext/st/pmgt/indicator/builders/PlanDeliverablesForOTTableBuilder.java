@@ -65,13 +65,13 @@ public class PlanDeliverablesForOTTableBuilder extends AbstractComponentBuilder 
         columnconfig3.setName("description");
         tableconfig.addColumn(columnconfig3);
 
-        ColumnConfig columnconfig4 = componentconfigfactory.newColumnConfig();
-        columnconfig4.setName("deliverableType");
-        tableconfig.addColumn(columnconfig4);
-
-        ColumnConfig columnconfig5 = componentconfigfactory.newColumnConfig();
-        columnconfig5.setName("deliverableTemplate");
-        tableconfig.addColumn(columnconfig5);
+//        ColumnConfig columnconfig4 = componentconfigfactory.newColumnConfig();
+//        columnconfig4.setName("deliverableType");
+//        tableconfig.addColumn(columnconfig4);
+//
+//        ColumnConfig columnconfig5 = componentconfigfactory.newColumnConfig();
+//        columnconfig5.setName("deliverableTemplate");
+//        tableconfig.addColumn(columnconfig5);
 
         ColumnConfig columnconfig6 = componentconfigfactory.newColumnConfig();
         columnconfig6.setName("subjectReference");

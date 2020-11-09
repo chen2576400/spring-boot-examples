@@ -82,6 +82,10 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         columnconfig6.haveInfoPageLink();
         tableConfig.addColumn(columnconfig6);
 
+        ColumnConfig columnconfig7 = componentConfigFactory.newColumnConfig();
+        columnconfig7.setName("reportTime");
+        tableConfig.addColumn(columnconfig7);
+
         return tableConfig;
     }
 }

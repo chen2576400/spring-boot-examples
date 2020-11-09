@@ -23,10 +23,14 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("汇报时间")
     public static final String OTIndicator_07 = "STProjectInstanceOTIndicator.reportTime.value";
     @RBEntry("交付物")
-    public static final String OTIndicator_08= "STProjectInstanceOTIndicator.planDeliverableReference.value";
+    public static final String OTIndicator_08 = "STProjectInstanceOTIndicator.planDeliverableReference.value";
 
     @RBEntry("权重")
-    public static final String INIndicator_03 = "STProjectInstanceINIndicator.inWeight.value";
+    public static final String INIndicator_03 = "STProjectInstanceINIndicator.weights.value";
+    @RBEntry("输出评定")
+    public static final String INIndicator_04 = "STProjectInstanceINIndicator.otRating.value";
+    @RBEntry("评定描述")
+    public static final String INIndicator_05 = "STProjectInstanceINIndicator.ratingDescription.value";
 
     @RBEntry("预计完成时间")
     public static final String STExpectedFinishTime_01 = "STExpectedFinishTime.expectedFinishTime.value";
