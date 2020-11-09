@@ -54,8 +54,7 @@
 
     </actionsgroup>
     <actionsgroup name="st-report" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <action name="pertReport">
-            <component name="ext.st.pmgt.indicator.builders.ReportWizardBulder" windowType="popup"/>
+        <action name="pertReport" beforeJS="buttonEvent">
             <command className="ext.st.pmgt.indicator.processors.PERTReportProcessor"/>
         </action>
         <action name="projectRiskReport" beforeJS="buttonEvent" selectRequired="true">

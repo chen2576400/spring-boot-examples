@@ -25,6 +25,6 @@ public class PERTReportProcessor extends DefaultObjectFormProcessor {
         map.put("url","http://www.baidu.com");
         map.put("width","900px");
         map.put("height","750px");
-        return new ResponseWrapper(ResponseWrapper.DIRECT, "", "http://www.baidu.com");
+        return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);
     }
 }
