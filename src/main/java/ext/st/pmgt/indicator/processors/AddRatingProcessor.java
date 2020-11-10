@@ -10,8 +10,10 @@ import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import ext.st.pmgt.indicator.model.STRating;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -38,10 +40,13 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor{
         }
         Map<String, Object> layoutFields = params.getNfCommandBean().getLayoutFields();
         String otRating = (String) layoutFields.get("otRating");
-        String ratingDescription = (String) layoutFields.get("ratingDescription");
-        in.setOtRating(otRating);
-        in.setRatingDescription(ratingDescription);
-        PersistenceHelper.service.save(in);
+        String description = (String) layoutFields.get("description");
+        STRating stRating = STRating.newSTRating();
+        stRating.setOtRating(otRating);
+        stRating.setDescription(description);
+        stRating.setInIndicator(in);
+        stRating.setReportTime(new Timestamp(System.currentTimeMillis()));
+        PersistenceHelper.service.save(stRating);
 
         return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "添加成功！", null);
     }

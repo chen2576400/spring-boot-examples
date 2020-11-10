@@ -16,6 +16,7 @@ import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.dao.ProjectInstanceINIndicatorDao;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import ext.st.pmgt.indicator.model.STRating;
 
 /**
  * @ClassName AddRatingWizardBuilder
@@ -47,19 +48,11 @@ public class AddRatingWizardBuilder extends AbstractComponentBuilder {
         try {
             StepConfig step = wizardConfig.newStep();
             step.setId("addRatingStep");
-            LayoutConfig layout0 = componentConfigFactory.newLayoutConfig(params);
-            layout0.setPrimaryClassName(STProjectInstanceINIndicator.class);
-            layout0.setEntity((STProjectInstanceINIndicator)componentData);
-            layout0.setId("addRatingLayout0");
-            layout0.addField("weights");
-            layout0.readonly();
-            step.addLayout(layout0);
-
             LayoutConfig layout = componentConfigFactory.newLayoutConfig(params);
-            layout.setPrimaryClassName(STProjectInstanceINIndicator.class);
+            layout.setPrimaryClassName(STRating.class);
             layout.setId("addRatingLayout1");
             layout.addField("otRating")
-                    .addField("ratingDescription");
+                    .addField("description");
             step.addLayout(layout);
 
         } catch (Exception e) {

@@ -41,9 +41,8 @@ public class OTTableComponentAssistant implements ComponentAssistant {
         if (params.getNfCommandBean().getSelectedObjects().size() > 0) {
             STDeliverableType selectDT = (STDeliverableType) params.getNfCommandBean().getSelectedObjects().get(0);
             List<STProjectInstanceOTIndicator> ots = (List) STIndicatorHelper.service.getOTByDeliverableType(selectDT);
-//            ots = ots.stream().sorted(Comparator.comparing(STProjectInstanceOTIndicator::getReportTime)).collect(Collectors.toList());
-//            STProjectInstanceOTIndicator ot = ots.get(ots.size() - 1);//获取修改时间最新的一条
-            for (STProjectInstanceOTIndicator ot : ots) {
+            List<STProjectInstanceOTIndicator> newOts = getLatestOt(ots);
+            for (STProjectInstanceOTIndicator ot : newOts) {
                 NumberFormat numFormat = NumberFormat.getPercentInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -79,6 +78,26 @@ public class OTTableComponentAssistant implements ComponentAssistant {
 
 
         return responseWrapper;
+    }
+
+     /**
+      * @MethodName:
+      * @Description: 返回最新的ot
+      * @Param:
+      * @Return:
+      * @Author: hma
+      * @Date: 2020/11/10
+     **/
+
+    private List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots){
+        List<STProjectInstanceOTIndicator> result = new ArrayList<>();
+        Map<String, List<STProjectInstanceOTIndicator>> map = ots.stream().collect(Collectors.groupingBy(STProjectInstanceOTIndicator::getCode));
+        for (Map.Entry<String, List<STProjectInstanceOTIndicator>> entry : map.entrySet()) {
+            List<STProjectInstanceOTIndicator> value = entry.getValue();
+            value.sort((t1, t2) -> t2.getReportTime().compareTo(t1.getReportTime()));
+            result.add(value.get(0));
+        }
+        return result;
     }
 
 

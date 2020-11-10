@@ -27,6 +27,7 @@
         <action name="planActivityINIndicator" type="st-pmgt-indicator"/>
     </model>
 
+    <!--pert报表入口-->
     <model name="planDropDown" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
         <action name="pertReport" type="st-report" shortcut="true"/>
@@ -58,7 +59,7 @@
         <action name="indicatorReport" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
-
+    <!--项目风险系数报表入口-->
     <model name="projectsTableToolBar" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="createProject" type="pi-pmgt-project" shortcut="true"/>
         <action name="exportExcel" type="uiComponent"/>
@@ -72,5 +73,13 @@
     <model name="INTableMenu" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="addRating" type="st-pmgt-indicator" shortcut="true"/>
     </model>
+
+    <!--部门风险系数报表入口-->
+    <model name="allUsersToolbarSet" resourceBundle="com.pisx.tundra.foundation.org.resources.orgActionsRB">
+        <action name="deleteUsers" type="user" shortcut="true"/>
+        <action name="exportExcel" type="uiComponent" shortcut="true"/>
+        <action name="departmentRiskReport" type="st-report" shortcut="true"/>
+    </model>
+
 
 </actionmodels>

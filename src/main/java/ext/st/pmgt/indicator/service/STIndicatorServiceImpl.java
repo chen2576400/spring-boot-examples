@@ -418,8 +418,12 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             CriteriaQuery criteriaQuery = cb.createQuery();
             Root root = criteriaQuery.from(STProjectInstanceINIndicator.class);
             Path key1 = root.get("otCode");
-            Path key2 = root.get("projectPlanInstanceRef").get("key");
-            criteriaQuery.select(root).where(cb.equal(key1, ot.getCode()), cb.equal(key2, ot.getPlan().getObjectIdentifier()));//升序
+            Path key2 = root.get("planActivityReference").get("key");
+            Path key3 = root.get("planReference").get("key");
+            Predicate p1 = cb.equal(key1, ot.getCode());
+            Predicate p2 = cb.equal(key2, ot.getPlanActivity().getObjectIdentifier());
+            Predicate p3 = cb.equal(key3, ot.getPlan().getObjectIdentifier());
+            criteriaQuery.select(root).where(p1, p2, p3);
             TypedQuery query = em.createQuery(criteriaQuery);
             result.addAll(query.getResultList());
         } finally {

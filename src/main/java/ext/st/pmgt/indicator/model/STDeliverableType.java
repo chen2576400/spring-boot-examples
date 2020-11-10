@@ -1,11 +1,10 @@
 package ext.st.pmgt.indicator.model;
 
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -36,6 +35,17 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
     @Column(nullable = true, unique = true)
     private String code;
 
+
+    /*
+     * 指标
+     * */
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "indicatorRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "indicatorRefClass", nullable = true))
+    })
+    ObjectReference indicatorReference;
+
     public String getName() {
         return name;
     }
@@ -56,5 +66,13 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
         STDeliverableType obj = new STDeliverableType();
         obj.initialize();
         return obj;
+    }
+
+    public ObjectReference getIndicatorReference() {
+        return indicatorReference;
+    }
+
+    public void setIndicatorReference(ObjectReference indicatorReference) {
+        this.indicatorReference = indicatorReference;
     }
 }

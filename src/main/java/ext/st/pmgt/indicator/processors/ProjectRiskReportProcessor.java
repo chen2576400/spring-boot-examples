@@ -24,7 +24,7 @@ public class ProjectRiskReportProcessor extends DefaultObjectFormProcessor {
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
         HashMap<String, String> map = new HashMap<>();
-        map.put("url","http://www.baidu.com");
+        map.put("url","http://192.168.2.125:8088/report/projectRisk/");
         map.put("width","900px");
         map.put("height","750px");
         return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);
