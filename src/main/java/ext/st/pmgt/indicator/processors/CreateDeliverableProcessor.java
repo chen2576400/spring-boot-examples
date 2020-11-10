@@ -7,10 +7,8 @@ import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultCreateFormProcessor;
-import com.pisx.tundra.netfactory.util.beans.NfOid;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
-import com.pisx.tundra.pmgt.deliverable.PIPlanDeliverableHelper;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverableLink;
 import com.pisx.tundra.pmgt.deliverable.model.deliverableResource;
@@ -91,7 +89,7 @@ public class CreateDeliverableProcessor extends DefaultCreateFormProcessor {
 
                 //set boolean value of plan activity
                 act.setHasDeliverable(Boolean.TRUE);
-                act=PersistenceHelper.service.save(act);
+                act= PersistenceHelper.service.save(act);
             } catch (PIException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

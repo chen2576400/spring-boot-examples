@@ -36,16 +36,16 @@ public interface STIndicatorService {
     Collection findProjectOTIndicatorByPlanActivityAndPlan(PIPlanActivity planActivity,PIPlan plan) throws PIException;
     //api1
 
-    Object api1(String planid) throws PIException;
+    Object getDataByPlanId(String planid) throws PIException;
     //api2
 
-    Object api2(String planid) throws PIException;
+    Object getDataByProjectId(String planid) throws PIException;
     //api3
 
-    Object api3(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException;
+    Object getDataByUserIdAndTime(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException;
     //api4
 
-    Object api4(String activityId) throws PIException;
+    Object getDataByActId(String activityId) throws PIException;
 
     Collection getAllDeliverableType();
 

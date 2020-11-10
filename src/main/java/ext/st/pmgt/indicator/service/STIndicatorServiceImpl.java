@@ -32,6 +32,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -141,7 +142,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
      * 返回数据：权重，汇报偏差，标准偏差，（汇报困难度），标准困难度，广度，关键度，输出评定，平均发布次数，
      * */
     @Override
-    public Object api1(String planid) throws PIException {
+    public Object getDataByPlanId(String planid) throws PIException {
         String planOid = PIPlan.class.getName() + ":" + planid;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         ObjectReference planReference = (ObjectReference) referenceFactory.getReference(planOid);
@@ -171,10 +172,10 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             otMap.put("完成状态", otIndicator.getCompletionStatus());
             otMap.put("标准困难度", otIndicator.getStandardDifficultyValue());
             otMap.put("标准偏差值", otIndicator.getStandardDeviationValue());
-//                otMap.put("汇报困难度", NumberFormat.getPercentInstance().format(otIndicator.getDifficultyReport()));
-//                otMap.put("汇报偏差值", NumberFormat.getPercentInstance().format(otIndicator.getDifficultyReport()));
-            otMap.put("汇报困难度", "0.1");
-            otMap.put("汇报偏差值", "0.2");
+            otMap.put("汇报困难度", otIndicator.getDifficultyReport());
+            otMap.put("汇报偏差值", otIndicator.getDeviationReport());
+//            otMap.put("汇报困难度", "0.1");
+//            otMap.put("汇报偏差值", "0.2");
             otMap.put("广度", otIndicator.getBreadth());
             otMap.put("关建度", otIndicator.getCriticality());
             otMap.put("指标编码", otIndicator.getCode());
@@ -200,7 +201,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
             inList.add(inMap);
         }
-        map.put("in", inList);
+        map.put("IN", inList);
 
         return map;
 
@@ -214,10 +215,10 @@ public class STIndicatorServiceImpl implements STIndicatorService {
      *
      */
     @Override
-    public Object api2(String projectId) throws PIException {
+    public Object getDataByProjectId(String projectId) throws PIException {
         String projectOid = PIProject.class.getName() + ":" + projectId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
-        PIProject project = (PIProject) referenceFactory.getReference(projectId).getObject();
+        PIProject project = (PIProject) referenceFactory.getReference(projectOid).getObject();
         List<PIPlan> plans = PIPlanHelper.service.getPlans(project);
         PIPlan plan = null;
         if (plans.size() > 0) {
@@ -282,7 +283,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
      *
      */
     @Override
-    public Object api3(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException {
+    public Object getDataByUserIdAndTime(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException {
         String userOid = PIUser.class.getName() + ":" + userId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIUser user = (PIUser) referenceFactory.getReference(userOid).getObject();
@@ -299,7 +300,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public Object api4(String activityId) throws PIException {
+    public Object getDataByActId(String activityId) throws PIException {
         String actId = PIPlanActivity.class.getName() + ":" + activityId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIPlanActivity act = (PIPlanActivity) referenceFactory.getReference(actId).getObject();

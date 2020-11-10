@@ -71,7 +71,6 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
         }
 
-
         return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "汇报成功！", null);
     }
 
