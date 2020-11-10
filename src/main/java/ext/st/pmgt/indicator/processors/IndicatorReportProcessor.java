@@ -2,13 +2,11 @@ package ext.st.pmgt.indicator.processors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
-import com.pisx.tundra.foundation.fc.model.ObjectReference;
-import com.pisx.tundra.foundation.fc.model.PIReference;
-import com.pisx.tundra.foundation.fc.model.Persistable;
+import com.pisx.tundra.foundation.fc.model.*;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
-import com.pisx.tundra.foundation.org.model.PIPrincipal;
 import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
+import com.pisx.tundra.foundation.util.SerializableCloner;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
@@ -16,6 +14,7 @@ import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,31 +45,37 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
         if (!reference.equals(deliverable.getSubjectReference())) {//版本发生改变
             deliverable.setSubjectReference((ObjectReference) reference);
             PersistenceHelper.service.save(deliverable);
-            List<STProjectInstanceOTIndicator> newOTs = updateOT(params);
-            if (newOTs.size()>0){
-                for (STProjectInstanceOTIndicator newOT : newOTs) {
-                    newOT.setCompletionStatus(newOT.getCompletionStatus()+1);
+            List<STProjectInstanceOTIndicator> changedOT = getUpdatedOT(params);//第四部修改过的ot
+            if (changedOT.size() > 0) {//版本变了，ot指标也进行了修改,按照修改之后的更新ot指标
+                for (STProjectInstanceOTIndicator newOT : changedOT) {
+                    newOT.setCompletionStatus(newOT.getCompletionStatus() + 1);//更新过版本之后，完成状态+1
                 }
-                PersistenceHelper.service.save(newOTs);
-            }else {//版本变了，没有修改指标
-                //todo
-            }
-        }else {//版本未改变
-            List<STProjectInstanceOTIndicator> newOTs = updateOT(params);
-            if (newOTs.size()>0){
-                for (STProjectInstanceOTIndicator newOT : newOTs) {
-                    newOT.setCompletionStatus(newOT.getCompletionStatus()+1);
+                PersistenceHelper.service.save(changedOT);
+            } else {//版本变了，没有修改指标，那么需要将最新的指标全部复制一份保存
+                List<STProjectInstanceOTIndicator> newOT1 = updateLatestOt(params);
+                if (newOT1.size() > 0) {
+                    for (STProjectInstanceOTIndicator newOT : newOT1) {
+                        newOT.setCompletionStatus(newOT.getCompletionStatus() + 1);
+                    }
+                    PersistenceHelper.service.save(newOT1);
                 }
-                PersistenceHelper.service.save(newOTs);
             }
-        }
+        } else {//版本未改变
+            List<STProjectInstanceOTIndicator> changedOT = getUpdatedOT(params);
+            if (changedOT.size() > 0) { //ot发生更改
+                for (STProjectInstanceOTIndicator newOT : changedOT) {
+                    newOT.setCompletionStatus(newOT.getCompletionStatus() + 1);
+                }
+                PersistenceHelper.service.save(changedOT);
+            }
 
+        }
 
 
         return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "汇报成功！", null);
     }
 
-    private List<STProjectInstanceOTIndicator> updateOT(ComponentParams params) throws PIException {
+    private List<STProjectInstanceOTIndicator> getUpdatedOT(ComponentParams params) throws PIException {
         List<STProjectInstanceOTIndicator> result = new ArrayList<>();
         List<Map<String, Object>> tableRows = params.getNfCommandBean().getComponentData("o_t_table").getTableRows();
         for (Map<String, Object> tableRow : tableRows) {
@@ -84,61 +89,43 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
             //2.汇报偏差，汇报困难度发生改变
             if (!ot.getDeviationReport().toString().equals(deviationReport) || !ot.getDifficultyReport().toString().equals(difficultyReport)) {
 
-                STProjectInstanceOTIndicator newOT = STProjectInstanceOTIndicator.newSTProjectInstanceOTIndicator();
-                if (ot.getContainerReference() != null) {
-                    newOT.setContainerReference(ot.getContainerReference());
-                }
-                if (ot.getProjectReference() != null) {
-                    newOT.setProjectReference(ot.getProjectReference());
-                }
-                if (ot.getPlanActivityReference() != null) {
-                    newOT.setPlanActivityReference(ot.getPlanActivityReference());
-                }
-                if (ot.getCompetenceReference() != null) {
-                    newOT.setCompetenceReference(ot.getCompetenceReference());
-                }
-                if (ot.getPlanReference() != null) {
-                    newOT.setPlanReference(ot.getPlanReference());
-                }
-                if (ot.getDescription() != null) {
-                    newOT.setDecription(ot.getDescription());
-                }
-                if (ot.getDefinition() != null) {
-                    newOT.setDefinition(ot.getDefinition());
-                }
-                if (ot.getDeliverableTypeReference() != null) {
-                    newOT.setDeliverableTypeReference(ot.getDeliverableTypeReference());
-                }
-                if (ot.getBreadth() != null) {
-                    newOT.setBreadth(ot.getBreadth());
-                }
-                if (ot.getCode() != null) {
-                    newOT.setCode(ot.getCode());
-                }
-                if (ot.getCriticality() != null) {
-                    newOT.setCriticality(ot.getCriticality());
-                }
-                if (ot.getStandardDifficultyValue() != null) {
-                    newOT.setStandardDifficultyValue(ot.getStandardDifficultyValue());
-                }
-                if (ot.getStandardDeviationValue() != null) {
-                    newOT.setStandardDeviationValue(ot.getStandardDeviationValue());
-                }
-                if (ot.getCompletionStatus() != null) {
-                    newOT.setCompletionStatus(ot.getCompletionStatus());
-                }
-                if (ot.getPlanDeliverableReference() != null) {
-                    newOT.setPlanDeliverableReference(ot.getPlanDeliverableReference());
-                }
+                try {
+                    STProjectInstanceOTIndicator newOT = (STProjectInstanceOTIndicator) SerializableCloner.copy(ot);
+                    newOT.getObjectIdentifier().setId(0L);
+                    newOT.getPersistInfo().setPersisted(Boolean.FALSE);
 
-                newOT.setDeviationReport(Double.valueOf(deviationReport));
-                newOT.setDifficultyReport(Double.valueOf(difficultyReport));
+                    newOT.setDeviationReport(Double.valueOf(deviationReport));
+                    newOT.setDifficultyReport(Double.valueOf(difficultyReport));
+                    newOT.setReportTime(new Timestamp(System.currentTimeMillis()));
+                    newOT.setReporter(SessionHelper.service.getPrincipalReference());
+                    result.add(newOT);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+
+
+    private List<STProjectInstanceOTIndicator> updateLatestOt(ComponentParams params) throws PIException {
+        List<STProjectInstanceOTIndicator> result = new ArrayList<>();
+        List<Map<String, Object>> tableRows = params.getNfCommandBean().getComponentData("o_t_table").getTableRows();
+        for (Map<String, Object> tableRow : tableRows) {
+            ReferenceFactory factory = new ReferenceFactory();
+            STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) factory.getReference(tableRow.get("pi_row_key").toString()).getObject();
+            try {
+                STProjectInstanceOTIndicator newOT = (STProjectInstanceOTIndicator) SerializableCloner.copy(ot);
+                newOT.getObjectIdentifier().setId(0L);
+                newOT.getPersistInfo().setPersisted(Boolean.FALSE);
+
                 newOT.setReportTime(new Timestamp(System.currentTimeMillis()));
                 newOT.setReporter(SessionHelper.service.getPrincipalReference());
-                newOT.setCreator(SessionHelper.service.getPrincipalReference());
-                newOT.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
                 result.add(newOT);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
         }
         return result;
     }
