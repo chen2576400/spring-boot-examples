@@ -366,7 +366,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
     @Override
     public PIContainer getContainer() {
-        return (PIContainer) containerReference.getObject();
+        return containerReference.getObject();
     }
 
     public ObjectReference getProjectReference() {
@@ -382,7 +382,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public void setProjectReference(PIProject project) throws PIException {
-        this.projectReference = ObjectReference.newObjectReference(planActivityReference);
+        this.projectReference = ObjectReference.newObjectReference(project);
     }
 
     public PIUser getReporter() {
