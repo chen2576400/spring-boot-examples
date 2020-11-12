@@ -8,7 +8,7 @@
     </model>
 
     <model name="pi-pmgtPlanActivityInfoPageTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <action name="details" type="pi-pmgt-act"/>
+        <action name="details2" type="pi-pmgt-act"/>
         <!--<action name="attachments" type="pi-pmgt-enterprise"/>-->
         <action name="resourceAssignments" type="pi-pmgt-act"/>
         <action name="relationships" type="pi-pmgt-act"/>

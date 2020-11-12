@@ -1,6 +1,6 @@
 package ext.st.pmgt;
 
-import com.pisx.tundra.pmgt.PmgtApplication;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
