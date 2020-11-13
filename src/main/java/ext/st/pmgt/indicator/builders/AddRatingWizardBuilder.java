@@ -14,6 +14,7 @@ import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIPmgtBaselineType;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.dao.ProjectInstanceINIndicatorDao;
+import ext.st.pmgt.indicator.datahandlers.TextAreaDataHandler;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.model.STRating;
@@ -31,7 +32,7 @@ public class AddRatingWizardBuilder extends AbstractComponentBuilder {
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         STProjectInstanceOTIndicator ot = null;
         STProjectInstanceINIndicator in = null;
-        if (sourceObject instanceof STProjectInstanceOTIndicator){
+        if (sourceObject instanceof STProjectInstanceOTIndicator) {
             ot = (STProjectInstanceOTIndicator) sourceObject;
             ObjectReference actRef = ot.getPlanActivityReference();
             in = STIndicatorHelper.service.getINByActRef(actRef);
@@ -52,7 +53,7 @@ public class AddRatingWizardBuilder extends AbstractComponentBuilder {
             layout.setPrimaryClassName(STRating.class);
             layout.setId("addRatingLayout1");
             layout.addField("otRating")
-                    .addField("description");
+                    .addField("description", new TextAreaDataHandler());
             step.addLayout(layout);
 
         } catch (Exception e) {

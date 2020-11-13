@@ -103,7 +103,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
      * 广度
      */
     @Column(nullable = true)
-    private Integer breadth;
+    private Double breadth = 0D;
 
 
     /**
@@ -409,11 +409,15 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
         this.competenceReference = ObjectReference.newObjectReference(competence);
     }
 
-    public Integer getBreadth() {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getBreadth() {
         return breadth;
     }
 
-    public void setBreadth(Integer breadth) {
+    public void setBreadth(Double breadth) {
         this.breadth = breadth;
     }
 

@@ -42,7 +42,7 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor{
         String otRating = (String) layoutFields.get("otRating");
         String description = (String) layoutFields.get("description");
         STRating stRating = STRating.newSTRating();
-        stRating.setOtRating(otRating);
+//        stRating.setOtRating(otRating);
         stRating.setDescription(description);
         stRating.setInIndicator(in);
         stRating.setReportTime(new Timestamp(System.currentTimeMillis()));
