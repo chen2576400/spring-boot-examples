@@ -28,7 +28,7 @@ public class STRating extends PIPmgtObject implements Serializable {
      * 输出评定
      */
     @Column(nullable = true, unique = false)
-    private String otRating;
+    private Double otRating = 0D;
 
     /**
      * 评定描述
@@ -52,12 +52,8 @@ public class STRating extends PIPmgtObject implements Serializable {
     @Column(nullable = true)
     private Timestamp reportTime;
 
-    public String getOtRating() {
-        return otRating;
-    }
-
-    public void setOtRating(String otRating) {
-        this.otRating = otRating;
+    public static String getCLASSNAME() {
+        return CLASSNAME;
     }
 
     public String getDescription() {
