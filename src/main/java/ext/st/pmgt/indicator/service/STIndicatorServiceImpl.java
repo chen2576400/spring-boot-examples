@@ -278,7 +278,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         } catch (Exception e) {
             throw new PIException(e);
         } finally {
-            em.close();
+            //em.close();
         }
         List acts = result.stream().map(item -> item.getPlannable()).collect(Collectors.toList());
         return acts;
@@ -405,7 +405,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         } catch (Exception e) {
             throw new PIException(e);
         } finally {
-            em.close();
+            //em.close();
         }
         return result;
     }
@@ -435,7 +435,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             TypedQuery query = em.createQuery(criteriaQuery);
             result.addAll(query.getResultList());
         } finally {
-            em.close();
+            //em.close();
         }
         if (result.size() > 0) {
             return (STProjectInstanceINIndicator) result.get(0);
