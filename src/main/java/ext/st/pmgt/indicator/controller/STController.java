@@ -23,27 +23,27 @@ public class STController extends BaseController {
     @RequestMapping(value = "/getDataByPlan", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getDataByPlan(@RequestParam(value = "planId", required = false) String planId) throws Exception {
-        //todo testUrl:http://localhost:8080/st/getDataByPlan?planId=5706
+        //todo testUrl:http://localhost:8080/st/getDataByPlan?planId=planId
         return STIndicatorHelper.service.getDataByPlanId(planId);
     }
 
     @RequestMapping(value = "/getDataByProject", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getDataByProject(@RequestParam(value = "projectId", required = false) String projectId) throws Exception {
-        //todo testUrl:http://localhost:8080/st/getDataByProject?projectId=5480
+        //todo testUrl:http://localhost:8080/st/getDataByProject?projectId=projectId
         return STIndicatorHelper.service.getDataByProjectId(projectId);
     }
 
     @RequestMapping(value = "/getDataByUser", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getDataByUser(@RequestParam(value = "userId", required = false) String userId,
-                                @RequestParam(value = "time1", required = false) String time1,
-                                @RequestParam(value = "time2", required = false) String time2
+                                @RequestParam(value = "startTime", required = false) String startTime,
+                                @RequestParam(value = "endTime", required = false) String endTime
                                 ) throws Exception {
         //todo testUrl:http://localhost:8080/st/getDataByUser?userId=917&time1=???&time2=???
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Timestamp date1 = new Timestamp(simpleDateFormat.parse(time1).getTime());
-        Timestamp date2 = new Timestamp(simpleDateFormat.parse(time2).getTime());
+        Timestamp date1 = new Timestamp(simpleDateFormat.parse(startTime).getTime());
+        Timestamp date2 = new Timestamp(simpleDateFormat.parse(endTime).getTime());
         return STIndicatorHelper.service.getDataByUserIdAndTime(userId,date1,date2);
     }
 

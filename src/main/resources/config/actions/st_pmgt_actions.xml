@@ -60,7 +60,8 @@
         <action name="projectRiskReport" beforeJS="buttonEvent" selectRequired="true">
             <command className="ext.st.pmgt.indicator.processors.ProjectRiskReportProcessor"/>
         </action>
-        <action name="departmentRiskReport" beforeJS="buttonEvent" selectRequired="true">
+        <action name="departmentRiskReport" selectRequired="true">
+            <component name="ext.st.pmgt.indicator.builders.TimeRangeWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.DepartmentRiskReportProcessor"/>
         </action>
     </actionsgroup>

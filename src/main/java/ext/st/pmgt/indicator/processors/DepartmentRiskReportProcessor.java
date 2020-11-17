@@ -7,6 +7,7 @@ import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,13 +23,29 @@ public class DepartmentRiskReportProcessor extends DefaultObjectFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
-        HashMap<String, String> map = new HashMap<>();
+        List<Persistable> selectedObjects = params.getNfCommandBean().getOpenerSelectedObjects();
+        if (selectedObjects!=null&&selectedObjects.size()>0){
+            String startTime = (String) params.getNfCommandBean().getLayoutFields().get("startTime");
+            String endTime = (String) params.getNfCommandBean().getLayoutFields().get("endTime");
+            String ids = builderID(selectedObjects);
+            String url = "http://192.168.2.125:8088/report/departmentRisk?userIds="+ids+"&startTime="+startTime+"&endTime="+endTime;
+            return new ResponseWrapper(ResponseWrapper.DIRECT, "", url);
+        }else {
+            return new ResponseWrapper(ResponseWrapper.FAILED, "未找到勾选用户！", null);
+        }
 
+    }
 
-        map.put("url","http://192.168.2.125:8088/report/departmentRisk");
-        map.put("width","1600px");
-        map.put("height","900px");
-        return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);
+    private String builderID(List list) {
+        String ids = "";
+        for (int i = 0; i < list.size(); i++) {
+            Persistable persistable = (Persistable) list.get(i);
+            if (i == list.size() - 1) {
+                ids = ids + persistable.getObjectIdentifier().getId();
+            } else {
+                ids = ids + persistable.getObjectIdentifier().getId() + ",";
+            }
+        }
+        return ids;
     }
 }

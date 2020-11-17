@@ -235,6 +235,13 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         result.put("项目周期", durationUtils.getDuration(plan.getTargetDuration()) + "" + plan.getTargetDuration().getDurationFormat());
 //        result.put("预实比", String.valueOf(sumProject.getTargetCost() / sumProject.getActualCost()));
         result.put("预实比", "0." + new Random().nextInt(10));
+
+        //todo
+        ArrayList<Object> 资源部门 = new ArrayList<>();
+        ArrayList<Object> 员工姓名 = new ArrayList<>();
+        result.put("资源部门",资源部门);
+        result.put("员工姓名",员工姓名);
+
         list.add(result);
         return JSONObject.toJSONString(list, SerializerFeature.DisableCircularReferenceDetect);
 
