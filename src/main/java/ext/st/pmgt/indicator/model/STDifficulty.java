@@ -40,7 +40,7 @@ public class STDifficulty extends PIPmgtObject implements Serializable {
     /**
      * 偏差描述
      */
-    @Column(nullable = true, unique = true)
+    @Column(nullable = true, unique = false)
     private String description;
 
     public String getCode() {
