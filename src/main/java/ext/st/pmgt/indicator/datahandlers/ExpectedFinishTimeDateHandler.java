@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.builders;
+package ext.st.pmgt.indicator.datahandlers;
 
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;

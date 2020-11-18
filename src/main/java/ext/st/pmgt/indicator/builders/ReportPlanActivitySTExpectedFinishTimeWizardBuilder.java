@@ -1,21 +1,16 @@
 package ext.st.pmgt.indicator.builders;
 
 import com.pisx.tundra.foundation.util.PIException;
-import com.pisx.tundra.foundation.util.PIMessage;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
-import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
-import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
-import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
-import ext.st.pmgt.indicator.STIndicatorHelper;
+import ext.st.pmgt.indicator.datahandlers.ExpectedFinishTimeDateHandler;
+import ext.st.pmgt.indicator.datahandlers.TimeDataHandler;
 import ext.st.pmgt.indicator.model.STExpectedFinishTime;
-import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
-import ext.st.pmgt.indicator.resources.indicatorResource;
 
 /**
  * @ClassName ReportPlanActivitySTExpectedFinishTimeWizardBuilder
@@ -44,7 +39,7 @@ public class ReportPlanActivitySTExpectedFinishTimeWizardBuilder extends Abstrac
             layout.setId("reportPlanActivitySTExpectedFinishTimeWizardBuilderLayout");
             layout.setTitle("汇报预计完成时间");
 
-            layout.addField("expectedFinishTime",new ExpectedFinishTimeDateHandler());
+            layout.addField("expectedFinishTime",new TimeDataHandler());
             step.addLayout(layout);
         } catch (Exception e) {
             e.printStackTrace();

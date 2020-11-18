@@ -27,12 +27,22 @@ public class STController extends BaseController {
         return STIndicatorHelper.service.getDataByPlanId(planId);
     }
 
+    //根据项目id查询项目相关数据
     @RequestMapping(value = "/getDataByProject", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Object getDataByProject(@RequestParam(value = "projectId", required = false) String projectId) throws Exception {
         //todo testUrl:http://localhost:8080/st/getDataByProject?projectId=projectId
         return STIndicatorHelper.service.getDataByProjectId(projectId);
     }
+
+//
+//    //根据项目id查询下面所有数据
+//    @RequestMapping(value = "/getDataByProject2", produces = "application/json;charset=UTF-8")
+//    @ResponseBody
+//    public Object getDataByProject2(@RequestParam(value = "projectId", required = false) String projectId) throws Exception {
+//        //todo testUrl:http://localhost:8080/st/getDataByProject?projectId=projectId
+//        return STIndicatorHelper.service.getAllByProjectId(projectId);
+//    }
 
     @RequestMapping(value = "/getDataByUser", produces = "application/json;charset=UTF-8")
     @ResponseBody

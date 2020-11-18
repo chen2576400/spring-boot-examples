@@ -28,7 +28,7 @@ public class DepartmentRiskReportProcessor extends DefaultObjectFormProcessor {
             String startTime = (String) params.getNfCommandBean().getLayoutFields().get("startTime");
             String endTime = (String) params.getNfCommandBean().getLayoutFields().get("endTime");
             String ids = builderID(selectedObjects);
-            String url = "http://192.168.2.125:8088/report/departmentRisk?userIds="+ids+"&startTime="+startTime+"&endTime="+endTime;
+            String url = "http://192.168.1.124:8088/report/departmentRisk?userIds="+ids+"&startTime="+startTime+"&endTime="+endTime;
             return new ResponseWrapper(ResponseWrapper.DIRECT, "", url);
         }else {
             return new ResponseWrapper(ResponseWrapper.FAILED, "未找到勾选用户！", null);

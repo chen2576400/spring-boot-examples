@@ -30,15 +30,17 @@ public class ReportPlanActivitySTExpectedFinishTimeProcessor extends DefaultCrea
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         try {
-            Object data = params.getNfCommandBean().getLayoutFields().get("expectedFinishTime");
-            if (data==null || StringUtils.isBlank(data.toString()))
+
+            String time = (String) params.getNfCommandBean().getLayoutFields().get("expectedFinishTime");
+            if (time == null || StringUtils.isBlank(time.toString())) {
                 return new ResponseWrapper(ResponseWrapper.FAILED, "", null);
-            STExpectedFinishTime expectedFinishTime = (STExpectedFinishTime)list.get(0);
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            Date date = simpleDateFormat.parse(data.toString());
+            }
+            STExpectedFinishTime expectedFinishTime = (STExpectedFinishTime) list.get(0);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = simpleDateFormat.parse(time);
             Timestamp timestamp = new Timestamp(date.getTime());
             expectedFinishTime.setExpectedFinishTime(timestamp);
-            PIPlanActivity planActivity = (PIPlanActivity)params.getNfCommandBean().getSourceObject();
+            PIPlanActivity planActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
             expectedFinishTime.setPlanActivityReference(planActivity);
             expectedFinishTime.setPlanReference(planActivity.getRootReference());
             expectedFinishTime.setProjectReference(planActivity.getProjectReference());

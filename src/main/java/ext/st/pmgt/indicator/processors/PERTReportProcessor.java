@@ -30,7 +30,7 @@ public class PERTReportProcessor extends DefaultObjectFormProcessor {
             id = act.getObjectIdentifier().getId().toString();
         }
         HashMap<String, String> map = new HashMap<>();
-        map.put("url","http://192.168.2.125:8088/report/pertReport?id="+id);
+        map.put("url","http://192.168.1.124:8088/report/pertReport?id="+id);
         map.put("width","1600px");
         map.put("height","900px");
         return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);

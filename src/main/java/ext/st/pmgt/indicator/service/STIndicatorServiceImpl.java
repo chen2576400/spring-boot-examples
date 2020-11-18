@@ -6,8 +6,10 @@ import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
 import com.pisx.tundra.foundation.org.model.PIUser;
+import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
+import com.pisx.tundra.pmgt.calendar.model.PICalendar;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverableLink;
 import com.pisx.tundra.pmgt.plan.PIPlanHelper;
@@ -15,6 +17,7 @@ import com.pisx.tundra.pmgt.plan.dao.PIPlanActivityDao;
 import com.pisx.tundra.pmgt.plan.dao.PIPlanDao;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import com.pisx.tundra.pmgt.plan.model.PlannableDuration;
 import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.dao.PIProjectDao;
 import com.pisx.tundra.pmgt.project.model.PIProject;
@@ -169,16 +172,16 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         for (STProjectInstanceOTIndicator otIndicator : otIndicators) {
             HashMap<String, Object> otMap = new HashMap<>();
             otMap.put("id", otIndicator.getOid());
-            otMap.put("完成状态", otIndicator.getCompletionStatus());
-            otMap.put("标准困难度", otIndicator.getStandardDifficultyValue());
-            otMap.put("标准偏差值", otIndicator.getStandardDeviationValue());
-            otMap.put("汇报困难度", otIndicator.getDifficultyReport());
-            otMap.put("汇报偏差值", otIndicator.getDeviationReport());
+            otMap.put("完成状态", otIndicator.getCompletionStatus() == null ? "0" : otIndicator.getCompletionStatus());
+            otMap.put("标准困难度", otIndicator.getStandardDifficultyValue() == null ? null : otIndicator.getStandardDifficultyValue());
+            otMap.put("标准偏差值", otIndicator.getStandardDeviationValue() == null ? null : otIndicator.getStandardDeviationValue());
+            otMap.put("汇报困难度", otIndicator.getDifficultyReport() == null ? null : otIndicator.getDifficultyReport());
+            otMap.put("汇报偏差值", otIndicator.getDeviationReport() == null ? null : otIndicator.getDeviationReport());
 //            otMap.put("汇报困难度", "0.1");
 //            otMap.put("汇报偏差值", "0.2");
-            otMap.put("广度", otIndicator.getBreadth());
-            otMap.put("关建度", otIndicator.getCriticality());
-            otMap.put("指标编码", otIndicator.getCode());
+            otMap.put("广度", otIndicator.getBreadth() == null ? null : otIndicator.getBreadth());
+            otMap.put("关建度", otIndicator.getCriticality() == null ? null : otIndicator.getCriticality());
+            otMap.put("指标编码", otIndicator.getCode() == null ? null : otIndicator.getCode());
             otList.add(otMap);
         }
         map.put("OT", otList);
@@ -195,7 +198,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
                     return null;
                 }
             }).collect(Collectors.toList());
-            inMap.put("权重", inIndicator.getWeights());
+            inMap.put("权重", inIndicator.getWeights() == null ? null : inIndicator.getWeights());
             inMap.put("对应ot指标id", otIds);
             inMap.put("id", inIndicator.getOid());
 
@@ -219,6 +222,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         String projectOid = PIProject.class.getName() + ":" + projectId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIProject project = (PIProject) referenceFactory.getReference(projectOid).getObject();
+        PICalendar calendar = project.getCalendar();
         List<PIPlan> plans = PIPlanHelper.service.getPlans(project);
         PIPlan plan = null;
         if (plans.size() > 0) {
@@ -227,20 +231,26 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         SumPIProject sumProject = PIProjectHelper.service.getSumProject(project);
         ArrayList<Object> list = new ArrayList<>();
         HashMap<String, Object> result = new HashMap<>();
-
         result.put("项目名称", project.getProjectName());
+        result.put("项目id", project.getObjectIdentifier().toString());
         result.put("项目启动时间和当前日期差", getTime(new Timestamp(System.currentTimeMillis()), project.getStartDate()));
         DurationUtils durationUtils = new DurationUtils();
 //        result.put("项目周期",durationUtils.getDurationForDisplay(plan.getTargetDuration()));
-        result.put("项目周期", durationUtils.getDuration(plan.getTargetDuration()) + "" + plan.getTargetDuration().getDurationFormat());
+        PlannableDuration duration = plan.getTargetDuration();
+        DurationUtils du = new DurationUtils(calendar);
+        String value = String.valueOf(du.getDuration(duration));
+        result.put("项目周期", value);
 //        result.put("预实比", String.valueOf(sumProject.getTargetCost() / sumProject.getActualCost()));
         result.put("预实比", "0." + new Random().nextInt(10));
+        List<Long> planIds = plans.stream().map(item -> item.getObjectIdentifier().getId()).collect(Collectors.toList());
+        result.put("计划id", planIds);
+        //计划
 
         //todo
         ArrayList<Object> 资源部门 = new ArrayList<>();
         ArrayList<Object> 员工姓名 = new ArrayList<>();
-        result.put("资源部门",资源部门);
-        result.put("员工姓名",员工姓名);
+        result.put("资源部门", 资源部门);
+        result.put("员工姓名", 员工姓名);
 
         list.add(result);
         return JSONObject.toJSONString(list, SerializerFeature.DisableCircularReferenceDetect);
@@ -264,7 +274,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             Root root = criteriaQuery.from(PIResourceAssignment.class);
             Path key1 = root.get("actualStartDate");
             Path key2 = root.get("actualEndDate");
-            Path key3 = root.get("rsrcReference").get("id");
+            Path key3 = root.get("rsrcReference").get("key").get("id");
 
             Subquery<PIResource> subquery = criteriaQuery.subquery(PIResource.class);
             Root root1 = subquery.from(PIResource.class);
@@ -314,16 +324,16 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         ArrayList<Object> list = new ArrayList<>();
         PIPlan plan = (PIPlan) act.getRoot();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         List<STExpectedFinishTime> expectTime = (List) getExpextTimeByActivity(act);
-        List<String> timeList = expectTime.stream().map(item -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(item.getExpectedFinishTime())).collect(Collectors.toList());
+        List<String> timeList = expectTime.stream().map(item -> sdf.format(item.getExpectedFinishTime())).collect(Collectors.toList());
         for (String s : timeList) {
             HashMap<String, Object> result = new HashMap<>();
-            result.put("预估开始时间", sdf.format(act.getTargetStartDate()));
-            result.put("截至时间", sdf.format(act.getTargetEndDate()));
-            result.put("预估完成时间", s);
-            result.put("实际开始时间", sdf.format(act.getActualStartDate()));
+            result.put("预估开始时间", act.getTargetStartDate() == null ? null : sdf.format(act.getTargetStartDate()));
+            result.put("截至时间", act.getTargetEndDate() == null ? null : sdf.format(act.getTargetEndDate()));
+            result.put("预估完成时间", s == null ? null : s);
+            result.put("实际开始时间", act.getActualStartDate() == null ? null : sdf.format(act.getActualStartDate()));
             list.add(result);
         }
 
