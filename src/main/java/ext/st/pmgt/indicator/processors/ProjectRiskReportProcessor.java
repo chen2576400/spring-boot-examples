@@ -36,7 +36,7 @@ public class ProjectRiskReportProcessor extends DefaultObjectFormProcessor {
             }
         }
         HashMap<String, String> map = new HashMap<>();
-        map.put("url","http://192.168.1.124:8088/report/projectRisk?ids="+ids);
+        map.put("url","http://192.168.1.126:8088/report/projectRisk?ids="+ids);
         map.put("width","900px");
         map.put("height","750px");
         return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);

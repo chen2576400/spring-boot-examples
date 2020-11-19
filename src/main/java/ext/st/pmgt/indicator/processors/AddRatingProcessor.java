@@ -1,5 +1,6 @@
 package ext.st.pmgt.indicator.processors;
 
+import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
@@ -36,13 +37,15 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor{
             in = STIndicatorHelper.service.getInByOT(ot);
         }
         if (in==null){
-            return new ResponseWrapper(ResponseWrapper.FAILED, "", null);
+            return new ResponseWrapper(ResponseWrapper.FAILED, "没有找到对应的in指标！", null);
         }
         Map<String, Object> layoutFields = params.getNfCommandBean().getLayoutFields();
-        String otRating = (String) layoutFields.get("otRating");
+
+        JSONObject obj = (JSONObject) layoutFields.get("otRating");
+        Double otRating = Double.valueOf(obj.get("value").toString());
         String description = (String) layoutFields.get("description");
         STRating stRating = STRating.newSTRating();
-//        stRating.setOtRating(otRating);
+        stRating.setOtRating(otRating);
         stRating.setDescription(description);
         stRating.setInIndicator(in);
         stRating.setReportTime(new Timestamp(System.currentTimeMillis()));

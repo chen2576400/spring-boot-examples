@@ -1,6 +1,7 @@
 package ext.st.pmgt.indicator.processors;
 
 import com.pisx.tundra.foundation.fc.model.Persistable;
+import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
@@ -24,13 +25,18 @@ public class DepartmentRiskReportProcessor extends DefaultObjectFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         List<Persistable> selectedObjects = params.getNfCommandBean().getOpenerSelectedObjects();
-        if (selectedObjects!=null&&selectedObjects.size()>0){
+        if (selectedObjects != null && selectedObjects.size() > 0) {
             String startTime = (String) params.getNfCommandBean().getLayoutFields().get("startTime");
             String endTime = (String) params.getNfCommandBean().getLayoutFields().get("endTime");
             String ids = builderID(selectedObjects);
-            String url = "http://192.168.1.124:8088/report/departmentRisk?userIds="+ids+"&startTime="+startTime+"&endTime="+endTime;
+            String[] split = ids.split(",");
+            String url = null;
+
+            String userName = ((PIUser) selectedObjects.get(0)).getName();
+            url = "http://192.168.1.126:8088/report/departmentRisk?userIds=" + ids + "&name=" + userName + "&startTime=" + startTime + "&endTime=" + endTime;
+
             return new ResponseWrapper(ResponseWrapper.DIRECT, "", url);
-        }else {
+        } else {
             return new ResponseWrapper(ResponseWrapper.FAILED, "未找到勾选用户！", null);
         }
 

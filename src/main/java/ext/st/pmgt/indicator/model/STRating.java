@@ -93,4 +93,12 @@ public class STRating extends PIPmgtObject implements Serializable {
         obj.initialize();
         return obj;
     }
+
+    public Double getOtRating() {
+        return otRating;
+    }
+
+    public void setOtRating(Double otRating) {
+        this.otRating = otRating;
+    }
 }

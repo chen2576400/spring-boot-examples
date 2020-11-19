@@ -14,9 +14,7 @@ import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName PlanActivityINIndicatorTableBuilder
@@ -30,9 +28,9 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
     public Object buildComponentData(ComponentParams params) throws PIException {
         PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
         Collection ins = STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
-        List result = new ArrayList<>();
+        Set result = new HashSet<>();
         for (Object in : ins) {
-            result.addAll(STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator)in));
+            result.addAll(STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in));
         }
 
         return result;
@@ -45,10 +43,10 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.setEntities(componentData);
         tableConfig.setId("planActivityINIndicator");
         tableConfig.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
-        tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(),"IN_INDICATOR_TABLE",null,params.getLocale()));
+        tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "IN_INDICATOR_TABLE", null, params.getLocale()));
         tableConfig.enableSelect();
         tableConfig.setToolbarActionModel("inTableToolBar");
-        tableConfig.setRightMenuName("INTableMenu",params);
+        tableConfig.setRightMenuName("INTableMenu", params);
 
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();

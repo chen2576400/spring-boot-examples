@@ -21,13 +21,15 @@ public class DeliverablePickerHandler extends DefaultDataHandler {
         inputElement.attribute(elementAttribute -> {
             elementAttribute.addStyle("width:150px;");
         });
-        if (datum!=null&&datum instanceof PIPlanDeliverable){//编辑页面是需要回填到input框
+        if (datum != null && datum instanceof PIPlanDeliverable) {//编辑页面是需要回填到input框
             PIPlanDeliverable context = (PIPlanDeliverable) datum;
             RevisionControlled subject = (RevisionControlled) context.getSubject();
-            try {
-                inputElement.setValue(subject.getOid(),subject.getName());
-            } catch (PIException e) {
-                e.printStackTrace();
+            if (subject != null) {
+                try {
+                    inputElement.setValue(subject.getOid(), subject.getName());
+                } catch (PIException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -40,7 +42,7 @@ public class DeliverablePickerHandler extends DefaultDataHandler {
 
         //componentId 传给objpicker
         NfAction action = NfActionHelper.service.getActionByActionsgroupAndActionName("st-pmgt-act", "documentPicker");
-        String url = URLFactory.getActionHref(action,params.getNfCommandBean().getSourceObject());
+        String url = URLFactory.getActionHref(action, params.getNfCommandBean().getSourceObject());
         rightImg.backFill(url, columnName);
 
         DivElement content = DivElement.instance();
