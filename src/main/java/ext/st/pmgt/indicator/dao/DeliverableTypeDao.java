@@ -4,6 +4,7 @@ import com.pisx.tundra.foundation.fc.model.ObjectIdentifier;
 import ext.st.pmgt.indicator.model.STDeliverableType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -16,6 +17,7 @@ import java.util.List;
  **/
 public interface DeliverableTypeDao extends JpaRepository<STDeliverableType, ObjectIdentifier> {
     STDeliverableType findByName(String s);
+    Collection findByCode(String s);
     STDeliverableType findByNameEquals(String s);
     List<STDeliverableType> findByCodeEquals(String S);
 
