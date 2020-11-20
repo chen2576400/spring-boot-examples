@@ -379,8 +379,11 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 //        List<STDeliverableType> result = otIndacators.stream().map(item -> item.getDeliverableType()).collect(Collectors.toList());
         HashSet<Object> set = new HashSet<>();
         for (STProjectInstanceOTIndicator otIndacator : otIndacators) {
-            if (otIndacator.getDeliverableTypeReference()!=null){
-                set.add(otIndacator.getDeliverableType());
+            if (otIndacator.getDeliverableTypeCode()!=null){
+                Collection types = deliverableTypeDao.findByCode(otIndacator.getDeliverableTypeCode());
+                if (types.size()>0){
+                    set.addAll(types);
+                }
             }
         }
         return set;

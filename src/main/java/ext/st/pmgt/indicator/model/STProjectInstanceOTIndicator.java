@@ -116,12 +116,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     /**
      * 交付物类型编码
      */
-    @Embedded   //引入该实体
-    @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "deliverableTypeRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "deliverableTypeClass", nullable = true))
-    })
-    ObjectReference deliverableTypeReference;
+    String deliverableTypeCode;
 
 
     /**
@@ -217,7 +212,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public PIPlan getPlan() {
-        return (planReference != null) ? (PIPlan) planReference.getObject(): null;
+        return (planReference != null) ? (PIPlan) planReference.getObject() : null;
 
     }
 
@@ -241,16 +236,12 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
         this.criticality = criticality;
     }
 
-    public ObjectReference getDeliverableTypeReference() {
-        return deliverableTypeReference;
+    public String getDeliverableTypeCode() {
+        return deliverableTypeCode;
     }
 
-    public void setDeliverableTypeReference(ObjectReference deliverableTypeReference) {
-        this.deliverableTypeReference = deliverableTypeReference;
-    }
-
-    public STDeliverableType getDeliverableType() {
-        return (deliverableTypeReference != null) ? (STDeliverableType) deliverableTypeReference.getObject() : null;
+    public void setDeliverableTypeCode(String deliverableTypeCode) {
+        this.deliverableTypeCode = deliverableTypeCode;
     }
 
     public ObjectReference getPlanDeliverableReference() {
