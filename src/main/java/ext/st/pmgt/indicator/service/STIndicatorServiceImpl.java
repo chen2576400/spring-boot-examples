@@ -3,11 +3,9 @@ package ext.st.pmgt.indicator.service;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
-import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
 import com.pisx.tundra.foundation.org.model.PIUser;
-import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.calendar.model.PICalendar;
@@ -37,7 +35,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.sql.Timestamp;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -102,7 +99,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     @Override
     public Collection findProjectINIndicatorByPlanActivity(PIPlanActivity planActivity) throws PIException {
         ArrayList result = new ArrayList();
-        result.addAll(projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(planActivity)));
+        result.addAll(projectINIndicatorDao.findByPlanActivityReferenceAndPlanReference(ObjectReference.newObjectReference(planActivity), planActivity.getRootReference()));
         return result;
     }
 
@@ -292,7 +289,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
 
-    public Collection findByUserIdAndStartEndTime(PIUser user, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException {
+    public Collection findActByUserAndTime(PIUser user, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException {
 
         EntityManager em = PersistenceHelper.service.getEntityManager();
         List<PIResourceAssignment> result = new ArrayList();
@@ -333,7 +330,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIUser user = (PIUser) referenceFactory.getReference(userOid).getObject();
 
-        List<PIPlanActivity> acts = (List) findByUserIdAndStartEndTime(user, actualStartDate, actualEndDate);
+        List<PIPlanActivity> acts = (List) findActByUserAndTime(user, actualStartDate, actualEndDate);
 
         List<Map<String, Object>> result1 = new ArrayList<>();
         Map<String, Object> nameMap = new HashMap<>();
@@ -348,7 +345,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public Object getDataByActId(String activityId) throws PIException {
+    public Object getPERTData(String activityId) throws PIException {
         String actId = PIPlanActivity.class.getName() + ":" + activityId;
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIPlanActivity act = (PIPlanActivity) referenceFactory.getReference(actId).getObject();

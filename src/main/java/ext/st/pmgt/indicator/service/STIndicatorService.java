@@ -45,7 +45,7 @@ public interface STIndicatorService {
     Object getDataByUserIdAndTime(String userId, Timestamp actualStartDate, Timestamp actualEndDate) throws PIException;
     //api4
 
-    Object getDataByActId(String activityId) throws PIException;
+    Object getPERTData(String activityId) throws PIException;
 
     Collection getAllDeliverableType();
 

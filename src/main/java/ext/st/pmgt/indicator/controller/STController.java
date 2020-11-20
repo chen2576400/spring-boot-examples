@@ -62,7 +62,7 @@ public class STController extends BaseController {
     public Object getPert(@RequestParam(value = "activityId", required = false) String activityId) throws Exception {
         //todo testUrl:http://localhost:8080/st/getDataByActivityId?activityId=5897
 
-        return STIndicatorHelper.service.getDataByActId(activityId);
+        return STIndicatorHelper.service.getPERTData(activityId);
     }
 
 }
