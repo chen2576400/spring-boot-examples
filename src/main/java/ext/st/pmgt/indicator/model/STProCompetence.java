@@ -1,6 +1,7 @@
 package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
 
@@ -55,7 +56,12 @@ public class STProCompetence extends PIPmgtObject implements Serializable {
     public void setDepartmentReference(ObjectReference departmentReference) {
         this.departmentReference = departmentReference;
     }
-
+    public PIGroup getPIGroup() {
+        return departmentReference!=null?(PIGroup)departmentReference.getObject():null;
+    }
+    public void setPIGroup(PIGroup piGroup) throws PIException {
+        this.departmentReference=ObjectReference.newObjectReference(piGroup);
+    }
 
     public static STProCompetence newSTProCompetence() throws PIException {
         STProCompetence obj = new STProCompetence();

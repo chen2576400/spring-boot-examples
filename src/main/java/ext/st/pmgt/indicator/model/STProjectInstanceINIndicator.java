@@ -169,7 +169,7 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
     }
 
     public PIPlan getProjectPlanInstance() {
-        return (PIPlan) projectPlanInstanceRef.getObject();
+        return projectPlanInstanceRef!=null?(PIPlan) projectPlanInstanceRef.getObject():null;
     }
 
     public void setProjectPlanInstance(PIPlan plan) throws PIException {
@@ -185,7 +185,7 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
     }
 
     public PIProject getIndicatorSource() {
-        return (PIProject) IndicatorSourceRef.getObject();
+        return IndicatorSourceRef!=null?(PIProject) IndicatorSourceRef.getObject():null;
     }
 
     public void setIndicatorSourceRef(PIProject project) throws PIException {
@@ -223,12 +223,16 @@ public class STProjectInstanceINIndicator extends PIPmgtObject implements Serial
 
     @Override
     public String getContainerName() {
-        return containerReference.getName();
+        try {
+            return (String) ((PIContainerRef) getContainerReference()).getName();
+        } catch (NullPointerException npe) {
+            return null;
+        }
     }
 
     @Override
     public PIContainer getContainer() {
-        return (PIContainer) containerReference.getObject();
+        return (containerReference != null) ? (PIContainer) containerReference.getObject() : null;
     }
 
     public static STProjectInstanceINIndicator newSTProjectInstanceINIndicator() throws PIException {
