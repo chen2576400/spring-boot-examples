@@ -411,7 +411,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
     @Override
     public Collection getOTByDeliverableType(STDeliverableType deliverableType) throws PIException {
-        return projectOTIndicatorDao.findByDeliverableTypeReference(ObjectReference.newObjectReference(deliverableType));
+        return projectOTIndicatorDao.findByDeliverableTypeCode(deliverableType.getCode());
     }
 
     @Override
