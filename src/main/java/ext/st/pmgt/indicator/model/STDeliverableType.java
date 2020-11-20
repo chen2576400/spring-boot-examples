@@ -23,6 +23,7 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
     public String getConceptualClassname() {
         return CLASSNAME;
     }
+
     /**
      * 名称
      */
@@ -37,7 +38,7 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
 
 
     /*
-     * 指标
+     * in指标
      * */
     @Embedded   //引入该实体
     @AttributeOverrides({
@@ -73,6 +74,15 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
     }
 
     public void setIndicatorReference(ObjectReference indicatorReference) {
+        this.indicatorReference = indicatorReference;
+    }
+
+    public STProjectInstanceINIndicator getIndicator() {
+        return (indicatorReference != null) ? (STProjectInstanceINIndicator) indicatorReference.getObject(): null;
+
+    }
+
+    public void setIndicator(STProjectInstanceINIndicator indicator) {
         this.indicatorReference = indicatorReference;
     }
 }

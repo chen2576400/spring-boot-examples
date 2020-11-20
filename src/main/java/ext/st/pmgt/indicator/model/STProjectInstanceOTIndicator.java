@@ -217,7 +217,8 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public PIPlan getPlan() {
-        return (PIPlan) planReference.getObject();
+        return (planReference != null) ? (PIPlan) planReference.getObject(): null;
+
     }
 
     public void setPlan(PIPlan plan) throws PIException {
@@ -249,8 +250,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public STDeliverableType getDeliverableType() {
-        STDeliverableType object = (STDeliverableType) deliverableTypeReference.getObject();
-        return object;
+        return (deliverableTypeReference != null) ? (STDeliverableType) deliverableTypeReference.getObject() : null;
     }
 
     public ObjectReference getPlanDeliverableReference() {
