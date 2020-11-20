@@ -376,9 +376,16 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     @Override
     public Collection getDeliverableTypeByAct(PIPlanActivity act) throws PIException {
         List<STProjectInstanceOTIndicator> otIndacators = (List) projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(act));
-        List<STDeliverableType> result = otIndacators.stream().map(item -> item.getDeliverableType()).collect(Collectors.toList());
+//        List<STDeliverableType> result = otIndacators.stream().map(item -> item.getDeliverableType()).collect(Collectors.toList());
         HashSet<Object> set = new HashSet<>();
-        set.addAll(result);
+        for (STProjectInstanceOTIndicator otIndacator : otIndacators) {
+            if (otIndacator.getDeliverableTypeCode()!=null){
+                Collection types = deliverableTypeDao.findByCode(otIndacator.getDeliverableTypeCode());
+                if (types.size()>0){
+                    set.addAll(types);
+                }
+            }
+        }
         return set;
     }
 
@@ -404,7 +411,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
     @Override
     public Collection getOTByDeliverableType(STDeliverableType deliverableType) throws PIException {
-        return projectOTIndicatorDao.findByDeliverableTypeReference(ObjectReference.newObjectReference(deliverableType));
+        return projectOTIndicatorDao.findByDeliverableTypeCode(deliverableType.getCode());
     }
 
     @Override

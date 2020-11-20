@@ -79,9 +79,9 @@ public class SaveOTIndicatorProcessor extends DefaultObjectFormProcessor {
                 if (ot.getDefinition() != null) {
                     newOT.setDefinition(ot.getDefinition());
                 }
-//                if (ot.getDeliverableTypeReference() != null) {
-//                    newOT.setDeliverableTypeReference(ot.getDeliverableTypeReference());
-//                }
+                if (ot.getDeliverableTypeCode() != null) {
+                    newOT.setDeliverableTypeCode(ot.getDeliverableTypeCode());
+                }
                 if (ot.getBreadth() != null) {
                     newOT.setBreadth(ot.getBreadth());
                 }
