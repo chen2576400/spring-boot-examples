@@ -82,7 +82,7 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
 
     }
 
-    public void setIndicator(STProjectInstanceINIndicator indicator) {
-        this.indicatorReference = indicatorReference;
+    public void setIndicator(STProjectInstanceINIndicator indicator) throws PIException {
+        setIndicatorReference(indicator!=null?ObjectReference.newObjectReference(indicator):null);
     }
 }

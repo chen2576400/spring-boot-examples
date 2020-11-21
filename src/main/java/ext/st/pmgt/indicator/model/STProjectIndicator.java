@@ -146,11 +146,15 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
     }
 
     public String getContainerName() {
-        return containerReference.getName();
+        try {
+            return (String) ((PIContainerRef) getContainerReference()).getName();
+        } catch (NullPointerException npe) {
+            return null;
+        }
     }
 
     public PIContainer getContainer() {
-        return (PIContainer) containerReference.getObject();
+        return (containerReference != null) ? (PIContainer) containerReference.getObject() : null;
     }
 
     public ObjectReference getCompetenceReference() {
@@ -162,11 +166,11 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
     }
 
     public STProCompetence getCompetence() {
-        return (STProCompetence) competenceReference.getObject();
+        return competenceReference!=null?(STProCompetence) competenceReference.getObject():null;
     }
 
-    public void setCompetenceReference(STProCompetence competence) throws PIException {
-        this.competenceReference = ObjectReference.newObjectReference(competence);
+    public void setCompetence(STProCompetence competence) throws PIException {
+        setCompetenceReference(competence!=null?ObjectReference.newObjectReference(competence):null);
     }
 
     @Override
