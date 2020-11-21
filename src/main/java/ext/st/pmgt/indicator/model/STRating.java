@@ -73,7 +73,7 @@ public class STRating extends PIPmgtObject implements Serializable {
     }
 
     public STProjectInstanceINIndicator getInIndicator() {
-        return (STProjectInstanceINIndicator) inIndicatorReference.getObject();
+        return inIndicatorReference!=null?(STProjectInstanceINIndicator) inIndicatorReference.getObject():null;
     }
 
     public void setInIndicator(STProjectInstanceINIndicator inIndicator) throws PIException {

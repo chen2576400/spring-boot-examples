@@ -106,11 +106,11 @@ public class STExpectedFinishTime extends PIPmgtObject implements Serializable {
     }
 
     public PIProject getProject() {
-        return (PIProject) projectReference.getObject();
+        return (projectReference!=null)?(PIProject) projectReference.getObject():null;
     }
 
     public void setProject(PIProject project) throws PIException {
-        this.projectReference = ObjectReference.newObjectReference(project);
+        setProjectReference(project!=null?ObjectReference.newObjectReference(project):null);
     }
 
     public ObjectReference getPlanActivityReference() {
@@ -121,12 +121,12 @@ public class STExpectedFinishTime extends PIPmgtObject implements Serializable {
         this.planActivityReference = planActivityReference;
     }
 
-    public PIPlanActivity getPlanActivitye() {
-        return (PIPlanActivity) planActivityReference.getObject();
+    public PIPlanActivity getPlanActivity() {
+        return (planActivityReference!=null)? (PIPlanActivity) planActivityReference.getObject():null;
     }
 
     public void setPlanActivityReference(PIPlanActivity planActivity) throws PIException {
-        this.planActivityReference = ObjectReference.newObjectReference(planActivity);
+        setPlanActivityReference(planActivity!=null?ObjectReference.newObjectReference(planActivity):null);
     }
 
     public ObjectReference getPlanReference() {
@@ -138,11 +138,11 @@ public class STExpectedFinishTime extends PIPmgtObject implements Serializable {
     }
 
     public PIPlan getPlan() {
-        return (PIPlan) planReference.getObject();
+        return planReference!=null?(PIPlan) planReference.getObject():null;
     }
 
     public void setPlanReference(PIPlan plan) throws PIException {
-        this.planReference = ObjectReference.newObjectReference(plan);
+        setPlanReference(plan!=null?ObjectReference.newObjectReference(plan):null);
     }
 
     public PIPrincipalReference getReporter() {

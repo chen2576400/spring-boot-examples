@@ -318,7 +318,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public PIPlanDeliverable getPlanDeliverable() {
-        return (PIPlanDeliverable) planDeliverableReference.getObject();
+        return planDeliverableReference == null ? null : (PIPlanDeliverable) planDeliverableReference.getObject();
     }
 
     @Override
@@ -352,12 +352,16 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
     @Override
     public String getContainerName() {
-        return containerReference.getName();
+        try {
+            return (String) ((PIContainerRef) getContainerReference()).getName();
+        } catch (NullPointerException npe) {
+            return null;
+        }
     }
 
     @Override
     public PIContainer getContainer() {
-        return containerReference.getObject();
+        return (containerReference != null) ? (PIContainer) containerReference.getObject() : null;
     }
 
     public ObjectReference getProjectReference() {
@@ -369,7 +373,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public PIProject getProject() {
-        return (PIProject) projectReference.getObject();
+        return projectReference!=null?(PIProject) projectReference.getObject():null;
     }
 
     public void setProjectReference(PIProject project) throws PIException {
@@ -377,7 +381,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public PIUser getReporter() {
-        return (PIUser) reporter.getObject();
+        return reporter!=null?(PIUser) reporter.getObject():null;
     }
 
     public void setReporter(PIUser reporter) {
@@ -393,7 +397,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public STProCompetence getCompetence() {
-        return (STProCompetence) competenceReference.getObject();
+        return competenceReference!=null?(STProCompetence) competenceReference.getObject():null;
     }
 
     public void setCompetenceReference(STProCompetence competence) throws PIException {
