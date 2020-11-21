@@ -65,4 +65,11 @@ public class STController extends BaseController {
         return STIndicatorHelper.service.getPERTData(activityId);
     }
 
+    @RequestMapping(value = "/getDataByProjectIdAndUserId", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Object getDataByProjectIdAndUserId(@RequestParam(value = "projectId", required = false) String projectId,@RequestParam(value = "userId", required = false) String userId) throws Exception {
+        //todo testUrl:http://localhost:8080/st/getDataByActivityId?activityId=5897
+
+        return STIndicatorHelper.service.getDataByProjectIdAndUserId(projectId,userId);
+    }
 }

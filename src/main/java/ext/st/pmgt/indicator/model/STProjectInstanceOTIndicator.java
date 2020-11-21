@@ -318,7 +318,7 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
     }
 
     public PIPlanDeliverable getPlanDeliverable() {
-        return (PIPlanDeliverable) planDeliverableReference.getObject();
+        return planDeliverableReference == null ? null : (PIPlanDeliverable) planDeliverableReference.getObject();
     }
 
     @Override

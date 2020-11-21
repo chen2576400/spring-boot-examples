@@ -3,10 +3,17 @@ package ext.st.pmgt.indicator.service;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.fc.model.PIReference;
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
+import com.pisx.tundra.foundation.org.OrgHelper;
+import com.pisx.tundra.foundation.org.model.MembershipLink;
+import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
+import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.calendar.model.PICalendar;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
@@ -16,6 +23,7 @@ import com.pisx.tundra.pmgt.plan.dao.PIPlanActivityDao;
 import com.pisx.tundra.pmgt.plan.dao.PIPlanDao;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import com.pisx.tundra.pmgt.plan.model.PIPlannable;
 import com.pisx.tundra.pmgt.plan.model.PlannableDuration;
 import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.dao.PIProjectDao;
@@ -241,8 +249,13 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         PICalendar calendar = project.getCalendar();
         List<PIPlan> plans = PIPlanHelper.service.getPlans(project);
         PIPlan plan = null;
+        double projectduration = 0;
         if (plans.size() > 0) {
-            plan = plans.get(0);
+            DurationUtils du = new DurationUtils(calendar);
+            for (PIPlan piPlan : plans) {
+                PlannableDuration duration = piPlan.getTargetDuration();
+                projectduration = projectduration + du.getDuration(duration);
+            }
         }
         SumPIProject sumProject = PIProjectHelper.service.getSumProject(project);
         ArrayList<Object> list = new ArrayList<>();
@@ -252,10 +265,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         result.put("项目启动时间和当前日期差", getTime(new Timestamp(System.currentTimeMillis()), project.getStartDate()));
         DurationUtils durationUtils = new DurationUtils();
 //        result.put("项目周期",durationUtils.getDurationForDisplay(plan.getTargetDuration()));
-        PlannableDuration duration = plan.getTargetDuration();
-        DurationUtils du = new DurationUtils(calendar);
-        String value = String.valueOf(du.getDuration(duration));
-        result.put("项目周期", value);
+        result.put("项目周期", String.valueOf(projectduration));
 //        result.put("预实比", String.valueOf(sumProject.getTargetCost() / sumProject.getActualCost()));
         result.put("预实比", "0.5");
         List<Long> planIds = plans.stream().map(item -> item.getObjectIdentifier().getId()).collect(Collectors.toList());
@@ -263,13 +273,21 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         //计划
 
         //todo
-        List<Map<String, String>> users = new ArrayList<>();
+        List<Map<Object, Object>> users = new ArrayList<>();
         Collection resources = PIResourceHelper.service.getResources(project).persistableCollection();
         for (Object resource : resources) {
             PIResource res = (PIResource) resource;
-            Map<String, String> u = new HashMap<>();
-            u.put("用户名称", res.getUser().getName());
-            u.put("用户id", res.getUser().getObjectIdentifier().getId().toString());
+            PIUser user = res.getUser();
+            Map<Object, Object> u = new HashMap<>();
+            u.put("userName", user.getName());
+            u.put("userId", user.getObjectIdentifier().getId().toString());
+
+            List<PIGroup> groups = (List<PIGroup>) OrgHelper.service.getImmediateParentGroups(user, false);
+            PIGroup group = groups.get(0);
+            Map<Object, Object> g = new HashMap<>();
+            g.put("groupName", group.getName());
+            g.put("groupId", group.getObjectIdentifier().getId().toString());
+            u.put("所属部门", g);
             users.add(u);
         }
         ArrayList<Object> 资源部门 = new ArrayList<>();
@@ -379,9 +397,9 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 //        List<STDeliverableType> result = otIndacators.stream().map(item -> item.getDeliverableType()).collect(Collectors.toList());
         HashSet<Object> set = new HashSet<>();
         for (STProjectInstanceOTIndicator otIndacator : otIndacators) {
-            if (otIndacator.getDeliverableTypeCode()!=null){
+            if (otIndacator.getDeliverableTypeCode() != null) {
                 Collection types = deliverableTypeDao.findByCode(otIndacator.getDeliverableTypeCode());
-                if (types.size()>0){
+                if (types.size() > 0) {
                     set.addAll(types);
                 }
             }
@@ -486,5 +504,33 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             return (STProjectInstanceINIndicator) result.get(0);
         }
         return null;
+    }
+
+    @Override
+    public Object getDataByProjectIdAndUserId(String projectId, String userId) throws PIException {
+        String projectOid = PIProject.class.getName() + ":" + projectId;
+        String userOid = PIUser.class.getName() + ":" + userId;
+        ReferenceFactory referenceFactory = new ReferenceFactory();
+        PIUser user = (PIUser) referenceFactory.getReference(userOid).getObject();
+        PIProject project = (PIProject) referenceFactory.getReference(projectOid).getObject();
+
+        List<PIResourceAssignment> assignments = (List<PIResourceAssignment>) PIAssignmentHelper.service.getResourceAssignmentsByUser(user, project).persistableCollection();
+        List planactivities = new ArrayList();
+        if (assignments.size() > 0) {
+            for (PIResourceAssignment assignment : assignments) {
+                PIPlannable plannable = assignment.getPlannable();
+                planactivities.add(plannable);
+            }
+        }
+        List<Map<String, Object>> result = new ArrayList<>();
+        if (planactivities.size() > 0) {
+            for (Object planable : planactivities) {
+                if (planable instanceof PIPlanActivity) {
+                    result.add(getAllDataByAct((PIPlanActivity) planable));
+                }
+            }
+        }
+        return JSONObject.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect);
+
     }
 }

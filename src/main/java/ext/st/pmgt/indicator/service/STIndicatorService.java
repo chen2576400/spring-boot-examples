@@ -73,4 +73,6 @@ public interface STIndicatorService {
     STProjectInstanceINIndicator getINByActRef(ObjectReference actRef);
 
     STProjectInstanceINIndicator getInByOT(STProjectInstanceOTIndicator ot);
+
+    Object getDataByProjectIdAndUserId(String projectId, String userId) throws PIException;
 }
