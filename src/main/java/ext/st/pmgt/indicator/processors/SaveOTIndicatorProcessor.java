@@ -112,7 +112,7 @@ public class SaveOTIndicatorProcessor extends DefaultObjectFormProcessor {
                 newOT.setCreateTimestamp(new Timestamp(System.currentTimeMillis()));
                 PersistenceHelper.service.save(newOT);
             }
-        }
+        } 
         return new ResponseWrapper(ResponseWrapper.SUCCESS, "", null);
     }
 }
