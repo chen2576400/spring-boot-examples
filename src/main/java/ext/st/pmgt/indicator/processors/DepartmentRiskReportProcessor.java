@@ -33,7 +33,7 @@ public class DepartmentRiskReportProcessor extends DefaultObjectFormProcessor {
             String url = null;
 
             String userName = ((PIUser) selectedObjects.get(0)).getName();
-            url = "http://192.168.1.129:8088/report/departmentRisk?userIds=" + ids + "&name=" + userName + "&startTime=" + startTime + "&endTime=" + endTime;
+            url = "http://192.168.1.125:8088/report/departmentRisk?userIds=" + ids + "&name=" + userName + "&startTime=" + startTime + "&endTime=" + endTime;
 
             return new ResponseWrapper(ResponseWrapper.DIRECT, "", url);
         } else {

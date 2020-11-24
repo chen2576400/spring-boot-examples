@@ -38,7 +38,7 @@ public class STDeliverableType extends PIPmgtObject implements Serializable {
 
 
     /*
-     * in指标
+     * 指标
      * */
     @Embedded   //引入该实体
     @AttributeOverrides({

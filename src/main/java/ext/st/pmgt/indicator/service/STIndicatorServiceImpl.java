@@ -179,6 +179,13 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
     private Map getAllDataByAct(PIPlanActivity activity) throws PIException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        DurationUtils du = new DurationUtils();
+        PlannableDuration duration = activity.getStandardDuration();
+        double standardDuration = 0;
+        if (duration != null) {
+            standardDuration = du.getDuration(duration);
+        }
+
         HashMap<String, Object> map = new HashMap<>();
         List<STProjectInstanceOTIndicator> otIndicators = (List) projectOTIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(activity));
         if (otIndicators.size() > 0) {//同样的ot指标只取最新的
@@ -187,9 +194,10 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         List<STProjectInstanceINIndicator> inIndicators = (List) projectINIndicatorDao.findByPlanActivityReference(ObjectReference.newObjectReference(activity));
         map.put("任务id", activity.getOid());
         map.put("任务名称", activity.getName());
-
-        map.put("实际开始时间", activity.getActualStartDate() == null ? null : activity.getActualEndDate().toString());
-        map.put("实际完成时间", activity.getActualEndDate() == null ? null : activity.getActualEndDate().toString());
+        map.put("标准工时", activity.getStandardWorkQty() == null ? null : 0);
+        map.put("标准工期", standardDuration);
+        map.put("实际开始时间", activity.getActualStartDate() == null ? null : sdf.format(activity.getActualStartDate()));
+        map.put("实际完成时间", activity.getActualEndDate() == null ? null : sdf.format(activity.getActualEndDate()));
 //            map.put("ot",otIndicators);
 //            map.put("in",inIndicators);
         List<Map<String, Object>> otList = new ArrayList<>();
@@ -283,11 +291,16 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             u.put("userId", user.getObjectIdentifier().getId().toString());
 
             List<PIGroup> groups = (List<PIGroup>) OrgHelper.service.getImmediateParentGroups(user, false);
-            PIGroup group = groups.get(0);
-            Map<Object, Object> g = new HashMap<>();
-            g.put("groupName", group.getName());
-            g.put("groupId", group.getObjectIdentifier().getId().toString());
-            u.put("所属部门", g);
+            ArrayList<Object> list1 = new ArrayList<>();
+            if (groups.size()>0){
+                PIGroup group = groups.get(0);
+                Map<Object, Object> g = new HashMap<>();
+                g.put("groupName", group.getName());
+                g.put("groupId", group.getObjectIdentifier().getId().toString());
+                list1.add(g);
+            }
+
+            u.put("所属部门", list1);
             users.add(u);
         }
         ArrayList<Object> 资源部门 = new ArrayList<>();
@@ -368,7 +381,6 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         ReferenceFactory referenceFactory = new ReferenceFactory();
         PIPlanActivity act = (PIPlanActivity) referenceFactory.getReference(actId).getObject();
         ArrayList<Object> list = new ArrayList<>();
-        PIPlan plan = (PIPlan) act.getRoot();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -377,8 +389,8 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         for (String s : timeList) {
             HashMap<String, Object> result = new HashMap<>();
             result.put("预估开始时间", act.getTargetStartDate() == null ? null : sdf.format(act.getTargetStartDate()));
-            result.put("截至时间", act.getTargetEndDate() == null ? null : sdf.format(act.getTargetEndDate()));
-            result.put("预估完成时间", s == null ? null : s);
+            result.put("截至时间", sdf.format(act.getTargetEndDate()));
+            result.put("预估完成时间", s);
             result.put("实际开始时间", act.getActualStartDate() == null ? null : sdf.format(act.getActualStartDate()));
             list.add(result);
         }
