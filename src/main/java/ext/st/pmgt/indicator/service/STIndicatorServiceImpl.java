@@ -196,6 +196,9 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         map.put("任务名称", activity.getName());
         map.put("标准工时", activity.getStandardWorkQty() == null ? null : 0);
         map.put("标准工期", standardDuration);
+
+        map.put("计划工时", activity.getTargetWorkQty());
+        map.put("计划工期", activity.getTargetDuration() == null ? 0 : du.getDuration(activity.getTargetDuration()));
         map.put("实际开始时间", activity.getActualStartDate() == null ? null : sdf.format(activity.getActualStartDate()));
         map.put("实际完成时间", activity.getActualEndDate() == null ? null : sdf.format(activity.getActualEndDate()));
 //            map.put("ot",otIndicators);
@@ -292,7 +295,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
             List<PIGroup> groups = (List<PIGroup>) OrgHelper.service.getImmediateParentGroups(user, false);
             ArrayList<Object> list1 = new ArrayList<>();
-            if (groups.size()>0){
+            if (groups.size() > 0) {
                 PIGroup group = groups.get(0);
                 Map<Object, Object> g = new HashMap<>();
                 g.put("groupName", group.getName());
