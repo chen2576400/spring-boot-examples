@@ -74,7 +74,7 @@ public class OTTableComponentAssistant implements ComponentAssistant {
         }
         JSONObject table = ajaxData.getJSONObject("componentsData").getJSONObject("indicator_report_step4").getJSONObject("o_t_table");
         table.put("rows", rows);
-        ResponseWrapper responseWrapper = new ResponseWrapper(ResponseWrapper.SUCCESS, "", ajaxData);
+        ResponseWrapper responseWrapper = new ResponseWrapper(ResponseWrapper.CONFIRM, "", ajaxData);
 
 
         return responseWrapper;

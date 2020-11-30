@@ -80,12 +80,12 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
 
             List<Option> options = new ArrayList<>();
             for (PIDocument version : versions) {
-                Option opt1 = new Option().setLabel(version.getIterationIdentifier().toString()).setValue(version.getOid());
+                Option opt1 = new Option().setLabel(version.getIterationDisplayIdentifier().toString()).setValue(version.getOid());
                 options.add(opt1);
             }
             SelectElement selectElement0 = SelectElement.instance("currentVersion");
             selectElement0.setOptions(options);
-            selectElement0.setDefaultOption(new Option().setLabel(revisionControlled.getVersionIdentifier().getVersionId() + "." + revisionControlled.getVersionIdentifier().getVersionLevel()).setValue(revisionControlled.getOid()));
+            selectElement0.setDefaultOption(new Option().setLabel(revisionControlled.getIterationDisplayIdentifier().toString()).setValue(revisionControlled.getOid()));
             selectElement0.attribute(elementAttribute -> elementAttribute.setStyle("cursor: pointer;display:inline-block;" +
                     "padding: 3px 6px;text-align: right;width: 200px;vertical-align: middle;"));
 

@@ -49,13 +49,16 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
             if (changedOT.size() > 0) {//版本变了，ot指标也进行了修改,按照修改之后的更新ot指标
                 for (STProjectInstanceOTIndicator newOT : changedOT) {
                     newOT.setCompletionStatus(newOT.getCompletionStatus() + 1);//更新过版本之后，完成状态+1
+                    newOT.setPlanDeliverableReference(ObjectReference.newObjectReference(deliverable));
                 }
+
                 PersistenceHelper.service.save(changedOT);
             } else {//版本变了，没有修改指标，那么需要将最新的指标全部复制一份保存
                 List<STProjectInstanceOTIndicator> newOT1 = updateLatestOt(params);
                 if (newOT1.size() > 0) {
                     for (STProjectInstanceOTIndicator newOT : newOT1) {
                         newOT.setCompletionStatus(newOT.getCompletionStatus() + 1);
+                        newOT.setPlanDeliverableReference(ObjectReference.newObjectReference(deliverable));
                     }
                     PersistenceHelper.service.save(newOT1);
                 }
@@ -65,6 +68,7 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
             if (changedOT.size() > 0) { //ot发生更改
                 for (STProjectInstanceOTIndicator newOT : changedOT) {
                     newOT.setCompletionStatus(newOT.getCompletionStatus() + 1);
+                    newOT.setPlanDeliverableReference(ObjectReference.newObjectReference(deliverable));
                 }
                 PersistenceHelper.service.save(changedOT);
             }

@@ -495,7 +495,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public STProjectInstanceINIndicator getInByOT(STProjectInstanceOTIndicator ot) {
+    public STProjectInstanceINIndicator getInByOT(STProjectInstanceOTIndicator ot,PIPlanActivity activity) {
         List result = new ArrayList();
         EntityManager em = PersistenceHelper.service.getEntityManager();
 
@@ -507,7 +507,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             Path key2 = root.get("planActivityReference").get("key");
             Path key3 = root.get("planReference").get("key");
             Predicate p1 = cb.equal(key1, ot.getCode());
-            Predicate p2 = cb.equal(key2, ot.getPlanActivity().getObjectIdentifier());
+            Predicate p2 = cb.equal(key2, activity.getObjectIdentifier());
             Predicate p3 = cb.equal(key3, ot.getPlan().getObjectIdentifier());
             criteriaQuery.select(root).where(p1, p2, p3);
             TypedQuery query = em.createQuery(criteriaQuery);

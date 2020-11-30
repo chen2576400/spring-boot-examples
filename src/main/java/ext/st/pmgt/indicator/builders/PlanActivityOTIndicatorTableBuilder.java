@@ -22,6 +22,8 @@ import ext.st.pmgt.indicator.resources.indicatorResource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName PlanActivityOTIndicatorTableBuilder
@@ -31,10 +33,21 @@ import java.util.List;
  * @Version V1.0
  **/
 public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilder {
+    private List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots){
+        List<STProjectInstanceOTIndicator> result = new ArrayList<>();
+        Map<String, List<STProjectInstanceOTIndicator>> map = ots.stream().collect(Collectors.groupingBy(STProjectInstanceOTIndicator::getCode));
+        for (Map.Entry<String, List<STProjectInstanceOTIndicator>> entry : map.entrySet()) {
+            List<STProjectInstanceOTIndicator> value = entry.getValue();
+            value.sort((t1, t2) -> t2.getReportTime().compareTo(t1.getReportTime()));
+            result.add(value.get(0));
+        }
+        return result;
+    }
+
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
-        return STIndicatorHelper.service.findProjectOTIndicatorByPlanActivity(piPlanActivity);
+        return getLatestOt((List<STProjectInstanceOTIndicator>) STIndicatorHelper.service.findProjectOTIndicatorByPlanActivity(piPlanActivity));
     }
 
     @Override
