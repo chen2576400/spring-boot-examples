@@ -1,16 +1,14 @@
 package ext.st.pmgt.indicator.builders;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Lists;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentAssistant;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.Row;
-import com.pisx.tundra.netfactory.util.beans.NfCommandBean;
-import com.pisx.tundra.netfactory.util.beans.NfOid;
 import com.pisx.tundra.netfactory.util.misc.*;
-import com.pisx.tundra.netfactory.util.misc.Collections;
+import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
+import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STDeliverableType;
 import ext.st.pmgt.indicator.model.STDeviation;
@@ -20,14 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static com.alibaba.fastjson.serializer.SerializerFeature.WriteNullListAsEmpty;
-import static com.alibaba.fastjson.serializer.SerializerFeature.WriteNullStringAsEmpty;
 
 @Component("OTTableComponentAssistant")
 public class OTTableComponentAssistant implements ComponentAssistant {
@@ -36,14 +30,24 @@ public class OTTableComponentAssistant implements ComponentAssistant {
 
     public ResponseWrapper<?> execute(ComponentParams params) throws PIException {
         JSONObject ajaxData = params.getAjaxData();
-
+        PIPlanDeliverable deliverable = null;
+        PIPlanActivity act = null;
+        if (params.getNfCommandBean().getSourceObject()!=null) {
+            deliverable = (PIPlanDeliverable) params.getNfCommandBean().getSourceObject();
+        }
+        if (deliverable!=null&&deliverable.getParent()!=null){
+            act = (PIPlanActivity) deliverable.getParent();
+        }
         List<Row> rows = new LinkedList<>();
         ResponseWrapper responseWrapper= null;
         List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
         if (selectedObjects!=null&&selectedObjects.size() > 0) {
             STDeliverableType selectDT = (STDeliverableType) selectedObjects.get(0);
-            List<STProjectInstanceOTIndicator> ots = (List) STIndicatorHelper.service.getOTByDeliverableType(selectDT);
-            List<STProjectInstanceOTIndicator> newOts = getLatestOt(ots);
+            List<STProjectInstanceOTIndicator> ots = (List) STIndicatorHelper.service.getOTByDeliverableTypeCodeAndPlanActivity(selectDT.getCode(),act);
+            if (ots.isEmpty()){
+                return new ResponseWrapper(ResponseWrapper.FAILED, "未找到对应OT指标", null);
+            }
+            List<STProjectInstanceOTIndicator> newOts = STIndicatorHelper.service.getLatestOt(ots);
             for (STProjectInstanceOTIndicator ot : newOts) {
                 NumberFormat numFormat = NumberFormat.getPercentInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

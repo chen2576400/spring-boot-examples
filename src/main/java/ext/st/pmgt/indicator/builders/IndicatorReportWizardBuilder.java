@@ -63,7 +63,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
                     .addField("description")
 //                    .addField("url")
 //                    .addField("deliverableTypeReference", new DeliverableTypePickerHandler())
-                    .addField("subjectReference", new SubjectNameDataHandler())
+                    .addField("subjectReference", new SubjectNameDataHandler())//DeliverablePickerHandler
 //                    .addField("deliverableTemplate")
                     .addField("necessity");
             step.addLayout(layout);

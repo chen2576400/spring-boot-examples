@@ -15,6 +15,7 @@ import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName PlanActivityINIndicatorTableBuilder
@@ -24,13 +25,18 @@ import java.util.*;
  * @Version V1.0
  **/
 public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilder {
+
+
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
         Collection ins = STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
         Set result = new HashSet<>();
         for (Object in : ins) {
-            result.addAll(STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in));
+            List<STProjectInstanceOTIndicator> ots = (List<STProjectInstanceOTIndicator>) STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in);
+            if (ots.size() > 0) {
+                result.addAll(STIndicatorHelper.service.getLatestOt(ots));
+            }
         }
 
         return result;
