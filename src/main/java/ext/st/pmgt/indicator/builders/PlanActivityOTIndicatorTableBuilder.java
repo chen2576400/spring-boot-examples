@@ -60,6 +60,7 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(),"OT_INDICATOR_TABLE",null,params.getLocale()));
         tableConfig.enableSelect();
+        tableConfig.setPageSize(50);
 //        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
 
 

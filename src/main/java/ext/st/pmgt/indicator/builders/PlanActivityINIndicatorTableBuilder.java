@@ -47,7 +47,7 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.enableSelect();
         tableConfig.setToolbarActionModel("inTableToolBar");
         tableConfig.setRightMenuName("INTableMenu", params);
-
+        tableConfig.setPageSize(50);
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");

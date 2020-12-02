@@ -25,6 +25,7 @@ import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.datahandlers.DeliverablePickerHandler;
 import ext.st.pmgt.indicator.datahandlers.DeviationReportDataHandler;
 import ext.st.pmgt.indicator.datahandlers.DifficultyReportDataHandler;
+import ext.st.pmgt.indicator.datahandlers.SubjectNameDataHandler;
 import ext.st.pmgt.indicator.model.STDeliverableType;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 
@@ -62,7 +63,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
                     .addField("description")
 //                    .addField("url")
 //                    .addField("deliverableTypeReference", new DeliverableTypePickerHandler())
-                    .addField("subjectReference", new DeliverablePickerHandler())
+                    .addField("subjectReference", new SubjectNameDataHandler())
 //                    .addField("deliverableTemplate")
                     .addField("necessity");
             step.addLayout(layout);
@@ -113,6 +114,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
             tableConfig.enableSelect();
             tableConfig.setSingleSelect(true);
             tableConfig.setHeight("450px");
+            tableConfig.setPageSize(50);
 
             ColumnConfig column1 = componentConfigFactory.newColumnConfig();
             column1.setName("name");
@@ -134,6 +136,7 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
             tableConfig1.haveBorder();
             tableConfig1.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
             tableConfig1.setHeight("450px");
+            tableConfig1.setPageSize(50);
 //            tableConfig1.setToolbarActionModel("otTableToolBarSet", params);
 
             ColumnConfig column11 = componentConfigFactory.newColumnConfig();
@@ -168,7 +171,6 @@ public class IndicatorReportWizardBuilder extends AbstractComponentBuilder {
             ColumnConfig column5 = componentConfigFactory.newColumnConfig();
             column5.setName("reportTime");
             column5.enableSort();
-            column5.isSortable();
             tableConfig1.addColumn(column5);
 
             step3.children(tableConfig1);

@@ -2,6 +2,7 @@ package ext.st.pmgt.indicator.builders;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentAssistant;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
@@ -37,9 +38,10 @@ public class OTTableComponentAssistant implements ComponentAssistant {
         JSONObject ajaxData = params.getAjaxData();
 
         List<Row> rows = new LinkedList<>();
-
-        if (params.getNfCommandBean().getSelectedObjects().size() > 0) {
-            STDeliverableType selectDT = (STDeliverableType) params.getNfCommandBean().getSelectedObjects().get(0);
+        ResponseWrapper responseWrapper= null;
+        List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
+        if (selectedObjects!=null&&selectedObjects.size() > 0) {
+            STDeliverableType selectDT = (STDeliverableType) selectedObjects.get(0);
             List<STProjectInstanceOTIndicator> ots = (List) STIndicatorHelper.service.getOTByDeliverableType(selectDT);
             List<STProjectInstanceOTIndicator> newOts = getLatestOt(ots);
             for (STProjectInstanceOTIndicator ot : newOts) {
@@ -71,11 +73,12 @@ public class OTTableComponentAssistant implements ComponentAssistant {
                 rows.add(row);
 
             }
+            JSONObject table = ajaxData.getJSONObject("componentsData").getJSONObject("indicator_report_step4").getJSONObject("o_t_table");
+            table.put("rows", rows);
+            responseWrapper = new ResponseWrapper(ResponseWrapper.CONFIRM, "", ajaxData);
+        }else {
+            responseWrapper = new ResponseWrapper(ResponseWrapper.FAILED, "请选择一种交付物类型！", null);
         }
-        JSONObject table = ajaxData.getJSONObject("componentsData").getJSONObject("indicator_report_step4").getJSONObject("o_t_table");
-        table.put("rows", rows);
-        ResponseWrapper responseWrapper = new ResponseWrapper(ResponseWrapper.CONFIRM, "", ajaxData);
-
 
         return responseWrapper;
     }
