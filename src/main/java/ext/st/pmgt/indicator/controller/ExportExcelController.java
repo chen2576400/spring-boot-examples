@@ -18,29 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.*;
 
 @RestController
-@RequestMapping("mv")
+@RequestMapping("indicator/export")
 @Log
 public class ExportExcelController {
-    private static final Logger logger = LoggerFactory.getLogger(ExportExcelController.class);
-
-    @Autowired
-    private ProjectInstanceOTIndicatorDao otIndicatorDao;
-    @Autowired
-    private ProjectInstanceINIndicatorDao inIndicatorDao;
-    @Autowired
-    private RatingDao ratingDao;
 
     @Autowired
     private AutowireCapableBeanFactory factory;
 
 
-    public static ExecutorService executor() {
-        return new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), 20, 60, TimeUnit.SECONDS,
-                new ArrayBlockingQueue<Runnable>(500), new ThreadPoolExecutor.CallerRunsPolicy());
-    }
 
-
-    @RequestMapping(value = "sb", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "excel", produces = "application/json; charset=utf-8")
     @LimitTime(time = 1, timeout = 1000 * 10)
     public Result downloadTemplate() {
         ExportExcel exportExcel = new ExportExcel();

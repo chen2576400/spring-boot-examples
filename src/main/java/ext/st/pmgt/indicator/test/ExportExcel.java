@@ -52,7 +52,7 @@ public class ExportExcel {
 
 
     public Result downloadTemplate()  {
-        ExecutorService executorService = ExportExcelController.executor();
+        ExecutorService executorService = ExportExcel.executor();
         ListeningExecutorService listeningExecutorService = MoreExecutors.listeningDecorator(executorService);
         List<STProjectInstanceOTIndicator> ots = otIndicatorDao.findAll();
         List<STProjectInstanceINIndicator> ins = inIndicatorDao.findAll();
