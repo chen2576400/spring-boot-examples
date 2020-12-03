@@ -59,7 +59,7 @@ public interface STIndicatorService {
 
     Collection getExpextTimeByActivity(PIPlanActivity act) throws PIException;
 
-    Collection getOTByDeliverableType(STDeliverableType deliverableType) throws PIException;
+    Collection getOTByDeliverableTypeCodeAndPlanActivity(String code,PIPlanActivity activity) throws PIException;
 
     Collection getPlanDeliverablesByOT(STProjectInstanceOTIndicator ot) throws PIException;
 
@@ -75,4 +75,6 @@ public interface STIndicatorService {
     STProjectInstanceINIndicator getInByOT(STProjectInstanceOTIndicator ot,PIPlanActivity activity);
 
     Object getDataByProjectIdAndUserId(String projectId, String userId) throws PIException;
+
+    List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots);
 }

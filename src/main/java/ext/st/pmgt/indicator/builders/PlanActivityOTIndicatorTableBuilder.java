@@ -21,6 +21,7 @@ import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,21 +34,16 @@ import java.util.stream.Collectors;
  * @Version V1.0
  **/
 public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilder {
-    private List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots){
-        List<STProjectInstanceOTIndicator> result = new ArrayList<>();
-        Map<String, List<STProjectInstanceOTIndicator>> map = ots.stream().collect(Collectors.groupingBy(STProjectInstanceOTIndicator::getCode));
-        for (Map.Entry<String, List<STProjectInstanceOTIndicator>> entry : map.entrySet()) {
-            List<STProjectInstanceOTIndicator> value = entry.getValue();
-            value.sort((t1, t2) -> t2.getReportTime().compareTo(t1.getReportTime()));
-            result.add(value.get(0));
-        }
-        return result;
-    }
+
 
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
-        return getLatestOt((List<STProjectInstanceOTIndicator>) STIndicatorHelper.service.findProjectOTIndicatorByPlanActivity(piPlanActivity));
+        List<STProjectInstanceOTIndicator> ots = (List)STIndicatorHelper.service.findProjectOTIndicatorByPlanActivity(piPlanActivity);
+        if (ots.size()>0){
+            ots = STIndicatorHelper.service.getLatestOt(ots);
+        }
+        return ots;
     }
 
     @Override
@@ -60,6 +56,7 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(),"OT_INDICATOR_TABLE",null,params.getLocale()));
         tableConfig.enableSelect();
+        tableConfig.setPageSize(50);
 //        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
 
 
@@ -97,6 +94,7 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
 
         ColumnConfig columnconfig7 = componentConfigFactory.newColumnConfig();
         columnconfig7.setName("reportTime");
+        columnconfig7.enableSort();
         tableConfig.addColumn(columnconfig7);
 
         return tableConfig;

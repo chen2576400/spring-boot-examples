@@ -165,18 +165,6 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 //        return result;
     }
 
-    private List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots) {
-        List<STProjectInstanceOTIndicator> result = new ArrayList<>();
-        Map<String, List<STProjectInstanceOTIndicator>> map = ots.stream().collect(Collectors.groupingBy(STProjectInstanceOTIndicator::getCode));
-        for (Map.Entry<String, List<STProjectInstanceOTIndicator>> entry : map.entrySet()) {
-            List<STProjectInstanceOTIndicator> value = entry.getValue();
-            value.sort((t1, t2) -> t2.getReportTime().compareTo(t1.getReportTime()));
-            result.add(value.get(0));
-        }
-        return result;
-    }
-
-
     private Map getAllDataByAct(PIPlanActivity activity) throws PIException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         DurationUtils du = new DurationUtils();
@@ -443,8 +431,8 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public Collection getOTByDeliverableType(STDeliverableType deliverableType) throws PIException {
-        return projectOTIndicatorDao.findByDeliverableTypeCode(deliverableType.getCode());
+    public Collection getOTByDeliverableTypeCodeAndPlanActivity(String code,PIPlanActivity activity) throws PIException {
+        return projectOTIndicatorDao.findByDeliverableTypeCodeAndPlanActivityReference(code,ObjectReference.newObjectReference(activity));
     }
 
     @Override
@@ -547,5 +535,16 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         }
         return JSONObject.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect);
 
+    }
+    @Override
+    public List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots) {
+        List<STProjectInstanceOTIndicator> result = new ArrayList<>();
+        Map<String, List<STProjectInstanceOTIndicator>> map = ots.stream().collect(Collectors.groupingBy(STProjectInstanceOTIndicator::getCode));
+        for (Map.Entry<String, List<STProjectInstanceOTIndicator>> entry : map.entrySet()) {
+            List<STProjectInstanceOTIndicator> value = entry.getValue();
+            value.sort((t1, t2) -> t2.getReportTime().compareTo(t1.getReportTime()));
+            result.add(value.get(0));
+        }
+        return result;
     }
 }

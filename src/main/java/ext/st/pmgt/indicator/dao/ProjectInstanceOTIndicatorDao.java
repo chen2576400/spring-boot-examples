@@ -11,7 +11,7 @@ import java.util.Collection;
 public interface ProjectInstanceOTIndicatorDao extends JpaRepository<STProjectInstanceOTIndicator, ObjectIdentifier> {
     Collection findByProjectReference(ObjectReference projectRef);
     Collection findByPlanReference(ObjectReference planRef);
-    Collection findByDeliverableTypeCode(String deliverableTypeCode);
+    Collection findByDeliverableTypeCodeAndPlanActivityReference(String deliverableTypeCode,ObjectReference actRef);
     Collection findByPlanActivityReference(ObjectReference planActivityRef);
     Collection findByPlanDeliverableReference(ObjectReference planDeliverableRef);
     Collection findByPlanActivityReferenceAndPlanReference(ObjectReference planActivityRef,ObjectReference planRef);
