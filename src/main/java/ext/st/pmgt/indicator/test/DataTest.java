@@ -240,12 +240,12 @@ public class DataTest {
                 stProjectInstanceOTIndicator = STProjectInstanceOTIndicator.newSTProjectInstanceOTIndicator();
                 if (row != null) {
                     Boolean m=true;
-                    PIPlan plan = piPlanDao.findByNameEquals("计划1");//
+                    PIPlan plan = piPlanDao.findByNameEquals("02-精细化项目计划");//
                     if (plan == null) {
                         break;
                     }
 
-                    PIProject project = piProjectDao.findByProjectName("重汽");
+                    PIProject project = piProjectDao.findByProjectName("重汽精细化项目-001");
                     if (project == null) {
                         break;
                     }
@@ -262,7 +262,6 @@ public class DataTest {
                                 stProjectInstanceOTIndicator.setDefinition(cellData);
                                 break;
                             case 3://专业能力
-                                stProjectInstanceOTIndicator.setDefinition(cellData);
                                 STProCompetence stProCompetence = proCompetenceDao.findByNameEquals(cellData);
                                 if (stProCompetence == null) {
                                     m=false;
@@ -322,7 +321,8 @@ public class DataTest {
                             case 17://指标状态
                                 break;
                             case 18: //汇报时间
-                                stProjectInstanceOTIndicator.setReportTime(timestamp);
+//                                stProjectInstanceOTIndicator.setReportTime(timestamp);
+                                stProjectInstanceOTIndicator.setReportTime(null);
                                 break;
 
                             default:
@@ -364,13 +364,13 @@ public class DataTest {
                 stRating = STRating.newSTRating();
                 if (row != null) {
                     Boolean m=true;
-                    PIPlan plan = piPlanDao.findByNameEquals("计划1");//
+                    PIPlan plan = piPlanDao.findByNameEquals("02-精细化项目计划");//
                     if (plan == null) {
                         break;
                     }
 
-                    PIProject piProject = piProjectDao.findByProjectAbbreviation("sinotruk");
-                    if (piProject == null) {
+                    PIProject project = piProjectDao.findByProjectName("重汽精细化项目-001");
+                    if (project == null) {
                         break;
                     }
                     for (int j = 0; j < colnum; j++) {
@@ -393,8 +393,8 @@ public class DataTest {
                                 instanceINIndicator.setWeights(Double.valueOf(cellData));
                                 break;
                             case 3: //项目ID
-                                instanceINIndicator.setProjectReference(ObjectReference.newObjectReference(piProject));
-                                instanceINIndicator.setContainerReference(piProject.getContainerReference());
+                                instanceINIndicator.setProjectReference(ObjectReference.newObjectReference(project));
+                                instanceINIndicator.setContainerReference(project.getContainerReference());
                                 break;
                             case 4://OT编码
 //                                STProjectInstanceOTIndicator byCode = otIndicatorDao.findByCode(cellData);
