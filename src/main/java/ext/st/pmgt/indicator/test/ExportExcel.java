@@ -2,14 +2,12 @@ package ext.st.pmgt.indicator.test;
 
 import com.google.common.util.concurrent.*;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.httpgw.WebServerConfig;
 import com.pisx.tundra.foundation.util.PIException;
-import com.pisx.tundra.pmgt.plan.dao.PIPlanActivityDao;
 import com.pisx.tundra.pmgt.plan.dao.PIPlanDao;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
-import com.pisx.tundra.pmgt.project.dao.PIProjectDao;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import ext.st.pmgt.STPmgtApplication;
 import ext.st.pmgt.indicator.controller.ExportExcelController;
 import ext.st.pmgt.indicator.dao.ProjectInstanceINIndicatorDao;
 import ext.st.pmgt.indicator.dao.ProjectInstanceOTIndicatorDao;
@@ -19,7 +17,6 @@ import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.model.STRating;
 import lombok.SneakyThrows;
-import lombok.extern.java.Log;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -28,10 +25,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-import java.io.FileOutputStream;
+import org.springframework.util.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
-
 
 
 public class ExportExcel {
@@ -43,20 +46,70 @@ public class ExportExcel {
     private ProjectInstanceINIndicatorDao inIndicatorDao;
     @Autowired
     private RatingDao ratingDao;
+    @Autowired
+    WebServerConfig webServerConfig;
+    @Autowired
+    private PIPlanDao piPlanDao;
 
     public static ExecutorService executor() {
         return new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), 20, 60, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<Runnable>(500), new ThreadPoolExecutor.CallerRunsPolicy());
     }
 
+    /**
+     * 基础字节数组输出
+     */
+    public static void outStream(InputStream is, OutputStream os) {
+        try {
+            byte[] buffer = new byte[10240];
+            int length = -1;
+            while ((length = is.read(buffer)) != -1) {
+                os.write(buffer, 0, length);
+                os.flush();
+            }
+        } catch (Exception e) {
+            System.out.println("执行 outStream 发生了异常：" + e.getMessage());
+        } finally {
+            try {
+                os.close();
+            } catch (IOException e) {
+            }
+            try {
+                is.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+//    @Async("taskExecutor")
+//    public Future<Workbook> downloadTemplate(HttpServletResponse httpServletResponse) throws IOException {
+//        List<STProjectInstanceOTIndicator> ots = otIndicatorDao.findAll();
+//        List<STProjectInstanceINIndicator> ins = inIndicatorDao.findAll();
+//        Workbook workbook = tasjJob(ots, ins);
+//
+//        return  new AsyncResult<Workbook>(workbook);
+//
+//
+//    }
 
 
-    public Result downloadTemplate()  {
+    public Result downloadTemplate(HttpServletResponse httpServletResponse, HttpServletRequest request, String name) throws PIException {
         ExecutorService executorService = ExportExcel.executor();
         ListeningExecutorService listeningExecutorService = MoreExecutors.listeningDecorator(executorService);
-        List<STProjectInstanceOTIndicator> ots = otIndicatorDao.findAll();
-        List<STProjectInstanceINIndicator> ins = inIndicatorDao.findAll();
+        List<STProjectInstanceOTIndicator> ots;
+        List<STProjectInstanceINIndicator> ins;
+        if (!StringUtils.isEmpty(name)) {
+            PIPlan plan = null;
+            plan = piPlanDao.findByNameEquals(name);
+            if (plan == null) {
+                return Result.error("该计划不存在");
+            }
 
+            ots = new ArrayList<>(otIndicatorDao.findByPlanReference(ObjectReference.newObjectReference(plan)));
+            ins = new ArrayList<>(inIndicatorDao.findByPlanReference(ObjectReference.newObjectReference(plan)));
+        } else {
+            ots = otIndicatorDao.findAll();
+            ins = inIndicatorDao.findAll();
+        }
         final ListenableFuture<Workbook> submit = listeningExecutorService.submit(new Callable<Workbook>() {
             @Override
             public Workbook call() throws Exception {
@@ -88,11 +141,13 @@ public class ExportExcel {
             }
         }, listeningExecutorService);
 
-        return Result.ok("生产文件路径为D:最新指标数据模板.xlsx文件");
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("正在上传文件稍后请到");
+        buffer.append(webServerConfig.getHostAddress() + ":" + webServerConfig.getServerPort());
+        buffer.append("/indicator/export/downloadExcel 下载");
+        return Result.ok(buffer.toString());
 
     }
-
-
 
 
     public Workbook tasjJob(List<STProjectInstanceOTIndicator> ots, List<STProjectInstanceINIndicator> ins) {
@@ -115,6 +170,8 @@ public class ExportExcel {
 
 
     public void TitleByOt(Sheet sheet, List<STProjectInstanceOTIndicator> ots) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         Row titleRow = sheet.createRow(0);//创建第一行，起始为0
         titleRow.createCell(0).setCellValue("指标编码");//第一列
         titleRow.createCell(1).setCellValue("指标描述");
@@ -139,7 +196,8 @@ public class ExportExcel {
         try {
             for (STProjectInstanceOTIndicator ot : ots) {
                 STProCompetence stProCompetence = null;
-                PIProject piProject = ot.getProject();;
+                PIProject piProject = ot.getProject();
+                ;
                 PIPlan piPlan = ot.getPlan();
                 PIPlanActivity planActivity = null;
                 Object planActivityObject = ot.getPlanActivityReference() == null ? null : ot.getPlanActivityReference().getObject();
@@ -167,7 +225,9 @@ public class ExportExcel {
                 row.createCell(15).setCellValue(piPlan.getName());//计划id
                 row.createCell(16).setCellValue(ot.getCompletionStatus());//完成状态(0,1,2)
 //                row.createCell(17).setCellValue(ot.getCode());//指标状态(停用，启用）
-                row.createCell(18).setCellValue(ot.getReportTime());//汇报时间
+                String time = format.format(ot.getReportTime());
+                row.createCell(18).setCellValue(time);//汇报时间
+
                 cell++;
             }
         } catch (Exception e) {
@@ -178,6 +238,8 @@ public class ExportExcel {
 
 
     public void TitleByIN(Sheet sheet, List<STProjectInstanceINIndicator> ins) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         Row titleRow = sheet.createRow(0);//创建第一行，起始为0
         titleRow.createCell(0).setCellValue("任务id(WBS)");//第一列
         titleRow.createCell(1).setCellValue("计划id");
@@ -210,7 +272,8 @@ public class ExportExcel {
                 row.createCell(4).setCellValue(in.getOtCode());//指标编码（otCode）
                 row.createCell(5).setCellValue(stRating.getOtRating());//输出评定
                 row.createCell(6).setCellValue(stRating.getDescription());//评定描述
-                row.createCell(7).setCellValue(stRating.getReportTime());//评定时间
+                String time = format.format(stRating.getReportTime());
+                row.createCell(7).setCellValue(time);//评定时间
                 cell++;
 
             }
