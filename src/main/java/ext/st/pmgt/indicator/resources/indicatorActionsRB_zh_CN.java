@@ -104,4 +104,10 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("img/pmgt/add.gif")
     public static final String act_0643433 = "st-pmgt-indicator.addRating.icon";
 
+    @RBEntry("指标评定")
+    public static final String act_04212211 = "st-pmgt-indicator.indicatorRating.description";
+    @RBEntry("指标评定")
+    public static final String act_05233322 = "st-pmgt-indicator.indicatorRating.tooltip";
+
+
 }

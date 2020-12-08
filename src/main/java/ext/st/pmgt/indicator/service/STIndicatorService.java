@@ -7,10 +7,7 @@ import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import ext.st.pmgt.indicator.model.STDeliverableType;
-import ext.st.pmgt.indicator.model.STProCompetence;
-import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
-import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import ext.st.pmgt.indicator.model.*;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -77,4 +74,6 @@ public interface STIndicatorService {
     Object getDataByProjectIdAndUserId(String projectId, String userId) throws PIException;
 
     List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots);
+
+    Collection findRatingByIN(STProjectInstanceINIndicator in) throws PIException;
 }

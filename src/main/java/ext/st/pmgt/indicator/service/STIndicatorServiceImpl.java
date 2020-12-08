@@ -13,6 +13,7 @@ import com.pisx.tundra.foundation.org.model.MembershipLink;
 import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
+import com.pisx.tundra.netfactory.util.misc.Collections;
 import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.calendar.model.PICalendar;
@@ -89,6 +90,9 @@ public class STIndicatorServiceImpl implements STIndicatorService {
 
     @Autowired
     private DifficultyDao difficultyDao;
+
+    @Autowired
+    private RatingDao ratingDao;
 
     @Override
     public Collection findProjectINIndicatorByProject(PIProject project) throws PIException {
@@ -544,6 +548,16 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             List<STProjectInstanceOTIndicator> value = entry.getValue();
             value.sort((t1, t2) -> t2.getReportTime().compareTo(t1.getReportTime()));
             result.add(value.get(0));
+        }
+        return result;
+    }
+
+    @Override
+    public Collection findRatingByIN(STProjectInstanceINIndicator in) throws PIException {
+        List<STRating> result = new ArrayList<>();
+        Collection ratings = ratingDao.findByInIndicatorReference(ObjectReference.newObjectReference(in));
+        if (Collections.isNotEmpty(ratings)){
+            result.addAll(ratings);
         }
         return result;
     }

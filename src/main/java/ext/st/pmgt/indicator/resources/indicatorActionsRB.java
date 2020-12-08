@@ -108,18 +108,25 @@ public class indicatorActionsRB extends PIListResourceBundle {
     public static final String act_06433 = "st-pmgt-ot.saveOT.icon";
 
 
-    @RBEntry("ot交付物")
+    @RBEntry("listDeliverablesForOT")
     public static final String act_042211 = "st-pmgt-ot.listDeliverablesForOT.description";
-    @RBEntry("ot交付物")
+    @RBEntry("listDeliverablesForOT")
     public static final String act_053322 = "st-pmgt-ot.listDeliverablesForOT.tooltip";
     @RBEntry("img/pmgt/save.gif")
     public static final String act_064433 = "st-pmgt-ot.listDeliverablesForOT.icon";
 
-    @RBEntry("添加评定")
+    @RBEntry("addRating")
     public static final String act_0421211 = "st-pmgt-indicator.addRating.description";
-    @RBEntry("添加评定")
+    @RBEntry("addRating")
     public static final String act_0523322 = "st-pmgt-indicator.addRating.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String act_0643433 = "st-pmgt-indicator.addRating.icon";
+
+
+    @RBEntry("indicatorRating")
+    public static final String act_04212211 = "st-pmgt-indicator.indicatorRating.description";
+    @RBEntry("indicatorRating")
+    public static final String act_05233322 = "st-pmgt-indicator.indicatorRating.tooltip";
+
 
 }

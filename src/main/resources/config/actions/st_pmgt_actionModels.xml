@@ -25,6 +25,7 @@
         <!--   OT IN指标table     -->
         <action name="planActivityOTIndicator" type="st-pmgt-indicator"/>
         <action name="planActivityINIndicator" type="st-pmgt-indicator"/>
+        <action name="indicatorRating" type="st-pmgt-indicator"/>
     </model>
 
     <!--pert报表入口-->
