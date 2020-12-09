@@ -46,7 +46,7 @@ public class IndicatorRatingTableBuilder extends AbstractComponentBuilder {
         if (Collections.isNotEmpty(ins)) {
             for (STProjectInstanceINIndicator in : ins) {
                 List<STRating> ratings1 = (List) STIndicatorHelper.service.findRatingByIN(in);
-                if (ratings1.size() > 1) {
+                if (ratings1.size() > 0) {
                     ratings.add(getLatestRating(ratings1));
                 }
             }

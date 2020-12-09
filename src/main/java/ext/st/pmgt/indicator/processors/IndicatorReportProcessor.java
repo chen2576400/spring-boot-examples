@@ -75,7 +75,7 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
         }
 
-        return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "汇报成功！", null);
+        return new ResponseWrapper(ResponseWrapper.PAGE_FLUSH, "汇报成功！", null);
     }
 
     private List<STProjectInstanceOTIndicator> getUpdatedOT(ComponentParams params) throws PIException {
