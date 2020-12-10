@@ -435,8 +435,8 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public Collection getOTByDeliverableTypeCodeAndPlanActivity(String code,PIPlanActivity activity) throws PIException {
-        return projectOTIndicatorDao.findByDeliverableTypeCodeAndPlanActivityReference(code,ObjectReference.newObjectReference(activity));
+    public Collection getOTByDeliverableTypeCodeAndPlanActivity(String code, PIPlanActivity activity) throws PIException {
+        return projectOTIndicatorDao.findByDeliverableTypeCodeAndPlanActivityReference(code, ObjectReference.newObjectReference(activity));
     }
 
     @Override
@@ -487,7 +487,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public STProjectInstanceINIndicator getInByOT(STProjectInstanceOTIndicator ot,PIPlanActivity activity) {
+    public STProjectInstanceINIndicator getInByOT(STProjectInstanceOTIndicator ot, PIPlanActivity activity) {
         List result = new ArrayList();
         EntityManager em = PersistenceHelper.service.getEntityManager();
 
@@ -540,6 +540,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         return JSONObject.toJSONString(result, SerializerFeature.DisableCircularReferenceDetect);
 
     }
+
     @Override
     public List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots) {
         List<STProjectInstanceOTIndicator> result = new ArrayList<>();
@@ -556,7 +557,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     public Collection findRatingByIN(STProjectInstanceINIndicator in) throws PIException {
         List<STRating> result = new ArrayList<>();
         Collection ratings = ratingDao.findByInIndicatorReference(ObjectReference.newObjectReference(in));
-        if (Collections.isNotEmpty(ratings)){
+        if (Collections.isNotEmpty(ratings)) {
             result.addAll(ratings);
         }
         return result;

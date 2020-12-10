@@ -22,8 +22,15 @@
             <command className="ext.st.pmgt.indicator.processors.AddRatingProcessor"/>
         </action>
         <action name="indicatorRating">
-            <component name="ext.st.pmgt.indicator.builders.IndicatorRatingTableBuilder" windowType="popup"/>
+            <component name="ext.st.pmgt.indicator.builders.IndicatorRatingTabBuilder" windowType="popup"/>
         </action>
+        <action name="latestRating">
+            <component name="ext.st.pmgt.indicator.builders.LatestIndicatorRatingTableBuilder" windowType="popup"/>
+        </action>
+        <action name="allRating">
+            <component name="ext.st.pmgt.indicator.builders.AllIndicatorRatingTableBuilder" windowType="popup"/>
+        </action>
+
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">

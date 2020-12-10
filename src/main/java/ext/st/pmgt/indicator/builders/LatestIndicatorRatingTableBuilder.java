@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * @Date 2020/12/8
  * @Version V1.0
  **/
-public class IndicatorRatingTableBuilder extends AbstractComponentBuilder {
+public class LatestIndicatorRatingTableBuilder extends AbstractComponentBuilder {
 
     //获取最新的评定
     private STRating getLatestRating(List<STRating> ratings) {
@@ -60,13 +60,11 @@ public class IndicatorRatingTableBuilder extends AbstractComponentBuilder {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
         tableConfig.setEntities(componentData);
-        tableConfig.setId("indicatorRatingTable");
+        tableConfig.setId("indicatorRatingTable1");
         tableConfig.setPrimaryObjectType(STRating.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "INDICATOR_RATING_TABLE", null, params.getLocale()));
         tableConfig.enableSelect();
         tableConfig.setPageSize(50);
-//        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
-
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("inIndicator.otCode");

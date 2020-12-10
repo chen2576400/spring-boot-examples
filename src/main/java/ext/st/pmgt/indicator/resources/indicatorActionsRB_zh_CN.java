@@ -109,5 +109,16 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("指标评定")
     public static final String act_05233322 = "st-pmgt-indicator.indicatorRating.tooltip";
 
+    @RBEntry("最新评定")
+    public static final String act_041212211 = "st-pmgt-indicator.latestRating.description";
+    @RBEntry("最新评定")
+    public static final String act_051233322 = "st-pmgt-indicator.latestRating.tooltip";
+
+    @RBEntry("所有评定")
+    public static final String act_042212211 = "st-pmgt-indicator.allRating.description";
+    @RBEntry("所有评定")
+    public static final String act_052333322 = "st-pmgt-indicator.allRating.tooltip";
+
+
 
 }

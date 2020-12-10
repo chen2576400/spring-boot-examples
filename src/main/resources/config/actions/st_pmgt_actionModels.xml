@@ -82,5 +82,10 @@
         <action name="departmentRiskReport" type="st-report" shortcut="true"/>
     </model>
 
+    <model name="indicatorRatingTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+        <action name="latestRating" type="st-pmgt-indicator" shortcut="true"/>
+        <action name="allRating" type="st-pmgt-indicator" shortcut="true"/>
+    </model>
+
 
 </actionmodels>

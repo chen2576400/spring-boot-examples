@@ -128,5 +128,15 @@ public class indicatorActionsRB extends PIListResourceBundle {
     @RBEntry("indicatorRating")
     public static final String act_05233322 = "st-pmgt-indicator.indicatorRating.tooltip";
 
+    @RBEntry("LatestRating")
+    public static final String act_041212211 = "st-pmgt-indicator.latestRating.description";
+    @RBEntry("LatestRating")
+    public static final String act_051233322 = "st-pmgt-indicator.latestRating.tooltip";
+
+    @RBEntry("AllRating")
+    public static final String act_042212211 = "st-pmgt-indicator.allRating.description";
+    @RBEntry("AllRating")
+    public static final String act_052333322 = "st-pmgt-indicator.allRating.tooltip";
+
 
 }
