@@ -159,7 +159,8 @@ public class ExportExcel {
             TitleByOt(sheet, ots);//OT title
 
             Sheet sheet1 = wb.createSheet("IN指标STProjectInstanceINIndicato");//创建一张表
-            TitleByIN(sheet1, ins);//IN title
+//            TitleByIN(sheet1, ins);//IN title
+            TitleByIN1(sheet1, ins);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -237,7 +238,7 @@ public class ExportExcel {
     }
 
 
-    public void TitleByIN(Sheet sheet, List<STProjectInstanceINIndicator> ins) {
+    public void TitleByIN(Sheet sheet, List<STProjectInstanceINIndicator> ins) {//同一输入最新评定
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Row titleRow = sheet.createRow(0);//创建第一行，起始为0
@@ -262,7 +263,7 @@ public class ExportExcel {
                 Object o = in.getPlanActivityReference() == null ? null : in.getPlanActivityReference().getObject();
                 List<STRating> stRatings = (List<STRating>) ratingDao.findByInIndicatorReference(ObjectReference.newObjectReference(in));
                 if (object instanceof PIPlan) piPlan = (PIPlan) object;
-                if (!CollectionUtils.isEmpty(stRatings)) stRating = stRatings.get(0);
+                if (!CollectionUtils.isEmpty(stRatings)) stRating = stRatings.get(stRatings.size() - 1);
                 if (o instanceof PIPlanActivity) planActivity = (PIPlanActivity) o;
                 if (piPlan == null || piProject == null || planActivity == null || stRating == null) continue;
                 row.createCell(0).setCellValue(planActivity.getName());//任务id(WBS)
@@ -284,6 +285,54 @@ public class ExportExcel {
 
     }
 
+
+    public void TitleByIN1(Sheet sheet, List<STProjectInstanceINIndicator> ins) {  //同一输入多个评定
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Row titleRow = sheet.createRow(0);//创建第一行，起始为0
+        titleRow.createCell(0).setCellValue("任务id(WBS)");//第一列
+        titleRow.createCell(1).setCellValue("计划id");
+        titleRow.createCell(2).setCellValue("权重");
+        titleRow.createCell(3).setCellValue("项目id(projectReference)");
+        titleRow.createCell(4).setCellValue("指标编码（otCode）");
+        titleRow.createCell(5).setCellValue("输出评定");
+        titleRow.createCell(6).setCellValue("评定描述");
+        titleRow.createCell(7).setCellValue("评定时间");
+        int cell = 1;
+        try {
+            for (STProjectInstanceINIndicator in : ins) {
+                PIProject piProject = null;
+                PIPlan piPlan = null;
+                PIPlanActivity planActivity = null;
+                Object object = in.getPlanReference() == null ? null : in.getPlanReference().getObject();
+                piProject = in.getProject();
+                Object o = in.getPlanActivityReference() == null ? null : in.getPlanActivityReference().getObject();
+                List<STRating> stRatings = (List<STRating>) ratingDao.findByInIndicatorReference(ObjectReference.newObjectReference(in));
+                if (object instanceof PIPlan) piPlan = (PIPlan) object;
+                if (o instanceof PIPlanActivity) planActivity = (PIPlanActivity) o;
+                if (piPlan == null || piProject == null || planActivity == null || CollectionUtils.isEmpty(stRatings)) continue;
+                for (STRating stRating : stRatings) {
+                    Row row = sheet.createRow(cell);//从第二行开始保存数据
+                    row.createCell(0).setCellValue(planActivity.getName());//任务id(WBS)
+                    row.createCell(1).setCellValue(piPlan.getName());//计划id
+                    row.createCell(2).setCellValue(in.getWeights());//权重
+                    row.createCell(3).setCellValue(piProject.getProjectName());//项目ID
+                    row.createCell(4).setCellValue(in.getOtCode());//指标编码（otCode）
+                    row.createCell(5).setCellValue(stRating.getOtRating());//输出评定
+                    row.createCell(6).setCellValue(stRating.getDescription());//评定描述
+                    String time = format.format(stRating.getReportTime());
+                    row.createCell(7).setCellValue(time);//评定时间
+                    cell++;
+                }
+
+
+            }
+        } catch (PIException e) {
+            StackTraceElement stackTraceElement = e.getStackTrace()[0];
+            logger.error(String.format("IN创建表格出错,错误信息为%s,错误行数为%s", e, stackTraceElement.getLineNumber()));
+        }
+
+    }
 
 }
 
