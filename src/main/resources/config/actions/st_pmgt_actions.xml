@@ -31,6 +31,10 @@
             <component name="ext.st.pmgt.indicator.builders.AllIndicatorRatingTableBuilder" windowType="popup"/>
         </action>
 
+        <action name="pickDeviationValueAndDifficultyValue">
+            <component name="ext.st.pmgt.indicator.builders.DeviationValueAndDifficultyValueWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.CreateOTIndicatorProcessor"/>
+        </action>
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
@@ -59,8 +63,14 @@
         <action name="listDeliverablesForOT" beforeJS="buttonEvent">
             <component name="ext.st.pmgt.indicator.builders.PlanDeliverablesForOTTableBuilder" windowType="page"/>
         </action>
-
-
+<!--        新增ot-->
+        <action name="createOTIndicator">
+            <component name="ext.st.pmgt.indicator.builders.CreateOTIndicatorWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.FlushOTPageProcessor"/>
+        </action>
+        <action name="deleteOTIndicator" beforeJS="buttonEvent">
+            <command className="ext.st.pmgt.indicator.processors.DeleteOTIndicatorProcessor"/>
+        </action>
     </actionsgroup>
     <actionsgroup name="st-report" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="pertReport" beforeJS="buttonEvent">
@@ -75,5 +85,12 @@
         </action>
     </actionsgroup>
 
+     <actionsgroup name="st-pmgt-in" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+         <action name="creatINIndicator">
+              <component name="ext.st.pmgt.indicator.builders.CreateINIndicatorWizardBuilder" windowType="popup"/>
+              <command className="ext.st.pmgt.indicator.processors.CreateINIndicatorProcessor"/>
+         </action>
+
+     </actionsgroup>
 
 </listofactions>

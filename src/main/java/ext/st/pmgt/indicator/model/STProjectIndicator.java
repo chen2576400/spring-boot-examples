@@ -1,9 +1,6 @@
 package ext.st.pmgt.indicator.model;
 
-import com.pisx.tundra.foundation.fc.model.ObjectIdentifier;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
-import com.pisx.tundra.foundation.fc.model.PersistInfo;
-import com.pisx.tundra.foundation.fc.util.InvalidAttributeException;
 import com.pisx.tundra.foundation.inf.container.model.OrgContainer;
 import com.pisx.tundra.foundation.inf.container.model.PIContained;
 import com.pisx.tundra.foundation.inf.container.model.PIContainer;
@@ -173,35 +170,37 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
         setCompetenceReference(competence!=null?ObjectReference.newObjectReference(competence):null);
     }
 
-    @Override
-    public ObjectIdentifier getObjectIdentifier() {
-        return this.getObjectIdentifier();
-    }
+//    @Override
+//    public ObjectIdentifier getObjectIdentifier() {
+//        return this.getObjectIdentifier();
+//    }
+//
+//    @Override
+//    public void setObjectIdentifier(ObjectIdentifier oid) {
+//        this.setObjectIdentifier(oid);
+//    }
 
-    @Override
-    public void setObjectIdentifier(ObjectIdentifier oid) {
-        this.setObjectIdentifier(oid);
-    }
+//    @Override
+//    public PersistInfo getPersistInfo() {
+//        return this.getPersistInfo();
+//    }
+//
+//    @Override
+//    public void setPersistInfo(PersistInfo persistInfo) {
+//        this.setPersistInfo(persistInfo);
+//    }
+//
+//    @Override
+//    public void checkAttributes() throws InvalidAttributeException {
+//
+//    }
+//
+//    @Override
+//    public String getOid() throws PIException {
+//        return null;
+//    }
 
-    @Override
-    public PersistInfo getPersistInfo() {
-        return this.getPersistInfo();
-    }
 
-    @Override
-    public void setPersistInfo(PersistInfo persistInfo) {
-        this.setPersistInfo(persistInfo);
-    }
-
-    @Override
-    public void checkAttributes() throws InvalidAttributeException {
-
-    }
-
-    @Override
-    public String getOid() throws PIException {
-        return null;
-    }
 
 
     public static STProjectIndicator newSTProjectIndicator() throws PIException {

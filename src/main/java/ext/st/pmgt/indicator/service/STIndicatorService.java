@@ -1,13 +1,16 @@
 package ext.st.pmgt.indicator.service;
 
-import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import ext.st.pmgt.indicator.model.*;
+import ext.st.pmgt.indicator.model.STDeliverableType;
+import ext.st.pmgt.indicator.model.STProCompetence;
+import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
+import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -76,4 +79,10 @@ public interface STIndicatorService {
     List<STProjectInstanceOTIndicator> getLatestOt(List<STProjectInstanceOTIndicator> ots);
 
     Collection findRatingByIN(STProjectInstanceINIndicator in) throws PIException;
+
+    STProjectInstanceOTIndicator updateBreadthAndCriticality(String otCode,PIPlan piPlan) throws PIException;
+
+    public Collection getAllIndicatorByCompetence(PIGroup piGroup, Boolean enable) throws PIException;
+
+    public Collection findINIndicatorByOtCode(String otCode) throws PIException;
 }

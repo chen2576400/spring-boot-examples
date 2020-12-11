@@ -31,9 +31,12 @@ public class modelRB_zh_CN extends PIListResourceBundle {
 
     @RBEntry("交付物")
     public static final String OTIndicator_08 = "STProjectInstanceOTIndicator.planDeliverableReference.value";
-
+    @RBEntry("交付物类型编码")
+    public static final String OTIndicator_09= "STProjectInstanceOTIndicator.deliverableTypeCode.value";
     @RBEntry("权重")
     public static final String INIndicator_03 = "STProjectInstanceINIndicator.weights.value";
+    @RBEntry("Ot指标")
+    public static final String INIndicator_044 = "STProjectInstanceINIndicator.otCode.value";
 
     @RBEntry("预计完成时间")
     public static final String STExpectedFinishTime_01 = "STExpectedFinishTime.expectedFinishTime.value";
@@ -52,4 +55,14 @@ public class modelRB_zh_CN extends PIListResourceBundle {
 
     @RBEntry("汇报时间")
     public static final String INIndicator_06= "STRating.reportTime.value";
+
+    @RBEntry("指标编码")
+    public static final String STProjectIndicator_01= "STProjectIndicator.code.value";
+    @RBEntry("指标描述")
+    public static final String STProjectIndicator_02= "STProjectIndicator.decription.value";
+    @RBEntry("指标定义")
+    public static final String STProjectIndicator_03= "STProjectIndicator.definition.value";
+    @RBEntry("交付物类型编码")
+    public static final String STProjectIndicator_04= "STProjectIndicator.deliverableTypeCode.value";
+
 }

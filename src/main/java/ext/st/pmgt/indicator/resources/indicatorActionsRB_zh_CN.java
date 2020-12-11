@@ -121,4 +121,35 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
 
 
 
+    @RBEntry("新增IN指标")
+    public static final String in_001 = "st-pmgt-in.creatINIndicator.description";
+    @RBEntry("新增IN指标")
+    public static final String in_002 = "st-pmgt-in.creatINIndicator.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String in_003 = "st-pmgt-in.creatINIndicator.icon";
+    @RBEntry("指标选择")
+    public static final String in_004 = "st-pmgt-in.INIndicatorPicker.description";
+    @RBEntry("指标选择")
+    public static final String in_005 = "st-pmgt-in.INIndicatorPicker.tooltip";
+
+    @RBEntry("新增OT指标")
+    public static final String ot_001 = "st-pmgt-ot.createOTIndicator.description";
+    @RBEntry("新增OT指标")
+    public static final String ot_002 = "st-pmgt-ot.createOTIndicator.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String ot_003 = "st-pmgt-ot.createOTIndicator.icon";
+
+    @RBEntry("删除指标")
+    public static final String ot_004 = "st-pmgt-ot.deleteOTIndicator.description";
+    @RBEntry("删除指标")
+    public static final String ot_005 = "st-pmgt-ot.deleteOTIndicator.tooltip";
+    @RBEntry("img/pmgt/delete.gif")
+    public static final String ot_006 = "st-pmgt-ot.deleteOTIndicator.icon";
+
+    @RBEntry("偏差值和困难度选择")
+    public static final String act_04212111 = "st-pmgt-indicator.pickDeviationValueAndDifficultyValue.description";
+    @RBEntry("偏差值和困难度选择")
+    public static final String act_05233221 = "st-pmgt-indicator.pickDeviationValueAndDifficultyValue.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String act_06434331 = "st-pmgt-indicator.pickDeviationValueAndDifficultyValue.icon";
 }

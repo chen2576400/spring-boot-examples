@@ -3,13 +3,9 @@ package ext.st.pmgt.indicator.service;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
-import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
-import com.pisx.tundra.foundation.fc.model.PIReference;
-import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
 import com.pisx.tundra.foundation.org.OrgHelper;
-import com.pisx.tundra.foundation.org.model.MembershipLink;
 import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
@@ -38,7 +34,6 @@ import ext.st.pmgt.indicator.dao.*;
 import ext.st.pmgt.indicator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -150,7 +145,11 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         return result;
     }
 
-
+    public Collection findINIndicatorByOtCode(String otCode) throws PIException{
+        ArrayList result = new ArrayList();
+        result.addAll(projectINIndicatorDao.findByOtCode(otCode));
+        return result;
+    }
     /*
      *参数：planid(数字)
      * 返回数据：权重，汇报偏差，标准偏差，（汇报困难度），标准困难度，广度，关键度，输出评定，平均发布次数，
@@ -561,5 +560,80 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             result.addAll(ratings);
         }
         return result;
+    }
+
+    /**更新广度和关键度
+     *
+     * @param otCode
+     * @param piPlan
+     */
+    public STProjectInstanceOTIndicator updateBreadthAndCriticality(String otCode,PIPlan piPlan) throws PIException{
+     //查询在项目计划中项目实例ot库中有多少otCode
+              List result = new ArrayList();
+              EntityManager em = PersistenceHelper.service.getEntityManager();
+               Long countValue = 0L;
+               Double weightvalue=0D;
+              try {
+                  CriteriaBuilder cb = em.getCriteriaBuilder();
+                  CriteriaQuery criteriaQuery = cb.createQuery();
+                  List<Predicate> predicates = new ArrayList<>();
+                  Root root = criteriaQuery.from(STProjectInstanceINIndicator.class);
+                  Path key1 = root.get("otCode");
+                  Path key2 = root.get("planReference").get("key");
+                  Path key3 = root.get("weights");
+                  Predicate p = cb.equal(key1, otCode);
+                  predicates.add(p);
+                  Predicate p2 = cb.equal(key2, piPlan.getObjectIdentifier());
+                  predicates.add(p2);
+                  criteriaQuery.multiselect(cb.count(key1),cb.sum(key3));
+                  Predicate[] pr = new Predicate[predicates.size()];
+                  predicates.toArray(pr);
+                  criteriaQuery = criteriaQuery.where(pr);
+                  TypedQuery query = em.createQuery(criteriaQuery);
+                  List qr = query.getResultList();
+                  countValue = Long.valueOf(String.valueOf(((Object[])(qr.get(0)))[0])).longValue() ;
+                  weightvalue=Double.valueOf(String.valueOf(((Object[])(qr.get(0)))[1])).doubleValue() ;
+                  STProjectInstanceOTIndicator byCode = projectOTIndicatorDao.findByCode(otCode);
+                  byCode.setBreadth(countValue.doubleValue());
+                  byCode.setCriticality(weightvalue);
+                  STProjectInstanceOTIndicator save = PersistenceHelper.service.save(byCode);
+                  return save;
+              }  catch (Exception e) {
+                  e.printStackTrace();
+             } finally {
+              //em.close();
+            }
+             return null;
+    }
+
+    public Collection getAllIndicatorByCompetence(PIGroup piGroup,Boolean enable) throws PIException{
+        STProCompetence stProCompetence=proCompetenceDao.findByDepartmentReference(ObjectReference.newObjectReference(piGroup));
+        if(stProCompetence!=null) {
+            List result = new ArrayList();
+            EntityManager em = PersistenceHelper.service.getEntityManager();
+            try {
+                CriteriaBuilder cb = em.getCriteriaBuilder();
+                CriteriaQuery criteriaQuery = cb.createQuery();
+                List<Predicate> predicates = new ArrayList<>();
+                Root root = criteriaQuery.from(STProjectIndicator.class);
+                Path key1 = root.get("competenceReference").get("key");
+                Path key2 = root.get("enabled");
+                Predicate p1 = cb.equal(key1, stProCompetence.getObjectIdentifier());
+                predicates.add(p1);
+                Predicate p2 = cb.equal(key2, enable);
+                predicates.add(p2);
+                Predicate[] pr = new Predicate[predicates.size()];
+                predicates.toArray(pr);
+                criteriaQuery = criteriaQuery.select(root).where(pr);
+                TypedQuery query = em.createQuery(criteriaQuery);
+                result = query.getResultList();
+                return result;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                //em.close();
+            }
+        }
+        return null;
     }
 }

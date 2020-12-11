@@ -1,6 +1,5 @@
 package ext.st.pmgt.indicator.builders;
 
-import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIMessage;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
@@ -9,22 +8,12 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
-import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
-import com.pisx.tundra.pmgt.resource.PIResourceHelper;
-import com.pisx.tundra.pmgt.resource.model.PIObs;
-import com.pisx.tundra.pmgt.resource.model.PIResource;
-import com.pisx.tundra.pmgt.resource.service.PIResourceUpAndDownService;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @ClassName PlanActivityOTIndicatorTableBuilder
@@ -58,8 +47,15 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.enableSelect();
         tableConfig.setPageSize(50);
 //        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
-
-
+//        判断任务是否分配或完成度是否为0%
+//        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
+//        PIPlanActivity piPlanActivity = null;
+//        if (sourceObject instanceof PIPlanActivity) {
+//            piPlanActivity = (PIPlanActivity) sourceObject;
+//        }
+//        if(piPlanActivity.getPhysicalCompletePercent()==0) {
+            tableConfig.setToolbarActionModel("OTIndicatorToolbar");
+//        }
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
         columnconfig.enableSort();
