@@ -477,7 +477,8 @@
             <command className="com.pisx.tundra.pmgt.risk.processors.EditRiskTypeProcessor"/>
         </action>
         <action name="listProjectRisksForProject">
-            <component name="com.pisx.tundra.pmgt.risk.builders.ProjectRisksForProjectTableBuilder" windowType="page"/>
+<!--            <component name="com.pisx.tundra.pmgt.risk.builders.ProjectRisksForProjectTableBuilder" windowType="page"/>-->
+<component name="ext.st.pmgt.indicator.builders.ProjectRisksForProjectTableBuilder"/>
         </action>
         <action name="risk_Create">
             <component name="com.pisx.tundra.pmgt.risk.builders.CreateOREditProjectRiskWizardBuilder"

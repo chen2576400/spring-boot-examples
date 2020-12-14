@@ -119,4 +119,62 @@ public class modelRB extends PIListResourceBundle {
 
     @RBEntry("solution")
     public static final String PIProjectIssue_18= "STProjectIssue.solution.value";
+
+
+
+
+
+
+    @RBEntry("Risk Code")
+    public static final String PIProjectRisk_01 = "STProjectRisk.riskCode.value";
+    @RBEntry("Risk Name")
+    public static final String PIProjectRisk_02 = "STProjectRisk.riskName.value";
+    @RBEntry("Risk To Type")
+    public static final String PIProjectRisk_03 = "STProjectRisk.riskToType.value";
+    @RBEntry("Risk Description")
+    public static final String PIProjectRisk_04 = "STProjectRisk.riskDescription.value";
+    @RBEntry("Add Date")
+    public static final String PIProjectRisk_05 = "STProjectRisk.addDate.value";
+    @RBEntry("Response Text")
+    public static final String PIProjectRisk_06 = "STProjectRisk.responseText.value";
+    @RBEntry("Resolved Date")
+    public static final String PIProjectRisk_07 = "STProjectRisk.resolvedDate.value";
+    @RBEntry("Creator")
+    public static final String PIProjectRisk_08 = "STProjectRisk.creator.value";
+    @RBEntry("ResponseType")
+    public static final String PIProjectRisk_09 = "STProjectRisk.responseType.value";
+    @RBEntry("RiskCause")
+    public static final String PIProjectRisk_10 = "STProjectRisk.riskCause.value";
+    @RBEntry("RiskEffect")
+    public static final String PIProjectRisk_101 = "STProjectRisk.riskEffect.value";
+    @RBEntry("Notes")
+    public static final String PIProjectRisk_11 = "STProjectRisk.notes.value";
+    @RBEntry("PreRspProbability")
+    public static final String PIProjectRisk_12 = "STProjectRisk.preRspProbability.value";
+    @RBEntry("PreRspSchdProbability")
+    public static final String PIProjectRisk_13 = "STProjectRisk.preRspSchdProbability.value";
+    @RBEntry("PreRspCostProbability")
+    public static final String PIProjectRisk_14 = "STProjectRisk.preRspCostProbability.value";
+    @RBEntry("PostRspProbability")
+    public static final String PIProjectRisk_141 = "STProjectRisk.postRspProbability.value";
+    @RBEntry("PostRspSchdProbability")
+    public static final String PIProjectRisk_15 = "STProjectRisk.postRspSchdProbability.value";
+    @RBEntry("PostRspCostProbability")
+    public static final String PIProjectRisk_16 = "STProjectRisk.postRspCostProbability.value";
+    @RBEntry("identifiedByReference")
+    public static final String PIProjectRisk_17 = "STProjectRisk.identifiedByReference.value";
+    @RBEntry("riskTypeReference")
+    public static final String PIProjectRisk_18 = "STProjectRisk.riskTypeReference.value";
+    @RBEntry("rsrcReference")
+    public static final String PIProjectRisk_19 = "STProjectRisk.rsrcReference.value";
+    @RBEntry("createStamp")
+    public static final String PIProjectRisk_20 = "STProjectRisk.persistInfo.createStamp.value";
+    @RBEntry("updateStamp")
+    public static final String PIProjectRisk_21 = "STProjectRisk.persistInfo.updateStamp.value";
+    @RBEntry("project")
+    public static final String PIProjectRisk_22 = "STProjectRisk.projectReference.value";
+    @RBEntry("baselineProject")
+    public static final String PIProjectRisk_23 = "STProjectRisk.baselineProjectReference.value";
+    @RBEntry("state")
+    public static final String PIProjectRisk_24 = "STProjectRisk.state.state.stateName.value";
 }
