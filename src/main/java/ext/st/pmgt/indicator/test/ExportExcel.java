@@ -159,8 +159,8 @@ public class ExportExcel {
             TitleByOt(sheet, ots);//OT title
 
             Sheet sheet1 = wb.createSheet("IN指标STProjectInstanceINIndicato");//创建一张表
-//            TitleByIN(sheet1, ins);//IN title
-            TitleByIN1(sheet1, ins);
+            TitleByIN(sheet1, ins);//IN title
+//            TitleByIN1(sheet1, ins);
         } catch (Exception e) {
             e.printStackTrace();
         }
