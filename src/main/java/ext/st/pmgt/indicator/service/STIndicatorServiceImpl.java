@@ -145,9 +145,9 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         return result;
     }
 
-    public Collection findINIndicatorByOtCode(String otCode) throws PIException{
+    public Collection findINIndicatorByOtCode(String otCode,ObjectReference planReference) throws PIException{
         ArrayList result = new ArrayList();
-        result.addAll(projectINIndicatorDao.findByOtCode(otCode));
+        result.addAll(projectINIndicatorDao.findByOtCodeAndPlanReference(otCode,planReference));
         return result;
     }
     /*

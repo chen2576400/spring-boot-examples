@@ -121,7 +121,7 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
         if (projectOTIndicatorByPlanActivity != null && projectOTIndicatorByPlanActivity.size() > 0) {
 //            遍历所有的输出指标，找到对应的输入指标的任务
             for (STProjectInstanceOTIndicator stProjectInstanceOTIndicator : projectOTIndicatorByPlanActivity) {
-                Collection<STProjectInstanceINIndicator> byOtCode = STIndicatorHelper.service.findINIndicatorByOtCode(stProjectInstanceOTIndicator.getCode());
+                Collection<STProjectInstanceINIndicator> byOtCode = STIndicatorHelper.service.findINIndicatorByOtCode(stProjectInstanceOTIndicator.getCode(),stProjectInstanceOTIndicator.getPlanReference());
                 if (byOtCode != null && byOtCode.size() > 0) {
                     for (STProjectInstanceINIndicator stProjectInstanceINIndicator : byOtCode) {
                         PIPlanActivity planActivity = (PIPlanActivity) stProjectInstanceINIndicator.getPlanActivity();

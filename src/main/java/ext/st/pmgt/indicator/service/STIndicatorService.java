@@ -84,5 +84,5 @@ public interface STIndicatorService {
 
     public Collection getAllIndicatorByCompetence(PIGroup piGroup, Boolean enable) throws PIException;
 
-    public Collection findINIndicatorByOtCode(String otCode) throws PIException;
+    public Collection findINIndicatorByOtCode(String otCode,ObjectReference planReference) throws PIException;
 }
