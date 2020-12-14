@@ -35,8 +35,10 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
         Collection ins = STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
         Set result = new HashSet<>();
 //        得到当前任务存在in指标
-        for (Object in : ins) {
-            result.addAll(STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in));
+        if(ins!=null&&ins.size()>0) {
+            for (Object in : ins) {
+                result.addAll(STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in));
+            }
         }
         allresult.removeAll(result);
 //        防止指标循环使用
@@ -84,15 +86,18 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
-        columnconfig.haveInfoPageLink();
+        columnconfig.enableSort();
+        columnconfig.enableFilter();
         tableConfig.addColumn(columnconfig);
 
         ColumnConfig columnconfig2 = componentConfigFactory.newColumnConfig();
         columnconfig2.setName("description");
+        columnconfig2.enableFilter();
         tableConfig.addColumn(columnconfig2);
 
         ColumnConfig columnconfig3 = componentConfigFactory.newColumnConfig();
         columnconfig3.setName("definition");
+        columnconfig3.enableEllipsis();
         tableConfig.addColumn(columnconfig3);
 
 
