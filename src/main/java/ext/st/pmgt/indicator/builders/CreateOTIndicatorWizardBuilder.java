@@ -44,14 +44,16 @@ public class CreateOTIndicatorWizardBuilder extends AbstractComponentBuilder {
         Collection<PIGroup> groups = OrgHelper.service.getImmediateParentGroups(principalReference.getObject(), false);
 //         得到相应专业能力的指标
         Set<STProjectIndicator> indicatorResult = new HashSet<>();
-        if (groups.size() > 0) {
+        if (groups!=null&&groups.size() > 0) {
             for (PIGroup group : groups) {
                 Collection indicator = STIndicatorHelper.service.getAllIndicatorByCompetence(group,true);
-                indicatorResult.addAll(indicator);
+                if(indicator!=null&&indicator.size()>0) {
+                    indicatorResult.addAll(indicator);
+                }
             }
         }
         Set result =new HashSet();
-        if (indicatorResult.size() > 0) {
+        if (indicatorResult!=null&&indicatorResult.size() > 0) {
             for (STProjectIndicator stProjectIndicator : indicatorResult) {
                 if (otResult.size() > 0) {
                     for (STProjectInstanceOTIndicator stProjectInstanceOTIndicator : otResult) {
@@ -80,6 +82,7 @@ public class CreateOTIndicatorWizardBuilder extends AbstractComponentBuilder {
         tableConfig.setEntities(componentData);
 //        tableConfig.enableSelect();
 //        tableConfig.setSingleSelect(true);
+        tableConfig.enableSearch();
         tableConfig.setPrimaryObjectType(STProjectIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "OT_INDICATOR_TABLE", null, params.getLocale()));
         tableConfig.haveBorder();
@@ -88,6 +91,7 @@ public class CreateOTIndicatorWizardBuilder extends AbstractComponentBuilder {
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("code");
+        column1.enableSort();
         tableConfig.addColumn(column1);
 
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
