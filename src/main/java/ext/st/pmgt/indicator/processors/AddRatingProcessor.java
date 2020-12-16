@@ -4,11 +4,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
+import com.pisx.tundra.foundation.org.model.PIUser;
+import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultCreateFormProcessor;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
+import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
+import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
@@ -19,6 +23,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName AddRatingProcessor
@@ -28,21 +33,27 @@ import java.util.Map;
  * @Version V1.0
  **/
 @Component
-public class AddRatingProcessor extends DefaultObjectFormProcessor{
+public class AddRatingProcessor extends DefaultObjectFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
-        STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) sourceObject;;
-        STProjectInstanceINIndicator in = null;
+//        boolean flag = havePrivilege(params);
+//        if (!flag) {//资源没有分配到任务 无法添加评定
+//            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
+//        }
 
-        if (params.getParamMap().get("parentPageOid")!=null&&params.getParamMap().get("parentPageOid").length>0){
-            String parentPageOid = params.getParamMap().get("parentPageOid")[0];
+        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
+        STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) sourceObject;
+
+        STProjectInstanceINIndicator in = null;
+        String[] parentPageOids = params.getParamMap().get("parentPageOid");
+        if (parentPageOids != null && parentPageOids.length > 0) {
+            String parentPageOid = parentPageOids[0];
             PIPlanActivity activity = (PIPlanActivity) new ReferenceFactory().getReference(parentPageOid).getObject();
-            in = STIndicatorHelper.service.getInByOT(ot,activity);
+            in = STIndicatorHelper.service.getInByOT(ot, activity);
         }
 
 
-        if (in==null){
+        if (in == null) {
             return new ResponseWrapper(ResponseWrapper.FAILED, "没有找到对应的in指标！", null);
         }
         Map<String, Object> layoutFields = params.getNfCommandBean().getLayoutFields();
@@ -58,5 +69,20 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor{
         PersistenceHelper.service.save(stRating);
 
         return new ResponseWrapper(ResponseWrapper.PAGE_FLUSH, "添加成功！", null);
+    }
+
+    private boolean havePrivilege(ComponentParams params) throws PIException {
+        String[] parentPageOids = params.getParamMap().get("parentPageOid");
+        if (parentPageOids != null && parentPageOids.length > 0) {
+            PIUser currentUser = (PIUser) SessionHelper.service.getPrincipal();
+            String parentPageOid = parentPageOids[0];
+            PIPlanActivity activity = (PIPlanActivity) new ReferenceFactory().getReference(parentPageOid).getObject();
+            List<PIResourceAssignment> assignments = (List) PIAssignmentHelper.service.getResourceAssignments(activity);
+            List<PIUser> users = assignments.stream().map(item -> item.getRsrc().getUser()).collect(Collectors.toList());
+            if (!users.contains(currentUser)) {//资源没有分配到任务 无法汇报指标
+                return false;
+            }
+        }
+        return true;
     }
 }

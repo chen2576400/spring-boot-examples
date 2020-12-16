@@ -36,6 +36,8 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
             List<STProjectInstanceOTIndicator> ots = (List<STProjectInstanceOTIndicator>) STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in);
             if (ots.size() > 0) {
                 result.addAll(STIndicatorHelper.service.getLatestOt(ots));
+            }else {
+                System.out.println("当前需求的IN指标"+((STProjectInstanceINIndicator) in).getOtCode()+"没有在本计划任何任务中产出，请联系PM或者PMO！");
             }
         }
 

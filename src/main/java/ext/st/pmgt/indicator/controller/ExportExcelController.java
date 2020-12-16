@@ -37,7 +37,7 @@ public class ExportExcelController {
 
     @RequestMapping(value = "downloadExcel", produces = "application/json; charset=utf-8")
     public Result downloadExcel(HttpServletResponse httpServletResponse, HttpServletRequest request) throws IOException {
-        File file = new File("D:\\最新指标数据模板.xlsx");
+        File file = new File("C:\\最新指标数据模板.xlsx");
         if(file.exists()) {
             FileInputStream fileInputStream = new FileInputStream(file);
             httpServletResponse.setHeader("content-Type", "application/vnd.ms-excel");

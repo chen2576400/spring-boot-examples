@@ -4,13 +4,18 @@ import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.model.*;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
+import com.pisx.tundra.foundation.org.model.PIPrincipal;
+import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.SerializableCloner;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
+import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
+import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
+import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +24,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName IndicatorReportProcessor
@@ -32,6 +38,10 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
+//        boolean flag = havePrivilege(params);
+//        if (!flag) {//资源没有分配到任务 无法汇报指标
+//            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
+//        }
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         PIPlanDeliverable deliverable = null;
         if (sourceObject instanceof PIPlanDeliverable) {
@@ -131,6 +141,21 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
         }
         return result;
+    }
+
+    private boolean havePrivilege(ComponentParams params) throws PIException {
+        String[] parentPageOids = params.getParamMap().get("parentPageOid");
+        if (parentPageOids != null && parentPageOids.length > 0) {
+            PIUser currentUser = (PIUser) SessionHelper.service.getPrincipal();
+            String parentPageOid = parentPageOids[0];
+            PIPlanActivity activity = (PIPlanActivity) new ReferenceFactory().getReference(parentPageOid).getObject();
+            List<PIResourceAssignment> assignments = (List) PIAssignmentHelper.service.getResourceAssignments(activity);
+            List<PIUser> users = assignments.stream().map(item -> item.getRsrc().getUser()).collect(Collectors.toList());
+            if (!users.contains(currentUser)) {//资源没有分配到任务 无法汇报指标
+                return false;
+            }
+        }
+        return true;
     }
 
 
