@@ -40,7 +40,8 @@
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="reportExpectedFinishTime" selectRequired="true">
-            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="popup"/>
+            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder"
+                       windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.ReportPlanActivitySTExpectedFinishTimeProcessor"/>
         </action>
         <action name="createDeliverable">
@@ -98,12 +99,27 @@
         <action name="listProjectIssuesForProject">
             <component name="ext.st.pmgt.issue.builders.ProjectRelatedIssuesTableBuilder" windowType="page"/>
         </action>
+        <!-- 创建问题-->
+        <action name="createProjectIssue">
+            <component name="ext.st.pmgt.issue.builders.CreateOREditProjectIssueWizardBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.CreateProjectIssueProcessor"/>
+        </action>
     </actionsgroup>
+
+
     <!--风险-->
     <actionsgroup name="pi-pmgt-risk-copy" class="" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
         <action name="listProjectRisksForProject">
             <component name="ext.st.pmgt.issue.builders.ProjectRisksForProjectTableBuilder"/>
         </action>
+        <!--创建风险-->
+        <action name="risk_Create">
+            <component name="ext.st.pmgt.issue.builders.CreateOREditProjectRiskWizardBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.CreateProjectRiskProcessor"/>
+        </action>
+
     </actionsgroup>
 
 

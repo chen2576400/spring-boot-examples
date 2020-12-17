@@ -95,6 +95,23 @@
         <action name="allRating" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
+    <model name="folderContentsTableToolbar"
+           resourceBundle="com.pisx.tundra.foundation.folder.resources.folderActionsRB">
+        <action name="createDocument" type="document" shortcut="true"/>
+        <action name="copyObjects" type="uiComponent" shortcut="true"/>
+        <action name="createSubFolder" type="folder" shortcut="true"/>
+        <action name="setObjectsLcState" type="topLcState" shortcut="true"/>
+        <action name="exportExcel" type="uiComponent" shortcut="false"/>
+    </model>
+
+    <model name="UserAssignmentsTableToolBar" resourceBundle="com.pisx.tundra.pmgt.project.resources.projectActionsRB">
+        <action name="submitResourceHours" type="pi-pmgt-project" shortcut="true"/>
+        <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
+    </model>
+
+
+
+
 
     <model name="pi-pmgtProjectInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="details" type="pi-pmgt-project"/>
@@ -113,8 +130,6 @@
         <action name="listProjectChangeRequestsForProject" type="pi-pmgt-project"/>
         <action name="projectThresholds" type="pi-pmgt-project"/>
         <action name="folderTreeBrowser" type="folder"/>
-
-
         <!--问题-->
         <action name="listProjectIssuesForProject" type="pi-pmgt-project-copy"/>
         <!--风险-->
@@ -122,19 +137,21 @@
     </model>
 
 
-    <model name="folderContentsTableToolbar"
-           resourceBundle="com.pisx.tundra.foundation.folder.resources.folderActionsRB">
-        <action name="createDocument" type="document" shortcut="true"/>
+
+    <model name="projectRelatedIssuesToolBar" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="createProjectIssue" type="pi-pmgt-project-copy" shortcut="true"/>
         <action name="copyObjects" type="uiComponent" shortcut="true"/>
-        <action name="createSubFolder" type="folder" shortcut="true"/>
-        <action name="setObjectsLcState" type="topLcState" shortcut="true"/>
-        <action name="exportExcel" type="uiComponent" shortcut="false"/>
+        <action name="deleteProjectIssue" type="pi-pmgt-project" shortcut="true"/>
+        <action name="exportExcel"  type="uiComponent"/>
     </model>
 
 
-    <model name="UserAssignmentsTableToolBar" resourceBundle="com.pisx.tundra.pmgt.project.resources.projectActionsRB">
-        <action name="submitResourceHours" type="pi-pmgt-project" shortcut="true"/>
-        <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
+    <model name="projectRisksTableToolbarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="risk_Create" type="pi-pmgt-risk-copy" shortcut="true"/>
+        <action name="deleteProjectRisk" type="pi-pmgt-risk" shortcut="true"/>
+        <action name="copyObjects" type="uiComponent" shortcut="true"/>
+        <action name="pasteProjectRisksForProject" type="pi-pmgt-risk" shortcut="true"/>
+        <action name="exportExcel" type="uiComponent" shortcut="true"/>
     </model>
 
 </actionmodels>
