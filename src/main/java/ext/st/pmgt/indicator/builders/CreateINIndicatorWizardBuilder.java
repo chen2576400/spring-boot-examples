@@ -17,6 +17,7 @@ import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
+import org.apache.commons.collections.CollectionUtils;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -35,7 +36,7 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
         Collection ins = STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
         Set result = new HashSet<>();
 //        得到当前任务存在in指标
-        if(ins!=null&&ins.size()>0) {
+        if(CollectionUtils.isNotEmpty(ins)) {
             for (Object in : ins) {
                 result.addAll(STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in));
             }
@@ -127,7 +128,7 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
 //            遍历所有的输出指标，找到对应的输入指标的任务
             for (STProjectInstanceOTIndicator stProjectInstanceOTIndicator : projectOTIndicatorByPlanActivity) {
                 Collection<STProjectInstanceINIndicator> byOtCode = STIndicatorHelper.service.findINIndicatorByOtCode(stProjectInstanceOTIndicator.getCode(),stProjectInstanceOTIndicator.getPlanReference());
-                if (byOtCode != null && byOtCode.size() > 0) {
+                if (CollectionUtils.isNotEmpty(byOtCode) ) {
                     for (STProjectInstanceINIndicator stProjectInstanceINIndicator : byOtCode) {
                         PIPlanActivity planActivity = (PIPlanActivity) stProjectInstanceINIndicator.getPlanActivity();
 //                       如果任务出现过 则表示几个输出指标作为同一个任务的输入指标或指标循环使用
