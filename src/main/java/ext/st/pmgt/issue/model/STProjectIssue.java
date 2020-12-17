@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.model;
+package ext.st.pmgt.issue.model;
 
 /*
 
@@ -558,7 +558,7 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     public String getContainerName() {
         try {
             return (String) ((PIContainerRef) getContainerReference()).getName();
-        } catch (NullPointerException npe) {
+        } catch (java.lang.NullPointerException npe) {
             return null;
         }
     }
@@ -774,7 +774,7 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     public LcState getLifeCycleState() {
         try {
             return (LcState) ((LifeCycleState) getState()).getState();
-        } catch (NullPointerException npe) {
+        } catch (java.lang.NullPointerException npe) {
             return null;
         }
     }
@@ -788,7 +788,7 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     public boolean isLifeCycleAtGate() {
         try {
             return (boolean) ((LifeCycleState) getState()).isAtGate();
-        } catch (NullPointerException npe) {
+        } catch (java.lang.NullPointerException npe) {
             return false;
         }
     }
@@ -910,17 +910,17 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     }
 
     @Override
-    public TypeDefinitionReference getlTDTypeDefinitionReference() {
+    public TypeDefinitionReference getLTDTypeDefinitionReference() {
         return lTDTypeDefinitionReference;
     }
 
     @Override
     public void setLTDTypeDefinition(LTDTypeDefinition typeDefinition) throws PIPropertyVetoException, PIException {
-        this.setlTDTypeDefinitionReference(typeDefinition == null ? null : TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
+        this.setLTDTypeDefinitionReference(typeDefinition == null ? null : TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
     }
 
     @Override
-    public void setlTDTypeDefinitionReference(TypeDefinitionReference typeReference) throws PIPropertyVetoException {
+    public void setLTDTypeDefinitionReference(TypeDefinitionReference typeReference) throws PIPropertyVetoException {
         this.lTDTypeDefinitionReference = lTDTypeDefinitionReference;
     }
 
@@ -938,7 +938,7 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     //   this.name = paramString;
     //}
 
-    public static STProjectIssue newPIProjectIssue(PIPlannable plannable) throws PIException, PIPropertyVetoException {
+    public static STProjectIssue newSTProjectIssue(PIPlannable plannable) throws PIException, PIPropertyVetoException {
         STProjectIssue issue = new STProjectIssue();
         if (((plannable instanceof PIPlan)) || ((plannable instanceof PIPlanActivity))) {
 
@@ -949,7 +949,7 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
         }
     }
 
-    public static STProjectIssue newPIProjectIssue() throws PIException, PIPropertyVetoException {
+    public static STProjectIssue newSTProjectIssue() throws PIException, PIPropertyVetoException {
         STProjectIssue issue = new STProjectIssue();
         issue.initialize();
         return issue;

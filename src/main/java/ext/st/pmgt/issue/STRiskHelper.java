@@ -1,8 +1,8 @@
-package ext.st.pmgt.indicator;
+package ext.st.pmgt.issue;
 
 import com.pisx.tundra.foundation.util.ApplicationContextUtil;
-import ext.st.pmgt.indicator.service.STRiskService;
-import ext.st.pmgt.indicator.service.STRiskServiceImpl;
+import ext.st.pmgt.issue.service.STRiskService;
+import ext.st.pmgt.issue.service.STRiskServiceImpl;
 
 import java.io.Serializable;
 

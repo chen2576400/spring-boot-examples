@@ -83,11 +83,12 @@
         <action name="departmentRiskReport" type="st-report" shortcut="true"/>
     </model>
 
-     <model name="OTIndicatorToolbar" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-         <action name="createOTIndicator" type="st-pmgt-ot" shortcut="true"/>
-         <action name="deleteOTIndicator" type="st-pmgt-ot" shortcut="true"/>
-     </model>
-    <model name="DeviationValueAndDifficultyValueMenu" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+    <model name="OTIndicatorToolbar" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+        <action name="createOTIndicator" type="st-pmgt-ot" shortcut="true"/>
+        <action name="deleteOTIndicator" type="st-pmgt-ot" shortcut="true"/>
+    </model>
+    <model name="DeviationValueAndDifficultyValueMenu"
+           resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="pickDeviationValueAndDifficultyValue" type="st-pmgt-indicator" shortcut="true"/>
     </model>
     <model name="indicatorRatingTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
@@ -97,26 +98,28 @@
 
 
     <model name="pi-pmgtProjectInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-                <action name="details" type="pi-pmgt-project"/>
-                <action name="listPlans" type="pi-pmgt-project"/>
-                <action name="containerTeamBrowser" type="containerTeam"/>
-                <action name="attachments" type="pi-pmgt-enterprise" />
-                <action name="projectMilestoneInfoPage" type="pi-pmgt-project" />
-                <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
-                <action name="listDeliverablesForProject" type="pi-pmgt-project" />
-                <action name="listProjectResources" type="pi-pmgt-project"/>
-                <action name="projectFinance" type="pi-pmgt-project" />
-                <submodel name="pmgtProjectRelatedDocAndProduct" type="pi-pmgt-project"/>
-                <!--项目仪表盘 add by liuchuang 2020-11-12 -->
-                <action name="projectDashboard" type="pi-pmgt-project" />
-                <submodel name="projectRelationships" type="pi-pmgt-project"/>
-                <action name="listProjectChangeRequestsForProject" type="pi-pmgt-project"/>
-                <action name="projectThresholds" type="pi-pmgt-project" />
-                <action name="folderTreeBrowser" type="folder"/>
+        <action name="details" type="pi-pmgt-project"/>
+        <action name="listPlans" type="pi-pmgt-project"/>
+        <action name="containerTeamBrowser" type="containerTeam"/>
+        <action name="attachments" type="pi-pmgt-enterprise"/>
+        <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
+        <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
+        <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
+        <action name="listProjectResources" type="pi-pmgt-project"/>
+        <action name="projectFinance" type="pi-pmgt-project"/>
+        <submodel name="pmgtProjectRelatedDocAndProduct" type="pi-pmgt-project"/>
+        <!--项目仪表盘 add by liuchuang 2020-11-12 -->
+        <action name="projectDashboard" type="pi-pmgt-project"/>
+        <submodel name="projectRelationships" type="pi-pmgt-project"/>
+        <action name="listProjectChangeRequestsForProject" type="pi-pmgt-project"/>
+        <action name="projectThresholds" type="pi-pmgt-project"/>
+        <action name="folderTreeBrowser" type="folder"/>
+
+
         <!--问题-->
-        <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
+        <action name="listProjectIssuesForProject" type="pi-pmgt-project-copy"/>
         <!--风险-->
-        <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
+        <action name="listProjectRisksForProject" type="pi-pmgt-risk-copy"/>
     </model>
 
 

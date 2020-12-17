@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.service;
+package ext.st.pmgt.issue.service;
 
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
@@ -8,7 +8,7 @@ import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.risk.dao.PIPmgtRiskTypeDao;
 
-import ext.st.pmgt.indicator.dao.STProjectRiskDao;
+import ext.st.pmgt.issue.dao.STProjectRiskDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

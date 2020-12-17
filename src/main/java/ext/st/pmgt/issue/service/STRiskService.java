@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.service;
+package ext.st.pmgt.issue.service;
 
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.project.model.PIProject;

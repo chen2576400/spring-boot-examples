@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.model;
+package ext.st.pmgt.issue.model;
 
 
 import com.pisx.tundra.foundation.access.model.PolicyAccessControlled;
@@ -838,17 +838,17 @@ public class STProjectRisk extends PIPmgtObject
     }
 
     @Override
-    public TypeDefinitionReference getlTDTypeDefinitionReference() {
+    public TypeDefinitionReference getLTDTypeDefinitionReference() {
         return lTDTypeDefinitionReference;
     }
 
     @Override
     public void setLTDTypeDefinition(LTDTypeDefinition typeDefinition) throws PIPropertyVetoException, PIException {
-        this.setlTDTypeDefinitionReference(typeDefinition == null? null: TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
+        this.setLTDTypeDefinitionReference(typeDefinition == null? null: TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
     }
 
     @Override
-    public void setlTDTypeDefinitionReference(TypeDefinitionReference typeReference) throws PIPropertyVetoException {
+    public void setLTDTypeDefinitionReference(TypeDefinitionReference typeReference) throws PIPropertyVetoException {
         this.lTDTypeDefinitionReference = lTDTypeDefinitionReference;
     }
 
@@ -857,7 +857,7 @@ public class STProjectRisk extends PIPmgtObject
         return CLASSNAME;
     }
 
-    public static STProjectRisk newPIProjectRisk(PIPlannable plannable) throws PIException {
+    public static STProjectRisk newSTProjectRisk(PIPlannable plannable) throws PIException {
         STProjectRisk risk = new STProjectRisk();
         if (((plannable instanceof PIPlan)) || ((plannable instanceof PIPlanActivity))) {
             risk.initialize(plannable);
@@ -867,12 +867,12 @@ public class STProjectRisk extends PIPmgtObject
         }
     }
 
-    public static STProjectRisk newPIProjectRisk(PIProject project) throws PIException {
+    public static STProjectRisk newSTProjectRisk(PIProject project) throws PIException {
         STProjectRisk risk = new STProjectRisk();
         risk.initialize(project);
         return risk;
     }
-    public static STProjectRisk newPIProjectRisk() throws PIException {
+    public static STProjectRisk newSTProjectRisk() throws PIException {
         STProjectRisk risk = new STProjectRisk();
         risk.initialize();
         return risk;

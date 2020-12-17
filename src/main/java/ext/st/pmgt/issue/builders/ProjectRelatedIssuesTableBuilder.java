@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.builders;
+package ext.st.pmgt.issue.builders;
 
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIMessage;
@@ -8,14 +8,12 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import com.pisx.tundra.pmgt.change.PIProjectChangeHelper;
-import com.pisx.tundra.pmgt.change.model.PIProjectIssue;
 import com.pisx.tundra.pmgt.change.resources.changeResource;
 import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
-import ext.st.pmgt.indicator.STProjectIssueHelper;
-import ext.st.pmgt.indicator.model.STProjectIssue;
+import ext.st.pmgt.issue.STProjectIssueHelper;
+import ext.st.pmgt.issue.model.STProjectIssue;
 
 public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
 

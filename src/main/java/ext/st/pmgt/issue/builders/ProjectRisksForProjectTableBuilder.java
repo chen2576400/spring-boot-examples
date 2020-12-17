@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.builders;
+package ext.st.pmgt.issue.builders;
 
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIMessage;
@@ -12,8 +12,8 @@ import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
 import com.pisx.tundra.pmgt.risk.resources.riskResource;
-import ext.st.pmgt.indicator.STRiskHelper;
-import ext.st.pmgt.indicator.model.STProjectRisk;
+import ext.st.pmgt.issue.STRiskHelper;
+import ext.st.pmgt.issue.model.STProjectRisk;
 
 public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder {
     @Override

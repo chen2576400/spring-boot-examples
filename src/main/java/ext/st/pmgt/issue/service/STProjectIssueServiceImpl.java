@@ -1,10 +1,9 @@
-package ext.st.pmgt.indicator.service;
+package ext.st.pmgt.issue.service;
 
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.util.PIException;
-import com.pisx.tundra.pmgt.change.model.PIProjectIssue;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import ext.st.pmgt.indicator.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectIssue;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
