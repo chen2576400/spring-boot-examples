@@ -2,12 +2,10 @@ package ext.st.pmgt.indicator.builders;
 
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIMessage;
-import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
-import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
-import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
-import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
+import com.pisx.tundra.netfactory.mvc.components.*;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
+import com.pisx.tundra.netfactory.util.misc.AlertType;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
@@ -32,15 +30,19 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
         Collection ins = STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(piPlanActivity);
         Set result = new HashSet<>();
+        List<STProjectInstanceINIndicator> warningIN = new ArrayList<>();
         for (Object in : ins) {
             List<STProjectInstanceOTIndicator> ots = (List<STProjectInstanceOTIndicator>) STIndicatorHelper.service.getOTByIN((STProjectInstanceINIndicator) in);
             if (ots.size() > 0) {
                 result.addAll(STIndicatorHelper.service.getLatestOt(ots));
             } else {
-                System.out.println("当前需求的IN指标" + ((STProjectInstanceINIndicator) in).getOtCode() + "没有在本计划任何任务中产出，请联系PM或者PMO！");
+                warningIN.add((STProjectInstanceINIndicator) in);
             }
         }
-
+        if (warningIN.size()>0) {
+            String insCode = getInsCode(warningIN);
+            NotifySupport.alert(AlertType.SUCCESS, "当前需求的IN指标" + insCode + "没有在本计划任何任务中产出，请联系PM或者PMO！");
+        }
         return result;
     }
 
@@ -95,5 +97,17 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.addColumn(columnconfig7);
 
         return tableConfig;
+    }
+
+    private String getInsCode(List<STProjectInstanceINIndicator> ins){
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < ins.size(); i++) {
+            if (i==ins.size()-1){
+                str.append(ins.get(i).getOtCode());
+            }else {
+                str.append(ins.get(i).getOtCode()+"、");
+            }
+        }
+        return str.toString();
     }
 }

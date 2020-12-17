@@ -1,5 +1,8 @@
 package ext.st.pmgt.indicator.builders;
 
+import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
+import com.pisx.tundra.foundation.org.model.PIUser;
+import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIMessage;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
@@ -8,12 +11,15 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
+import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
+import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName PlanActivityOTIndicatorTableBuilder
@@ -28,8 +34,8 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         PIPlanActivity piPlanActivity = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
-        List<STProjectInstanceOTIndicator> ots = (List)STIndicatorHelper.service.findProjectOTIndicatorByPlanActivity(piPlanActivity);
-        if (ots.size()>0){
+        List<STProjectInstanceOTIndicator> ots = (List) STIndicatorHelper.service.findProjectOTIndicatorByPlanActivity(piPlanActivity);
+        if (ots.size() > 0) {
             ots = STIndicatorHelper.service.getLatestOt(ots);
         }
         return ots;
@@ -43,7 +49,7 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
 //        tableConfig.setToolbarActionModel("allUsersToolbarSet");
         tableConfig.setId("planActivityOTIndicator");
         tableConfig.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
-        tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(),"OT_INDICATOR_TABLE",null,params.getLocale()));
+        tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "OT_INDICATOR_TABLE", null, params.getLocale()));
         tableConfig.enableSelect();
         tableConfig.setPageSize(50);
 //        tableConfig.setToolbarActionModel("deliverablesForPlanToolBarSet");
@@ -54,7 +60,7 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
 //            piPlanActivity = (PIPlanActivity) sourceObject;
 //        }
 //        if(piPlanActivity.getPhysicalCompletePercent()==0) {
-            tableConfig.setToolbarActionModel("OTIndicatorToolbar");
+        tableConfig.setToolbarActionModel("OTIndicatorToolbar");
 //        }
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
@@ -92,7 +98,9 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         columnconfig6.setName("planDeliverable.name");
         columnconfig6.enableSort();
         columnconfig6.setLabel("交付物");
-        columnconfig6.haveInfoPageLink();
+        if (havePrivilege(params)) {//当前任务没有分配到当前资源人 不显示交付物的链接，进而无法下载交付物文档
+            columnconfig6.haveInfoPageLink();
+        }
         tableConfig.addColumn(columnconfig6);
 
         ColumnConfig columnconfig7 = componentConfigFactory.newColumnConfig();
@@ -101,5 +109,17 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         tableConfig.addColumn(columnconfig7);
 
         return tableConfig;
+    }
+
+    private boolean havePrivilege(ComponentParams params) throws PIException {
+        PIPlanActivity act = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
+        PIUser currentUser = (PIUser) SessionHelper.service.getPrincipal();
+        List<PIResourceAssignment> assignments = (List) PIAssignmentHelper.service.getResourceAssignments(act);
+        List<PIUser> users = assignments.stream().map(item -> item.getRsrc().getUser()).collect(Collectors.toList());
+        if (users.contains(currentUser)) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }
