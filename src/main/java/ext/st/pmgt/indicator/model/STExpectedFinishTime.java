@@ -150,7 +150,7 @@ public class STExpectedFinishTime extends PIPmgtObject implements Serializable {
     }
 
     public void setReporter(PIPrincipalReference reporter) {
-        reporter = reporter;
+        this.reporter = reporter;
     }
 
     public static STExpectedFinishTime newSTExpectedFinishTime() throws PIException {
