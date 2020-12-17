@@ -910,19 +910,20 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     }
 
     @Override
-    public TypeDefinitionReference getlTDTypeDefinitionReference() {
+    public void setLTDTypeDefinition(LTDTypeDefinition typeDefinition) throws PIPropertyVetoException, PIException {
+        this.setLTDTypeDefinitionReference(typeDefinition == null ? null : TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
+    }
+
+
+    public TypeDefinitionReference getLTDTypeDefinitionReference() {
         return lTDTypeDefinitionReference;
     }
 
-    @Override
-    public void setLTDTypeDefinition(LTDTypeDefinition typeDefinition) throws PIPropertyVetoException, PIException {
-        this.setlTDTypeDefinitionReference(typeDefinition == null ? null : TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
-    }
-
-    @Override
-    public void setlTDTypeDefinitionReference(TypeDefinitionReference typeReference) throws PIPropertyVetoException {
+    public void setLTDTypeDefinitionReference(TypeDefinitionReference lTDTypeDefinitionReference) {
         this.lTDTypeDefinitionReference = lTDTypeDefinitionReference;
     }
+
+
 
     @Override
     public String getConceptualClassname() {

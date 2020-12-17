@@ -834,21 +834,20 @@ public class STProjectRisk extends PIPmgtObject
 
     @Override
     public LTDTypeDefinition getLTDTypeDefinition() {
-        return lTDTypeDefinitionReference!=null?(LTDTypeDefinition) lTDTypeDefinitionReference.getObject():null;
-    }
-
-    @Override
-    public TypeDefinitionReference getlTDTypeDefinitionReference() {
-        return lTDTypeDefinitionReference;
+        return lTDTypeDefinitionReference != null ? (LTDTypeDefinition) lTDTypeDefinitionReference.getObject() : null;
     }
 
     @Override
     public void setLTDTypeDefinition(LTDTypeDefinition typeDefinition) throws PIPropertyVetoException, PIException {
-        this.setlTDTypeDefinitionReference(typeDefinition == null? null: TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
+        this.setLTDTypeDefinitionReference(typeDefinition == null ? null : TypeDefinitionReference.newTypeDefinitionReference(typeDefinition));
     }
 
-    @Override
-    public void setlTDTypeDefinitionReference(TypeDefinitionReference typeReference) throws PIPropertyVetoException {
+
+    public TypeDefinitionReference getLTDTypeDefinitionReference() {
+        return lTDTypeDefinitionReference;
+    }
+
+    public void setLTDTypeDefinitionReference(TypeDefinitionReference lTDTypeDefinitionReference) {
         this.lTDTypeDefinitionReference = lTDTypeDefinitionReference;
     }
 
