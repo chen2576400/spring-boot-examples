@@ -30,7 +30,6 @@
 
     <!--pert报表入口-->
     <model name="planDropDown" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
         <action name="pertReport" type="st-report" shortcut="true"/>
     </model>
 
@@ -130,6 +129,12 @@
         <action name="createSubFolder" type="folder" shortcut="true"/>
         <action name="setObjectsLcState" type="topLcState" shortcut="true"/>
         <action name="exportExcel" type="uiComponent" shortcut="false"/>
+    </model>
+
+
+    <model name="UserAssignmentsTableToolBar" resourceBundle="com.pisx.tundra.pmgt.project.resources.projectActionsRB">
+        <action name="submitResourceHours" type="pi-pmgt-project" shortcut="true"/>
+        <action name="reportExpectedFinishTime" type="st-pmgt-act" shortcut="true"/>
     </model>
 
 </actionmodels>

@@ -39,9 +39,8 @@
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <action name="reportExpectedFinishTime">
-            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder"
-                       windowType="popup"/>
+        <action name="reportExpectedFinishTime" selectRequired="true">
+            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.ReportPlanActivitySTExpectedFinishTimeProcessor"/>
         </action>
         <action name="createDeliverable">
