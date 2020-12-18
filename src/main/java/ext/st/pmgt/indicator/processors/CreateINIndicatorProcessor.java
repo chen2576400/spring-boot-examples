@@ -14,6 +14,7 @@ import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class CreateINIndicatorProcessor extends DefaultObjectFormProcessor {
         }
 //        得到被选中的指标
         List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
-        if (selectedObjects != null) {
+        if (CollectionUtils.isNotEmpty(selectedObjects)) {
             for (Persistable selectedObject : selectedObjects) {
                 if (selectedObject instanceof STProjectInstanceOTIndicator) {
                     STProjectInstanceINIndicator inIndicator = STProjectInstanceINIndicator.newSTProjectInstanceINIndicator();

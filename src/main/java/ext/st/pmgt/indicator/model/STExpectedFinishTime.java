@@ -1,6 +1,7 @@
 package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.org.model.PIPrincipal;
 import com.pisx.tundra.foundation.org.model.PIPrincipalReference;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
@@ -151,6 +152,10 @@ public class STExpectedFinishTime extends PIPmgtObject implements Serializable {
 
     public void setReporter(PIPrincipalReference reporter) {
         this.reporter = reporter;
+    }
+
+    public void setReporter(PIPrincipal reporter) {
+        this.reporter = PIPrincipalReference.newPIPrincipalReference(reporter);
     }
 
     public static STExpectedFinishTime newSTExpectedFinishTime() throws PIException {

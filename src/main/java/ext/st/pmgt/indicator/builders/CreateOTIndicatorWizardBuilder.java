@@ -21,6 +21,7 @@ import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
+import org.apache.commons.collections.CollectionUtils;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,18 +45,18 @@ public class CreateOTIndicatorWizardBuilder extends AbstractComponentBuilder {
         Collection<PIGroup> groups = OrgHelper.service.getImmediateParentGroups(principalReference.getObject(), false);
 //         得到相应专业能力的指标
         Set<STProjectIndicator> indicatorResult = new HashSet<>();
-        if (groups!=null&&groups.size() > 0) {
+        if (CollectionUtils.isNotEmpty(groups)) {
             for (PIGroup group : groups) {
                 Collection indicator = STIndicatorHelper.service.getAllIndicatorByCompetence(group,true);
-                if(indicator!=null&&indicator.size()>0) {
+                if(CollectionUtils.isNotEmpty(indicator)){
                     indicatorResult.addAll(indicator);
                 }
             }
         }
         Set result =new HashSet();
-        if (indicatorResult!=null&&indicatorResult.size() > 0) {
+        if (CollectionUtils.isNotEmpty(indicatorResult)) {
             for (STProjectIndicator stProjectIndicator : indicatorResult) {
-                if (otResult.size() > 0) {
+                if (CollectionUtils.isNotEmpty(otResult)) {
                     for (STProjectInstanceOTIndicator stProjectInstanceOTIndicator : otResult) {
                         if (stProjectInstanceOTIndicator.getCode().equals(stProjectIndicator.getCode())) {
                             result.add(stProjectIndicator);
@@ -107,7 +108,7 @@ public class CreateOTIndicatorWizardBuilder extends AbstractComponentBuilder {
         tableConfig.addColumn(column4);
 
         ColumnConfig column5 = componentConfigFactory.newColumnConfig();
-        column5.setName("competenceReference.name");
+        column5.setName("competence.name");
         column5.setLabel("专业能力");
         tableConfig.addColumn(column5);
         step.addComponentConfig(tableConfig);
