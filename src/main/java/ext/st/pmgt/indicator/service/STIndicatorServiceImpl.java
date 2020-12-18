@@ -32,6 +32,7 @@ import com.pisx.tundra.pmgt.util.DurationUtils;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.dao.*;
 import ext.st.pmgt.indicator.model.*;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -424,7 +425,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
-    public STProjectInstanceOTIndicator getOTByCode(String s) {
+    public Collection getOTByCode(String s) {
         return projectOTIndicatorDao.findByCode(s);
     }
 
@@ -567,7 +568,7 @@ public class STIndicatorServiceImpl implements STIndicatorService {
      * @param otCode
      * @param piPlan
      */
-    public STProjectInstanceOTIndicator updateBreadthAndCriticality(String otCode,PIPlan piPlan) throws PIException{
+    public void updateBreadthAndCriticality(String otCode,PIPlan piPlan) throws PIException{
      //查询在项目计划中项目实例ot库中有多少otCode
               List result = new ArrayList();
               EntityManager em = PersistenceHelper.service.getEntityManager();
@@ -591,20 +592,27 @@ public class STIndicatorServiceImpl implements STIndicatorService {
                   criteriaQuery = criteriaQuery.where(pr);
                   TypedQuery query = em.createQuery(criteriaQuery);
                   List qr = query.getResultList();
-                  countValue = Long.valueOf(String.valueOf(((Object[])(qr.get(0)))[0])).longValue() ;
-                  weightvalue=Double.valueOf(String.valueOf(((Object[])(qr.get(0)))[1])).doubleValue() ;
-                  STProjectInstanceOTIndicator byCode = projectOTIndicatorDao.findByCode(otCode);
-                  byCode.setBreadth(countValue.doubleValue());
-                  byCode.setCriticality(weightvalue);
-                  STProjectInstanceOTIndicator save = PersistenceHelper.service.save(byCode);
-                  return save;
+                  if(!CollectionUtils.isEmpty(qr)) {
+                      countValue = Long.valueOf(String.valueOf(((Object[]) (qr.get(0)))[0])).longValue();
+                      weightvalue = Double.valueOf(String.valueOf(((Object[]) (qr.get(0)))[1])).doubleValue();
+                      Collection byCode = projectOTIndicatorDao.findByCodeAndAndPlanReference(otCode, ObjectReference.newObjectReference(piPlan));
+                      if (!CollectionUtils.isEmpty(byCode)) {
+                          Iterator iterator = byCode.iterator();
+                          while (iterator.hasNext()) {
+                              STProjectInstanceOTIndicator otIndicator = (STProjectInstanceOTIndicator) iterator.next();
+                              otIndicator.setBreadth(countValue.doubleValue());
+                              otIndicator.setCriticality(weightvalue);
+                          }
+                      }
+                        PersistenceHelper.service.save(byCode);
+                  }
               }  catch (Exception e) {
                   e.printStackTrace();
              } finally {
               //em.close();
             }
-             return null;
-    }
+
+        }
 
     public Collection getAllIndicatorByCompetence(PIGroup piGroup,Boolean enable) throws PIException{
         STProCompetence stProCompetence=proCompetenceDao.findByDepartmentReference(ObjectReference.newObjectReference(piGroup));

@@ -55,7 +55,7 @@ public interface STIndicatorService {
 
     STDeliverableType findDeliverableTypeByCode(String s);
 
-    STProjectInstanceOTIndicator getOTByCode(String s);
+    Collection getOTByCode(String s);
 
     Collection getExpextTimeByActivity(PIPlanActivity act) throws PIException;
 
@@ -80,7 +80,7 @@ public interface STIndicatorService {
 
     Collection findRatingByIN(STProjectInstanceINIndicator in) throws PIException;
 
-    STProjectInstanceOTIndicator updateBreadthAndCriticality(String otCode,PIPlan piPlan) throws PIException;
+    void updateBreadthAndCriticality(String otCode,PIPlan piPlan) throws PIException;
 
     public Collection getAllIndicatorByCompetence(PIGroup piGroup, Boolean enable) throws PIException;
 
