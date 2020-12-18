@@ -108,7 +108,7 @@ public class CreateOTIndicatorWizardBuilder extends AbstractComponentBuilder {
         tableConfig.addColumn(column4);
 
         ColumnConfig column5 = componentConfigFactory.newColumnConfig();
-        column5.setName("competenceReference.name");
+        column5.setName("competence.name");
         column5.setLabel("专业能力");
         tableConfig.addColumn(column5);
         step.addComponentConfig(tableConfig);

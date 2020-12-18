@@ -34,7 +34,7 @@ public class StandardDeviationValuePickerHandler extends DefaultDataHandler {
         SelectElement selectElement0 = SelectElement.instance(columnName);
         selectElement0.setOptions(deviationOptions);
         if (deviationOptions.size() > 0) {
-            selectElement0.setDefaultOption(deviationOptions.get(0));
+            selectElement0.setDefaultItem(deviationOptions.get(0));
         }
         selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:200px;"));
         return selectElement0;

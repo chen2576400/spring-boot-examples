@@ -33,7 +33,7 @@ public class StandardDifficultyValuePickerHandler extends DefaultDataHandler {
         SelectElement selectElement0 = SelectElement.instance(columnName);
         selectElement0.setOptions(difficultyOptions);
         if (difficultyOptions.size() > 0) {
-            selectElement0.setDefaultOption(difficultyOptions.get(0));
+            selectElement0.setDefaultItem(difficultyOptions.get(0));
         }
         selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:200px;"));
         return selectElement0;
