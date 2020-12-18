@@ -41,6 +41,7 @@ import com.pisx.tundra.foundation.inf.container.model.PIContainerRef;
 import com.pisx.tundra.foundation.lifecycle.model.LcState;
 import com.pisx.tundra.foundation.lifecycle.model.LifeCycleManaged;
 import com.pisx.tundra.foundation.lifecycle.model.LifeCycleState;
+import com.pisx.tundra.foundation.lifecycle.model.LifeCycleTemplateReference;
 import com.pisx.tundra.foundation.meta.type.model.LTDTypeDefinition;
 import com.pisx.tundra.foundation.meta.type.model.LTDTyped;
 import com.pisx.tundra.foundation.meta.type.model.TypeDefinitionReference;
@@ -1118,5 +1119,15 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
 
     public void setConfirmStatus(Boolean confirmStatus) {
         this.confirmStatus = confirmStatus;
+    }
+
+    @Override
+    public LifeCycleTemplateReference getLifeCycleTemplate() {
+        return null;
+    }
+
+    @Override
+    public boolean isLifeCycleBasic() {
+        return false;
     }
 }
