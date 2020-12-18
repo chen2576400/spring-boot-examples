@@ -117,6 +117,29 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
         column11.setName("persistInfo.createStamp");
         tableConfig.addColumn(column11);
 
+        ColumnConfig column12 = componentConfigFactory.newColumnConfig();
+        column12.setName("description");
+        column12.setLabel("描述");
+        tableConfig.addColumn(column12);
+
+        ColumnConfig column13 = componentConfigFactory.newColumnConfig();
+//        column12.setName("dutyGroupReference");
+        column13.setName("dutyGroup.name");
+        column13.setLabel("责任部门");
+        column13.haveInfoPageLink();
+        tableConfig.addColumn(column13);
+
+        ColumnConfig column14 = componentConfigFactory.newColumnConfig();
+        column14.setName("confirmStatus");
+        column14.setLabel("是否确认");
+        tableConfig.addColumn(column14);
+
+        ColumnConfig column15 = componentConfigFactory.newColumnConfig();
+        column15.setName("treatmentPlan");
+        column15.setLabel("处理方案");
+        tableConfig.addColumn(column15);
+
+
         return tableConfig;
     }
 }

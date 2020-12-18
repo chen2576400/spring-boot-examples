@@ -61,11 +61,21 @@ public class modelRB extends PIListResourceBundle {
     @RBEntry("solution")
     public static final String PIProjectIssue_18= "STProjectIssue.solution.value";
 
+    @RBEntry("confirm")
+    public static final String PIProjectIssue_19= "STProjectIssue.confirmStatus.value";
+
+    @RBEntry("treatment")
+    public static final String PIProjectIssue_20= "STProjectIssue.treatmentPlan.value";
+
+    @RBEntry("dutyGroupReference")
+    public static final String PIProjectIssue_21= "STProjectIssue.dutyGroupReference.value";
 
 
 
 
 
+
+/*-----------------------------------------------------------------------------------------------*/
     @RBEntry("Risk Code")
     public static final String PIProjectRisk_01 = "STProjectRisk.riskCode.value";
     @RBEntry("Risk Name")

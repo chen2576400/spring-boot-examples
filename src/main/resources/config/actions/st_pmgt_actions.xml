@@ -36,6 +36,7 @@
                        windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.CreateOTIndicatorProcessor"/>
         </action>
+
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
@@ -105,6 +106,16 @@
                        windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.CreateProjectIssueProcessor"/>
         </action>
+
+
+
+
+        <action name="departmentListPicker">
+            <component name="ext.st.pmgt.issue.builders.ProjectDutyDepartmentBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.ProjectDutyDepartmentProcessor"/>
+        </action>
+
     </actionsgroup>
 
 

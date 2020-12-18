@@ -44,6 +44,7 @@ import com.pisx.tundra.foundation.lifecycle.model.LifeCycleState;
 import com.pisx.tundra.foundation.meta.type.model.LTDTypeDefinition;
 import com.pisx.tundra.foundation.meta.type.model.LTDTyped;
 import com.pisx.tundra.foundation.meta.type.model.TypeDefinitionReference;
+import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIPropertyVetoException;
@@ -983,5 +984,139 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
 
     public String getFlexTypeIdPath() {
         return null;
+    }
+
+
+    /**
+     * 风险关联
+     */
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "projectRiskRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "projectRiskRefClass", nullable = true))
+    })
+    ObjectReference projectRiskReference;
+
+
+    /**
+     * 项目经理确认(0未确认、1确认)
+     */
+    @Column(nullable = true, unique = false)
+    private Boolean confirmStatus = Boolean.FALSE;
+
+
+    /**
+     * 处理方案
+     */
+    @Column(nullable = true, unique = false)
+    private String treatmentPlan;
+
+
+    /**
+     * 责任部门
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "dutyGroupReferenceId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "dutyGroupReferenceClass", nullable = true))
+    })
+    ObjectReference dutyGroupReference;
+
+    /**
+     * 涉及部门
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "involveGroupReferenceId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "involveGroupReferenceClass", nullable = true))
+    })
+    ObjectReference involveGroupReference;
+
+
+    /**
+     * 关闭时间
+     */
+    @Column(updatable = true, nullable = true)
+    Timestamp closeStamp;
+
+
+    /**
+     * 有效性（0有效，1无效）
+     */
+    @Column(nullable = true, unique = false)
+    private Integer validStatus;
+
+
+    public ObjectReference getProjectRiskReference() {
+        return projectRiskReference;
+    }
+
+    public void setProjectRiskReference(ObjectReference projectRiskReference) {
+        this.projectRiskReference = projectRiskReference;
+    }
+
+
+    public String getTreatmentPlan() {
+        return treatmentPlan;
+    }
+
+    public void setTreatmentPlan(String treatmentPlan) {
+        this.treatmentPlan = treatmentPlan;
+    }
+
+    public TypeDefinitionReference getlTDTypeDefinitionReference() {
+        return lTDTypeDefinitionReference;
+    }
+
+    public void setlTDTypeDefinitionReference(TypeDefinitionReference lTDTypeDefinitionReference) {
+        this.lTDTypeDefinitionReference = lTDTypeDefinitionReference;
+    }
+
+    public ObjectReference getDutyGroupReference() {
+        return dutyGroupReference;
+    }
+
+    public void setDutyGroupReference(ObjectReference dutyGroupReference) {
+        this.dutyGroupReference = dutyGroupReference;
+    }
+    public PIGroup getDutyGroup() {
+        return dutyGroupReference!=null?(PIGroup) dutyGroupReference.getObject():null;
+    }
+
+    public void setPIGroup(PIGroup piGroup) throws PIException {
+        this.dutyGroupReference = ObjectReference.newObjectReference(piGroup);;
+    }
+
+    public ObjectReference getInvolveGroupReference() {
+        return involveGroupReference;
+    }
+
+    public void setInvolveGroupReference(ObjectReference involveGroupReference) {
+        this.involveGroupReference = involveGroupReference;
+    }
+
+    public Timestamp getCloseStamp() {
+        return closeStamp;
+    }
+
+    public void setCloseStamp(Timestamp closeStamp) {
+        this.closeStamp = closeStamp;
+    }
+
+
+    public Integer getValidStatus() {
+        return validStatus;
+    }
+
+    public void setValidStatus(Integer validStatus) {
+        this.validStatus = validStatus;
+    }
+
+    public Boolean getConfirmStatus() {
+        return confirmStatus;
+    }
+
+    public void setConfirmStatus(Boolean confirmStatus) {
+        this.confirmStatus = confirmStatus;
     }
 }

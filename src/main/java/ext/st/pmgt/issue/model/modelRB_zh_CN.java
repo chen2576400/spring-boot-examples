@@ -61,6 +61,15 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("解决方案")
     public static final String PIProjectIssue_18= "STProjectIssue.solution.value";
 
+    @RBEntry("确认")
+    public static final String PIProjectIssue_19= "STProjectIssue.confirmStatus.value";
+
+    @RBEntry("处理方案")
+    public static final String PIProjectIssue_20= "STProjectIssue.treatmentPlan.value";
+
+    @RBEntry("责任部门")
+    public static final String PIProjectIssue_21= "STProjectIssue.dutyGroupReference.value";
+
 
 
 
