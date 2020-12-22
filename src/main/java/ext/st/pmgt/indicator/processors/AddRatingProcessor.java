@@ -4,11 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
+import com.pisx.tundra.foundation.org.model.PIPrincipal;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
-import com.pisx.tundra.netfactory.mvc.components.DefaultCreateFormProcessor;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
@@ -65,6 +65,8 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor {
         stRating.setOtRating(otRating);
         stRating.setDescription(description);
         stRating.setInIndicator(in);
+        PIPrincipal principal = SessionHelper.service.getPrincipal();
+        stRating.setRater((PIUser) principal);
         stRating.setReportTime(new Timestamp(System.currentTimeMillis()));
         PersistenceHelper.service.save(stRating);
 
