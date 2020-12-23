@@ -173,8 +173,8 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
 
     @Embedded   //引入该实体
     @AttributeOverrides({   //罗列出所有需要重新命名的属性
-            @AttributeOverride(name = "key.id", column = @Column(name = "containerRefId", nullable = false)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "containerRefClass", nullable = false))
+            @AttributeOverride(name = "key.id", column = @Column(name = "containerRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "containerRefClass", nullable = true))
     })
     PIContainerRef containerReference;  //ProjectContainerRef
 
