@@ -10,16 +10,16 @@
     <model name="pi-pmgtPlanActivityInfoPageTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="details2" type="pi-pmgt-act"/>
         <!--<action name="attachments" type="pi-pmgt-enterprise"/>-->
-        <action name="resourceAssignments" type="pi-pmgt-act"/>
-        <action name="relationships" type="pi-pmgt-act"/>
+<!--        <action name="resourceAssignments" type="pi-pmgt-act"/>-->
+<!--        <action name="relationships" type="pi-pmgt-act"/>-->
         <action name="resourceHours" type="pi-pmgt-act"/>
         <action name="listDeliverablesForActivity" type="pi-pmgt-act"/>
-        <action name="relatedReferenceDocuments" type="pi-pmgt-act"/>
+<!--        <action name="relatedReferenceDocuments" type="pi-pmgt-act"/>-->
         <action name="planActivityExpenses" type="pi-pmgt-act"/>
-        <action name="baselines" type="pi-pmgt-act"/>
-        <action name="plannableCostSummary" type="pi-pmgt-cost"/>
+<!--        <action name="baselines" type="pi-pmgt-act"/>-->
+<!--        <action name="plannableCostSummary" type="pi-pmgt-cost"/>-->
         <action name="listProjectIssuesForActivity" type="pi-pmgt-act"/>
-        <action name="listProjectChangeRequestsForActivity" type="pi-pmgt-act"/>
+<!--        <action name="listProjectChangeRequestsForActivity" type="pi-pmgt-act"/>-->
         <action name="listProjectRisksForAct" type="pi-pmgt-risk"/>
         <!--<action name="listPlanActivityShareLinksForSource" type="pi-pmgt-act"/>-->
         <!--   OT IN指标table     -->
@@ -117,23 +117,27 @@
         <action name="details" type="pi-pmgt-project"/>
         <action name="listPlans" type="pi-pmgt-project"/>
         <action name="containerTeamBrowser" type="containerTeam"/>
-        <action name="attachments" type="pi-pmgt-enterprise"/>
-        <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
+        <action name="attachments" type="pi-pmgt-enterprise" />
+        <action name="projectMilestoneInfoPage" type="pi-pmgt-project" />
+        <action name="listBaselines" type="pi-pmgt-project"/>
         <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
-        <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
+        <action name="listDeliverablesForProject" type="pi-pmgt-project" />
         <action name="listProjectResources" type="pi-pmgt-project"/>
-        <action name="projectFinance" type="pi-pmgt-project"/>
-        <submodel name="pmgtProjectRelatedDocAndProduct" type="pi-pmgt-project"/>
-        <!--项目仪表盘 add by liuchuang 2020-11-12 -->
-        <action name="projectDashboard" type="pi-pmgt-project"/>
-        <submodel name="projectRelationships" type="pi-pmgt-project"/>
-        <action name="listProjectChangeRequestsForProject" type="pi-pmgt-project"/>
-        <action name="projectThresholds" type="pi-pmgt-project"/>
+        <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
+        <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
         <action name="folderTreeBrowser" type="folder"/>
         <!--问题-->
         <action name="listProjectIssuesForProject" type="pi-pmgt-project-copy"/>
         <!--风险-->
         <action name="listProjectRisksForProject" type="pi-pmgt-risk-copy"/>
+    </model>
+
+    <model name="pi-pmgtPlanInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="details" type="pi-pmgt-plan"/>
+        <action name="milestoneForPlan" type="pi-pmgt-project"/>
+        <action name="planTree2" type="pi-pmgt-project"/>
+        <action name="listDeliverablesForPlan" type="pi-pmgt-project"/>
+        <action name="listAssignments" type="pi-pmgt-project"/>
     </model>
 
 

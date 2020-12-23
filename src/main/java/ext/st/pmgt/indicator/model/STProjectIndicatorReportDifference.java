@@ -84,8 +84,8 @@ public class STProjectIndicatorReportDifference extends PIPmgtObject implements 
      */
     @Embedded   //引入该实体
     @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "otplanActivityRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "otplanActivityRefClass", nullable = true))
+            @AttributeOverride(name = "key.id", column = @Column(name = "inplanActivityRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "inplanActivityRefClass", nullable = true))
     })
     ObjectReference inplanActivityReference;
 
