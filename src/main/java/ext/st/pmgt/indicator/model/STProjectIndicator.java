@@ -71,8 +71,7 @@ public class STProjectIndicator extends PIPmgtObject implements Serializable, PI
             @AttributeOverride(name = "key.id", column = @Column(name = "containerRefId", nullable = true)),
             @AttributeOverride(name = "key.classname", column = @Column(name = "containerRefClass", nullable = true))
     })
-    PIContainerRef containerReference;  //OrgContainer
-
+    PIContainerRef containerReference;
 
 
     public String getCode() {
