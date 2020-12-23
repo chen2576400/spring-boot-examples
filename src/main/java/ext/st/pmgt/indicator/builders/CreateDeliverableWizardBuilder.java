@@ -46,7 +46,7 @@ public class CreateDeliverableWizardBuilder extends AbstractComponentBuilder {
                     .addField("description")
                     .addField("url")
 //                    .addField("deliverableTypeReference", new DeliverableTypePickerHandler())
-                    .addField("subjectReference", new DeliverablePickerHandler())
+                    .addField("subjectReference", new DeliverablePickerHandler()).required()
 //                    .addField("deliverableTemplate")
                     .addField("necessity");
             step.addLayout(layout);
