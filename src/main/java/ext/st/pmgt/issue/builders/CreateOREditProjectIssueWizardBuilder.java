@@ -59,7 +59,11 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
                     .addField("description")
                     .addField("confirmStatus")//是否确认
                     .addField("treatmentPlan")//处理方案
-                    .addField("dutyGroupReference",new DutyGroupDataHandler())//责任部门
+                    .addField("dutyGroupReference", new DutyGroupDataHandler())//责任部门
+                    .addField("importanceType")//重要度
+                    .addField("urgencyType")//紧急度
+                    .addField("closeStamp")//关闭时间
+
             ;
 
 

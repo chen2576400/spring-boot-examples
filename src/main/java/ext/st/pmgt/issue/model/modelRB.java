@@ -70,10 +70,14 @@ public class modelRB extends PIListResourceBundle {
     @RBEntry("dutyGroupReference")
     public static final String PIProjectIssue_21= "STProjectIssue.dutyGroupReference.value";
 
+    @RBEntry("importanceType")
+    public static final String PIProjectIssue_22= "STProjectIssue.importanceType.value";
 
+    @RBEntry("closeStamp")
+    public static final String PIProjectIssue_23= "STProjectIssue.closeStamp.value";
 
-
-
+    @RBEntry("urgencyType")
+    public static final String PIProjectIssue_24= "STProjectIssue.urgencyType.value";
 
 /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("Risk Code")

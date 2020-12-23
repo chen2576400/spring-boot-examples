@@ -154,4 +154,11 @@
         <action name="exportExcel" type="uiComponent" shortcut="true"/>
     </model>
 
+
+<!-- 编辑/删除 问题 -->
+    <model name="projectRelatedIssuesMenus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="editProjectIssue" type="pi-pmgt-project-copy"/>
+        <action name="deleteProjectIssue" type="pi-pmgt-project-copy"/>
+    </model>
+
 </actionmodels>

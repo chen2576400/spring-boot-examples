@@ -108,8 +108,20 @@
         </action>
 
 
+        <!-- 编辑问题 -->
+        <action name="editProjectIssue">
+            <component name="ext.st.pmgt.issue.builders.CreateOREditProjectIssueWizardBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.EditProjectIssueProcessor"/>
+        </action>
+        <!-- 删除问题 -->
+        <action name="deleteProjectIssue" beforeJS="buttonEvent">
+            <command className="ext.st.pmgt.issue.processors.DeleteProjectIssuesProcessor"/>
+        </action>
 
 
+
+        <!-- 责任部门展示-->
         <action name="departmentListPicker">
             <component name="ext.st.pmgt.issue.builders.ProjectDutyDepartmentBuilder"
                        windowType="popup"/>

@@ -21,8 +21,31 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String ROLE_339 = "pi-pmgt-project-copy.createProjectIssue.moreurlinfo";
 
+    @RBEntry("editProjectIssue")
+    public static final String ROLE_33614 = "pi-pmgt-project-copy.editProjectIssue.description";
+    @RBEntry("editProjectIssue")
+    public static final String ROLE_33723 = "pi-pmgt-project-copy.editProjectIssue.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String ROLE_130033832 = "pi-pmgt-project-copy.editProjectIssue.icon";
+    @RBEntry("height=900,width=750")
+    public static final String ROLE_33941 = "pi-pmgt-project-copy.editProjectIssue.moreurlinfo";
+
+    @RBEntry("deleteProjectIssue")
+    public static final String ROLE_3361 = "pi-pmgt-project-copy.deleteProjectIssue.description";
+    @RBEntry("deleteProjectIssue")
+    public static final String ROLE_3372 = "pi-pmgt-project-copy.deleteProjectIssue.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String ROLE_3383 = "pi-pmgt-project-copy.deleteProjectIssue.icon";
+    @RBEntry("height=900,width=750")
+    public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssue.moreurlinfo";
 
 
+
+
+
+
+
+/*--------------------------------------------------------------------------------*/
     @RBEntry("ProjectRisks")
     public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProject.description";
     @RBEntry("ProjectRisks")
