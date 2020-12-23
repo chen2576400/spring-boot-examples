@@ -60,8 +60,8 @@ public class STProjectInstanceOTIndicator extends PIPmgtObject implements Serial
      */
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "competenceRefId", nullable = false)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "competenceRefClass", nullable = false))
+            @AttributeOverride(name = "key.id", column = @Column(name = "competenceRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "competenceRefClass", nullable = true))
     })
     ObjectReference competenceReference;
 
