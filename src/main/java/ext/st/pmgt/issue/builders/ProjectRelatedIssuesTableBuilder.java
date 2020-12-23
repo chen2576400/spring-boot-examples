@@ -6,6 +6,8 @@ import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
+import com.pisx.tundra.netfactory.mvc.components.browser.BrowserConfig;
+import com.pisx.tundra.netfactory.mvc.components.browser.TableBrowserConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import com.pisx.tundra.pmgt.change.resources.changeResource;
@@ -34,6 +36,7 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
     @Override
     public ComponentConfig buildComponentConfig(Object componentData, ComponentParams params) throws PIException {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
+
         TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
         tableConfig.setEntities(componentData);
         tableConfig.setId("projectRelatedIssuesTable");
@@ -138,6 +141,23 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
         column15.setName("treatmentPlan");
         column15.setLabel("处理方案");
         tableConfig.addColumn(column15);
+
+
+        ColumnConfig column16 = componentConfigFactory.newColumnConfig();
+        column16.setName("importanceType");
+        column16.setLabel("重要度");
+        tableConfig.addColumn(column16);
+
+        ColumnConfig column17 = componentConfigFactory.newColumnConfig();
+        column17.setName("urgencyType");
+        column17.setLabel("紧急度");
+        tableConfig.addColumn(column17);
+
+        ColumnConfig column18 = componentConfigFactory.newColumnConfig();
+        column18.setName("closeStamp");
+        column18.setLabel("关闭时间");
+        tableConfig.addColumn(column18);
+
 
 
         return tableConfig;
