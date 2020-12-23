@@ -68,8 +68,9 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor {
         PIPrincipal principal = SessionHelper.service.getPrincipal();
         stRating.setRater((PIUser) principal);
         stRating.setReportTime(new Timestamp(System.currentTimeMillis()));
-        PersistenceHelper.service.save(stRating);
-
+        STRating rating = PersistenceHelper.service.save(stRating);
+//        保存评定汇报差异
+        STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(in,rating);
         return new ResponseWrapper(ResponseWrapper.PAGE_FLUSH, "添加成功！", null);
     }
 
