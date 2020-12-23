@@ -7,10 +7,7 @@ import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import ext.st.pmgt.indicator.model.STDeliverableType;
-import ext.st.pmgt.indicator.model.STProCompetence;
-import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
-import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import ext.st.pmgt.indicator.model.*;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -85,4 +82,6 @@ public interface STIndicatorService {
     public Collection getAllIndicatorByCompetence(PIGroup piGroup, Boolean enable) throws PIException;
 
     public Collection findINIndicatorByOtCode(String otCode,ObjectReference planReference) throws PIException;
+    public void saveSTProjectIndicatorReportDifference(STProjectInstanceOTIndicator otIndicator) throws PIException;
+    public void saveSTProjectIndicatorReportDifference(STProjectInstanceINIndicator stProjectInstanceINIndicator, STRating stRating) throws PIException;
 }

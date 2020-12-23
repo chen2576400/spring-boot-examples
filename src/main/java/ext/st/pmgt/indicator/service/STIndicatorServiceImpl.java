@@ -146,11 +146,12 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         return result;
     }
 
-    public Collection findINIndicatorByOtCode(String otCode,ObjectReference planReference) throws PIException{
+    public Collection findINIndicatorByOtCode(String otCode, ObjectReference planReference) throws PIException {
         ArrayList result = new ArrayList();
-        result.addAll(projectINIndicatorDao.findByOtCodeAndPlanReference(otCode,planReference));
+        result.addAll(projectINIndicatorDao.findByOtCodeAndPlanReference(otCode, planReference));
         return result;
     }
+
     /*
      *参数：planid(数字)
      * 返回数据：权重，汇报偏差，标准偏差，（汇报困难度），标准困难度，广度，关键度，输出评定，平均发布次数，
@@ -563,60 +564,61 @@ public class STIndicatorServiceImpl implements STIndicatorService {
         return result;
     }
 
-    /**更新广度和关键度
+    /**
+     * 更新广度和关键度
      *
      * @param otCode
      * @param piPlan
      */
-    public void updateBreadthAndCriticality(String otCode,PIPlan piPlan) throws PIException{
-     //查询在项目计划中项目实例ot库中有多少otCode
-              List result = new ArrayList();
-              EntityManager em = PersistenceHelper.service.getEntityManager();
-               Long countValue = 0L;
-               Double weightvalue=0D;
-              try {
-                  CriteriaBuilder cb = em.getCriteriaBuilder();
-                  CriteriaQuery criteriaQuery = cb.createQuery();
-                  List<Predicate> predicates = new ArrayList<>();
-                  Root root = criteriaQuery.from(STProjectInstanceINIndicator.class);
-                  Path key1 = root.get("otCode");
-                  Path key2 = root.get("planReference").get("key");
-                  Path key3 = root.get("weights");
-                  Predicate p = cb.equal(key1, otCode);
-                  predicates.add(p);
-                  Predicate p2 = cb.equal(key2, piPlan.getObjectIdentifier());
-                  predicates.add(p2);
-                  criteriaQuery.multiselect(cb.count(key1),cb.sum(key3));
-                  Predicate[] pr = new Predicate[predicates.size()];
-                  predicates.toArray(pr);
-                  criteriaQuery = criteriaQuery.where(pr);
-                  TypedQuery query = em.createQuery(criteriaQuery);
-                  List qr = query.getResultList();
-                  if(!CollectionUtils.isEmpty(qr)) {
-                      countValue = Long.valueOf(String.valueOf(((Object[]) (qr.get(0)))[0])).longValue();
-                      weightvalue = Double.valueOf(String.valueOf(((Object[]) (qr.get(0)))[1])).doubleValue();
-                      Collection byCode = projectOTIndicatorDao.findByCodeAndAndPlanReference(otCode, ObjectReference.newObjectReference(piPlan));
-                      if (!CollectionUtils.isEmpty(byCode)) {
-                          Iterator iterator = byCode.iterator();
-                          while (iterator.hasNext()) {
-                              STProjectInstanceOTIndicator otIndicator = (STProjectInstanceOTIndicator) iterator.next();
-                              otIndicator.setBreadth(countValue.doubleValue());
-                              otIndicator.setCriticality(weightvalue);
-                          }
-                      }
-                        PersistenceHelper.service.save(byCode);
-                  }
-              }  catch (Exception e) {
-                  e.printStackTrace();
-             } finally {
-              //em.close();
+    public void updateBreadthAndCriticality(String otCode, PIPlan piPlan) throws PIException {
+        //查询在项目计划中项目实例ot库中有多少otCode
+        List result = new ArrayList();
+        EntityManager em = PersistenceHelper.service.getEntityManager();
+        Long countValue = 0L;
+        Double weightvalue = 0D;
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery criteriaQuery = cb.createQuery();
+            List<Predicate> predicates = new ArrayList<>();
+            Root root = criteriaQuery.from(STProjectInstanceINIndicator.class);
+            Path key1 = root.get("otCode");
+            Path key2 = root.get("planReference").get("key");
+            Path key3 = root.get("weights");
+            Predicate p = cb.equal(key1, otCode);
+            predicates.add(p);
+            Predicate p2 = cb.equal(key2, piPlan.getObjectIdentifier());
+            predicates.add(p2);
+            criteriaQuery.multiselect(cb.count(key1), cb.sum(key3));
+            Predicate[] pr = new Predicate[predicates.size()];
+            predicates.toArray(pr);
+            criteriaQuery = criteriaQuery.where(pr);
+            TypedQuery query = em.createQuery(criteriaQuery);
+            List qr = query.getResultList();
+            if (!CollectionUtils.isEmpty(qr)) {
+                countValue = Long.valueOf(String.valueOf(((Object[]) (qr.get(0)))[0])).longValue();
+                weightvalue = Double.valueOf(String.valueOf(((Object[]) (qr.get(0)))[1])).doubleValue();
+                Collection byCode = projectOTIndicatorDao.findByCodeAndAndPlanReference(otCode, ObjectReference.newObjectReference(piPlan));
+                if (!CollectionUtils.isEmpty(byCode)) {
+                    Iterator iterator = byCode.iterator();
+                    while (iterator.hasNext()) {
+                        STProjectInstanceOTIndicator otIndicator = (STProjectInstanceOTIndicator) iterator.next();
+                        otIndicator.setBreadth(countValue.doubleValue());
+                        otIndicator.setCriticality(weightvalue);
+                    }
+                }
+                PersistenceHelper.service.save(byCode);
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //em.close();
         }
 
-    public Collection getAllIndicatorByCompetence(PIGroup piGroup,Boolean enable) throws PIException{
-        STProCompetence stProCompetence=proCompetenceDao.findByDepartmentReference(ObjectReference.newObjectReference(piGroup));
-        if(stProCompetence!=null) {
+    }
+
+    public Collection getAllIndicatorByCompetence(PIGroup piGroup, Boolean enable) throws PIException {
+        STProCompetence stProCompetence = proCompetenceDao.findByDepartmentReference(ObjectReference.newObjectReference(piGroup));
+        if (stProCompetence != null) {
             List result = new ArrayList();
             EntityManager em = PersistenceHelper.service.getEntityManager();
             try {
@@ -643,5 +645,85 @@ public class STIndicatorServiceImpl implements STIndicatorService {
             }
         }
         return null;
+    }
+
+    /**
+     * 偏差汇报时
+     * 保存汇报偏差和评定偏差差异
+     */
+    public void saveSTProjectIndicatorReportDifference(STProjectInstanceOTIndicator otIndicator) throws PIException {
+        if (otIndicator != null) {
+            Collection inindicators = projectINIndicatorDao.findByOtCodeAndPlanReference(otIndicator.getCode(), otIndicator.getPlanReference());
+            if (!CollectionUtils.isEmpty(inindicators)) {
+                Iterator iterator = inindicators.iterator();
+                while (iterator.hasNext()) {
+                    STProjectInstanceINIndicator stProjectInstanceINIndicator = (STProjectInstanceINIndicator) iterator.next();
+                    List<STRating> ratings = (List) ratingDao.findByInIndicatorReference(ObjectReference.newObjectReference(stProjectInstanceINIndicator));
+                    if (CollectionUtils.isNotEmpty(ratings)) {
+                        ratings = ratings.stream().sorted(Comparator.comparing(STRating::getReportTime).reversed()).collect(Collectors.toList());
+//                         //最新评定为
+                        STRating stRating = ratings.get(0);
+                        Double otRating = stRating.getOtRating();
+                        if (Double.doubleToLongBits(otRating) != 0 && Double.doubleToLongBits(otIndicator.getDeviationReport()) != Double.doubleToLongBits(otRating)) {
+                            STProjectIndicatorReportDifference stProjectIndicatorReportDifference = STProjectIndicatorReportDifference.newSTProjectIndicatorReportDifference();
+                            stProjectIndicatorReportDifference.setCode(otIndicator.getCode());
+                            stProjectIndicatorReportDifference.setOtplanActivityReference(otIndicator.getPlanActivityReference());
+                            stProjectIndicatorReportDifference.setProjectReference(otIndicator.getProject());
+                            stProjectIndicatorReportDifference.setPlan(otIndicator.getPlan());
+                            stProjectIndicatorReportDifference.setOtplanActivitydescription(otIndicator.getPlanActivity().getDescription());
+                            stProjectIndicatorReportDifference.setDeviationReport(otIndicator.getDeviationReport());
+                            stProjectIndicatorReportDifference.setReporter(otIndicator.getReporter());
+                            stProjectIndicatorReportDifference.setReportTime(otIndicator.getReportTime());
+                            stProjectIndicatorReportDifference.setInplanActivity(stProjectInstanceINIndicator.getPlanActivity());
+                            stProjectIndicatorReportDifference.setInplanActivitydescription(stProjectInstanceINIndicator.getPlanActivity().getDescription());
+                            stProjectIndicatorReportDifference.setOtRating(stRating.getOtRating());
+                            stProjectIndicatorReportDifference.setRater(stRating.getRater());
+                            stProjectIndicatorReportDifference.setInRatedescription(stRating.getDescription());
+                            stProjectIndicatorReportDifference.setRateTime(stRating.getReportTime());
+                            PersistenceHelper.service.save(stProjectIndicatorReportDifference);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /**
+     * 指标评定后
+     * 保存汇报偏差和评定偏差差异
+     */
+    public void saveSTProjectIndicatorReportDifference(STProjectInstanceINIndicator stProjectInstanceINIndicator,STRating stRating) throws PIException{
+        if(stProjectInstanceINIndicator!=null&&stRating!=null){
+
+            List<STProjectInstanceOTIndicator> otindicators = (List)projectOTIndicatorDao.findByCodeAndAndPlanReference(stProjectInstanceINIndicator.getOtCode(), stProjectInstanceINIndicator.getProjectPlanInstanceRef());
+            if(CollectionUtils.isNotEmpty(otindicators)){
+//                得到最新的偏差汇报ot指标
+                List<STProjectInstanceOTIndicator> latestOt = getLatestOt(otindicators);
+                if(CollectionUtils.isNotEmpty(latestOt)){
+                    STProjectInstanceOTIndicator stProjectInstanceOTIndicator=latestOt.get(0);
+                    Double deviationReport = stProjectInstanceOTIndicator.getDeviationReport();
+                    Double otRating = stRating.getOtRating();
+                    if(Double.doubleToLongBits(deviationReport)!=0&&Double.doubleToLongBits(deviationReport)!=Double.doubleToLongBits(otRating)){
+                        STProjectIndicatorReportDifference stProjectIndicatorReportDifference = STProjectIndicatorReportDifference.newSTProjectIndicatorReportDifference();
+                        stProjectIndicatorReportDifference.setCode(stProjectInstanceOTIndicator.getCode());
+                        stProjectIndicatorReportDifference.setOtplanActivityReference(stProjectInstanceOTIndicator.getPlanActivityReference());
+                        stProjectIndicatorReportDifference.setProjectReference(stProjectInstanceOTIndicator.getProject());
+                        stProjectIndicatorReportDifference.setPlan(stProjectInstanceOTIndicator.getPlan());
+                        stProjectIndicatorReportDifference.setOtplanActivitydescription(stProjectInstanceOTIndicator.getPlanActivity().getDescription());
+                        stProjectIndicatorReportDifference.setDeviationReport(stProjectInstanceOTIndicator.getDeviationReport());
+                        if(stProjectInstanceOTIndicator.getReporter()!=null) {
+                            stProjectIndicatorReportDifference.setReporter(stProjectInstanceOTIndicator.getReporter());
+                        }
+                        stProjectIndicatorReportDifference.setReportTime(stProjectInstanceOTIndicator.getReportTime());
+                        stProjectIndicatorReportDifference.setInplanActivity(stProjectInstanceINIndicator.getPlanActivity());
+                        stProjectIndicatorReportDifference.setInplanActivitydescription(stProjectInstanceINIndicator.getPlanActivity().getDescription());
+                        stProjectIndicatorReportDifference.setOtRating(stRating.getOtRating());
+                        stProjectIndicatorReportDifference.setRater(stRating.getRater());
+                        stProjectIndicatorReportDifference.setInRatedescription(stRating.getDescription());
+                        stProjectIndicatorReportDifference.setRateTime(stRating.getReportTime());
+                        PersistenceHelper.service.save(stProjectIndicatorReportDifference);
+                    }
+                }
+            }
+        }
     }
 }

@@ -225,7 +225,7 @@ public class STProjectIndicatorReportDifference extends PIPmgtObject implements 
         return (inplanActivityReference != null) ? (PIPlannable) inplanActivityReference.getObject() : null;
     }
     public void setInplanActivity(PIPlannable inplanActivity) throws PIException {
-        setOtplanActivityReference(inplanActivity == null ? null : ObjectReference.newObjectReference(inplanActivity));
+        setInplanActivityReference(inplanActivity == null ? null : ObjectReference.newObjectReference(inplanActivity));
     }
 
     public String getInplanActivitydescription() {
