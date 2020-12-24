@@ -39,11 +39,20 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssue.moreurlinfo";
 
+    @RBEntry("involveGroupList")
+    public static final String involveGroup_431= "pi-pmgt-project-copy.involveGroupList.description";
+    @RBEntry("involveGroupList")
+    public static final String involveGroup_432 = "pi-pmgt-project-copy.involveGroupList.tooltip";
 
 
-
-
-
+    @RBEntry("addInvolveDepartments")
+    public static final String addInvolveDepartments_01 = "pi-pmgt-project-copy.addInvolveDepartments.description";
+    @RBEntry("addInvolveDepartments")
+    public static final String addInvolveDepartments_02 = "pi-pmgt-project-copy.addInvolveDepartments.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addInvolveDepartments_03 = "pi-pmgt-project-copy.c.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addInvolveDepartments_04 = "pi-pmgt-project-copy.addInvolveDepartments.moreurlinfo";
 
 /*--------------------------------------------------------------------------------*/
     @RBEntry("ProjectRisks")
@@ -58,5 +67,10 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String risk_04 = "pi-pmgt-risk-copy.risk_Create.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String risk_05 = "pi-pmgt-risk-copy.risk_Create.icon";
+
+    @RBEntry("projectRisk")
+    public static final String projectRisk_01= "pi-pmgt-risk-copy.projectRisk.description";
+    @RBEntry("projectRisk")
+    public static final String projectRisk_02 = "pi-pmgt-risk-copy.projectRisk.tooltip";
 
 }

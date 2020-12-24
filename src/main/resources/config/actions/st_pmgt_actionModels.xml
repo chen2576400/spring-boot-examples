@@ -110,9 +110,6 @@
     </model>
 
 
-
-
-
     <model name="pi-pmgtProjectInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="details" type="pi-pmgt-project"/>
         <action name="listPlans" type="pi-pmgt-project"/>
@@ -137,12 +134,11 @@
     </model>
 
 
-
     <model name="projectRelatedIssuesToolBar" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="createProjectIssue" type="pi-pmgt-project-copy" shortcut="true"/>
         <action name="copyObjects" type="uiComponent" shortcut="true"/>
         <action name="deleteProjectIssue" type="pi-pmgt-project" shortcut="true"/>
-        <action name="exportExcel"  type="uiComponent"/>
+        <action name="exportExcel" type="uiComponent"/>
     </model>
 
 
@@ -155,10 +151,26 @@
     </model>
 
 
-<!-- 编辑/删除 问题 -->
+    <!-- 编辑/删除 问题 -->
     <model name="projectRelatedIssuesMenus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="editProjectIssue" type="pi-pmgt-project-copy"/>
         <action name="deleteProjectIssue" type="pi-pmgt-project-copy"/>
     </model>
+
+
+
+    <model name="involveGroupTabSet" >
+        <!-- 涉及部门展示列表-->
+        <action name="involveGroupList" type="pi-pmgt-project-copy"/>
+        <!--问题风险列表 -->
+        <action name="projectRisk" type="pi-pmgt-risk-copy"/>
+    </model>
+
+    <!-- 涉及部门展示操作按钮-->
+    <model name="departmentDesignToolbarSet">
+        <!-- 添加-->
+        <action name="addInvolveDepartments" type="pi-pmgt-project-copy" shortcut="true"/>
+    </model>
+
 
 </actionmodels>

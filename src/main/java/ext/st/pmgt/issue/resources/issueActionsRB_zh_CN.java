@@ -40,6 +40,21 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssue.moreurlinfo";
 
 
+    @RBEntry("涉及部门列表")
+    public static final String involveGroup_431= "pi-pmgt-project-copy.involveGroupList.description";
+    @RBEntry("涉及部门列表")
+    public static final String involveGroup_432 = "pi-pmgt-project-copy.involveGroupList.tooltip";
+
+
+    @RBEntry("添加")
+    public static final String addInvolveDepartments_01 = "pi-pmgt-project-copy.addInvolveDepartments.description";
+    @RBEntry("添加")
+    public static final String addInvolveDepartments_02 = "pi-pmgt-project-copy.addInvolveDepartments.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addInvolveDepartments_03 = "pi-pmgt-project-copy.addInvolveDepartments.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addInvolveDepartments_04 = "pi-pmgt-project-copy.addInvolveDepartments.moreurlinfo";
+
 
 /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("风险")
@@ -52,6 +67,12 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String risk_04 = "pi-pmgt-risk-copy.risk_Create.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String risk_05 = "pi-pmgt-risk.risk_Create.icon";
+
+    @RBEntry("涉及风险列表")
+    public static final String projectRisk_01= "pi-pmgt-risk-copy.projectRisk.description";
+    @RBEntry("涉及风险列表")
+    public static final String projectRisk_02 = "pi-pmgt-risk-copy.projectRisk.tooltip";
+
 
 
 }

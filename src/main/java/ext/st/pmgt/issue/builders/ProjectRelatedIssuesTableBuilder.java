@@ -160,6 +160,17 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
 
 
 
-        return tableConfig;
+
+
+
+        //拆分上下结构
+        TableBrowserConfig tableBrowserConfig = componentConfigFactory.newTableBrowserConfig(params);
+        tableBrowserConfig.setId("ProjectRelatedIssuesTableBuilder");
+        tableBrowserConfig.tabSetName("involveGroupTabSet");//下方面板
+        tableBrowserConfig.setLayoutDirection(BrowserConfig.VERTICAL); //垂直布局
+        tableBrowserConfig.addComponentConfig(tableConfig);
+
+
+        return tableBrowserConfig;
     }
 }

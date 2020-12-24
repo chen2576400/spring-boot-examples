@@ -120,12 +120,27 @@
         </action>
 
 
-
         <!-- 责任部门展示-->
         <action name="departmentListPicker">
-            <component name="ext.st.pmgt.issue.builders.ProjectDutyDepartmentBuilder"
+            <component name="ext.st.pmgt.issue.builders.ProjectDutyDepartmentTableBuilder"
                        windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.ProjectDutyDepartmentProcessor"/>
+        </action>
+
+
+        <!-- 涉及部门列表展示-->
+        <action name="involveGroupList">
+            <component name="ext.st.pmgt.issue.builders.ProjectInvolvedDepartmentTableBuilder"
+                       windowType="popup"/>
+            <!--            <command className="ext.st.pmgt.issue.processors.ProjectInvolvedDepartmentProcessor"/>-->
+        </action>
+
+        <!-- 添加涉及部门-->
+        <action name="addInvolveDepartments">
+            <component name="ext.st.pmgt.issue.builders.AddInvolveDepartmentsWizardBuilder"
+                       windowType="popup"/>
+
+            <command className="ext.st.pmgt.issue.processors.AddInvolveDepartmentsProcessor"/>
         </action>
 
     </actionsgroup>
@@ -142,6 +157,15 @@
                        windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.CreateProjectRiskProcessor"/>
         </action>
+
+
+        <!--问题相关风险列表-->
+        <action name="projectRisk">
+            <component name="ext.st.pmgt.issue.builders.ProjectRiskListTableBuilder"
+                       windowType="page"/>
+<!--            <command className="ext.st.pmgt.issue.processors.CreateProjectRiskProcessor"/>-->
+        </action>
+
 
     </actionsgroup>
 
