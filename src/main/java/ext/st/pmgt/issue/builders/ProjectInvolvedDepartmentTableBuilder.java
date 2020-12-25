@@ -1,5 +1,6 @@
 package ext.st.pmgt.issue.builders;
 
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.util.PIException;
@@ -9,11 +10,12 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
+import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import ext.st.pmgt.issue.model.STProjectIssueInvolveGroupLink;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 /**
  * 相关涉及部门展示
  */
@@ -21,15 +23,17 @@ public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuil
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
-        STProjectIssue stProjectIssue=null;
-        List result = new ArrayList();
-        if (sourceObject instanceof STProjectIssue){
-            stProjectIssue =(STProjectIssue)sourceObject;
+        STProjectIssue stProjectIssue = null;
+        if (sourceObject instanceof STProjectIssue) {
+            stProjectIssue = (STProjectIssue) sourceObject;
+            if (stProjectIssue == null) {
+                return null;
+            }
         }
-        if (stProjectIssue!=null){
-          return Arrays.asList(stProjectIssue.getDutyGroup());
-        }
-        return  null;
+//                Collection qr = PersistenceHelper.service.navigate(stProjectIssue, "roleB", STProjectIssueInvolveGroupLink.class, false);
+        Collection collection = STProjectIssueHelper.linkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectIssue));
+        List<PIGroup> piGroups = piGroups(collection);
+        return piGroups;
     }
 
     @Override
@@ -51,10 +55,16 @@ public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuil
         column1.setLabel("名称");
         tableConfig.addColumn(column1);
 
-//        ColumnConfig column2 = componentConfigFactory.newColumnConfig();
-//        column2.setName("group");
-//        column2.setLabel("涉及部门");
-//        tableConfig.addColumn(column2);
         return tableConfig;
+    }
+
+
+    private List<PIGroup> piGroups(Collection collection) {
+        if (collection.isEmpty()) return null;
+        List<STProjectIssueInvolveGroupLink> groupLinks = (List<STProjectIssueInvolveGroupLink>) collection;
+        List<PIGroup> piGroups = groupLinks.stream().map(stProjectIssueInvolveGroupLink -> {
+            return stProjectIssueInvolveGroupLink.getRoleBObject();
+        }).collect(Collectors.toList());
+        return piGroups;
     }
 }
