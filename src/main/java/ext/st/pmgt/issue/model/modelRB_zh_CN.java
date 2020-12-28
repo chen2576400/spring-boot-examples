@@ -137,4 +137,14 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     public static final String PIProjectRisk_23 = "STProjectRisk.baselineProjectReference.value";
     @RBEntry("状态")
     public static final String PIProjectRisk_24 = "STProjectRisk.state.state.stateName.value";
+    @RBEntry("提出部门")
+    public static final String PIProjectRisk_25 = "STProjectRisk.proposingGroupReference.value";
+    @RBEntry("主要受影响部门")
+    public static final String PIProjectRisk_26 = "STProjectRisk.affectedGroupReference.value";
+    @RBEntry("风险关闭时间")
+    public static final String PIProjectRisk_27 = "STProjectRisk.closeStamp.value";
+    @RBEntry("紧急度")
+    public static final String PIProjectIssue_28 = "STProjectRisk.urgencyType.value";
+    @RBEntry("重要度")
+    public static final String PIProjectIssue_29 = "STProjectRisk.importanceType.value";
 }

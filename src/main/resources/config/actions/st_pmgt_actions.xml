@@ -132,7 +132,6 @@
         <action name="involveGroupList">
             <component name="ext.st.pmgt.issue.builders.ProjectInvolvedDepartmentTableBuilder"
                        windowType="popup"/>
-            <!--            <command className="ext.st.pmgt.issue.processors.ProjectInvolvedDepartmentProcessor"/>-->
         </action>
 
         <!-- 添加涉及部门-->
@@ -166,7 +165,32 @@
 <!--            <command className="ext.st.pmgt.issue.processors.CreateProjectRiskProcessor"/>-->
         </action>
 
+        <!-- 提出部门列表展示-->
+        <action name="proposingDepartmentListPicker">
+            <component name="ext.st.pmgt.issue.builders.ProjectRiskProposingGroupTableBulider"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.ProjectRiskProposingGroupProcessor"/>
+        </action>
 
+        <action name="affectedDepartmentListPicker">
+            <component name="ext.st.pmgt.issue.builders.ProjectRiskAffectedGroupTableBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.ProjectRiskAffectedGroupProcessor"/>
+        </action>
+
+
+        <action name="affectedGroupList">
+            <component name="ext.st.pmgt.issue.builders.ProjectRiskAffectedDepartmentTableBuilder"
+                       windowType="popup"/>
+        </action>
+
+
+        <action name="addAffectedDepartments">
+            <component name="ext.st.pmgt.issue.builders.AddAffectedDepartmentsWizardBuilder"
+                       windowType="popup"/>
+
+            <command className="ext.st.pmgt.issue.processors.AddAffectedDepartmentsProcessor"/>
+        </action>
     </actionsgroup>
 
 

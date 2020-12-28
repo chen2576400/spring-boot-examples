@@ -15,6 +15,7 @@ import com.pisx.tundra.foundation.lifecycle.model.LifeCycleTemplateReference;
 import com.pisx.tundra.foundation.meta.type.model.LTDTypeDefinition;
 import com.pisx.tundra.foundation.meta.type.model.LTDTyped;
 import com.pisx.tundra.foundation.meta.type.model.TypeDefinitionReference;
+import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIPropertyVetoException;
@@ -918,5 +919,148 @@ public class STProjectRisk extends PIPmgtObject
     @Override
     public boolean isLifeCycleBasic() {
         return false;
+    }
+
+    /**
+     * 关联措施
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "projectMeasuresRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "projectMeasuresRefClass", nullable = true))
+    })
+    ObjectReference projectMeasuresReference;
+
+
+
+    /**
+     * 提出部门
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "proposingGroupReferenceId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "proposingGroupReferenceClass", nullable = true))
+    })
+    ObjectReference proposingGroupReference;
+
+
+    /**
+     * 主要受影响部门
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "affectedGroupReferenceId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "affectedGroupReferenceClass", nullable = true))
+    })
+    ObjectReference affectedGroupReference;
+
+
+    /**
+     * 风险关闭时间
+     */
+    @Column(updatable = true, nullable = true)
+    Timestamp closeStamp;
+
+
+    /**
+     * 重要度
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "importanceType", nullable = true))
+    })
+    ProjectImportanceType importanceType = ProjectImportanceType.getProjectImportanceTypeDefault();
+
+
+
+    /**
+     * 紧急度
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "value", column = @Column(name = "urgencyType", nullable = true))
+    })
+    ProjectUrgencyType urgencyType = ProjectUrgencyType.getProjectUrgencyTypeDefault();
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public ObjectReference getAffectedGroupReference() {
+        return affectedGroupReference;
+    }
+
+    public void setAffectedGroupReference(ObjectReference affectedGroupReference) {
+        this.affectedGroupReference = affectedGroupReference;
+    }
+
+    public PIGroup getAffectedGroup() {
+        return affectedGroupReference!=null?(PIGroup) affectedGroupReference.getObject():null;
+    }
+
+    public void setAffectedGroup(PIGroup piGroup) throws PIException {
+        this.affectedGroupReference = ObjectReference.newObjectReference(piGroup);;
+    }
+
+
+
+
+    public ObjectReference getProposingGroupReference() {
+        return proposingGroupReference;
+    }
+
+    public void setProposingGroupReference(ObjectReference proposingGroupReference) {
+        this.proposingGroupReference = proposingGroupReference;
+    }
+
+    public PIGroup getProposingGroup() {
+        return proposingGroupReference!=null?(PIGroup) proposingGroupReference.getObject():null;
+    }
+
+    public void setProposingGroup(PIGroup piGroup) throws PIException {
+        this.proposingGroupReference = ObjectReference.newObjectReference(piGroup);;
+    }
+
+
+    public Timestamp getCloseStamp() {
+        return closeStamp;
+    }
+
+    public void setCloseStamp(Timestamp closeStamp) {
+        this.closeStamp = closeStamp;
+    }
+
+
+    public ObjectReference getProjectMeasuresReference() {
+        return projectMeasuresReference;
+    }
+
+    public void setProjectMeasuresReference(ObjectReference projectMeasuresReference) {
+        this.projectMeasuresReference = projectMeasuresReference;
+    }
+
+
+    public ProjectImportanceType getImportanceType() {
+        return importanceType;
+    }
+
+    public void setImportanceType(ProjectImportanceType importanceType) {
+        this.importanceType = importanceType;
+    }
+
+    public ProjectUrgencyType getUrgencyType() {
+        return urgencyType;
+    }
+
+    public void setUrgencyType(ProjectUrgencyType urgencyType) {
+        this.urgencyType = urgencyType;
     }
 }

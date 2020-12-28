@@ -132,4 +132,14 @@ public class modelRB extends PIListResourceBundle {
     public static final String PIProjectRisk_23 = "STProjectRisk.baselineProjectReference.value";
     @RBEntry("state")
     public static final String PIProjectRisk_24 = "STProjectRisk.state.state.stateName.value";
+    @RBEntry("proposingGroupReference")
+    public static final String PIProjectRisk_25 = "STProjectRisk.proposingGroupReference.value";
+    @RBEntry("affectedGroupReference")
+    public static final String PIProjectRisk_26 = "STProjectRisk.affectedGroupReference.value";
+    @RBEntry("closeStamp")
+    public static final String PIProjectRisk_27 = "STProjectRisk.closeStamp.value";
+    @RBEntry("urgencyType")
+    public static final String PIProjectIssue_28 = "STProjectRisk.urgencyType.value";
+    @RBEntry("importanceType")
+    public static final String PIProjectIssue_29 = "STProjectRisk.importanceType.value";
 }

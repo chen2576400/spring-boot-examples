@@ -1,7 +1,9 @@
 package ext.st.pmgt.issue.builders;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
+import com.pisx.tundra.foundation.workflow.util.WorkflowUtil;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
@@ -10,6 +12,7 @@ import com.pisx.tundra.netfactory.mvc.components.table.Row;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectRisk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,18 +28,20 @@ public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
         List result = new ArrayList();
         if (contextObj instanceof STProjectIssue){
             stProjectIssue =(STProjectIssue)contextObj;
+            Row row = new Row();
+            row.put("风险编号",stProjectIssue.getDescription());
+            row.put("风险名称",stProjectIssue.getName());
+            result.add(row);
+            return result;
         }
-        Row row = new Row();
-        row.put("风险编号",stProjectIssue.getDescription());
-        row.put("风险名称",stProjectIssue.getName());
-        result.add(row);
-       return result;
+      return  null;
     }
 
     @Override
     public ComponentConfig buildComponentConfig(Object componentData, ComponentParams params) throws PIException {
-        if (componentData==null)  return null;
-
+        if (!isSelect(params)){
+            return  null;
+        }
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
 
         TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
@@ -51,5 +56,14 @@ public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
         column2.setLabel("风险名称");
         tableConfig.addColumn(column2);
         return tableConfig;
+    }
+
+    private  boolean  isSelect(ComponentParams params) throws PIException {
+        String sourceOid =  params.getNfCommandBean().getSourceOid().toString();
+        Persistable persistable = WorkflowUtil.getObjectByOid(sourceOid);
+        if (persistable instanceof STProjectIssue){
+            return true;
+        }
+        return  false;
     }
 }

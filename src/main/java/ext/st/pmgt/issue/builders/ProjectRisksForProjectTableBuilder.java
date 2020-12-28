@@ -6,6 +6,8 @@ import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
+import com.pisx.tundra.netfactory.mvc.components.browser.BrowserConfig;
+import com.pisx.tundra.netfactory.mvc.components.browser.TableBrowserConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import com.pisx.tundra.pmgt.project.PIProjectHelper;
@@ -46,7 +48,7 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("riskCode");
-        column1.haveInfoPageLink();
+//        column1.haveInfoPageLink();
         tableConfig.addColumn(column1);
 
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
@@ -101,6 +103,45 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
         column14.setName("persistInfo.createStamp");
         tableConfig.addColumn(column14);
 
-        return tableConfig;
+        ColumnConfig column15 = componentConfigFactory.newColumnConfig();
+        column15.setLabel("提出部门");
+        column15.haveInfoPageLink();
+        column15.setName("proposingGroup.name");
+        tableConfig.addColumn(column15);
+
+        ColumnConfig column16 = componentConfigFactory.newColumnConfig();
+        column16.setLabel("主要受影响部门");
+        column16.haveInfoPageLink();
+        column16.setName("affectedGroup.name");
+        tableConfig.addColumn(column16);
+
+
+        ColumnConfig column17 = componentConfigFactory.newColumnConfig();
+        column17.setName("closeStamp");
+        tableConfig.addColumn(column17);
+
+        ColumnConfig column18 = componentConfigFactory.newColumnConfig();
+        column18.setName("importanceType");
+        tableConfig.addColumn(column18);
+
+        ColumnConfig column19 = componentConfigFactory.newColumnConfig();
+        column19.setName("urgencyType");
+        tableConfig.addColumn(column19);
+
+
+
+
+
+        //拆分上下结构
+        TableBrowserConfig tableBrowserConfig = componentConfigFactory.newTableBrowserConfig(params);
+        tableBrowserConfig.setId("projectRisksForProjectTableBuilder");
+        tableBrowserConfig.tabSetName("affectedGroupTabSet");//下方面板
+        tableBrowserConfig.setLayoutDirection(BrowserConfig.VERTICAL); //垂直布局
+        tableBrowserConfig.addComponentConfig(tableConfig);
+
+
+
+
+        return tableBrowserConfig;
     }
 }

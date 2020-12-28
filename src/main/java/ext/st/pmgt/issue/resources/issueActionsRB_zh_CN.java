@@ -73,6 +73,19 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("涉及风险列表")
     public static final String projectRisk_02 = "pi-pmgt-risk-copy.projectRisk.tooltip";
 
+    @RBEntry("相关受影响部门")
+    public static final String affectedGroupList_01= "pi-pmgt-risk-copy.affectedGroupList.description";
+    @RBEntry("相关受影响部门")
+    public static final String affectedGroupList_02 = "pi-pmgt-risk-copy.involveGroupList.tooltip";
+
+    @RBEntry("添加")
+    public static final String addAffectedDepartments_01 = "pi-pmgt-risk-copy.addAffectedDepartments.description";
+    @RBEntry("添加")
+    public static final String addAffectedDepartments_02 = "pi-pmgt-risk-copy.addAffectedDepartments.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addAffectedDepartments_03 = "pi-pmgt-risk-copy.addAffectedDepartments.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addAffectedDepartments_04 = "pi-pmgt-risk-copy.addAffectedDepartments.moreurlinfo";
 
 
 }
