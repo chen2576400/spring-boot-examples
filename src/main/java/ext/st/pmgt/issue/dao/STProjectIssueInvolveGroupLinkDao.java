@@ -10,4 +10,5 @@ import java.util.Collection;
 
 public interface STProjectIssueInvolveGroupLinkDao extends JpaRepository<STProjectIssueInvolveGroupLink, ObjectIdentifier> {
    Collection findByRoleAObjectRef(ObjectReference reference);
+   void  deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA,ObjectReference referenceB);
 }

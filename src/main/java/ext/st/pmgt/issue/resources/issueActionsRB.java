@@ -54,6 +54,14 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String addInvolveDepartments_04 = "pi-pmgt-project-copy.addInvolveDepartments.moreurlinfo";
 
+    @RBEntry("deleteInvolveDepartments")
+    public static final String deleteInvolveDepartments_01 = "pi-pmgt-project-copy.deleteInvolveDepartments.description";
+    @RBEntry("deleteInvolveDepartments")
+    public static final String deleteInvolveDepartments_02 = "pi-pmgt-project-copy.deleteInvolveDepartments.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String deleteInvolveDepartments_03 = "pi-pmgt-project-copy.deleteInvolveDepartments.icon";
+    @RBEntry("height=900,width=750")
+    public static final String deleteInvolveDepartments_04 = "pi-pmgt-project-copy.deleteInvolveDepartments.moreurlinfo";
 /*--------------------------------------------------------------------------------*/
     @RBEntry("ProjectRisks")
     public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProject.description";

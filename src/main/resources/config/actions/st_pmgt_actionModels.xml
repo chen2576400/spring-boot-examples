@@ -169,6 +169,8 @@
     <model name="departmentDesignToolbarSet">
         <!-- 添加-->
         <action name="addInvolveDepartments" type="pi-pmgt-project-copy" shortcut="true"/>
+        <!-- 删除 -->
+        <action name="deleteInvolveDepartments"  type="pi-pmgt-project-copy" shortcut="true"/>
     </model>
 
 

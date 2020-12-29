@@ -141,6 +141,10 @@
 
             <command className="ext.st.pmgt.issue.processors.AddInvolveDepartmentsProcessor"/>
         </action>
+        <!-- 删除涉及部门-->
+        <action name="deleteInvolveDepartments" beforeJS="buttonEvent" selectRequired="true">
+            <command className="ext.st.pmgt.issue.processors.DeleteInvolveDepartmentsProcessor"/>
+        </action>
 
     </actionsgroup>
 

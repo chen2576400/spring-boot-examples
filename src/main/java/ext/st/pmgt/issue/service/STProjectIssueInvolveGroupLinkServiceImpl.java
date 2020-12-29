@@ -14,4 +14,9 @@ public class STProjectIssueInvolveGroupLinkServiceImpl implements  STProjectIssu
     public Collection findByRoleAObjectRef(ObjectReference reference) {
         return linkDao.findByRoleAObjectRef(reference);
     }
+
+    @Override
+    public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
+         linkDao.deleteByRoleAObjectRefAndRoleBObjectRef(referenceA,referenceB);
+    }
 }
