@@ -87,5 +87,11 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String addAffectedDepartments_04 = "pi-pmgt-risk-copy.addAffectedDepartments.moreurlinfo";
 
+    /*-----------------------------------------------------------------------------------------------*/
+
+    @RBEntry("风险详情")
+    public static final String riskInformation_01 = "st-pmgt-risk.riskInformation.description";
+    @RBEntry("风险详情")
+    public static final String riskInformation_02 = "st-pmgt-risk.riskInformation.tooltip";
 
 }

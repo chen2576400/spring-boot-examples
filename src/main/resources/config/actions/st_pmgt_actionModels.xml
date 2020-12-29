@@ -184,4 +184,10 @@
         <action name="addAffectedDepartments" type="pi-pmgt-risk-copy" shortcut="true"/>
     </model>
 
+
+
+
+    <model name="riskInfopageTabSet">
+        <action name="riskInformation" type="st-pmgt-risk"/>
+    </model>
 </actionmodels>

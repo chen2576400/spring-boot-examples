@@ -194,4 +194,11 @@
     </actionsgroup>
 
 
+
+    <actionsgroup name="st-pmgt-risk"  resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
+        <action name="riskInformation">
+            <component name="ext.st.pmgt.issue.builders.ProjectRisksInformationTableBuilder"/>
+        </action>
+    </actionsgroup>
+
 </listofactions>
