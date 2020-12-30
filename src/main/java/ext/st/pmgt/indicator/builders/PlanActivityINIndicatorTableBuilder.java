@@ -41,7 +41,7 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         }
         if (warningIN.size()>0) {
             String insCode = getInsCode(warningIN);
-            NotifySupport.alert(AlertType.SUCCESS, "当前需求的IN指标" + insCode + "没有在本计划任何任务中产出，请联系PM或者PMO！");
+            NotifySupport.alert(AlertType.SUCCESS, "当前需求的IN指标" + insCode + "没有在本计划任何任务中产出，请联系PM或者PMO！",10);
         }
         return result;
     }
