@@ -192,6 +192,9 @@
     <model name="AffectedDepartmentDesignToolbarSet">
         <!-- 添加-->
         <action name="addAffectedDepartments" type="pi-pmgt-risk-copy" shortcut="true"/>
+
+        <!-- 删除-->
+        <action name="deleteAffectedDepartments" type="pi-pmgt-risk-copy" shortcut="true"/>
     </model>
 
 

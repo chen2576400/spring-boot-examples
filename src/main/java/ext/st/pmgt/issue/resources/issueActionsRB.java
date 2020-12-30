@@ -86,14 +86,24 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("affectedGroupList")
     public static final String affectedGroupList_02 = "pi-pmgt-risk-copy.involveGroupList.tooltip";
 
-    @RBEntry("添加")
+    @RBEntry("addAffectedDepartments")
     public static final String addAffectedDepartments_01 = "pi-pmgt-risk-copy.addAffectedDepartments.description";
-    @RBEntry("添加")
+    @RBEntry("addAffectedDepartments")
     public static final String addAffectedDepartments_02 = "pi-pmgt-risk-copy.addAffectedDepartments.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String addAffectedDepartments_03 = "pi-pmgt-risk-copy.addAffectedDepartments.icon";
     @RBEntry("height=900,width=750")
     public static final String addAffectedDepartments_04 = "pi-pmgt-risk-copy.addAffectedDepartments.moreurlinfo";
+
+
+    @RBEntry("deleteAffectedDepartments")
+    public static final String deleteAffectedDepartments_01 = "pi-pmgt-risk-copy.deleteAffectedDepartments.description";
+    @RBEntry("deleteAffectedDepartments")
+    public static final String deleteAffectedDepartments_02 = "pi-pmgt-risk-copy.deleteAffectedDepartments.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String deleteAffectedDepartments_03 = "pi-pmgt-risk-copy.deleteAffectedDepartments.icon";
+    @RBEntry("height=900,width=750")
+    public static final String deleteAffectedDepartments_04 = "pi-pmgt-risk-copy.deleteAffectedDepartments.moreurlinfo";
 
 
     @RBEntry("addInvolveRisk")

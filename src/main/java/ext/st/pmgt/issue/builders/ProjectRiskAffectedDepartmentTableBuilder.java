@@ -49,7 +49,8 @@ public class ProjectRiskAffectedDepartmentTableBuilder extends AbstractComponent
         tableConfig.setId("ProjectRiskAffectedDepartmentTable");
         tableConfig.setPrimaryObjectType(PIGroup.class);
         tableConfig.setTableTitle("标题");
-
+        tableConfig.enableSelect();
+        tableConfig.setSingleSelect(false);//true为单选radio false为多选
 
 
         tableConfig.setToolbarActionModel("AffectedDepartmentDesignToolbarSet");//操作按钮

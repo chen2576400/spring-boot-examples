@@ -197,6 +197,11 @@
         </action>
 
 
+        <action name="deleteAffectedDepartments" beforeJS="buttonEvent" selectRequired="true">
+            <command className="ext.st.pmgt.issue.processors.DeleteAffectedDepartmentsProcessor" />
+        </action>
+
+
         <action name="addInvolveRisk">
             <component name="ext.st.pmgt.issue.builders.AddInvolveRiskWizardBuilder"
                        windowType="popup"/>

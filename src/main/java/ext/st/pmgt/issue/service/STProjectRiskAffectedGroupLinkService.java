@@ -6,5 +6,6 @@ import java.util.Collection;
 
 public interface STProjectRiskAffectedGroupLinkService {
     Collection findByRoleAObjectRef(ObjectReference reference);
+    void  deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA,ObjectReference referenceB);
 
 }
