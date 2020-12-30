@@ -57,6 +57,7 @@ public class CreateINIndicatorProcessor extends DefaultObjectFormProcessor {
                     PersistenceHelper.service.save(inIndicator);
                     //        更新广度关键度
                     STIndicatorHelper.service.updateBreadthAndCriticality(((STProjectInstanceOTIndicator) selectedObject).getCode(), piPlan);
+
                 }
             }
         } else {

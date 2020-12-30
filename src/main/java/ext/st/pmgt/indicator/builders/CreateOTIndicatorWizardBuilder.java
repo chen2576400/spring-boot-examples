@@ -86,12 +86,12 @@ public class CreateOTIndicatorWizardBuilder extends AbstractComponentBuilder {
         tableConfig.enableSearch();
         tableConfig.setPrimaryObjectType(STProjectIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "OT_INDICATOR_TABLE", null, params.getLocale()));
-        tableConfig.haveBorder();
         tableConfig.setPageSize(50);
         tableConfig.setRightMenuName("DeviationValueAndDifficultyValueMenu",params);
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("code");
+        column1.enableFilter();
         column1.enableSort();
         tableConfig.addColumn(column1);
 

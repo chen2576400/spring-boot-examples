@@ -62,7 +62,7 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
             layout.setPrimaryClassName(STProjectInstanceINIndicator.class);
             layout.setId("creatinindicatorlayout");
             layout.setTitle("新增IN指标");
-            layout.addField("weights");
+            layout.addField("weights").required();
             step.addLayout(layout);
             step.children(buildTable(componentData, params));
         } catch (Exception e) {
@@ -78,7 +78,6 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
         tableConfig.setEntities(componentData);
         tableConfig.setPrimaryObjectType(STProjectInstanceOTIndicator.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "IN_INDICATOR_TABLE", null, params.getLocale()));
-        tableConfig.haveStripe();
         tableConfig.enableSearch();
         tableConfig.setId("INIndicatorPickerTreeTable");//表格id
         tableConfig.enableSelect();
