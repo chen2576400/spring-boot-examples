@@ -173,6 +173,14 @@
         <action name="deleteInvolveDepartments"  type="pi-pmgt-project-copy" shortcut="true"/>
     </model>
 
+    <!-- 涉及风险展示操作按钮-->
+    <model name="riskDesignToolbarSet">
+        <!-- 添加-->
+        <action name="addInvolveRisk" type="pi-pmgt-risk-copy" shortcut="true"/>
+        <!-- 删除 -->
+        <action name="deleteInvolveRisk"  type="pi-pmgt-risk-copy" shortcut="true"/>
+    </model>
+
 
     <model name="affectedGroupTabSet">
         <!-- 相关受影响部门展示列表-->

@@ -94,6 +94,26 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String addAffectedDepartments_04 = "pi-pmgt-risk-copy.addAffectedDepartments.moreurlinfo";
 
+    @RBEntry("添加")
+    public static final String addInvolveRisk_01 = "pi-pmgt-risk-copy.addInvolveRisk.description";
+    @RBEntry("添加")
+    public static final String addInvolveRisk_02 = "pi-pmgt-risk-copy.addInvolveRisk.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addInvolveRisk_03 = "pi-pmgt-risk-copy.addInvolveRisk.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addInvolveRisk_04 = "pi-pmgt-risk-copy.addInvolveRisk.moreurlinfo";
+
+    @RBEntry("删除")
+    public static final String deleteInvolveRisk_01 = "pi-pmgt-risk-copy.deleteInvolveRisk.description";
+    @RBEntry("删除")
+    public static final String deleteInvolveRisk_02 = "pi-pmgt-risk-copy.deleteInvolveRisk.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String deleteInvolveRisk_03 = "pi-pmgt-risk-copy.deleteInvolveRisk.icon";
+    @RBEntry("height=900,width=750")
+    public static final String deleteInvolveRisk_04 = "pi-pmgt-risk-copy.deleteInvolveRisk.moreurlinfo";
+
+
+
     /*-----------------------------------------------------------------------------------------------*/
 
     @RBEntry("风险详情")

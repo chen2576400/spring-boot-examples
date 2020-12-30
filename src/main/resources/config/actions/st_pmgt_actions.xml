@@ -195,6 +195,18 @@
 
             <command className="ext.st.pmgt.issue.processors.AddAffectedDepartmentsProcessor"/>
         </action>
+
+
+        <action name="addInvolveRisk">
+            <component name="ext.st.pmgt.issue.builders.AddInvolveRiskWizardBuilder"
+                       windowType="popup"/>
+
+            <command className="ext.st.pmgt.issue.processors.AddInvolveRiskProcessor"/>
+        </action>
+
+        <action name="deleteInvolveRisk" beforeJS="buttonEvent" selectRequired="true">
+            <command className="ext.st.pmgt.issue.processors.DeleteInvolveRiskProcessor"/>
+        </action>
     </actionsgroup>
 
 

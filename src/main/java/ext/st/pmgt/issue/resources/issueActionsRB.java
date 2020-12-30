@@ -95,6 +95,27 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String addAffectedDepartments_04 = "pi-pmgt-risk-copy.addAffectedDepartments.moreurlinfo";
 
+
+    @RBEntry("addInvolveRisk")
+    public static final String addInvolveRisk_01 = "pi-pmgt-risk-copy.addInvolveRisk.description";
+    @RBEntry("addInvolveRisk")
+    public static final String addInvolveRisk_02 = "pi-pmgt-risk-copy.addInvolveRisk.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addInvolveRisk_03 = "pi-pmgt-risk-copy.addInvolveRisk.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addInvolveRisk_04 = "pi-pmgt-risk-copy.addInvolveRisk.moreurlinfo";
+
+
+    @RBEntry("deleteInvolveRisk")
+    public static final String deleteInvolveRisk_01 = "pi-pmgt-risk-copy.deleteInvolveRisk.description";
+    @RBEntry("deleteInvolveRisk")
+    public static final String deleteInvolveRisk_02 = "pi-pmgt-risk-copy.deleteInvolveRisk.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String deleteInvolveRisk_03 = "pi-pmgt-risk-copy.deleteInvolveRisk.icon";
+    @RBEntry("height=900,width=750")
+    public static final String deleteInvolveRisk_04 = "pi-pmgt-risk-copy.deleteInvolveRisk.moreurlinfo";
+
+
     /*--------------------------------------------------------------------------------*/
     @RBEntry("riskInformation")
     public static final String riskInformation_01 = "st-pmgt-risk.riskInformation.description";

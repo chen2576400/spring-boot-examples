@@ -2,25 +2,21 @@ package ext.st.pmgt.issue.builders;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
-import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.workflow.util.WorkflowUtil;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
-import com.pisx.tundra.netfactory.mvc.components.table.Row;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import com.pisx.tundra.pmgt.project.PIProjectHelper;
-import com.pisx.tundra.pmgt.project.model.PIProject;
-import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
-import ext.st.pmgt.issue.STRiskHelper;
+import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectIssueInvolveRiskLink;
 import ext.st.pmgt.issue.model.STProjectRisk;
-
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 该问题相关风险展示列表
@@ -28,19 +24,23 @@ import java.util.List;
 public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-        PIProject project = null;
-        Object contextObj = params.getNfCommandBean().getSourceObject();
-        if (contextObj instanceof STProjectIssue) {
-            project = ((STProjectIssue) contextObj).getProject();
-        } else if (contextObj instanceof PIProject) {
-            project = (PIProject) contextObj;
+
+        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
+        STProjectIssue stProjectIssue = null;
+        if (sourceObject instanceof STProjectIssue) {
+            stProjectIssue = (STProjectIssue) sourceObject;
         }
-        return STRiskHelper.service.getProjectRisks(project);
+        if (stProjectIssue!=null){
+            Collection collection = STProjectIssueHelper.riskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectIssue));
+            return riskList(collection);
+        }
+        return null;
     }
+
     @Override
     public ComponentConfig buildComponentConfig(Object componentData, ComponentParams params) throws PIException {
-        if (!isSelect(params)){
-            return  null;
+        if (!isSelect(params)) {
+            return null;
         }
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
 
@@ -48,28 +48,43 @@ public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
         tableConfig.setEntities(componentData);
         tableConfig.setId("projectRiskListTableBuilder");
         tableConfig.setPrimaryObjectType(STProjectRisk.class);
+        tableConfig.enableSelect();
+        tableConfig.setSingleSelect(false);//true为单选radio false为多选
         tableConfig.setTableTitle("风险列表");
 
+        tableConfig.setToolbarActionModel("riskDesignToolbarSet");//操作按钮
+
+
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
-        column1.setName("riskCode");
-//        column1.setLabel("风险编号");
+        column1.setName("riskName");
+        column1.haveInfoPageLink();
+//        column1.setLabel("风险名称");
         tableConfig.addColumn(column1);
 
-
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
-        column2.setName("riskName");
-        column2.haveInfoPageLink();
-//        column2.setLabel("风险名称");
+        column2.setName("riskCode");
+//        column2.setLabel("风险编号");
         tableConfig.addColumn(column2);
+
         return tableConfig;
     }
 
-    private  boolean  isSelect(ComponentParams params) throws PIException {
-        String sourceOid =  params.getNfCommandBean().getSourceOid().toString();
+    private boolean isSelect(ComponentParams params) throws PIException {
+        String sourceOid = params.getNfCommandBean().getSourceOid().toString();
         Persistable persistable = WorkflowUtil.getObjectByOid(sourceOid);
-        if (persistable instanceof STProjectIssue){
+        if (persistable instanceof STProjectIssue) {
             return true;
         }
-        return  false;
+        return false;
+    }
+
+
+    private List<STProjectRisk> riskList(Collection collection) {
+        if (collection.isEmpty()) return null;
+        List<STProjectIssueInvolveRiskLink> riskLinks = (List<STProjectIssueInvolveRiskLink>) collection;
+        List<STProjectRisk> riskList = riskLinks.stream().map(riskLink -> {
+            return riskLink.getRoleBObject();
+        }).collect(Collectors.toList());
+        return riskList;
     }
 }
