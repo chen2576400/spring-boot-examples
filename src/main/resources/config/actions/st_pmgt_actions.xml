@@ -188,6 +188,10 @@
                        windowType="popup"/>
         </action>
 
+        <action name="preRisk">
+            <component name="ext.st.pmgt.issue.builders.ProjectRiskPreRiskTableBuilder"
+                       windowType="popup"/>
+        </action>
 
         <action name="addAffectedDepartments">
             <component name="ext.st.pmgt.issue.builders.AddAffectedDepartmentsWizardBuilder"
@@ -211,6 +215,14 @@
 
         <action name="deleteInvolveRisk" beforeJS="buttonEvent" selectRequired="true">
             <command className="ext.st.pmgt.issue.processors.DeleteInvolveRiskProcessor"/>
+        </action>
+
+
+        <action name="addPreRisk">
+            <component name="ext.st.pmgt.issue.builders.AddPreRiskWizardBuilder"
+                       windowType="popup"/>
+
+            <command className="ext.st.pmgt.issue.processors.AddPreRiskProcessor"/>
         </action>
     </actionsgroup>
 

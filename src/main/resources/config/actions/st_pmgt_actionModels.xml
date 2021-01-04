@@ -170,7 +170,7 @@
         <!-- 添加-->
         <action name="addInvolveDepartments" type="pi-pmgt-project-copy" shortcut="true"/>
         <!-- 删除 -->
-        <action name="deleteInvolveDepartments"  type="pi-pmgt-project-copy" shortcut="true"/>
+        <action name="deleteInvolveDepartments" type="pi-pmgt-project-copy" shortcut="true"/>
     </model>
 
     <!-- 涉及风险展示操作按钮-->
@@ -178,18 +178,20 @@
         <!-- 添加-->
         <action name="addInvolveRisk" type="pi-pmgt-risk-copy" shortcut="true"/>
         <!-- 删除 -->
-        <action name="deleteInvolveRisk"  type="pi-pmgt-risk-copy" shortcut="true"/>
+        <action name="deleteInvolveRisk" type="pi-pmgt-risk-copy" shortcut="true"/>
     </model>
 
 
     <model name="affectedGroupTabSet">
         <!-- 相关受影响部门展示列表-->
         <action name="affectedGroupList" type="pi-pmgt-risk-copy"/>
+        <!-- 前置风险-->
+        <action name="preRisk" type="pi-pmgt-risk-copy"/>
     </model>
 
 
     <!--相关受影响部门展示操作按钮-->
-    <model name="AffectedDepartmentDesignToolbarSet">
+    <model name="affectedDepartmentDesignToolbarSet">
         <!-- 添加-->
         <action name="addAffectedDepartments" type="pi-pmgt-risk-copy" shortcut="true"/>
 
@@ -198,6 +200,13 @@
     </model>
 
 
+    <model name="preRiskToolbarSet">
+        <!-- 添加-->
+        <action name="addPreRisk" type="pi-pmgt-risk-copy" shortcut="true"/>
+
+        <!-- 删除-->
+<!--        <action name="deletePreRisk" type="pi-pmgt-risk-copy" shortcut="true"/>-->
+    </model>
 
 
     <model name="riskInfopageTabSet">

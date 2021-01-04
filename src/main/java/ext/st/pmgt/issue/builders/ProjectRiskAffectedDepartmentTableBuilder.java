@@ -53,7 +53,7 @@ public class ProjectRiskAffectedDepartmentTableBuilder extends AbstractComponent
         tableConfig.setSingleSelect(false);//true为单选radio false为多选
 
 
-        tableConfig.setToolbarActionModel("AffectedDepartmentDesignToolbarSet");//操作按钮
+        tableConfig.setToolbarActionModel("affectedDepartmentDesignToolbarSet");//操作按钮
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("name");
         column1.setLabel("名称");

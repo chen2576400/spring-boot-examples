@@ -86,6 +86,12 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("affectedGroupList")
     public static final String affectedGroupList_02 = "pi-pmgt-risk-copy.involveGroupList.tooltip";
 
+    @RBEntry("preRisk")
+    public static final String preRisk_01= "pi-pmgt-risk-copy.preRisk.description";
+    @RBEntry("preRisk")
+    public static final String preRisk_02 = "pi-pmgt-risk-copy.preRisk.tooltip";
+
+
     @RBEntry("addAffectedDepartments")
     public static final String addAffectedDepartments_01 = "pi-pmgt-risk-copy.addAffectedDepartments.description";
     @RBEntry("addAffectedDepartments")
@@ -125,7 +131,14 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deleteInvolveRisk_04 = "pi-pmgt-risk-copy.deleteInvolveRisk.moreurlinfo";
 
-
+    @RBEntry("addPreRisk")
+    public static final String addPreRisk_01 = "pi-pmgt-risk-copy.addPreRisk.description";
+    @RBEntry("addPreRisk")
+    public static final String addPreRisk_02 = "pi-pmgt-risk-copy.addPreRisk.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addPreRisk_03 = "pi-pmgt-risk-copy.addPreRisk.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addPreRisk_04 = "pi-pmgt-risk-copy.addPreRisk.moreurlinfo";
     /*--------------------------------------------------------------------------------*/
     @RBEntry("riskInformation")
     public static final String riskInformation_01 = "st-pmgt-risk.riskInformation.description";

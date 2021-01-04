@@ -85,6 +85,11 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("相关受影响部门")
     public static final String affectedGroupList_02 = "pi-pmgt-risk-copy.involveGroupList.tooltip";
 
+    @RBEntry("前置风险")
+    public static final String preRisk_01= "pi-pmgt-risk-copy.preRisk.description";
+    @RBEntry("前置风险")
+    public static final String preRisk_02 = "pi-pmgt-risk-copy.preRisk.tooltip";
+
     @RBEntry("添加")
     public static final String addAffectedDepartments_01 = "pi-pmgt-risk-copy.addAffectedDepartments.description";
     @RBEntry("添加")
@@ -123,7 +128,14 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deleteInvolveRisk_04 = "pi-pmgt-risk-copy.deleteInvolveRisk.moreurlinfo";
 
-
+    @RBEntry("添加")
+    public static final String addPreRisk_01 = "pi-pmgt-risk-copy.addPreRisk.description";
+    @RBEntry("添加")
+    public static final String addPreRisk_02 = "pi-pmgt-risk-copy.addPreRisk.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addPreRisk_03 = "pi-pmgt-risk-copy.addPreRisk.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addPreRisk_04 = "pi-pmgt-risk-copy.addPreRisk.moreurlinfo";
 
     /*-----------------------------------------------------------------------------------------------*/
 

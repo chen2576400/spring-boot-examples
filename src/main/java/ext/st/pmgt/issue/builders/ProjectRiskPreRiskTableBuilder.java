@@ -2,7 +2,6 @@ package ext.st.pmgt.issue.builders;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
-import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
@@ -11,58 +10,56 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import ext.st.pmgt.issue.STProjectIssueHelper;
+import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectIssueInvolveGroupLink;
+import ext.st.pmgt.issue.model.STProjectRisk;
+import ext.st.pmgt.issue.model.STProjectRiskPreRiskLink;
+
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-/**
- * 相关涉及部门展示
- */
-public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuilder {
+
+public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
-        STProjectIssue stProjectIssue = null;
-        if (sourceObject instanceof STProjectIssue) {
-            stProjectIssue = (STProjectIssue) sourceObject;
+        STProjectRisk stProjectRisk = null;
+        if (sourceObject instanceof STProjectRisk) {
+            stProjectRisk = (STProjectRisk) sourceObject;
         }
-//                Collection qr = PersistenceHelper.service.navigate(stProjectIssue, "roleB", STProjectIssueInvolveGroupLink.class, false);
-        Collection collection = STProjectIssueHelper.linkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectIssue));
-        List<PIGroup> piGroups = piGroups(collection);
-        return piGroups;
+        Collection collection = STRiskHelper.preRiskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
+
+        List<STProjectRisk> riskList = stProjectRisks(collection);
+        return riskList;
     }
 
     @Override
     public ComponentConfig buildComponentConfig(Object componentData, ComponentParams params) throws PIException {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
-
         TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
         tableConfig.setEntities(componentData);
-        tableConfig.setId("projectInvolvedDepartmentTable");
-        tableConfig.setPrimaryObjectType(PIGroup.class);
-        tableConfig.setTableTitle("标题");
-        tableConfig.enableSelect();
-        tableConfig.setSingleSelect(false);//true为单选radio false为多选
+        tableConfig.setPrimaryObjectType(STProjectRisk.class);
 
-        tableConfig.setToolbarActionModel("departmentDesignToolbarSet");//操作按钮
+        tableConfig.setToolbarActionModel("preRiskToolbarSet");//操作按钮
 
-
+//        tableConfig.enableSelect();
+//        tableConfig.setSingleSelect(false);//true为单选radio false为多选
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
-        column1.setName("name");
-        column1.setLabel("名称");
+        column1.setName("riskName");
         tableConfig.addColumn(column1);
 
         return tableConfig;
     }
 
 
-    private List<PIGroup> piGroups(Collection collection) {
+    private List<STProjectRisk> stProjectRisks(Collection collection) {
         if (collection.isEmpty()) return null;
-        List<STProjectIssueInvolveGroupLink> groupLinks = (List<STProjectIssueInvolveGroupLink>) collection;
-        List<PIGroup> piGroups = groupLinks.stream().map(stProjectIssueInvolveGroupLink -> {
-            return stProjectIssueInvolveGroupLink.getRoleBObject();
+        List<STProjectRiskPreRiskLink> riskLinks = (List<STProjectRiskPreRiskLink>) collection;
+        List<STProjectRisk> riskList = riskLinks.stream().map(STProjectRiskPreRiskLink -> {
+            return STProjectRiskPreRiskLink.getRoleBObject();
         }).collect(Collectors.toList());
-        return piGroups;
+        return riskList;
     }
 }
