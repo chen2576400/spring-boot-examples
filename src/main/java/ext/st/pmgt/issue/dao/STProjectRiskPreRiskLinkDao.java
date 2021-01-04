@@ -11,5 +11,6 @@ import java.util.Collection;
 public interface STProjectRiskPreRiskLinkDao extends JpaRepository<STProjectRiskPreRiskLink, ObjectIdentifier> {
     Collection findByRoleAObjectRef(ObjectReference reference);
     void  deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA,ObjectReference referenceB);
+    void  deleteByRoleAObjectRef(ObjectReference referenceA);
 
 }

@@ -1,6 +1,7 @@
 package ext.st.pmgt.issue.processors;
 
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
@@ -28,7 +29,7 @@ public class AddPreRiskProcessor extends DefaultObjectFormProcessor {
         }
 
         if (!CollectionUtils.isEmpty(persistableList)) {
-            STRiskHelper.preRiskLinkService.deleteAll();
+            STRiskHelper.preRiskLinkService.deleteByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
             for (Persistable per : persistableList) {
                 STProjectRisk preRisk = (STProjectRisk) per;
                 STProjectRiskPreRiskLink link = STProjectRiskPreRiskLink.newSTProjectRiskPreRiskLink(stProjectRisk, preRisk);

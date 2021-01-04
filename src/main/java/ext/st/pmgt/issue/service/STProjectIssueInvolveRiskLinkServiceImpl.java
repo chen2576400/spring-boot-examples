@@ -21,7 +21,7 @@ public class STProjectIssueInvolveRiskLinkServiceImpl implements STProjectIssueI
     }
 
     @Override
-    public void deleteAll() {
-        dao.deleteAll();
+    public void deleteByRoleAObjectRef(ObjectReference referenceA) {
+        dao.deleteByRoleAObjectRef(referenceA);
     }
 }

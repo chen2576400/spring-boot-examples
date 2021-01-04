@@ -9,5 +9,6 @@ public interface STProjectIssueInvolveRiskLinkService {
 
     void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB);
 
-    void deleteAll();
+    void  deleteByRoleAObjectRef(ObjectReference referenceA);
+
 }

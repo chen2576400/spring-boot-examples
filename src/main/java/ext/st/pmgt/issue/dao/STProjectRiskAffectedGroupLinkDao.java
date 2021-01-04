@@ -9,6 +9,9 @@ import java.util.Collection;
 
 public interface STProjectRiskAffectedGroupLinkDao extends JpaRepository<STProjectRiskAffectedGroupLink, ObjectIdentifier> {
     Collection findByRoleAObjectRef(ObjectReference reference);
-    void  deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA,ObjectReference referenceB);
+
+    void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB);
+
+    void deleteByRoleAObjectRef(ObjectReference referenceA);
 
 }

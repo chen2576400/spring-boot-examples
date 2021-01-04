@@ -1,6 +1,7 @@
 package ext.st.pmgt.issue.processors;
 
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.util.PIException;
@@ -34,7 +35,7 @@ public class AddInvolveDepartmentsProcessor extends DefaultObjectFormProcessor {
             projectIssue = (STProjectIssue) persistable;
         }
         if (!CollectionUtils.isEmpty(persistableList)) {
-            STProjectIssueHelper.linkService.deleteAll();
+            STProjectIssueHelper.linkService.deleteByRoleAObjectRef(ObjectReference.newObjectReference(projectIssue));
             for (Persistable per : persistableList) {
                 PIGroup group = (PIGroup) per;
                 STProjectIssueInvolveGroupLink groupLink = STProjectIssueInvolveGroupLink.newSTProjectIssueInvolveGroupLink(projectIssue, group);

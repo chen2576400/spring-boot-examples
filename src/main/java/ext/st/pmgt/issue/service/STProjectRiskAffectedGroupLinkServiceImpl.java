@@ -22,7 +22,7 @@ public class STProjectRiskAffectedGroupLinkServiceImpl implements STProjectRiskA
     }
 
     @Override
-    public void deleteAll() {
-        linkDao.deleteAll();
+    public void deleteByRoleAObjectRef(ObjectReference referenceA) {
+        linkDao.deleteByRoleAObjectRef(referenceA);
     }
 }

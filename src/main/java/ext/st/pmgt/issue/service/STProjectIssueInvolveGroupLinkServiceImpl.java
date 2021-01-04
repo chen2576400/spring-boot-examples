@@ -21,7 +21,7 @@ public class STProjectIssueInvolveGroupLinkServiceImpl implements  STProjectIssu
     }
 
     @Override
-    public void deleteAll() {
-        linkDao.deleteAll();
+    public void deleteByRoleAObjectRef(ObjectReference referenceA) {
+        linkDao.deleteByRoleAObjectRef(referenceA);
     }
 }

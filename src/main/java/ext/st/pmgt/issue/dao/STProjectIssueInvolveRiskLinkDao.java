@@ -10,4 +10,5 @@ import java.util.Collection;
 public interface STProjectIssueInvolveRiskLinkDao extends JpaRepository<STProjectIssueInvolveRiskLink, ObjectIdentifier> {
     Collection findByRoleAObjectRef(ObjectReference reference);
     void  deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA,ObjectReference referenceB);
+    void  deleteByRoleAObjectRef(ObjectReference referenceA);
 }
