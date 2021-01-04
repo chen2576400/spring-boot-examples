@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is the default script for Copying PIProject objects-->
+<!--<!DOCTYPE ContainerCopyScript SYSTEM "copyscript.dtd">-->
+<ContainerCopyScript containerClass="com.pisx.tundra.pmgt.project.model.PIProjectContainer" scriptId="Default">
+  <scriptElement workListItemKey="doDomains" itemHandler="com.pisx.tundra.pmgt.template.ix.DomainStructCopyHelper"/>
+  <scriptElement workListItemKey="doTeamRoles" itemHandler="com.pisx.tundra.pmgt.template.ix.RoleMemberMapCopyHelper"/>
+  <!-- this must be done before the doPolicyRules, since the roles and groups must be created and massaged before running the policy rules -->
+  <scriptElement workListItemKey="doAdminRoles" itemHandler="com.pisx.tundra.pmgt.template.ix.AdminRoleCopyHelper"/>
+  <!--<scriptElement workListItemKey="doPolicyRules" itemHandler="com.ptc.netmarkets.nmixb.PolicyRuleCopyHelper"/>-->
+  <scriptElement workListItemKey="doFolderStructure" itemHandler="com.pisx.tundra.pmgt.template.ix.FolderStructureCopyHelper"/>
+  <scriptElement workListItemKey="doFolderLinks" itemHandler="com.pisx.tundra.pmgt.template.ix.FolderLinkCopyHelper"/>
+ <!--<scriptElement workListItemKey="doSharedTeam" itemHandler="wt.inf.template.containercopy.SharedTeamRefCopyHelper"/>-->
+  <scriptElement workListItemKey="doProjectPlan" itemHandler="com.pisx.tundra.pmgt.template.ix.PlanCopyHelper"/>
+
+</ContainerCopyScript>
+
