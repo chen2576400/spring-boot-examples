@@ -205,7 +205,7 @@
         <action name="addPreRisk" type="pi-pmgt-risk-copy" shortcut="true"/>
 
         <!-- 删除-->
-<!--        <action name="deletePreRisk" type="pi-pmgt-risk-copy" shortcut="true"/>-->
+        <action name="deletePreRisk" type="pi-pmgt-risk-copy" shortcut="true"/>
     </model>
 
 

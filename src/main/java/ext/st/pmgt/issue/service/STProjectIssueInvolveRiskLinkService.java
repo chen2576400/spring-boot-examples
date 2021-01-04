@@ -6,6 +6,8 @@ import java.util.Collection;
 
 public interface STProjectIssueInvolveRiskLinkService {
     Collection findByRoleAObjectRef(ObjectReference reference);
-    void  deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA,ObjectReference referenceB);
 
+    void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB);
+
+    void deleteAll();
 }

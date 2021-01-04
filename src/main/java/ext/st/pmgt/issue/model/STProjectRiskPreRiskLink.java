@@ -25,6 +25,12 @@ public class STProjectRiskPreRiskLink extends ObjectToObjectLink implements Seri
         return link;
     }
 
+    public static STProjectRiskPreRiskLink newSTProjectRiskPreRiskLink() throws PIException
+    {
+        STProjectRiskPreRiskLink link= new STProjectRiskPreRiskLink();
+        link.initialize();
+        return link;
+    }
 
 
     public STProjectRisk getSTProjectPreRisk()

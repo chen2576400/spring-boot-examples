@@ -139,6 +139,17 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String addPreRisk_03 = "pi-pmgt-risk-copy.addPreRisk.icon";
     @RBEntry("height=900,width=750")
     public static final String addPreRisk_04 = "pi-pmgt-risk-copy.addPreRisk.moreurlinfo";
+
+
+    @RBEntry("deletePreRisk")
+    public static final String deletePreRisk_01 = "pi-pmgt-risk-copy.deletePreRisk.description";
+    @RBEntry("deletePreRisk")
+    public static final String deletePreRisk_02 = "pi-pmgt-risk-copy.deletePreRisk.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String deletePreRisk_03 = "pi-pmgt-risk-copy.deletePreRisk.icon";
+    @RBEntry("height=900,width=750")
+    public static final String deletePreRisk_04 = "pi-pmgt-risk-copy.deletePreRisk.moreurlinfo";
+
     /*--------------------------------------------------------------------------------*/
     @RBEntry("riskInformation")
     public static final String riskInformation_01 = "st-pmgt-risk.riskInformation.description";

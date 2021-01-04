@@ -20,4 +20,9 @@ public class STProjectRiskAffectedGroupLinkServiceImpl implements STProjectRiskA
     public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
         linkDao.deleteByRoleAObjectRefAndRoleBObjectRef(referenceA,referenceB);
     }
+
+    @Override
+    public void deleteAll() {
+        linkDao.deleteAll();
+    }
 }

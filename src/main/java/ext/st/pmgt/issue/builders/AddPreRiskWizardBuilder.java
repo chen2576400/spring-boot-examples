@@ -13,19 +13,27 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.model.STProjectRisk;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Collection;
+import java.util.List;
 
 public class AddPreRiskWizardBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
-        PIProject project=null;
-        if (sourceObject instanceof STProjectRisk){
-            project= ((STProjectRisk) sourceObject).getProject();
+        PIProject project = null;
+        if (sourceObject instanceof STProjectRisk) {
+            project = ((STProjectRisk) sourceObject).getProject();
+        } else if (sourceObject instanceof PIProject) {
+            project = (PIProject) sourceObject;
         }
-        else if (sourceObject instanceof PIProject){
-            project= (PIProject)sourceObject;
+        Collection projectRisks = STRiskHelper.service.getProjectRisks(project);
+        if (!CollectionUtils.isEmpty(projectRisks)) {
+            List<STProjectRisk> filterRisks = getFilterRisks(projectRisks, sourceObject);
+            return filterRisks;
         }
-        return STRiskHelper.service.getProjectRisks(project);
+        return null;
     }
 
     @Override
@@ -56,5 +64,15 @@ public class AddPreRiskWizardBuilder extends AbstractComponentBuilder {
         step.children(tableConfig);
 
         return wizardConfig;
+    }
+
+    private List<STProjectRisk> getFilterRisks(Collection collection, Persistable sourceObject) {
+        List<STProjectRisk> riskList = (List<STProjectRisk>) collection;
+        if (sourceObject instanceof STProjectRisk) {
+            STProjectRisk risk = (STProjectRisk) sourceObject;
+            riskList.removeIf(stProjectRisk -> stProjectRisk.getRiskName().equals(risk.getRiskName()));
+            return riskList;
+        }
+        return  null;
     }
 }

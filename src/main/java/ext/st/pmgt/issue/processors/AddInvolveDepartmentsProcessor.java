@@ -7,6 +7,7 @@ import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
+import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectIssueInvolveGroupLink;
 import org.springframework.stereotype.Component;
@@ -33,6 +34,7 @@ public class AddInvolveDepartmentsProcessor extends DefaultObjectFormProcessor {
             projectIssue = (STProjectIssue) persistable;
         }
         if (!CollectionUtils.isEmpty(persistableList)) {
+            STProjectIssueHelper.linkService.deleteAll();
             for (Persistable per : persistableList) {
                 PIGroup group = (PIGroup) per;
                 STProjectIssueInvolveGroupLink groupLink = STProjectIssueInvolveGroupLink.newSTProjectIssueInvolveGroupLink(projectIssue, group);

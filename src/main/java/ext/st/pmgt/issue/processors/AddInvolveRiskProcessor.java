@@ -5,6 +5,7 @@ import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
+import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectIssueInvolveRiskLink;
 import ext.st.pmgt.issue.model.STProjectRisk;
@@ -23,6 +24,7 @@ public class AddInvolveRiskProcessor extends DefaultObjectFormProcessor {
             projectIssue = (STProjectIssue) persistable;
         }
         if (!CollectionUtils.isEmpty(persistableList)) {
+            STProjectIssueHelper.riskLinkService.deleteAll();
             for (Persistable per : persistableList) {
                 STProjectRisk risk = (STProjectRisk) per;
                 STProjectIssueInvolveRiskLink groupLink = STProjectIssueInvolveRiskLink.newSTProjectIssueInvolveRiskLink(projectIssue, risk);

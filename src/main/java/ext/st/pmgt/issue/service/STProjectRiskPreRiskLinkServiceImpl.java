@@ -21,4 +21,9 @@ public class STProjectRiskPreRiskLinkServiceImpl implements STProjectRiskPreRisk
     public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
         dao.deleteByRoleAObjectRefAndRoleBObjectRef(referenceA, referenceB);
     }
+
+    @Override
+    public void deleteAll() {
+        dao.deleteAll();
+    }
 }

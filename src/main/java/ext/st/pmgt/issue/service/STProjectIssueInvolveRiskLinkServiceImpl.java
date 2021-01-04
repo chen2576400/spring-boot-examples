@@ -19,4 +19,9 @@ public class STProjectIssueInvolveRiskLinkServiceImpl implements STProjectIssueI
     public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
         dao.deleteByRoleAObjectRefAndRoleBObjectRef(referenceA,referenceB);
     }
+
+    @Override
+    public void deleteAll() {
+        dao.deleteAll();
+    }
 }

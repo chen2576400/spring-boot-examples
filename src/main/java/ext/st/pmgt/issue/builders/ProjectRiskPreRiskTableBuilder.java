@@ -43,9 +43,9 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
         tableConfig.setPrimaryObjectType(STProjectRisk.class);
 
         tableConfig.setToolbarActionModel("preRiskToolbarSet");//操作按钮
+        tableConfig.enableSelect();
+        tableConfig.setSingleSelect(false);//true为单选radio false为多选
 
-//        tableConfig.enableSelect();
-//        tableConfig.setSingleSelect(false);//true为单选radio false为多选
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("riskName");
         tableConfig.addColumn(column1);

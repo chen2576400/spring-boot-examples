@@ -224,6 +224,10 @@
 
             <command className="ext.st.pmgt.issue.processors.AddPreRiskProcessor"/>
         </action>
+
+        <action name="deletePreRisk" beforeJS="buttonEvent" selectRequired="true">
+            <command className="ext.st.pmgt.issue.processors.DeletePreRiskProcessor"/>
+        </action>
     </actionsgroup>
 
 

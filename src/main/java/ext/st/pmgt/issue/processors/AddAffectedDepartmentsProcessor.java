@@ -7,6 +7,7 @@ import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
+import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import ext.st.pmgt.issue.model.STProjectRiskAffectedGroupLink;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ public class AddAffectedDepartmentsProcessor extends DefaultObjectFormProcessor 
             projectRisk = (STProjectRisk) persistable;
         }
         if (!CollectionUtils.isEmpty(persistableList)) {
+            STRiskHelper.linkService.deleteAll();
             for (Persistable per : persistableList) {
                 PIGroup group = (PIGroup) per;
                 STProjectRiskAffectedGroupLink groupLink = STProjectRiskAffectedGroupLink.newSTProjectRiskAffectedGroupLink(projectRisk, group);
