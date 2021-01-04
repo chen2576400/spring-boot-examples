@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This is the default script for Copying PIProject objects-->
-<!--<!DOCTYPE ContainerCopyScript SYSTEM "copyscript.dtd">-->
+<!DOCTYPE ContainerCopyScript SYSTEM "copyscript.dtd">
 <ContainerCopyScript containerClass="com.pisx.tundra.pmgt.project.model.PIProjectContainer" scriptId="Default">
   <scriptElement workListItemKey="doDomains" itemHandler="com.pisx.tundra.pmgt.template.ix.DomainStructCopyHelper"/>
   <scriptElement workListItemKey="doTeamRoles" itemHandler="com.pisx.tundra.pmgt.template.ix.RoleMemberMapCopyHelper"/>

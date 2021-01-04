@@ -1,0 +1,12 @@
+
+<!ELEMENT ContainerCopyScript (scriptElement*)>
+<!ATTLIST ContainerCopyScript
+	containerClass CDATA #REQUIRED
+	scriptId CDATA #REQUIRED
+>
+
+<!ELEMENT scriptElement EMPTY>
+<!ATTLIST scriptElement
+	workListItemKey CDATA #REQUIRED
+	itemHandler CDATA #REQUIRED
+>
