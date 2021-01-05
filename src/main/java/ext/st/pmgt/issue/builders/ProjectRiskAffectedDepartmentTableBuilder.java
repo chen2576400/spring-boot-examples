@@ -12,7 +12,6 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import ext.st.pmgt.issue.STRiskHelper;
-import ext.st.pmgt.issue.model.STProjectIssueInvolveGroupLink;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import ext.st.pmgt.issue.model.STProjectRiskAffectedGroupLink;
 
@@ -56,8 +55,17 @@ public class ProjectRiskAffectedDepartmentTableBuilder extends AbstractComponent
         tableConfig.setToolbarActionModel("affectedDepartmentDesignToolbarSet");//操作按钮
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("name");
-        column1.setLabel("名称");
+        column1.haveInfoPageLink();
         tableConfig.addColumn(column1);
+
+
+        ColumnConfig column3 = componentConfigFactory.newColumnConfig();
+        column3.setName("persistInfo.createStamp");
+        tableConfig.addColumn(column3);
+
+        ColumnConfig column2 = componentConfigFactory.newColumnConfig();
+        column2.setName("description");
+        tableConfig.addColumn(column2);
 
         return tableConfig;
     }

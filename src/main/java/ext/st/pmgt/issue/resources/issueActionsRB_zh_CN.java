@@ -46,18 +46,18 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String involveGroup_432 = "pi-pmgt-project-copy.involveGroupList.tooltip";
 
 
-    @RBEntry("添加")
+    @RBEntry("添加该问题涉及部门")
     public static final String addInvolveDepartments_01 = "pi-pmgt-project-copy.addInvolveDepartments.description";
-    @RBEntry("添加")
+    @RBEntry("添加该问题涉及部门")
     public static final String addInvolveDepartments_02 = "pi-pmgt-project-copy.addInvolveDepartments.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String addInvolveDepartments_03 = "pi-pmgt-project-copy.addInvolveDepartments.icon";
     @RBEntry("height=900,width=750")
     public static final String addInvolveDepartments_04 = "pi-pmgt-project-copy.addInvolveDepartments.moreurlinfo";
 
-    @RBEntry("删除")
+    @RBEntry("删除该问题涉及部门")
     public static final String deleteInvolveDepartments_01 = "pi-pmgt-project-copy.deleteInvolveDepartments.description";
-    @RBEntry("删除")
+    @RBEntry("删除该问题涉及部门")
     public static final String deleteInvolveDepartments_02 = "pi-pmgt-project-copy.deleteInvolveDepartments.tooltip";
     @RBEntry("img/foundation/delete.gif")
     public static final String deleteInvolveDepartments_03 = "pi-pmgt-project-copy.deleteInvolveDepartments.icon";
@@ -90,9 +90,9 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("前置风险")
     public static final String preRisk_02 = "pi-pmgt-risk-copy.preRisk.tooltip";
 
-    @RBEntry("添加")
+    @RBEntry("添加该风险受影响部门")
     public static final String addAffectedDepartments_01 = "pi-pmgt-risk-copy.addAffectedDepartments.description";
-    @RBEntry("添加")
+    @RBEntry("添加该风险受影响部门")
     public static final String addAffectedDepartments_02 = "pi-pmgt-risk-copy.addAffectedDepartments.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String addAffectedDepartments_03 = "pi-pmgt-risk-copy.addAffectedDepartments.icon";
@@ -100,9 +100,9 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String addAffectedDepartments_04 = "pi-pmgt-risk-copy.addAffectedDepartments.moreurlinfo";
 
 
-    @RBEntry("删除")
+    @RBEntry("删除该风险受影响部门")
     public static final String deleteAffectedDepartments_01 = "pi-pmgt-risk-copy.deleteAffectedDepartments.description";
-    @RBEntry("删除")
+    @RBEntry("删除该风险受影响部门")
     public static final String deleteAffectedDepartments_02 = "pi-pmgt-risk-copy.deleteAffectedDepartments.tooltip";
     @RBEntry("img/foundation/delete.gif")
     public static final String deleteAffectedDepartments_03 = "pi-pmgt-risk-copy.deleteAffectedDepartments.icon";
@@ -110,36 +110,36 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String deleteAffectedDepartments_04 = "pi-pmgt-risk-copy.deleteAffectedDepartments.moreurlinfo";
 
 
-    @RBEntry("添加")
+    @RBEntry("关联涉及风险")
     public static final String addInvolveRisk_01 = "pi-pmgt-risk-copy.addInvolveRisk.description";
-    @RBEntry("添加")
+    @RBEntry("关联涉及风险")
     public static final String addInvolveRisk_02 = "pi-pmgt-risk-copy.addInvolveRisk.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String addInvolveRisk_03 = "pi-pmgt-risk-copy.addInvolveRisk.icon";
     @RBEntry("height=900,width=750")
     public static final String addInvolveRisk_04 = "pi-pmgt-risk-copy.addInvolveRisk.moreurlinfo";
 
-    @RBEntry("删除")
+    @RBEntry("解除涉及风险")
     public static final String deleteInvolveRisk_01 = "pi-pmgt-risk-copy.deleteInvolveRisk.description";
-    @RBEntry("删除")
+    @RBEntry("解除涉及风险")
     public static final String deleteInvolveRisk_02 = "pi-pmgt-risk-copy.deleteInvolveRisk.tooltip";
     @RBEntry("img/foundation/delete.gif")
     public static final String deleteInvolveRisk_03 = "pi-pmgt-risk-copy.deleteInvolveRisk.icon";
     @RBEntry("height=900,width=750")
     public static final String deleteInvolveRisk_04 = "pi-pmgt-risk-copy.deleteInvolveRisk.moreurlinfo";
 
-    @RBEntry("添加")
+    @RBEntry("关联前置风险")
     public static final String addPreRisk_01 = "pi-pmgt-risk-copy.addPreRisk.description";
-    @RBEntry("添加")
+    @RBEntry("关联前置风险")
     public static final String addPreRisk_02 = "pi-pmgt-risk-copy.addPreRisk.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String addPreRisk_03 = "pi-pmgt-risk-copy.addPreRisk.icon";
     @RBEntry("height=900,width=750")
     public static final String addPreRisk_04 = "pi-pmgt-risk-copy.addPreRisk.moreurlinfo";
 
-    @RBEntry("删除")
+    @RBEntry("解除前置风险")
     public static final String deletePreRisk_01 = "pi-pmgt-risk-copy.deletePreRisk.description";
-    @RBEntry("删除")
+    @RBEntry("解除前置风险")
     public static final String deletePreRisk_02 = "pi-pmgt-risk-copy.deletePreRisk.tooltip";
     @RBEntry("img/foundation/delete.gif")
     public static final String deletePreRisk_03 = "pi-pmgt-risk-copy.deletePreRisk.icon";

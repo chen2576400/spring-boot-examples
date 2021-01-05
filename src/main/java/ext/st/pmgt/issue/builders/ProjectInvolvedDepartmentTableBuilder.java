@@ -41,7 +41,7 @@ public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuil
         tableConfig.setEntities(componentData);
         tableConfig.setId("projectInvolvedDepartmentTable");
         tableConfig.setPrimaryObjectType(PIGroup.class);
-        tableConfig.setTableTitle("标题");
+        tableConfig.setTableTitle("涉及部门列表");
         tableConfig.enableSelect();
         tableConfig.setSingleSelect(false);//true为单选radio false为多选
 
@@ -50,8 +50,19 @@ public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuil
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("name");
-        column1.setLabel("名称");
+        column1.haveInfoPageLink();
         tableConfig.addColumn(column1);
+
+
+        ColumnConfig column3 = componentConfigFactory.newColumnConfig();
+        column3.setName("persistInfo.createStamp");
+        tableConfig.addColumn(column3);
+
+        ColumnConfig column2 = componentConfigFactory.newColumnConfig();
+        column2.setName("description");
+        tableConfig.addColumn(column2);
+
+
 
         return tableConfig;
     }

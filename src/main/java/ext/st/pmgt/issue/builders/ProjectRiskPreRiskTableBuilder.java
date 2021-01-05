@@ -9,14 +9,10 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.STRiskHelper;
-import ext.st.pmgt.issue.model.STProjectIssue;
-import ext.st.pmgt.issue.model.STProjectIssueInvolveGroupLink;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import ext.st.pmgt.issue.model.STProjectRiskPreRiskLink;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,10 +42,20 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
         tableConfig.enableSelect();
         tableConfig.setSingleSelect(false);//true为单选radio false为多选
 
+        ColumnConfig column0 = componentConfigFactory.newColumnConfig();
+        column0.setName("riskName");
+        column0.haveInfoPageLink();
+        tableConfig.addColumn(column0);
+
+
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
-        column1.setName("riskName");
+        column1.setName("riskCode");
         tableConfig.addColumn(column1);
 
+
+        ColumnConfig column7 = componentConfigFactory.newColumnConfig();
+        column7.setName("addDate");
+        tableConfig.addColumn(column7);
         return tableConfig;
     }
 

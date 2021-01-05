@@ -58,13 +58,16 @@ public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("riskName");
         column1.haveInfoPageLink();
-//        column1.setLabel("风险名称");
         tableConfig.addColumn(column1);
 
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
         column2.setName("riskCode");
-//        column2.setLabel("风险编号");
         tableConfig.addColumn(column2);
+
+
+        ColumnConfig column7 = componentConfigFactory.newColumnConfig();
+        column7.setName("addDate");
+        tableConfig.addColumn(column7);
 
         return tableConfig;
     }
