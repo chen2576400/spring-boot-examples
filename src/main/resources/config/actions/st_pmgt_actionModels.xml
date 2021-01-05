@@ -114,9 +114,10 @@
         <action name="details" type="pi-pmgt-project"/>
         <action name="listPlans" type="pi-pmgt-project"/>
         <action name="containerTeamBrowser" type="containerTeam"/>
+        <action name="listProjectResources" type="pi-pmgt-project"/>
         <action name="attachments" type="pi-pmgt-enterprise"/>
         <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
-        <action name="listBaselines" type="pi-pmgt-project"/>
+<!--        <action name="listBaselines" type="pi-pmgt-project"/>-->
         <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
         <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
         <action name="listProjectResources" type="pi-pmgt-project"/>
@@ -201,9 +202,6 @@
         <!--项目临界值参数-->
         <action name="pmgtThresholdParamMgmt" type="pi-pmgt-admin"/>
     </model>
-    <model name="projectViewsListTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="list" type="pi-pmgt-project"/>
-    </model>
     <model name="documentInfoPageTabSet" resourceBundle="com.pisx.tundra.foundation.doc.resources.docActionsRB">
         <action name="details" type="document"/>
         <submodel name="docRelatedObjects" type="object"/>
@@ -215,6 +213,7 @@
         <action name="details" type="pi-pmgt-project"/>
         <action name="listPlans" type="pi-pmgt-project"/>
         <action name="containerTeamBrowser" type="containerTeam"/>
+        <action name="listProjectResources" type="pi-pmgt-project"/>
         <action name="attachments" type="pi-pmgt-enterprise"/>
         <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
         <action name="listBaselines" type="pi-pmgt-project"/>
@@ -229,6 +228,13 @@
         <action name="orgContainerDetails" type="orgContainer"/>
         <action name="orgStructureManagement" type="orgContainer"/>
         <action name="orgAdminManagement" type="orgContainer"/>
+    </model>
+    <model name="pi-pmgtEnterpriseTrackingPageTabSet" resource="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="resourcesLoadTracking" type="pi-pmgt-enterprise"/>
+        <action name="resourceLoadProjectAllocation" type="pi-pmgt-enterprise"/>
+        <action name="rolesLoadTracking" type="pi-pmgt-enterprise"/>
+        <action name="projectsStateTracking" type="pi-pmgt-enterprise"/>
+        <action name="resourceWorkHourTracking" type="pi-pmgt-enterprise"/>
     </model>
     <!--###################################重汽未用到action屏蔽############################-->
 
