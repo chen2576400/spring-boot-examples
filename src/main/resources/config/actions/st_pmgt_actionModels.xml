@@ -225,6 +225,11 @@
         <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
         <action name="folderTreeBrowser" type="folder"/>
     </model>
+    <model name="orgContainer-infoPageTabSet" resourceBundle="com.pisx.tundra.foundation.inf.container.resources.containerActionsRB">
+        <action name="orgContainerDetails" type="orgContainer"/>
+        <action name="orgStructureManagement" type="orgContainer"/>
+        <action name="orgAdminManagement" type="orgContainer"/>
+    </model>
     <!--###################################重汽未用到action屏蔽############################-->
 
 

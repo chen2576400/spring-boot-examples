@@ -50,7 +50,7 @@ public class modelRB extends PIListResourceBundle {
     @RBEntry("指标评定")
     public static final String INIndicator_04= "STRating.otRating.value";
 
-    @RBEntry("汇报时间")
+    @RBEntry("评定时间")
     public static final String INIndicator_05= "STRating.reportTime.value";
 
 
