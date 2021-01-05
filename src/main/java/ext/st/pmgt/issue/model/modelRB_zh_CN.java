@@ -147,4 +147,8 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     public static final String PIProjectIssue_28 = "STProjectRisk.urgencyType.value";
     @RBEntry("重要度")
     public static final String PIProjectIssue_29 = "STProjectRisk.importanceType.value";
+
+    /*-----------------------------------------------------------------------------------------------*/
+    @RBEntry("名称")
+    public static final String STProjectMeasures_01 = "STProjectMeasures.name.value";
 }

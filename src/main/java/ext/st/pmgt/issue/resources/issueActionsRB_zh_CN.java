@@ -154,4 +154,20 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("风险详情")
     public static final String riskInformation_02 = "st-pmgt-risk.riskInformation.tooltip";
 
+    /*-----------------------------------------------------------------------------------------------*/
+    @RBEntry("措施详情")
+    public static final String measures_01 = "st-pmgt-measures.measuresDesign.description";
+    @RBEntry("措施详情")
+    public static final String measures_02 = "st-pmgt-measures.measuresDesign.tooltip";
+
+
+    @RBEntry("创建该风险措施")
+    public static final String addRiskMeasures_01 = "st-pmgt-measures.addRiskMeasures.description";
+    @RBEntry("创建该风险措施")
+    public static final String addRiskMeasures_02 = "st-pmgt-measures.addRiskMeasures.tooltip";
+    @RBEntry("img/pmgt/add.gif")
+    public static final String addRiskMeasures_03 = "st-pmgt-measures.addRiskMeasures.icon";
+    @RBEntry("height=900,width=750")
+    public static final String addRiskMeasures_04 = "st-pmgt-measures.addRiskMeasures.moreurlinfo";
+
 }

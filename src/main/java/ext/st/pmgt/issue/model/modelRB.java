@@ -142,4 +142,8 @@ public class modelRB extends PIListResourceBundle {
     public static final String PIProjectIssue_28 = "STProjectRisk.urgencyType.value";
     @RBEntry("importanceType")
     public static final String PIProjectIssue_29 = "STProjectRisk.importanceType.value";
+
+    /*-----------------------------------------------------------------------------------------------*/
+    @RBEntry("name")
+    public static final String STProjectMeasures_01 = "STProjectMeasures.name.value";
 }

@@ -166,7 +166,7 @@
         <action name="projectRisk">
             <component name="ext.st.pmgt.issue.builders.ProjectRiskListTableBuilder"
                        windowType="page"/>
-<!--            <command className="ext.st.pmgt.issue.processors.CreateProjectRiskProcessor"/>-->
+            <!--            <command className="ext.st.pmgt.issue.processors.CreateProjectRiskProcessor"/>-->
         </action>
 
         <!-- 提出部门列表展示-->
@@ -202,7 +202,7 @@
 
 
         <action name="deleteAffectedDepartments" beforeJS="buttonEvent" selectRequired="true">
-            <command className="ext.st.pmgt.issue.processors.DeleteAffectedDepartmentsProcessor" />
+            <command className="ext.st.pmgt.issue.processors.DeleteAffectedDepartmentsProcessor"/>
         </action>
 
 
@@ -231,11 +231,26 @@
     </actionsgroup>
 
 
-
-    <actionsgroup name="st-pmgt-risk"  resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
+    <actionsgroup name="st-pmgt-risk" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
         <action name="riskInformation">
             <component name="ext.st.pmgt.issue.builders.ProjectRisksInformationTableBuilder"/>
         </action>
     </actionsgroup>
+
+
+    <actionsgroup name="st-pmgt-measures" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
+        <action name="measuresDesign">
+            <component name="ext.st.pmgt.issue.builders.ProjectMeasuresTableBuilder"/>
+        </action>
+
+        <action name="addRiskMeasures">
+            <component name="ext.st.pmgt.issue.builders.CreateProjectMeasuresWizardBuilder"  windowType="popup"/>
+
+            <command className="ext.st.pmgt.issue.processors.CreateProjectMeasuresProcessor"/>
+
+        </action>
+
+    </actionsgroup>
+
 
 </listofactions>

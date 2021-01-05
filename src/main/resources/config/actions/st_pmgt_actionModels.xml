@@ -187,6 +187,8 @@
         <action name="affectedGroupList" type="pi-pmgt-risk-copy"/>
         <!-- 前置风险-->
         <action name="preRisk" type="pi-pmgt-risk-copy"/>
+        <!-- 措施-->
+        <action name="measuresDesign" type="st-pmgt-measures"/>
     </model>
 
 
@@ -208,6 +210,15 @@
         <action name="deletePreRisk" type="pi-pmgt-risk-copy" shortcut="true"/>
     </model>
 
+
+
+    <model name="projectRiskMeasuresToolBar">
+        <!-- 添加-->
+        <action name="addRiskMeasures" type="st-pmgt-measures" shortcut="true"/>
+
+<!--        &lt;!&ndash; 删除&ndash;&gt;-->
+<!--        <action name="deleteRiskMeasures" type="st-pmgt-measures" shortcut="true"/>-->
+    </model>
 
     <model name="riskInfopageTabSet">
         <action name="riskInformation" type="st-pmgt-risk"/>
