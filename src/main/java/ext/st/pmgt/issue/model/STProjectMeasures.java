@@ -137,6 +137,22 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
     TypeDefinitionReference lTDTypeDefinitionReference;
 
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ObjectReference getProjectRiskReference() {
+        return projectRiskReference;
+    }
+
+    public void setProjectRiskReference(ObjectReference projectRiskReference) {
+        this.projectRiskReference = projectRiskReference;
+    }
+
     public ObjectReference getProjectReference() {
         return projectReference;
     }
@@ -387,6 +403,8 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
         this.lTDTypeDefinitionReference = lTDTypeDefinitionReference;
 
     }
+
+
 
 
     public static STProjectMeasures newSTProjectMeasures() throws PIException {

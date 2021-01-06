@@ -222,5 +222,9 @@
 
     <model name="riskInfopageTabSet">
         <action name="riskInformation" type="st-pmgt-risk"/>
+
+        <submodel name="projectRisksInfoTab" type="pi-pmgt-risk" shortcut="true"/>
+        <submodel name="relatedDocumentsForProjectRisk" type="pi-pmgt-risk" shortcut="true"/>
+        <action name="relatedPlanActivities"  type="pi-pmgt-risk"/>
     </model>
 </actionmodels>

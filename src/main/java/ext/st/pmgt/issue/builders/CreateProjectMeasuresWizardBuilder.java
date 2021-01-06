@@ -8,6 +8,8 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
+import com.pisx.tundra.pmgt.resource.datahandlers.UserPickerDataHandler;
+import ext.st.pmgt.issue.datahandlers.DutyGroupDataHandler;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 
 public class CreateProjectMeasuresWizardBuilder extends AbstractComponentBuilder {
@@ -29,7 +31,13 @@ public class CreateProjectMeasuresWizardBuilder extends AbstractComponentBuilder
             layout.setPrimaryClassName(STProjectMeasures.class);
             layout.setId("createProjectMeasuresLayout");
             layout.setTitle("创建风险措施");
-            layout.addField("name");
+            layout.addField("name")
+                    .addField("involveGroupReference", new DutyGroupDataHandler())
+                    .addField("precaution")
+                    .addField("confirmStatus")
+                    .addField("involveGroupStatus")
+                    .addField("dutyUserReference", new UserPickerDataHandler())
+            ;
 
             step.addLayout(layout);
 

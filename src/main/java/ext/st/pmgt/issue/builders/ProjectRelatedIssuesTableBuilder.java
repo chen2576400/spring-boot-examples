@@ -55,7 +55,9 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
         //定义每一个column及其属性
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
         column2.setName("name");
+        column2.haveInfoPageLink();
         tableConfig.addColumn(column2);
+
 
         //定义每一个column及其属性
         ColumnConfig column3 = componentConfigFactory.newColumnConfig();
