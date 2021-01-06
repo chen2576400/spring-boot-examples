@@ -155,6 +155,11 @@
         <action name="exportExcel" type="uiComponent" shortcut="true"/>
     </model>
 
+    <model name="ratingTableToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="exportExcel" type="uiComponent" shortcut="true"/>
+    </model>
+
+
 
     <!--###################################重汽未用到action覆盖############################-->
 

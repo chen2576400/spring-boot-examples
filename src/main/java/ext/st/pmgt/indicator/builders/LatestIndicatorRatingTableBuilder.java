@@ -65,6 +65,7 @@ public class LatestIndicatorRatingTableBuilder extends AbstractComponentBuilder 
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "INDICATOR_RATING_TABLE", null, params.getLocale()));
         tableConfig.enableSelect();
         tableConfig.setPageSize(50);
+        tableConfig.setToolbarActionModel("ratingTableToolBarSet");
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("inIndicator.otCode");
