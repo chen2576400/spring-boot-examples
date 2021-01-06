@@ -57,11 +57,10 @@ public class CreateINIndicatorProcessor extends DefaultObjectFormProcessor {
                     PersistenceHelper.service.save(inIndicator);
                     //        更新广度关键度
                     STIndicatorHelper.service.updateBreadthAndCriticality(((STProjectInstanceOTIndicator) selectedObject).getCode(), piPlan);
-
                 }
             }
         } else {
-            new ResponseWrapper(ResponseWrapper.FAILED, "必须选择一个指标！", null);
+           return new ResponseWrapper(ResponseWrapper.FAILED, "必须选择一个指标！", null);
         }
         return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "添加成功！", null);
     }

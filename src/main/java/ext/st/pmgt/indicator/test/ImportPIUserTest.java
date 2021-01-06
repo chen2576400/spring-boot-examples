@@ -78,11 +78,12 @@ public class ImportPIUserTest {
             for (int i = 1; i < rownum; i++) {
                 row = sheet.getRow(i);
                 piUser=PIUser.newPIUser();
+                PIUser userByUserName=null;
                 for (int j = 0; j < colnum; j++) {
                     cellData = (String) getCellFormatValue(row.getCell(j));
                     switch (j) {
                         case 0://名称
-                            PIUser userByUserName = OrgHelper.service.getUserByUserName(cellData);
+                             userByUserName = OrgHelper.service.getUserByUserName(cellData);
                             if(userByUserName!=null){
                                 piUser=userByUserName;
                             }else {
@@ -121,13 +122,15 @@ public class ImportPIUserTest {
                         case 8: //部门
                             List<OrgContainer> sinotruk = orgContainerDao.findByContainerInfoName("sinotruk");
                             PIGroup group = OrgHelper.service.getGroup(cellData, sinotruk.get(0));
-                            if (isExist(piUser)){
+                            if (userByUserName==null&&isExist(piUser)){
                                System.out.println(piUser.getName()+"电话号码或者邮箱重复，请重试");
                                break;
                             }
                             if(group!=null) {
                                 PersistenceHelper.service.save(piUser);
-                                MembershipLink membershipLink = OrgHelper.service.addMember(group, piUser);
+                                if(userByUserName==null) {
+                                    MembershipLink membershipLink = OrgHelper.service.addMember(group, piUser);
+                                }
                             }else {
                                 System.out.println(cellData+"部门不存在");
                             }
