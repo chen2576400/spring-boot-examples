@@ -38,13 +38,12 @@ public class CreateProjectMeasuresWizardBuilder extends AbstractComponentBuilder
                     .addField("involveGroupStatus")
                     .addField("dutyUserReference", new UserPickerDataHandler())
             ;
-
             step.addLayout(layout);
 
-//            StepConfig stepConfig2 = wizardConfig.newStep();
-//            stepConfig2.setId("createProjectIssueStep2");
-//            stepConfig2.setTitle("设置附件");
-//            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
+            StepConfig stepConfig2 = wizardConfig.newStep();
+            stepConfig2.setId("createProjectIssueStep2");
+            stepConfig2.setTitle("设置附件");
+            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
         } catch (Exception e) {
             e.printStackTrace();
         }

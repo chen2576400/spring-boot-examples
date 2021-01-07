@@ -15,6 +15,7 @@ import com.pisx.tundra.foundation.meta.type.model.LTDTypeDefinition;
 import com.pisx.tundra.foundation.meta.type.model.LTDTyped;
 import com.pisx.tundra.foundation.meta.type.model.TypeDefinitionReference;
 import com.pisx.tundra.foundation.org.model.PIGroup;
+import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIPropertyVetoException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
@@ -175,6 +176,15 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
 
     public void setInvolveGroup(PIGroup piGroup) throws PIException {
         this.involveGroupReference = ObjectReference.newObjectReference(piGroup);;
+    }
+
+
+    public PIUser getDutyUser() {
+        return dutyUserReference!=null?(PIUser) dutyUserReference.getObject():null;
+    }
+
+    public void setDutyUser(PIUser user) throws PIException {
+        this.dutyUserReference = ObjectReference.newObjectReference(user);;
     }
 
 

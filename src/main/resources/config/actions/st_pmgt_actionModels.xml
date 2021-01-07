@@ -216,8 +216,8 @@
         <!-- 添加-->
         <action name="addRiskMeasures" type="st-pmgt-measures" shortcut="true"/>
 
-<!--        &lt;!&ndash; 删除&ndash;&gt;-->
-<!--        <action name="deleteRiskMeasures" type="st-pmgt-measures" shortcut="true"/>-->
+        <!-- 删除-->
+        <action name="deleteRiskMeasures" type="st-pmgt-measures" shortcut="true"/>
     </model>
 
     <model name="riskInfopageTabSet">

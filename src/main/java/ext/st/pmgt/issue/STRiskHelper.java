@@ -12,7 +12,7 @@ public class STRiskHelper implements Serializable {
     public static STProjectRiskAffectedGroupLinkService linkService;
     public static STProjectRiskPreRiskLinkService preRiskLinkService;
     static {
-        service = (STRiskService) ApplicationContextUtil.getApplicationContext().getBean(STRiskServiceImpl.class);
+        service = (STRiskService) ApplicationContextUtil.getApplicationContext().getBean(STRiskService.class);
         linkService=(STProjectRiskAffectedGroupLinkService)ApplicationContextUtil.getApplicationContext().getBean(STProjectRiskAffectedGroupLinkService.class);
         preRiskLinkService=(STProjectRiskPreRiskLinkService)ApplicationContextUtil.getApplicationContext().getBean(STProjectRiskPreRiskLinkService.class);
     }

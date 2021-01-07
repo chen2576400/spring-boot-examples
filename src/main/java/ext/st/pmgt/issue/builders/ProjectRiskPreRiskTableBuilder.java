@@ -24,11 +24,11 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
         STProjectRisk stProjectRisk = null;
         if (sourceObject instanceof STProjectRisk) {
             stProjectRisk = (STProjectRisk) sourceObject;
+            Collection collection = STRiskHelper.preRiskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
+            List<STProjectRisk> riskList = stProjectRisks(collection);
+            return riskList;
         }
-        Collection collection = STRiskHelper.preRiskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
-
-        List<STProjectRisk> riskList = stProjectRisks(collection);
-        return riskList;
+        return null;
     }
 
     @Override
@@ -38,7 +38,9 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
         tableConfig.setEntities(componentData);
         tableConfig.setPrimaryObjectType(STProjectRisk.class);
 
-        tableConfig.setToolbarActionModel("preRiskToolbarSet");//操作按钮
+        if (isSelect(params)) {
+            tableConfig.setToolbarActionModel("preRiskToolbarSet");//操作按钮
+        }
         tableConfig.enableSelect();
         tableConfig.setSingleSelect(false);//true为单选radio false为多选
 
@@ -67,5 +69,13 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
             return STProjectRiskPreRiskLink.getRoleBObject();
         }).collect(Collectors.toList());
         return riskList;
+    }
+
+    private boolean isSelect(ComponentParams params) throws PIException {
+        Persistable persistable = params.getNfCommandBean().getSourceObject();
+        if (persistable instanceof STProjectRisk) {
+            return true;
+        }
+        return false;
     }
 }
