@@ -28,6 +28,15 @@ public class CreateProjectMeasuresWizardBuilder extends AbstractComponentBuilder
             step.setId("createProjectMeasuresWizardStep1");
 
             LayoutConfig layout = componentConfigFactory.newLayoutConfig(params);
+            STProjectMeasures measures = null;
+            if (componentData instanceof STProjectMeasures) {//编辑
+                measures = (STProjectMeasures) componentData;
+            }
+            //新建，初始化值
+            if (measures == null) {
+                measures = new STProjectMeasures();
+            }
+            layout.setEntity(measures);
             layout.setPrimaryClassName(STProjectMeasures.class);
             layout.setId("createProjectMeasuresLayout");
             layout.setTitle("创建风险措施");

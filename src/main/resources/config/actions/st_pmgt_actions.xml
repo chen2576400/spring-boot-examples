@@ -252,6 +252,12 @@
         <action name="deleteRiskMeasures" beforeJS="buttonEvent" selectRequired="true">
             <command className="ext.st.pmgt.issue.processors.DeleteRiskMeasuresProcessor"/>
         </action>
+
+
+        <action name="measure_Edit">
+            <component name="ext.st.pmgt.issue.builders.CreateProjectMeasuresWizardBuilder" windowType="popup"/>
+<!--            <command className="ext.st.pmgt.issue.processors.CreateProjectMeasuresProcessor"/>-->
+        </action>
     </actionsgroup>
 
 

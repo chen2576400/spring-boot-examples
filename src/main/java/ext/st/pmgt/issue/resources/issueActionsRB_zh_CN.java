@@ -180,4 +180,14 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String deleteRiskMeasures_04 = "st-pmgt-measures.deleteRiskMeasures.moreurlinfo";
 
 
+    @RBEntry("编辑")
+    public static final String measure_Edit_01 = "st-pmgt-measures.measure_Edit.description";
+    @RBEntry("编辑")
+    public static final String measure_Edit_02 = "st-pmgt-measures.measure_Edit.tooltip";
+    @RBEntry("img/foundation/edit.gif")
+    public static final String measure_Edit_03 = "st-pmgt-measures.measure_Edit.icon";
+    @RBEntry("height=900,width=750")
+    public static final String measure_Edit_04 = "st-pmgt-measures.measure_Edit.moreurlinfo";
+
+
 }

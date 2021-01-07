@@ -10,6 +10,7 @@ import com.pisx.tundra.netfactory.mvc.components.input.InputElement;
 import com.pisx.tundra.netfactory.mvc.handler.DefaultDataHandler;
 import com.pisx.tundra.netfactory.util.misc.URLFactory;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectMeasures;
 
 public class DutyGroupDataHandler extends DefaultDataHandler {
     @Override
@@ -50,6 +51,16 @@ public class DutyGroupDataHandler extends DefaultDataHandler {
             PIGroup piGroup = null;
             if (context.getDutyGroupReference() != null) {
                 piGroup = (PIGroup) context.getDutyGroupReference().getObject();
+                if (piGroup != null) {
+                    inputElement.setValue(piGroup.getOid(), piGroup.getName());
+                }
+            }
+        }
+        else if (datum instanceof STProjectMeasures) {
+            STProjectMeasures context = (STProjectMeasures) datum;
+            PIGroup piGroup = null;
+            if (context.getInvolveGroupReference() != null) {
+                piGroup = (PIGroup) context.getInvolveGroupReference().getObject();
                 if (piGroup != null) {
                     inputElement.setValue(piGroup.getOid(), piGroup.getName());
                 }

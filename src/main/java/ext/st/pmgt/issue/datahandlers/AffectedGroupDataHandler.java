@@ -14,7 +14,9 @@ public class AffectedGroupDataHandler extends DefaultDataHandler {
     @Override
     public Object getDataValue(String columnName, Object datum, ComponentParams params) throws PIException {
         InputElement inputElement = InputElement.instance(columnName);
-
+        if (datum != null) {//编辑页面是需要回填到input框
+            getInputValue(datum, inputElement);
+        }
         inputElement.attribute(elementAttribute -> {
             elementAttribute.addStyle("width:150px;");
             //datum为空的时候，说明是创建，不为空时为编辑或者更新
@@ -38,6 +40,17 @@ public class AffectedGroupDataHandler extends DefaultDataHandler {
         content.children(inputElement, rightImg);
         return content;
     }
-
+    private void getInputValue(Object datum, InputElement inputElement) throws PIException {
+        if (datum instanceof STProjectRisk) {
+            STProjectRisk context = (STProjectRisk) datum;
+            PIGroup piGroup = null;
+            if (context.getAffectedGroupReference() != null) {
+                piGroup = (PIGroup) context.getAffectedGroupReference().getObject();
+                if (piGroup != null) {
+                    inputElement.setValue(piGroup.getOid(), piGroup.getName());
+                }
+            }
+        }
+    }
 
 }

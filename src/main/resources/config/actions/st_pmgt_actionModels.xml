@@ -227,4 +227,9 @@
         <submodel name="relatedDocumentsForProjectRisk" type="pi-pmgt-risk" shortcut="true"/>
         <action name="relatedPlanActivities"  type="pi-pmgt-risk"/>
     </model>
+
+
+    <model name="MeasuresMenus">
+        <action name="measure_Edit"  type="st-pmgt-measures"/>
+    </model>
 </actionmodels>

@@ -45,6 +45,7 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         tableConfig.enableSelect();
         if (isSelect(params)){
             tableConfig.setToolbarActionModel("projectRiskMeasuresToolBar",params);
+            tableConfig.setRightMenuName("MeasuresMenus", params);
         }
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
