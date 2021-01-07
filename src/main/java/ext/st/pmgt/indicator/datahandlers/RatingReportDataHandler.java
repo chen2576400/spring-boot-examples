@@ -35,7 +35,7 @@ public class RatingReportDataHandler extends DefaultDataHandler {
             List<STDeviation> deviations = (List) STIndicatorHelper.service.getDeviationByOTCode(code);
             if (deviations.size() > 0) {
                 deviationOptions = deviations.stream().map(item -> {
-                    return new Option().setLabel(numFormat.format(item.getValue())).setValue(item.getValue());
+                    return new Option().setLabel(item.getDescription()).setValue(item.getValue());
                 }).collect(Collectors.toList());
             }
         }

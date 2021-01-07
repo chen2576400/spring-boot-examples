@@ -252,7 +252,9 @@ public class STProjectIndicatorReportDifference extends PIPmgtObject implements 
         this.rater = rater;
     }
     public void setRater(PIUser rater) {
-        this.rater = PIPrincipalReference.newPIPrincipalReference(rater);
+        if (rater!=null) {
+            this.rater = PIPrincipalReference.newPIPrincipalReference(rater);
+        }
     }
     public String getInRatedescription() {
         return inRatedescription;

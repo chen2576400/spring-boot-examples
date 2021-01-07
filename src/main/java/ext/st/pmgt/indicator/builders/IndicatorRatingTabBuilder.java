@@ -6,7 +6,6 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.tab.TabConfig;
-import sun.awt.ComponentFactory;
 
 /**
  * @ClassName IndicatorRatingTabBuilder
