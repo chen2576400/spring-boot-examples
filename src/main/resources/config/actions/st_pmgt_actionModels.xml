@@ -152,7 +152,7 @@
 
 
     <!-- 编辑/删除 问题 -->
-    <model name="projectRelatedIssuesMenus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+    <model name="projectRelatedIssuesMenusCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="editProjectIssue" type="pi-pmgt-project-copy"/>
         <action name="deleteProjectIssue" type="pi-pmgt-project-copy"/>
     </model>
@@ -228,6 +228,13 @@
         <action name="relatedPlanActivities"  type="pi-pmgt-risk"/>
     </model>
 
+
+    <model name="projectRisksMenusCopy" >
+        <!-- 风险编辑-->
+        <action name="risk_EditCopy" type="pi-pmgt-risk-copy"/>
+        <action name="deleteProjectRiskCopy" type="pi-pmgt-risk-copy"/>
+        <action name="setObjectLcState" type="topLcState"/>
+    </model>
 
     <model name="MeasuresMenus">
         <action name="measure_Edit"  type="st-pmgt-measures"/>

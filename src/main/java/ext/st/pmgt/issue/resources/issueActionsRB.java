@@ -62,7 +62,8 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String deleteInvolveDepartments_03 = "pi-pmgt-project-copy.deleteInvolveDepartments.icon";
     @RBEntry("height=900,width=750")
     public static final String deleteInvolveDepartments_04 = "pi-pmgt-project-copy.deleteInvolveDepartments.moreurlinfo";
-/*--------------------------------------------------------------------------------*/
+
+    /*--------------------------------------------------------------------------------*/
     @RBEntry("ProjectRisks")
     public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProject.description";
     @RBEntry("ProjectRisks")
@@ -149,6 +150,25 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String deletePreRisk_03 = "pi-pmgt-risk-copy.deletePreRisk.icon";
     @RBEntry("height=900,width=750")
     public static final String deletePreRisk_04 = "pi-pmgt-risk-copy.deletePreRisk.moreurlinfo";
+
+
+    @RBEntry("risk_EditCopy")
+    public static final String risk_EditCopy_01 = "pi-pmgt-risk-copy.risk_EditCopy.description";
+    @RBEntry("risk_EditCopy")
+    public static final String risk_EditCopy_02 = "pi-pmgt-risk-copy.risk_EditCopy.tooltip";
+    @RBEntry("img/foundation/edit.gif")
+    public static final String risk_EditCopy_03 = "pi-pmgt-risk-copy.risk_EditCopy.icon";
+    @RBEntry("height=900,width=750")
+    public static final String risk_EditCopy_04 = "pi-pmgt-risk-copy.risk_EditCopy.moreurlinfo";
+
+    @RBEntry("deleteProjectRiskCopy")
+    public static final String deleteProjectRiskCopy_01 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.description";
+    @RBEntry("deleteProjectRiskCopy")
+    public static final String deleteProjectRiskCopy_02 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.tooltip";
+    @RBEntry("img/pmgt/delete.gif")
+    public static final String deleteProjectRiskCopy_03 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.icon";
+    @RBEntry("height=900,width=750")
+    public static final String deleteProjectRiskCopy_04 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.moreurlinfo";
 
     /*--------------------------------------------------------------------------------*/
     @RBEntry("riskInformation")

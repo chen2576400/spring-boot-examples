@@ -42,7 +42,7 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(riskResource.class.getName(),"PROJECT_RISKS_FOR_PROJECT_TABLE_TITLE",null, params.getLocale()));
         tableConfig.enableSelect();//设置单选多选
         tableConfig.setToolbarActionModel("projectRisksTableToolbarSet");
-        tableConfig.setRightMenuName("projectRisksMenus", params);
+        tableConfig.setRightMenuName("projectRisksMenusCopy", params);
 
 
 

@@ -13,6 +13,8 @@ import com.pisx.tundra.pmgt.risk.datahandlers.ResourceDataHandler;
 import com.pisx.tundra.pmgt.risk.datahandlers.RiskTypeDataHandler;
 import ext.st.pmgt.issue.datahandlers.AffectedGroupDataHandler;
 import ext.st.pmgt.issue.datahandlers.ProposingGroupDataHandler;
+import ext.st.pmgt.issue.datahandlers.ResourceExpandDataHandler;
+import ext.st.pmgt.issue.datahandlers.UserPickerExpandDataHandler;
 import ext.st.pmgt.issue.model.STProjectRisk;
 
 import java.sql.Timestamp;
@@ -50,11 +52,11 @@ public class CreateOREditProjectRiskWizardBuilder extends AbstractComponentBuild
             layout.addField("riskName")
                     .addField("riskDescription")
                     .addField("riskToType")
-                    .addField("identifiedByReference", new UserPickerDataHandler())
+                    .addField("identifiedByReference", new UserPickerExpandDataHandler())
                     .addField("riskTypeReference", new RiskTypeDataHandler())
                     .addField("riskCause")
                     .addField("riskEffect")
-                    .addField("rsrcReference", new ResourceDataHandler())
+                    .addField("rsrcReference", new ResourceExpandDataHandler())
                     .addField("notes")
                     .addField("addDate")
                     .addField("responseType")

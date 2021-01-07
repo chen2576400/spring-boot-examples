@@ -45,7 +45,7 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
         tableConfig.enableSearch();
         tableConfig.enableSelect();
         tableConfig.setToolbarActionModel("projectRelatedIssuesToolBar",params);
-        tableConfig.setRightMenuName("projectRelatedIssuesMenus",params);
+        tableConfig.setRightMenuName("projectRelatedIssuesMenusCopy",params);
 
         //定义每一个column及其属性
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();

@@ -146,6 +146,23 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deletePreRisk_04 = "pi-pmgt-risk-copy.deletePreRisk.moreurlinfo";
 
+    @RBEntry("编辑")
+    public static final String risk_EditCopy_01 = "pi-pmgt-risk-copy.risk_EditCopy.description";
+    @RBEntry("编辑")
+    public static final String risk_EditCopy_02 = "pi-pmgt-risk-copy.risk_EditCopy.tooltip";
+    @RBEntry("img/foundation/edit.gif")
+    public static final String risk_EditCopy_03 = "pi-pmgt-risk-copy.risk_EditCopy.icon";
+    @RBEntry("height=900,width=750")
+    public static final String risk_EditCopy_04 = "pi-pmgt-risk-copy.risk_EditCopy.moreurlinfo";
+
+    @RBEntry("删除项目风险")
+    public static final String deleteProjectRiskCopy_01 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.description";
+    @RBEntry("删除项目风险")
+    public static final String deleteProjectRiskCopy_02 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.tooltip";
+    @RBEntry("img/pmgt/delete.gif")
+    public static final String deleteProjectRiskCopy_03 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.icon";
+    @RBEntry("height=900,width=750")
+    public static final String deleteProjectRiskCopy_04 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.moreurlinfo";
 
     /*-----------------------------------------------------------------------------------------------*/
 

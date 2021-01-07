@@ -228,6 +228,18 @@
         <action name="deletePreRisk" beforeJS="buttonEvent" selectRequired="true">
             <command className="ext.st.pmgt.issue.processors.DeletePreRiskProcessor"/>
         </action>
+
+
+        <action name="risk_EditCopy">
+            <component name="ext.st.pmgt.issue.builders.CreateOREditProjectRiskWizardBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.EditProjectRiskProcessorCopy"/>
+        </action>
+
+        <action name="deleteProjectRiskCopy" beforeJS="buttonEvent">
+            <command className="ext.st.pmgt.issue.processors.DeleteProjectRiskProcessorCopy"/>
+            <!--<includeFilter name="pmgtGeneralAccessFilter" functionCode="112"/>-->
+        </action>
     </actionsgroup>
 
 
@@ -256,7 +268,7 @@
 
         <action name="measure_Edit">
             <component name="ext.st.pmgt.issue.builders.CreateProjectMeasuresWizardBuilder" windowType="popup"/>
-<!--            <command className="ext.st.pmgt.issue.processors.CreateProjectMeasuresProcessor"/>-->
+            <!--            <command className="ext.st.pmgt.issue.processors.CreateProjectMeasuresProcessor"/>-->
         </action>
     </actionsgroup>
 
