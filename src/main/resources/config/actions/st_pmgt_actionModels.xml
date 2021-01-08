@@ -134,16 +134,16 @@
     </model>
 
 
-    <model name="projectRelatedIssuesToolBar" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="createProjectIssue" type="pi-pmgt-project-copy" shortcut="true"/>
+    <model name="projectRelatedIssuesToolBarCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="createProjectIssueCopy" type="pi-pmgt-project-copy" shortcut="true"/>
         <action name="copyObjects" type="uiComponent" shortcut="true"/>
         <action name="deleteProjectIssue" type="pi-pmgt-project" shortcut="true"/>
         <action name="exportExcel" type="uiComponent"/>
     </model>
 
 
-    <model name="projectRisksTableToolbarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="risk_Create" type="pi-pmgt-risk-copy" shortcut="true"/>
+    <model name="projectRisksTableToolbarSetCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="risk_CreateCopy" type="pi-pmgt-risk-copy" shortcut="true"/>
         <action name="deleteProjectRisk" type="pi-pmgt-risk" shortcut="true"/>
         <action name="copyObjects" type="uiComponent" shortcut="true"/>
         <action name="pasteProjectRisksForProject" type="pi-pmgt-risk" shortcut="true"/>

@@ -101,7 +101,7 @@
             <component name="ext.st.pmgt.issue.builders.ProjectRelatedIssuesTableBuilder" windowType="page"/>
         </action>
         <!-- 创建问题-->
-        <action name="createProjectIssue">
+        <action name="createProjectIssueCopy">
             <component name="ext.st.pmgt.issue.builders.CreateOREditProjectIssueWizardBuilder"
                        windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.CreateProjectIssueProcessor"/>
@@ -155,7 +155,7 @@
             <component name="ext.st.pmgt.issue.builders.ProjectRisksForProjectTableBuilder"/>
         </action>
         <!--创建风险-->
-        <action name="risk_Create">
+        <action name="risk_CreateCopy">
             <component name="ext.st.pmgt.issue.builders.CreateOREditProjectRiskWizardBuilder"
                        windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.CreateProjectRiskProcessor"/>

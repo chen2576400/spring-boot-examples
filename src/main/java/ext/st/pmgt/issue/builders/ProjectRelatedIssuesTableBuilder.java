@@ -44,7 +44,7 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(changeResource.class.getName(),"PROJECT_RELATED_ISSUES_TABLE_TITLE",null, params.getLocale()));
         tableConfig.enableSearch();
         tableConfig.enableSelect();
-        tableConfig.setToolbarActionModel("projectRelatedIssuesToolBar",params);
+        tableConfig.setToolbarActionModel("projectRelatedIssuesToolBarCopy",params);
         tableConfig.setRightMenuName("projectRelatedIssuesMenusCopy",params);
 
         //定义每一个column及其属性

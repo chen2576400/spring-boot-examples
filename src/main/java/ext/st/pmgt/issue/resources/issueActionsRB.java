@@ -12,14 +12,14 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("ProjectRelatedIssues")
     public static final String project_36 = "pi-pmgt-project-copy.listProjectIssuesForProjectCopy.tooltip";
 
-    @RBEntry("CreateProjectIssue")
-    public static final String ROLE_336 = "pi-pmgt-project-copy.createProjectIssue.description";
-    @RBEntry("CreateProjectIssue")
-    public static final String ROLE_337 = "pi-pmgt-project-copy.createProjectIssue.tooltip";
+    @RBEntry("createProjectIssueCopy")
+    public static final String ROLE_336 = "pi-pmgt-project-copy.createProjectIssueCopy.description";
+    @RBEntry("createProjectIssueCopy")
+    public static final String ROLE_337 = "pi-pmgt-project-copy.createProjectIssueCopy.tooltip";
     @RBEntry("img/pmgt/add.gif")
-    public static final String ROLE_338 = "pi-pmgt-project-copy.createProjectIssue.icon";
+    public static final String ROLE_338 = "pi-pmgt-project-copy.createProjectIssueCopy.icon";
     @RBEntry("height=900,width=750")
-    public static final String ROLE_339 = "pi-pmgt-project-copy.createProjectIssue.moreurlinfo";
+    public static final String ROLE_339 = "pi-pmgt-project-copy.createProjectIssueCopy.moreurlinfo";
 
     @RBEntry("editProjectIssue")
     public static final String ROLE_33614 = "pi-pmgt-project-copy.editProjectIssue.description";
@@ -71,11 +71,11 @@ public class issueActionsRB extends PIListResourceBundle {
 
 
     @RBEntry("CreateProjectRisk")
-    public static final String risk_03 = "pi-pmgt-risk-copy.risk_Create.description";
+    public static final String risk_03 = "pi-pmgt-risk-copy.risk_CreateCopy.description";
     @RBEntry("CreateProjectRisk")
-    public static final String risk_04 = "pi-pmgt-risk-copy.risk_Create.tooltip";
+    public static final String risk_04 = "pi-pmgt-risk-copy.risk_CreateCopy.tooltip";
     @RBEntry("img/pmgt/add.gif")
-    public static final String risk_05 = "pi-pmgt-risk-copy.risk_Create.icon";
+    public static final String risk_05 = "pi-pmgt-risk-copy.risk_CreateCopy.icon";
 
     @RBEntry("projectRisk")
     public static final String projectRisk_01= "pi-pmgt-risk-copy.projectRisk.description";
