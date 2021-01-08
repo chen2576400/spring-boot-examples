@@ -273,4 +273,10 @@
     </actionsgroup>
 
 
+
+
+<!--    <actionsgroup name="pi-pmgt-projectIssueCopy" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">-->
+<!--    </actionsgroup>-->
+
+
 </listofactions>

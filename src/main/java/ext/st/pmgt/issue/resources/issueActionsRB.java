@@ -209,4 +209,20 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String measure_Edit_03 = "st-pmgt-measures.measure_Edit.icon";
     @RBEntry("height=900,width=750")
     public static final String measure_Edit_04 = "st-pmgt-measures.measure_Edit.moreurlinfo";
+    /*-----------------------------------------------------------------------------------------------------------*/
+    @RBEntry("details")
+    public static final String projectIssue_01= "pi-pmgt-projectIssueCopy.details.description";
+    @RBEntry("details")
+    public static final String projectIssue_02 = "pi-pmgt-projectIssueCopy.details.tooltip";
+
+    @RBEntry("relatedDescribedByObjects")
+    public static final String relatedDescribedByObjects_01= "pi-pmgt-projectIssueCopy.relatedDescribedByObjects.description";
+    @RBEntry("relatedDescribedByObjects")
+    public static final String relatedDescribedByObjects02 = "pi-pmgt-projectIssueCopy.relatedDescribedByObjects.tooltip";
+
+    @RBEntry("relatedProjectChangeRequests")
+    public static final String relatedProjectChangeRequests_01= "pi-pmgt-projectIssueCopy.relatedProjectChangeRequests.description";
+    @RBEntry("relatedProjectChangeRequests")
+    public static final String relatedProjectChangeRequests_02 = "pi-pmgt-projectIssueCopy.relatedProjectChangeRequests.tooltip";
+
 }

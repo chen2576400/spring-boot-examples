@@ -21,7 +21,7 @@ public class ProjectIssuesInfoPageBuilder extends AbstractComponentBuilder {
     public ComponentConfig buildComponentConfig(Object componentData, ComponentParams params) throws ComponentException {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         TabConfig tabConfig = componentConfigFactory.newTabConfig(params);
-        tabConfig.setId("projectIssueInfoPageTabSet");
+        tabConfig.setId("projectIssueInfoPageTabSetCopy");
 
         tabConfig.setContextObjectIcon("img/pmgt/issues.png");
         String contextObjectIdentifier = getContextObjectIdentifier((STProjectIssue) componentData);//设置上下文对象

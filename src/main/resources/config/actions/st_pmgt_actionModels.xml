@@ -229,6 +229,18 @@
     </model>
 
 
+    <model name="projectIssueInfoPageTabSetCopy">
+        <!-- 详细信息-->
+        <action name="details" type="pi-pmgt-projectIssue" shortcut="true"/>
+<!--        <action name="relatedDescribedByObjects" type="pi-pmgt-projectIssueCopy" shortcut="true"/>-->
+<!--        <action name="relatedProjectChangeRequests" type="pi-pmgt-projectIssue" shortcut="true"/>-->
+<!--        <submodel name="relatedWTChangeObjectsForProjectIssue" type="pi-pmgt-projectIssue" shortcut="true"/>-->
+       <!-- 附件 -->
+        <action name="attachments" type="pi-pmgt-enterprise" shortcut="true"/>
+
+    </model>
+
+
     <model name="projectRisksMenusCopy" >
         <!-- 风险编辑-->
         <action name="risk_EditCopy" type="pi-pmgt-risk-copy"/>
@@ -236,6 +248,7 @@
         <action name="setObjectLcState" type="topLcState"/>
     </model>
 
+    <!-- 措施编辑-->
     <model name="MeasuresMenus">
         <action name="measure_Edit"  type="st-pmgt-measures"/>
     </model>
