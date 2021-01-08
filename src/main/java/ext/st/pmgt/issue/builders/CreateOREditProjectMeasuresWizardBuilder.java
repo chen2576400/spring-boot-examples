@@ -8,8 +8,8 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
-import com.pisx.tundra.pmgt.resource.datahandlers.UserPickerDataHandler;
 import ext.st.pmgt.issue.datahandlers.DutyGroupDataHandler;
+import ext.st.pmgt.issue.datahandlers.UserPickerExpandDataHandler;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 
 public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentBuilder {
@@ -45,7 +45,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
                     .addField("precaution")
                     .addField("confirmStatus")
                     .addField("involveGroupStatus")
-                    .addField("dutyUserReference", new UserPickerDataHandler())
+                    .addField("dutyUserReference", new UserPickerExpandDataHandler())
             ;
             step.addLayout(layout);
 
