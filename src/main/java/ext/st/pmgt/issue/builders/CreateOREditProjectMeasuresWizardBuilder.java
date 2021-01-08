@@ -12,7 +12,7 @@ import com.pisx.tundra.pmgt.resource.datahandlers.UserPickerDataHandler;
 import ext.st.pmgt.issue.datahandlers.DutyGroupDataHandler;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 
-public class CreateProjectMeasuresWizardBuilder extends AbstractComponentBuilder {
+public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         return params.getNfCommandBean().getSourceObject();
@@ -52,7 +52,7 @@ public class CreateProjectMeasuresWizardBuilder extends AbstractComponentBuilder
             StepConfig stepConfig2 = wizardConfig.newStep();
             stepConfig2.setId("createProjectIssueStep2");
             stepConfig2.setTitle("设置附件");
-            stepConfig2.setStepAction("pi-pmgt-enterprise", "attachments");
+            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -256,7 +256,7 @@
         </action>
 
         <action name="addRiskMeasures">
-            <component name="ext.st.pmgt.issue.builders.CreateProjectMeasuresWizardBuilder" windowType="popup"/>
+            <component name="ext.st.pmgt.issue.builders.CreateOREditProjectMeasuresWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.CreateProjectMeasuresProcessor"/>
         </action>
 
@@ -267,16 +267,9 @@
 
 
         <action name="measure_Edit">
-            <component name="ext.st.pmgt.issue.builders.CreateProjectMeasuresWizardBuilder" windowType="popup"/>
-            <!--            <command className="ext.st.pmgt.issue.processors.CreateProjectMeasuresProcessor"/>-->
+            <component name="ext.st.pmgt.issue.builders.CreateOREditProjectMeasuresWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.EditProjectMeasuresProcessor"/>
         </action>
     </actionsgroup>
-
-
-
-
-<!--    <actionsgroup name="pi-pmgt-projectIssueCopy" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">-->
-<!--    </actionsgroup>-->
-
 
 </listofactions>

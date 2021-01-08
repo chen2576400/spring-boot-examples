@@ -4,12 +4,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.admin.AdministrativeDomainHelper;
 import com.pisx.tundra.foundation.admin.model.AdminDomainRef;
 import com.pisx.tundra.foundation.admin.model.AdministrativeDomain;
+import com.pisx.tundra.foundation.content.model.ContentHolder;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.lifecycle.LifeCycleHelper;
 import com.pisx.tundra.foundation.lifecycle.model.LifeCycleState;
 import com.pisx.tundra.foundation.org.model.PIGroup;
+import com.pisx.tundra.foundation.org.model.PIPrincipalReference;
 import com.pisx.tundra.foundation.org.model.PIUser;
+import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIPropertyVetoException;
 import com.pisx.tundra.foundation.workflow.util.WorkflowUtil;
@@ -17,12 +20,15 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.netfactory.util.misc.StringUtils;
+import com.pisx.tundra.pmgt.change.PIProjectChangeHelper;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Part;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
@@ -35,7 +41,21 @@ public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
                 getJSONObject("create_project_measures_layout").getJSONObject("fieldMeta");
 
         STProjectMeasures stProjectMeasures=getSTProjectMeasures(jsonObject,risk);
+        PIPrincipalReference creator = PIPrincipalReference.newPIPrincipalReference(SessionHelper.service.getPrincipal());
+        stProjectMeasures.setCreator(creator);
+
+
+        Map<String, List<Part>> files = params.getFiles();
+        List<Part> second = files.get("secondFile");//有数据都是新增的
+        JSONObject ajaxData = params.getAjaxData();
+        JSONObject componentsData = ajaxData.getJSONObject("componentsData");
+        JSONObject createProjectRiskStep2 = componentsData.getJSONObject("create_project_issue_step2");
+        JSONObject contextHolderAttachmentsTable = createProjectRiskStep2.getJSONObject("createoreditattachmentstable1");
+        String  rows = contextHolderAttachmentsTable.getJSONArray("rows").toJSONString();
+        ContentHolder contentHolder=stProjectMeasures;
+
         PersistenceHelper.service.save(stProjectMeasures);
+        PIProjectChangeHelper.service.addAndUpdateSecondData(contentHolder,creator, second,rows,null);
         return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, null, null);
     }
 
