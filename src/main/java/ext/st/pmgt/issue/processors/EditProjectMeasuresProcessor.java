@@ -34,8 +34,8 @@ public class EditProjectMeasuresProcessor extends DefaultUpdateFormProcessor {
         List<Part> second = files.get("secondFile");//有数据都是新增的
         JSONObject ajaxData = params.getAjaxData();
         JSONObject componentsData = ajaxData.getJSONObject("componentsData");
-        JSONObject createProjectRiskStep2 = componentsData.getJSONObject("create_project_issue_step2");
-        JSONObject contextHolderAttachmentsTable = createProjectRiskStep2.getJSONObject("createoreditattachmentstable1");
+        JSONObject createProjectmMasureStep2 = componentsData.getJSONObject("create_project_measure_step2");
+        JSONObject contextHolderAttachmentsTable = createProjectmMasureStep2.getJSONObject("createoreditattachmentstable1");
         String  rows = contextHolderAttachmentsTable.getJSONArray("rows").toJSONString();
 
 

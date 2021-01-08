@@ -50,7 +50,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
             step.addLayout(layout);
 
             StepConfig stepConfig2 = wizardConfig.newStep();
-            stepConfig2.setId("createProjectIssueStep2");
+            stepConfig2.setId("createProjectMeasureStep2");
             stepConfig2.setTitle("设置附件");
             stepConfig2.setStepAction("attachments", "createOrEditAttachments");
         } catch (Exception e) {
