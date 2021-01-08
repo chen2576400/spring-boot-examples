@@ -8,9 +8,9 @@ import com.pisx.tundra.foundation.util.resource.RBUUID;
 @RBUUID("ext.st.pmgt.indicator.resources.issueActionsRB")
 public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("问题")
-    public static final String project_35 = "pi-pmgt-project-copy.listProjectIssuesForProject.description";
+    public static final String project_35 = "pi-pmgt-project-copy.listProjectIssuesForProjectCopy.description";
     @RBEntry("问题")
-    public static final String project_36 = "pi-pmgt-project-copy.listProjectIssuesForProject.tooltip";
+    public static final String project_36 = "pi-pmgt-project-copy.listProjectIssuesForProjectCopy.tooltip";
     @RBEntry("创建项目问题")
     public static final String ROLE_336 = "pi-pmgt-project-copy.createProjectIssue.description";
     @RBEntry("创建项目问题")
@@ -65,9 +65,9 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String deleteInvolveDepartments_04 = "pi-pmgt-project-copy.deleteInvolveDepartments.moreurlinfo";
 /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("风险")
-    public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProject.description";
+    public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProjectCopy.description";
     @RBEntry("风险")
-    public static final String risk_02 = "pi-pmgt-risk-copy.listProjectRisksForProject.tooltip";
+    public static final String risk_02 = "pi-pmgt-risk-copy.listProjectRisksForProjectCopy.tooltip";
     @RBEntry("创建风险")
     public static final String risk_03 = "pi-pmgt-risk-copy.risk_Create.description";
     @RBEntry("创建风险")

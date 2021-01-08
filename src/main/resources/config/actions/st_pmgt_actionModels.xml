@@ -128,9 +128,9 @@
         <action name="projectThresholds" type="pi-pmgt-project"/>
         <action name="folderTreeBrowser" type="folder"/>
         <!--问题-->
-        <action name="listProjectIssuesForProject" type="pi-pmgt-project-copy"/>
+        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>
         <!--风险-->
-        <action name="listProjectRisksForProject" type="pi-pmgt-risk-copy"/>
+        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>
     </model>
 
 

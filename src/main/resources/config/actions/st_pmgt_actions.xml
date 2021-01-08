@@ -97,7 +97,7 @@
 
     <!--问题-->
     <actionsgroup name="pi-pmgt-project-copy" class="" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
-        <action name="listProjectIssuesForProject">
+        <action name="listProjectIssuesForProjectCopy">
             <component name="ext.st.pmgt.issue.builders.ProjectRelatedIssuesTableBuilder" windowType="page"/>
         </action>
         <!-- 创建问题-->
@@ -151,7 +151,7 @@
 
     <!--风险-->
     <actionsgroup name="pi-pmgt-risk-copy" class="" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
-        <action name="listProjectRisksForProject">
+        <action name="listProjectRisksForProjectCopy">
             <component name="ext.st.pmgt.issue.builders.ProjectRisksForProjectTableBuilder"/>
         </action>
         <!--创建风险-->

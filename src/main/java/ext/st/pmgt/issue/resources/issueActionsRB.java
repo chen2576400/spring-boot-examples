@@ -8,9 +8,9 @@ import com.pisx.tundra.foundation.util.resource.RBUUID;
 public class issueActionsRB extends PIListResourceBundle {
 
     @RBEntry("ProjectRelatedIssues")
-    public static final String project_35 = "pi-pmgt-project-copy.listProjectIssuesForProject.description";
+    public static final String project_35 = "pi-pmgt-project-copy.listProjectIssuesForProjectCopy.description";
     @RBEntry("ProjectRelatedIssues")
-    public static final String project_36 = "pi-pmgt-project-copy.listProjectIssuesForProject.tooltip";
+    public static final String project_36 = "pi-pmgt-project-copy.listProjectIssuesForProjectCopy.tooltip";
 
     @RBEntry("CreateProjectIssue")
     public static final String ROLE_336 = "pi-pmgt-project-copy.createProjectIssue.description";
@@ -65,9 +65,9 @@ public class issueActionsRB extends PIListResourceBundle {
 
     /*--------------------------------------------------------------------------------*/
     @RBEntry("ProjectRisks")
-    public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProject.description";
+    public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProjectCopy.description";
     @RBEntry("ProjectRisks")
-    public static final String risk_02 = "pi-pmgt-risk-copy.listProjectRisksForProject.tooltip";
+    public static final String risk_02 = "pi-pmgt-risk-copy.listProjectRisksForProjectCopy.tooltip";
 
 
     @RBEntry("CreateProjectRisk")
