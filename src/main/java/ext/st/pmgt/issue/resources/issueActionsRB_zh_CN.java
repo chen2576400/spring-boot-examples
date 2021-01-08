@@ -206,6 +206,12 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String measure_Edit_04 = "st-pmgt-measures.measure_Edit.moreurlinfo";
 
+
+    @RBEntry("详细信息")
+    public static final String measures_details_01= "st-pmgt-measures.details.description";
+    @RBEntry("详细信息")
+    public static final String measures_details_02 = "st-pmgt-measures.details.tooltip";
+
     /*-----------------------------------------------------------------------------------------------------------*/
     @RBEntry("详细信息")
     public static final String projectIssue_01= "pi-pmgt-projectIssueCopy.details.description";

@@ -243,11 +243,11 @@
     </actionsgroup>
 
 
-    <actionsgroup name="st-pmgt-risk" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
-        <action name="riskInformation">
-            <component name="ext.st.pmgt.issue.builders.ProjectRisksInformationTableBuilder"/>
-        </action>
-    </actionsgroup>
+<!--    <actionsgroup name="st-pmgt-risk" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">-->
+<!--        <action name="riskInformation">-->
+<!--            <component name="ext.st.pmgt.issue.builders.ProjectRisksInformationTableBuilder"/>-->
+<!--        </action>-->
+<!--    </actionsgroup>-->
 
 
     <actionsgroup name="st-pmgt-measures" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
@@ -269,6 +269,11 @@
         <action name="measure_Edit">
             <component name="ext.st.pmgt.issue.builders.CreateOREditProjectMeasuresWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.EditProjectMeasuresProcessor"/>
+        </action>
+
+        <action name="details">
+            <component name="ext.st.pmgt.issue.builders.STProjectMeasuresAttributesPanelBuilder"
+                       windowType="page"/>
         </action>
     </actionsgroup>
 

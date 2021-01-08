@@ -221,11 +221,10 @@
     </model>
 
     <model name="riskInfopageTabSet">
-        <action name="riskInformation" type="st-pmgt-risk"/>
-
+<!--        <action name="riskInformation" type="st-pmgt-risk"/>-->
         <submodel name="projectRisksInfoTab" type="pi-pmgt-risk" shortcut="true"/>
         <submodel name="relatedDocumentsForProjectRisk" type="pi-pmgt-risk" shortcut="true"/>
-        <action name="relatedPlanActivities"  type="pi-pmgt-risk"/>
+        <action name="attachments" type="pi-pmgt-enterprise" shortcut="true"/>
     </model>
 
 
@@ -251,5 +250,10 @@
     <!-- 措施编辑-->
     <model name="MeasuresMenus">
         <action name="measure_Edit"  type="st-pmgt-measures"/>
+    </model>
+
+    <model name="measureInfopageTabSet">
+        <action name="details" type="st-pmgt-measures" shortcut="true"/>
+        <action name="attachments" type="pi-pmgt-enterprise" shortcut="true"/>
     </model>
 </actionmodels>

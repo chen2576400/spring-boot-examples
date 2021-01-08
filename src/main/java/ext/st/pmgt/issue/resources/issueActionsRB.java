@@ -209,6 +209,13 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String measure_Edit_03 = "st-pmgt-measures.measure_Edit.icon";
     @RBEntry("height=900,width=750")
     public static final String measure_Edit_04 = "st-pmgt-measures.measure_Edit.moreurlinfo";
+
+    @RBEntry("details")
+    public static final String measures_details_01= "st-pmgt-measures.details.description";
+    @RBEntry("details")
+    public static final String measures_details_02 = "st-pmgt-measures.details.tooltip";
+
+
     /*-----------------------------------------------------------------------------------------------------------*/
     @RBEntry("details")
     public static final String projectIssue_01= "pi-pmgt-projectIssueCopy.details.description";

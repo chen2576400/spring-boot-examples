@@ -53,6 +53,7 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
 
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
         column2.setName("riskName");
+        column2.haveInfoPageLink();
         tableConfig.addColumn(column2);
 
         ColumnConfig column4 = componentConfigFactory.newColumnConfig();

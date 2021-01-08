@@ -50,6 +50,7 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("name");
+        column1.haveInfoPageLink();
         tableConfig.addColumn(column1);
 
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
