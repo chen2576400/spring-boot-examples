@@ -37,7 +37,7 @@ public class AddInvolveRiskWizardBuilder  extends AbstractComponentBuilder {
         tableConfig.setEntities(componentData);
         tableConfig.enableSelect();
         tableConfig.enableSearch();
-        tableConfig.enablePaginate(false);
+        tableConfig.disablePaginate();
         tableConfig.setPrimaryObjectType(STProjectRisk.class);
         tableConfig.setTableTitle("风险列表");
 

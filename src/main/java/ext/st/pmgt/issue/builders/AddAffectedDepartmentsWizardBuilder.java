@@ -44,8 +44,7 @@ public class AddAffectedDepartmentsWizardBuilder  extends AbstractComponentBuild
         tableConfig.enableSearch();
         tableConfig.setPrimaryObjectType(PIGroup.class);
         tableConfig.setTableTitle("部门列表");
-        tableConfig.enablePaginate(false);
-
+        tableConfig.disablePaginate();
         ColumnConfig column0 = componentConfigFactory.newColumnConfig();
         column0.setLabel("编号");
         column0.setName("objectIdentifier.id");

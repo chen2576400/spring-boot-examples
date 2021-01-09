@@ -44,7 +44,7 @@ public class AddPreRiskWizardBuilder extends AbstractComponentBuilder {
         tableConfig.setEntities(componentData);
         tableConfig.enableSearch();
         tableConfig.enableSelect();
-        tableConfig.enablePaginate(false);
+        tableConfig.disablePaginate();
         tableConfig.setPrimaryObjectType(STProjectRisk.class);
         tableConfig.setTableTitle("风险列表");
 

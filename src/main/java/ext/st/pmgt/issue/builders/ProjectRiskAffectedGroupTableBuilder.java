@@ -67,7 +67,7 @@ public class ProjectRiskAffectedGroupTableBuilder  extends AbstractComponentBuil
         tableConfig.enableSearch();
         tableConfig.setPrimaryObjectType(PIGroup.class);
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(accessResource.class.getName(),"GROUPS_TABLE_TITLE",null,params.getLocale()));
-        tableConfig.enablePaginate(false);
+        tableConfig.disablePaginate();
         tableConfig.setSingleSelect(true);//单选
 
         ColumnConfig column0 = componentConfigFactory.newColumnConfig();

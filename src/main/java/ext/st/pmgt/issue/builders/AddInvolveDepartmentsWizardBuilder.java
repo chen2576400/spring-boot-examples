@@ -47,7 +47,7 @@ public class AddInvolveDepartmentsWizardBuilder extends AbstractComponentBuilder
         tableConfig.enableSearch();
         tableConfig.setPrimaryObjectType(PIGroup.class);
         tableConfig.setTableTitle("部门列表");
-        tableConfig.enablePaginate(false);
+        tableConfig.disablePaginate();
 //        tableConfig.setSingleSelect(true);//单选
 
         ColumnConfig column0 = componentConfigFactory.newColumnConfig();

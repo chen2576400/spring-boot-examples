@@ -16,6 +16,7 @@ import com.pisx.tundra.foundation.meta.type.model.LTDTyped;
 import com.pisx.tundra.foundation.meta.type.model.TypeDefinitionReference;
 import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.org.model.PIUser;
+import com.pisx.tundra.foundation.team.model.TeamReference;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIPropertyVetoException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
@@ -414,8 +415,20 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
 
     }
 
+    @Override
+    public TeamReference getTeamReference() {
+        return null;
+    }
 
+    @Override
+    public void setTeamReference(TeamReference paramTeamReference) {
 
+    }
+
+    @Override
+    public String getTeamName() {
+        return null;
+    }
 
     public static STProjectMeasures newSTProjectMeasures() throws PIException {
         STProjectMeasures obj = new STProjectMeasures();
