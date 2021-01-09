@@ -1,6 +1,8 @@
 package ext.st.pmgt.indicator.model;
 
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.org.model.PIPrincipalReference;
+import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
 
@@ -45,7 +47,15 @@ public class STRating extends PIPmgtObject implements Serializable {
             @AttributeOverride(name = "key.classname", column = @Column(name = "inIndicatorRefClass", nullable = true))
     })
     ObjectReference inIndicatorReference;
-
+    /**
+     * 评定人
+     */
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "raterRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "raterRefClass", nullable = true))
+    })
+    PIPrincipalReference rater;
     /**
      * 汇报时间
      */
@@ -100,5 +110,13 @@ public class STRating extends PIPmgtObject implements Serializable {
 
     public void setOtRating(Double otRating) {
         this.otRating = otRating;
+    }
+
+    public PIUser getRater(){return rater!=null?(PIUser) rater.getObject():null;}
+    public void setRater(PIUser rater) {
+        this.rater = PIPrincipalReference.newPIPrincipalReference(rater);
+    }
+    public void setRater(PIPrincipalReference rater) {
+        this.rater = rater;
     }
 }

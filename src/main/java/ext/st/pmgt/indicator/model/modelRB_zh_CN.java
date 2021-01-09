@@ -47,13 +47,13 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("交付物编码")
     public static final String STDeliverableType_02 = "STDeliverableType.code.value";
 
-    @RBEntry("输出评定")
+    @RBEntry("指标评定")
     public static final String INIndicator_04= "STRating.otRating.value";
 
     @RBEntry("评定描述")
     public static final String INIndicator_05= "STRating.description.value";
 
-    @RBEntry("汇报时间")
+    @RBEntry("评定时间")
     public static final String INIndicator_06= "STRating.reportTime.value";
 
     @RBEntry("指标编码")

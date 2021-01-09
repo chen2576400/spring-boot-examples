@@ -114,25 +114,31 @@
         <action name="details" type="pi-pmgt-project"/>
         <action name="listPlans" type="pi-pmgt-project"/>
         <action name="containerTeamBrowser" type="containerTeam"/>
+        <action name="listProjectResources" type="pi-pmgt-project"/>
         <action name="attachments" type="pi-pmgt-enterprise"/>
         <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
+        <!--      暂定  <action name="listBaselines" type="pi-pmgt-project"/>-->
         <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
         <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
         <action name="listProjectResources" type="pi-pmgt-project"/>
-        <action name="projectFinance" type="pi-pmgt-project"/>
-        <submodel name="pmgtProjectRelatedDocAndProduct" type="pi-pmgt-project"/>
-        <!--项目仪表盘 add by liuchuang 2020-11-12 -->
-        <action name="projectDashboard" type="pi-pmgt-project"/>
-        <submodel name="projectRelationships" type="pi-pmgt-project"/>
-        <action name="listProjectChangeRequestsForProject" type="pi-pmgt-project"/>
-        <action name="projectThresholds" type="pi-pmgt-project"/>
+        <!-- 原问题   -->
+        <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
+        <!-- 原风险    -->
+        <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
         <action name="folderTreeBrowser" type="folder"/>
-        <!--问题-->
-        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>
-        <!--风险-->
-        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>
+        <!--新问题-->
+        <!--        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>-->
+        <!--新风险-->
+        <!--        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>-->
     </model>
 
+    <model name="pi-pmgtPlanInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="details" type="pi-pmgt-plan"/>
+        <action name="milestoneForPlan" type="pi-pmgt-project"/>
+        <action name="planTree2" type="pi-pmgt-project"/>
+        <action name="listDeliverablesForPlan" type="pi-pmgt-project"/>
+        <action name="listAssignments" type="pi-pmgt-project"/>
+    </model>
 
     <model name="projectRelatedIssuesToolBarCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="createProjectIssueCopy" type="pi-pmgt-project-copy" shortcut="true"/>
@@ -149,6 +155,94 @@
         <action name="pasteProjectRisksForProject" type="pi-pmgt-risk" shortcut="true"/>
         <action name="exportExcel" type="uiComponent" shortcut="true"/>
     </model>
+
+    <model name="ratingTableToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="exportExcel" type="uiComponent" shortcut="true"/>
+    </model>
+
+
+    <!--###################################重汽未用到action覆盖############################-->
+
+    <model name="roleGroupMembersToolbarSet" resourceBundle="com.pisx.tundra.foundation.org.resources.orgActionsRB">
+        <action name="addUsersToRole" type="group" shortcut="true"/>
+        <action name="removeUsersFromRole" type="group" shortcut="true"/>
+        <action name="exportExcel" type="uiComponent" shortcut="true"/>
+    </model>
+    <model name="pi-User-TabSet" resourceBundle="com.pisx.tundra.foundation.org.resources.orgActionsRB">
+        <action name="userInformation" type="user"/>
+        <action name="subordinateGroup" type="group"/>
+    </model>
+    <model name="pi-Group-TabSet" resourceBundle="com.pisx.tundra.foundation.org.resources.orgActionsRB">
+        <action name="groupInformation" type="group"/>
+        <action name="formation" type="user"/>
+        <action name="groupAllUsers" type="user"/>
+        <action name="subordinateGroup" type="group"/>
+    </model>
+    <model name="piTopContainerInfoPageTabSet"
+           resourceBundle="com.pisx.tundra.foundation.inf.container.resources.containerActionsRB">
+        <action name="topContainerAdministrators" type="piTopContainer"/>
+        <action name="orgContainersList" type="piTopContainer"/>
+        <!-- 生命周期状态管理-->
+        <action name="lifeCycleStateMng" type="topLcState"/>
+        <!--DataFormat管理-->
+        <action name="dataFormatList" type="dataFormatMng"/>
+        <!-- 文件仓库配置-->
+        <!--        <action name="vaultConfiguration" type="vaultManagement"/>-->
+        <!--pmgt模块-->
+        <!--资源-->
+        <action name="resourcesAdmin" type="pi-pmgt-enterprise"/>
+        <!--角色-->
+        <!--<action name="role" type="role"/>-->
+        <action name="rolesAdmin" type="pi-pmgt-enterprise"/>
+        <!--日历-->
+        <action name="calendars" type="pi-pmgt-enterprise"/>
+        <!--货币-->
+        <action name="currencyTypesMgmt" type="pi-pmgt-admin"/>
+        <!--类别管理-->
+        <action name="categoriesMgmt" type="pi-pmgt-admin"/>
+        <!--组织结构-->
+        <action name="obs" type="pi-pmgt-enterprise"/>
+        <!--资源班次-->
+        <action name="resourceShifts" type="pi-pmgt-enterprise"/>
+        <!--项目临界值参数-->
+        <action name="pmgtThresholdParamMgmt" type="pi-pmgt-admin"/>
+    </model>
+    <model name="documentInfoPageTabSet" resourceBundle="com.pisx.tundra.foundation.doc.resources.docActionsRB">
+        <action name="details" type="document"/>
+        <submodel name="docRelatedObjects" type="object"/>
+        <submodel name="contentHolderRelatedContents" type="object"/>
+        <action name="historyRecords" type="document"/>
+    </model>
+
+    <model name="pi-pmgtProjectContainerInfoPageTabSet" resourceBundle="com.pisx.pmgt.pmgtActionsRB">
+        <action name="details" type="pi-pmgt-project"/>
+        <action name="listPlans" type="pi-pmgt-project"/>
+        <action name="containerTeamBrowser" type="containerTeam"/>
+        <action name="listProjectResources" type="pi-pmgt-project"/>
+        <action name="attachments" type="pi-pmgt-enterprise"/>
+        <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
+        <action name="listBaselines" type="pi-pmgt-project"/>
+        <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
+        <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
+        <action name="listProjectResources" type="pi-pmgt-project"/>
+        <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
+        <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
+        <action name="folderTreeBrowser" type="folder"/>
+    </model>
+    <model name="orgContainer-infoPageTabSet"
+           resourceBundle="com.pisx.tundra.foundation.inf.container.resources.containerActionsRB">
+        <action name="orgContainerDetails" type="orgContainer"/>
+        <action name="orgStructureManagement" type="orgContainer"/>
+        <action name="orgAdminManagement" type="orgContainer"/>
+    </model>
+    <model name="pi-pmgtEnterpriseTrackingPageTabSet" resource="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="resourcesLoadTracking" type="pi-pmgt-enterprise"/>
+        <action name="resourceLoadProjectAllocation" type="pi-pmgt-enterprise"/>
+        <action name="rolesLoadTracking" type="pi-pmgt-enterprise"/>
+        <action name="projectsStateTracking" type="pi-pmgt-enterprise"/>
+        <action name="resourceWorkHourTracking" type="pi-pmgt-enterprise"/>
+    </model>
+    <!--###################################重汽未用到action屏蔽############################-->
 
 
     <!-- 编辑/删除 问题 -->
@@ -211,7 +305,6 @@
     </model>
 
 
-
     <model name="projectRiskMeasuresToolBar">
         <!-- 添加-->
         <action name="addRiskMeasures" type="st-pmgt-measures" shortcut="true"/>
@@ -221,7 +314,7 @@
     </model>
 
     <model name="riskInfopageTabSet">
-<!--        <action name="riskInformation" type="st-pmgt-risk"/>-->
+        <!--        <action name="riskInformation" type="st-pmgt-risk"/>-->
         <submodel name="projectRisksInfoTab" type="pi-pmgt-risk" shortcut="true"/>
         <submodel name="relatedDocumentsForProjectRisk" type="pi-pmgt-risk" shortcut="true"/>
         <action name="attachments" type="pi-pmgt-enterprise" shortcut="true"/>
@@ -231,16 +324,16 @@
     <model name="projectIssueInfoPageTabSetCopy">
         <!-- 详细信息-->
         <action name="details" type="pi-pmgt-projectIssue" shortcut="true"/>
-<!--        <action name="relatedDescribedByObjects" type="pi-pmgt-projectIssueCopy" shortcut="true"/>-->
-<!--        <action name="relatedProjectChangeRequests" type="pi-pmgt-projectIssue" shortcut="true"/>-->
-<!--        <submodel name="relatedWTChangeObjectsForProjectIssue" type="pi-pmgt-projectIssue" shortcut="true"/>-->
-       <!-- 附件 -->
+        <!--        <action name="relatedDescribedByObjects" type="pi-pmgt-projectIssueCopy" shortcut="true"/>-->
+        <!--        <action name="relatedProjectChangeRequests" type="pi-pmgt-projectIssue" shortcut="true"/>-->
+        <!--        <submodel name="relatedWTChangeObjectsForProjectIssue" type="pi-pmgt-projectIssue" shortcut="true"/>-->
+        <!-- 附件 -->
         <action name="attachments" type="pi-pmgt-enterprise" shortcut="true"/>
 
     </model>
 
 
-    <model name="projectRisksMenusCopy" >
+    <model name="projectRisksMenusCopy">
         <!-- 风险编辑-->
         <action name="risk_EditCopy" type="pi-pmgt-risk-copy"/>
         <action name="deleteProjectRiskCopy" type="pi-pmgt-risk-copy"/>
@@ -249,7 +342,7 @@
 
     <!-- 措施编辑-->
     <model name="MeasuresMenus">
-        <action name="measure_Edit"  type="st-pmgt-measures"/>
+        <action name="measure_Edit" type="st-pmgt-measures"/>
     </model>
 
     <model name="measureInfopageTabSet">

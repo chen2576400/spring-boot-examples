@@ -1063,4 +1063,19 @@ public class STProjectRisk extends PIPmgtObject
     public void setUrgencyType(ProjectUrgencyType urgencyType) {
         this.urgencyType = urgencyType;
     }
+
+    @Override
+    public TeamReference getTeamReference() {
+        return null;
+    }
+
+    @Override
+    public void setTeamReference(TeamReference paramTeamReference) {
+
+    }
+
+    @Override
+    public String getTeamName() {
+        return null;
+    }
 }

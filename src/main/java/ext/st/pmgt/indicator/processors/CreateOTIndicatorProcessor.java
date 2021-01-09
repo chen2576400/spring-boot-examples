@@ -17,6 +17,8 @@ import ext.st.pmgt.indicator.model.STProjectIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -49,6 +51,7 @@ public class CreateOTIndicatorProcessor extends DefaultObjectFormProcessor {
         stProjectInstanceOTIndicator.setCode(stProjectIndicator.getCode());
         stProjectInstanceOTIndicator.setDecription(stProjectIndicator.getDecription());
         stProjectInstanceOTIndicator.setDefinition(stProjectIndicator.getDefinition());
+        stProjectInstanceOTIndicator.setReportTime(new Timestamp(new Date(0).getTime()));
         stProjectInstanceOTIndicator.setCompetenceReference(stProjectIndicator.getCompetenceReference());
         stProjectInstanceOTIndicator.setDeliverableTypeCode(stProjectIndicator.getDeliverableTypeCode());
         PersistenceHelper.service.save(stProjectInstanceOTIndicator);

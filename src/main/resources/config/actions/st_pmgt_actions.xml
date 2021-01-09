@@ -72,6 +72,7 @@
         </action>
         <action name="deleteOTIndicator" beforeJS="buttonEvent">
             <command className="ext.st.pmgt.indicator.processors.DeleteOTIndicatorProcessor"/>
+            <includeFilter name="pmgtGeneralAccessFilter" functionCode="81"/>
         </action>
     </actionsgroup>
     <actionsgroup name="st-report" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">

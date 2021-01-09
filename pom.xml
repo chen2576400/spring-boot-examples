@@ -67,6 +67,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
+        <dependency>
+                  <groupId>com.taobao.top</groupId>
+                    <artifactId>top-api-sdk-dev</artifactId>
+                     <version>ding-open-mc-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 
@@ -113,5 +118,6 @@
                 </executions>
             </plugin>
         </plugins>
+
     </build>
 </project>

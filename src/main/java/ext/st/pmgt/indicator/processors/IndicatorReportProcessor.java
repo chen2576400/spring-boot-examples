@@ -2,9 +2,10 @@ package ext.st.pmgt.indicator.processors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
-import com.pisx.tundra.foundation.fc.model.*;
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
+import com.pisx.tundra.foundation.fc.model.PIReference;
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.fc.service.ReferenceFactory;
-import com.pisx.tundra.foundation.org.model.PIPrincipal;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
@@ -16,10 +17,10 @@ import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +86,8 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
         }
 
-        return new ResponseWrapper(ResponseWrapper.PAGE_FLUSH, "汇报成功！", null);
+//        return new ResponseWrapper(ResponseWrapper.PAGE_FLUSH, "汇报成功！", null);
+        return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "汇报成功！", null);
     }
 
     private List<STProjectInstanceOTIndicator> getUpdatedOT(ComponentParams params) throws PIException {
@@ -111,6 +113,8 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
                     newOT.setDifficultyReport(Double.valueOf(difficultyReport));
                     newOT.setReportTime(new Timestamp(System.currentTimeMillis()));
                     newOT.setReporter(SessionHelper.service.getPrincipalReference());
+                   // 更新汇报差异
+                    STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(newOT);
                     result.add(newOT);
                 } catch (Exception e) {
                     e.printStackTrace();
