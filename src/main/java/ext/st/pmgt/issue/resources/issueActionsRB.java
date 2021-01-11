@@ -30,14 +30,14 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String ROLE_33941 = "pi-pmgt-project-copy.editProjectIssue.moreurlinfo";
 
-    @RBEntry("deleteProjectIssue")
-    public static final String ROLE_3361 = "pi-pmgt-project-copy.deleteProjectIssue.description";
-    @RBEntry("deleteProjectIssue")
-    public static final String ROLE_3372 = "pi-pmgt-project-copy.deleteProjectIssue.tooltip";
+    @RBEntry("deleteProjectIssueCopy")
+    public static final String ROLE_3361 = "pi-pmgt-project-copy.deleteProjectIssueCopy.description";
+    @RBEntry("deleteProjectIssueCopy")
+    public static final String ROLE_3372 = "pi-pmgt-project-copy.deleteProjectIssueCopy.tooltip";
     @RBEntry("img/foundation/delete.gif")
-    public static final String ROLE_3383 = "pi-pmgt-project-copy.deleteProjectIssue.icon";
+    public static final String ROLE_3383 = "pi-pmgt-project-copy.deleteProjectIssueCopy.icon";
     @RBEntry("height=900,width=750")
-    public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssue.moreurlinfo";
+    public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssueCopy.moreurlinfo";
 
     @RBEntry("involveGroupList")
     public static final String involveGroup_431= "pi-pmgt-project-copy.involveGroupList.description";

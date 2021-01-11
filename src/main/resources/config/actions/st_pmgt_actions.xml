@@ -116,7 +116,7 @@
             <command className="ext.st.pmgt.issue.processors.EditProjectIssueProcessor"/>
         </action>
         <!-- 删除问题 -->
-        <action name="deleteProjectIssue" beforeJS="buttonEvent">
+        <action name="deleteProjectIssueCopy" beforeJS="buttonEvent">
             <command className="ext.st.pmgt.issue.processors.DeleteProjectIssuesProcessor"/>
         </action>
 

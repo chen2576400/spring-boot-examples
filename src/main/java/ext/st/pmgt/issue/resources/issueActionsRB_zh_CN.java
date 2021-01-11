@@ -31,13 +31,13 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String ROLE_33941 = "pi-pmgt-project-copy.editProjectIssue.moreurlinfo";
 
     @RBEntry("删除项目问题")
-    public static final String ROLE_3361 = "pi-pmgt-project-copy.deleteProjectIssue.description";
+    public static final String ROLE_3361 = "pi-pmgt-project-copy.deleteProjectIssueCopy.description";
     @RBEntry("删除项目问题")
-    public static final String ROLE_3372 = "pi-pmgt-project-copy.deleteProjectIssue.tooltip";
+    public static final String ROLE_3372 = "pi-pmgt-project-copy.deleteProjectIssueCopy.tooltip";
     @RBEntry("img/foundation/delete.gif")
-    public static final String ROLE_3383 = "pi-pmgt-project-copy.deleteProjectIssue.icon";
+    public static final String ROLE_3383 = "pi-pmgt-project-copy.deleteProjectIssueCopy.icon";
     @RBEntry("height=900,width=750")
-    public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssue.moreurlinfo";
+    public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssueCopy.moreurlinfo";
 
 
     @RBEntry("涉及部门列表")
