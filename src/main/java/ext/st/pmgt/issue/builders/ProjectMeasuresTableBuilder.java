@@ -68,6 +68,12 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         column4.haveInfoPageLink();
         column4.setLabel("责任人");
         tableConfig.addColumn(column4);
+
+        ColumnConfig column5 = componentConfigFactory.newColumnConfig();
+        column5.setName("persistInfo.createStamp");
+        column5.setLabel("创建时间");
+        column5.enableSort();
+        tableConfig.addColumn(column5);
         return tableConfig;
 
 

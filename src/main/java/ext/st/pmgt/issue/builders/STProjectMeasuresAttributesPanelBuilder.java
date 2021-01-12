@@ -41,7 +41,7 @@ public class STProjectMeasuresAttributesPanelBuilder extends AbstractComponentBu
                     .addField("confirmStatus", 4)
                     .addField("involveGroupStatus", 5)
                     .addField("dutyUser.fullName","责任人", 6)
-//                    .addField("planActivityReference", 4)
+                    .addField("persistInfo.createStamp","创建日期", 7)
             ;
             layout.readonly();
 //            layout.addElement(line);
