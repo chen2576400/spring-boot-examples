@@ -79,6 +79,9 @@ public class modelRB extends PIListResourceBundle {
     @RBEntry("urgencyType")
     public static final String PIProjectIssue_24= "STProjectIssue.urgencyType.value";
 
+    @RBEntry("projectManagerUserReference")
+    public static final String PIProjectIssue_25 = "STProjectIssue.projectManagerUserReference.value";
+
 /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("Risk Code")
     public static final String PIProjectRisk_01 = "STProjectRisk.riskCode.value";
@@ -142,6 +145,11 @@ public class modelRB extends PIListResourceBundle {
     public static final String PIProjectIssue_28 = "STProjectRisk.urgencyType.value";
     @RBEntry("importanceType")
     public static final String PIProjectIssue_29 = "STProjectRisk.importanceType.value";
+    @RBEntry("confirmStatus")
+    public static final String PIProjectIssue_30 = "STProjectRisk.confirmStatus.value";
+    @RBEntry("projectManagerUserReference")
+    public static final String PIProjectIssue_31 = "STProjectRisk.projectManagerUserReference.value";
+
 
     /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("name")

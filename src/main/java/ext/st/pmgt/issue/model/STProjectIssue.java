@@ -988,23 +988,25 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
         return null;
     }
 
-
-    /**
-     * 风险关联
-     */
-    @Embedded   //引入该实体
-    @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "projectRiskRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "projectRiskRefClass", nullable = true))
-    })
-    ObjectReference projectRiskReference;
-
-
     /**
      * 项目经理确认(0未确认、1确认)
      */
     @Column(nullable = true, unique = false)
     private Boolean confirmStatus = Boolean.FALSE;
+
+
+    /**
+     * 项目经理
+     */
+
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "projectManagerUserRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "projectManagerUserRefClass", nullable = true))
+    })
+    ObjectReference projectManagerUserReference;
+
+
 
 
     /**
@@ -1024,15 +1026,7 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     })
     ObjectReference dutyGroupReference;
 
-//    /**
-//     * 涉及部门
-//     */
-//    @Embedded
-//    @AttributeOverrides({
-//            @AttributeOverride(name = "key.id", column = @Column(name = "involveGroupReferenceId", nullable = true)),
-//            @AttributeOverride(name = "key.classname", column = @Column(name = "involveGroupReferenceClass", nullable = true))
-//    })
-//    ObjectReference involveGroupReference;
+
 
 
     /**
@@ -1070,14 +1064,6 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     ProjectUrgencyType urgencyType = ProjectUrgencyType.getProjectUrgencyTypeDefault();
 
 
-    public ObjectReference getProjectRiskReference() {
-        return projectRiskReference;
-    }
-
-    public void setProjectRiskReference(ObjectReference projectRiskReference) {
-        this.projectRiskReference = projectRiskReference;
-    }
-
 
     public String getTreatmentPlan() {
         return treatmentPlan;
@@ -1110,13 +1096,6 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
         this.dutyGroupReference = ObjectReference.newObjectReference(piGroup);;
     }
 
-//    public ObjectReference getInvolveGroupReference() {
-//        return involveGroupReference;
-//    }
-//
-//    public void setInvolveGroupReference(ObjectReference involveGroupReference) {
-//        this.involveGroupReference = involveGroupReference;
-//    }
 
     public Timestamp getCloseStamp() {
         return closeStamp;
@@ -1135,6 +1114,24 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
         this.validStatus = validStatus;
     }
 
+    public ObjectReference getProjectManagerUserReference() {
+        return projectManagerUserReference;
+    }
+
+    public void setProjectManagerUserReference(ObjectReference projectManagerUserReference) {
+        this.projectManagerUserReference = projectManagerUserReference;
+    }
+
+    public PIUser getProjectManagerUser() {
+        return projectManagerUserReference!=null?(PIUser) projectManagerUserReference.getObject():null;
+
+    }
+
+    public void setProjectManagerUser(PIUser piUser) throws PIException {
+        this.projectManagerUserReference = ObjectReference.newObjectReference(piUser);;
+    }
+
+
     public Boolean getConfirmStatus() {
         return confirmStatus;
     }
@@ -1142,10 +1139,6 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
     public void setConfirmStatus(Boolean confirmStatus) {
         this.confirmStatus = confirmStatus;
     }
-
-
-
-
 
 
     public ProjectImportanceType getImportanceType() {

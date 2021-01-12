@@ -241,14 +241,20 @@
             <command className="ext.st.pmgt.issue.processors.DeleteProjectRiskProcessorCopy"/>
             <!--<includeFilter name="pmgtGeneralAccessFilter" functionCode="112"/>-->
         </action>
+
+        <action name="projectManagerUserListPicker">
+            <component name="ext.st.pmgt.issue.builders.ProjectManagerUserTableWizardBulider"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.ProjectManagerUserProcessor"/>
+        </action>
     </actionsgroup>
 
 
-<!--    <actionsgroup name="st-pmgt-risk" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">-->
-<!--        <action name="riskInformation">-->
-<!--            <component name="ext.st.pmgt.issue.builders.ProjectRisksInformationTableBuilder"/>-->
-<!--        </action>-->
-<!--    </actionsgroup>-->
+    <!--    <actionsgroup name="st-pmgt-risk" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">-->
+    <!--        <action name="riskInformation">-->
+    <!--            <component name="ext.st.pmgt.issue.builders.ProjectRisksInformationTableBuilder"/>-->
+    <!--        </action>-->
+    <!--    </actionsgroup>-->
 
 
     <actionsgroup name="st-pmgt-measures" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">

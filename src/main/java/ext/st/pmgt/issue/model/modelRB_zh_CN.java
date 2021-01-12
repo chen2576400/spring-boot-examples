@@ -61,7 +61,7 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("解决方案")
     public static final String PIProjectIssue_18 = "STProjectIssue.solution.value";
 
-    @RBEntry("确认")
+    @RBEntry("项目经理确认")
     public static final String PIProjectIssue_19 = "STProjectIssue.confirmStatus.value";
 
     @RBEntry("处理方案")
@@ -79,8 +79,8 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("紧急度")
     public static final String PIProjectIssue_24 = "STProjectIssue.urgencyType.value";
 
-
-
+    @RBEntry("项目经理")
+    public static final String PIProjectIssue_25 = "STProjectIssue.projectManagerUserReference.value";
 
 
     /*-----------------------------------------------------------------------------------------------*/
@@ -147,6 +147,11 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     public static final String PIProjectIssue_28 = "STProjectRisk.urgencyType.value";
     @RBEntry("重要度")
     public static final String PIProjectIssue_29 = "STProjectRisk.importanceType.value";
+    @RBEntry("项目经理确认")
+    public static final String PIProjectIssue_30 = "STProjectRisk.confirmStatus.value";
+    @RBEntry("项目经理")
+    public static final String PIProjectIssue_31 = "STProjectRisk.projectManagerUserReference.value";
+
 
     /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("名称")

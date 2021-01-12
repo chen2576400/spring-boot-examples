@@ -160,7 +160,10 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
         column18.setLabel("关闭时间");
         tableConfig.addColumn(column18);
 
-
+        ColumnConfig column20 = componentConfigFactory.newColumnConfig();
+        column20.setLabel("项目经理");
+        column20.setName("projectManagerUser.fullName");
+        tableConfig.addColumn(column20);
 
 
 

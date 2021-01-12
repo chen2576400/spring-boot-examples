@@ -11,10 +11,7 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.resource.datahandlers.UserPickerDataHandler;
 import com.pisx.tundra.pmgt.risk.datahandlers.ResourceDataHandler;
 import com.pisx.tundra.pmgt.risk.datahandlers.RiskTypeDataHandler;
-import ext.st.pmgt.issue.datahandlers.AffectedGroupDataHandler;
-import ext.st.pmgt.issue.datahandlers.ProposingGroupDataHandler;
-import ext.st.pmgt.issue.datahandlers.ResourceExpandDataHandler;
-import ext.st.pmgt.issue.datahandlers.UserPickerExpandDataHandler;
+import ext.st.pmgt.issue.datahandlers.*;
 import ext.st.pmgt.issue.model.STProjectRisk;
 
 import java.sql.Timestamp;
@@ -72,6 +69,8 @@ public class CreateOREditProjectRiskWizardBuilder extends AbstractComponentBuild
                     .addField("closeStamp")//风险关闭时间
                     .addField("importanceType")//重要度
                     .addField("urgencyType")//紧急度
+                    .addField("confirmStatus")//是否确认
+            .addField("projectManagerUserReference",new ProjectManagerUserDataHandler())//项目经理
             ;
             step.addLayout(layout);
 

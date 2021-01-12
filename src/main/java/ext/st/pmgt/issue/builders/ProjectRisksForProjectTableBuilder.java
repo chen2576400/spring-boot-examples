@@ -129,7 +129,10 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
         column19.setName("urgencyType");
         tableConfig.addColumn(column19);
 
-
+        ColumnConfig column20 = componentConfigFactory.newColumnConfig();
+        column20.setLabel("项目经理");
+        column20.setName("projectManagerUser.fullName");
+        tableConfig.addColumn(column20);
 
 
 

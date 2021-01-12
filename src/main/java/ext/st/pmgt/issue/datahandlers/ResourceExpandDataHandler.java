@@ -7,8 +7,12 @@ import com.pisx.tundra.netfactory.mvc.components.div.DivElement;
 import com.pisx.tundra.netfactory.mvc.components.img.ImgElement;
 import com.pisx.tundra.netfactory.mvc.components.input.InputElement;
 import com.pisx.tundra.netfactory.util.misc.URLFactory;
+import com.pisx.tundra.pmgt.change.model.PIProjectChangeRequest;
+import com.pisx.tundra.pmgt.change.model.PIProjectIssue;
+import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.resource.model.PIResource;
 import com.pisx.tundra.pmgt.risk.datahandlers.ResourceDataHandler;
+import com.pisx.tundra.pmgt.risk.model.PIProjectRisk;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectRisk;
 
@@ -35,7 +39,7 @@ public class ResourceExpandDataHandler extends ResourceDataHandler {
 
 
         //context传给objpicker
-        String url = URLFactory.getActionHref("pi-pmgt-enterprise", "resourcePicker", super.getParentPageObject(sourceObject));
+        String url = URLFactory.getActionHref("pi-pmgt-enterprise", "resourcePicker", this.getParentPageObject(sourceObject));
 
         rightImg.backFill(url, columnName);
 
@@ -44,6 +48,20 @@ public class ResourceExpandDataHandler extends ResourceDataHandler {
         content.children(inputElement, rightImg);
         return content;
     }
+
+    @Override
+    public Object getParentPageObject(Object sourceObject){
+        Object pageObject = null;
+        pageObject=super.getParentPageObject(sourceObject);
+        if (sourceObject instanceof STProjectIssue){
+            pageObject = ((STProjectIssue) sourceObject).getProject();
+        }
+        if (sourceObject instanceof STProjectRisk){
+            pageObject = ((STProjectRisk) sourceObject).getProject();
+        }
+        return pageObject;
+    }
+
 
     public void getInputValue(Object datum, InputElement inputElement) {
         super.getInputValue(datum, inputElement);

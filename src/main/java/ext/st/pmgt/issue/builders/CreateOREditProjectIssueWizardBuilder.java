@@ -11,9 +11,7 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.change.datahandlers.PlanActivityDataHandler;
 import com.pisx.tundra.pmgt.resource.datahandlers.UserPickerDataHandler;
 import com.pisx.tundra.pmgt.risk.datahandlers.ResourceDataHandler;
-import ext.st.pmgt.issue.datahandlers.DutyGroupDataHandler;
-import ext.st.pmgt.issue.datahandlers.PlanActivityExpandDataHandler;
-import ext.st.pmgt.issue.datahandlers.UserPickerExpandDataHandler;
+import ext.st.pmgt.issue.datahandlers.*;
 import ext.st.pmgt.issue.model.STProjectIssue;
 
 import java.sql.Timestamp;
@@ -56,7 +54,7 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
                     .addField("addDate")
                     .addField("expectedSolutionDate")
                     .addField("planActivityReference", new PlanActivityExpandDataHandler())
-                    .addField("rsrcReference", new ResourceDataHandler())
+                    .addField("rsrcReference", new ResourceExpandDataHandler())
                     .addField("responsibleUserReference", new UserPickerExpandDataHandler())
                     .addField("description")
                     .addField("confirmStatus")//是否确认
@@ -65,7 +63,7 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
                     .addField("importanceType")//重要度
                     .addField("urgencyType")//紧急度
                     .addField("closeStamp")//关闭时间
-
+                    .addField("projectManagerUserReference",new ProjectManagerUserDataHandler())//项目经理
             ;
 
 

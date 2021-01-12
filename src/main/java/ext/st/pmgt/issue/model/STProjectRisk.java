@@ -987,8 +987,23 @@ public class STProjectRisk extends PIPmgtObject
 
 
 
+    /**
+     * 项目经理
+     */
+
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "projectManagerUserRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "projectManagerUserRefClass", nullable = true))
+    })
+    ObjectReference projectManagerUserReference;
 
 
+    /**
+     * 项目经理确认(0未确认、1确认)
+     */
+    @Column(nullable = true, unique = false)
+    private Boolean confirmStatus = Boolean.FALSE;
 
 
 
@@ -1065,6 +1080,29 @@ public class STProjectRisk extends PIPmgtObject
         this.urgencyType = urgencyType;
     }
 
+    public ObjectReference getProjectManagerUserReference() {
+        return projectManagerUserReference;
+    }
+
+    public void setProjectManagerUserReference(ObjectReference projectManagerUserReference) {
+        this.projectManagerUserReference = projectManagerUserReference;
+    }
+
+    public PIUser getProjectManagerUser() {
+        return projectManagerUserReference!=null?(PIUser) projectManagerUserReference.getObject():null;
+
+    }
+    public void setProjectManagerUser(PIUser piUser) throws PIException {
+        this.projectManagerUserReference = ObjectReference.newObjectReference(piUser);;
+    }
+
+    public Boolean getConfirmStatus() {
+        return confirmStatus;
+    }
+
+    public void setConfirmStatus(Boolean confirmStatus) {
+        this.confirmStatus = confirmStatus;
+    }
     @Override
     public TeamReference getTeamReference() {
         return null;
@@ -1079,4 +1117,6 @@ public class STProjectRisk extends PIPmgtObject
     public String getTeamName() {
         return null;
     }
+
+
 }
