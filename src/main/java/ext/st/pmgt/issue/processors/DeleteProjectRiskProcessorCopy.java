@@ -10,6 +10,8 @@ import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.change.PIProjectChangeHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import ext.st.pmgt.issue.STProjectIssueHelper;
+import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +26,13 @@ public class DeleteProjectRiskProcessorCopy extends DefaultObjectFormProcessor {
         List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
         if (selectedObjects==null&&sourceObject instanceof STProjectRisk){
             PersistenceHelper.service.delete(sourceObject);
+
             ContentHolder contentHolder=(STProjectRisk)sourceObject;
             List<ContentHolder> contentHolderList=new ArrayList<>();
             contentHolderList.add(contentHolder);
             PIProjectChangeHelper.service.deleteAttachmentData(contentHolderList);
+
+//            STRiskHelper.service.deleteAssociationLink((STProjectRisk)sourceObject);
         }
         if (selectedObjects!=null&&selectedObjects.size()>0&&sourceObject instanceof PIProject) {
             PIHashSet deleteItem = new PIHashSet();

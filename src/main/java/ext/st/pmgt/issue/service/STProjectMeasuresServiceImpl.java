@@ -14,4 +14,9 @@ public class STProjectMeasuresServiceImpl implements  STProjectMeasuresService{
     public Collection findByProjectRiskReference(ObjectReference riskReference) {
         return dao.findByProjectRiskReference(riskReference);
     }
+
+//    @Override
+//    public void deleteByProjectRiskReference(ObjectReference riskReference) {
+//         dao.deleteByProjectRiskReference(riskReference);
+//    }
 }

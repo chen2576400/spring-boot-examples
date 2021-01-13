@@ -9,4 +9,6 @@ import java.util.Collection;
 
 public interface STProjectMeasuresDao extends JpaRepository<STProjectMeasures, ObjectIdentifier> {
     Collection findByProjectRiskReference(ObjectReference riskReference);
+//    void deleteByProjectRiskReference(ObjectReference riskReference);
+
 }

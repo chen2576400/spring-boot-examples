@@ -1,9 +1,12 @@
 package ext.st.pmgt.issue.service;
 
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectRisk;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -35,4 +38,14 @@ public class STProjectIssueServiceImpl implements  STProjectIssueService{
         }
         return result;
     }
+
+//    /**
+//     * 删除问题时  删除风险列表和部门列表
+//     * @param projectIssue
+//     */
+//    @Override
+//    public void deleteAssociastionLink(STProjectIssue projectIssue) throws PIException {
+//            STProjectIssueHelper.linkService.deleteByRoleAObjectRef(ObjectReference.newObjectReference(projectIssue));
+//            STProjectIssueHelper.riskLinkService.deleteByRoleAObjectRef(ObjectReference.newObjectReference(projectIssue));
+//        }
 }

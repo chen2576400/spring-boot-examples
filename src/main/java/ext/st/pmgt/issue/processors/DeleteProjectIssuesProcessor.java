@@ -10,12 +10,14 @@ import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.change.PIProjectChangeHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
 @Component("deleteProjectIssuesProcessorCopy")
 public class DeleteProjectIssuesProcessor extends DefaultObjectFormProcessor {
     @Override
@@ -25,10 +27,16 @@ public class DeleteProjectIssuesProcessor extends DefaultObjectFormProcessor {
 
         if (sourceObject instanceof STProjectIssue && selectedObjects == null) {//右键删除
             PersistenceHelper.service.delete(sourceObject);
-            ContentHolder contentHolder=(STProjectIssue)sourceObject;
-            List<ContentHolder> contentHolderList=new ArrayList<>();
+
+
+            ContentHolder contentHolder = (STProjectIssue) sourceObject;
+            List<ContentHolder> contentHolderList = new ArrayList<>();
             contentHolderList.add(contentHolder);
             PIProjectChangeHelper.service.deleteAttachmentData(contentHolderList);
+
+
+//            STProjectIssueHelper.service.deleteAssociastionLink((STProjectIssue)sourceObject);
+
             return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, "删除成功！", null);
 
         }

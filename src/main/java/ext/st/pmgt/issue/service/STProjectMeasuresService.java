@@ -6,4 +6,5 @@ import java.util.Collection;
 
 public interface STProjectMeasuresService {
     Collection findByProjectRiskReference(ObjectReference riskReference);
+//    void deleteByProjectRiskReference(ObjectReference riskReference);
 }
