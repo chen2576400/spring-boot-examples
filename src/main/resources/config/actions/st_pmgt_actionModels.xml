@@ -109,10 +109,8 @@
         <action name="listProjectResources" type="pi-pmgt-project"/>
         <action name="attachments" type="pi-pmgt-enterprise"/>
         <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
-        <!--      暂定  <action name="listBaselines" type="pi-pmgt-project"/>-->
         <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
         <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
-        <action name="listProjectResources" type="pi-pmgt-project"/>
         <!-- 原问题   -->
         <!-- <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>-->
         <!-- 原风险    -->
