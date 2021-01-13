@@ -1,5 +1,7 @@
 package ext.st.pmgt.issue.builders;
 
+import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.collections.PIArrayList;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
@@ -79,10 +81,14 @@ public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
     }
 
 
-    private List<STProjectRisk> riskList(Collection collection) {
+    private List<STProjectRisk> riskList(Collection collection) throws PIException {
         if (collection.isEmpty()) return null;
         List<STProjectIssueInvolveRiskLink> riskLinks = (List<STProjectIssueInvolveRiskLink>) collection;
-        List<STProjectRisk> riskList = riskLinks.stream().map(riskLink -> {
+
+        PIArrayList removeLists = new PIArrayList(){{addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+        PersistenceHelper.service.delete(removeLists);
+
+        List<STProjectRisk> riskList = riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() != null).map(riskLink -> {
             return riskLink.getRoleBObject();
         }).collect(Collectors.toList());
         return riskList;

@@ -1,5 +1,7 @@
 package ext.st.pmgt.issue.builders;
 
+import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.collections.PIArrayList;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.org.model.PIGroup;
@@ -19,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 相关涉及部门展示
+ * 问题相关涉及部门展示
  */
 public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuilder {
     @Override
@@ -67,10 +69,14 @@ public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuil
     }
 
 
-    private List<PIGroup> piGroups(Collection collection) {
+    private List<PIGroup> piGroups(Collection collection) throws PIException {
         if (collection.isEmpty()) return null;
         List<STProjectIssueInvolveGroupLink> groupLinks = (List<STProjectIssueInvolveGroupLink>) collection;
-        List<PIGroup> piGroups = groupLinks.stream().map(stProjectIssueInvolveGroupLink -> {
+
+        PIArrayList removeLists = new PIArrayList(){{addAll(groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+        PersistenceHelper.service.delete(removeLists);
+
+        List<PIGroup> piGroups = groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() != null).map(stProjectIssueInvolveGroupLink -> {
             return stProjectIssueInvolveGroupLink.getRoleBObject();
         }).collect(Collectors.toList());
         return piGroups;

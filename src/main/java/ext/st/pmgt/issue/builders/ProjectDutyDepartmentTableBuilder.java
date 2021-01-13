@@ -67,7 +67,7 @@ public class ProjectDutyDepartmentTableBuilder extends AbstractComponentBuilder 
         tableConfig.enableSelect();
         tableConfig.enableSearch();
         tableConfig.setPrimaryObjectType(PIGroup.class);
-        tableConfig.setTableTitle(PIMessage.getLocalizedMessage(accessResource.class.getName(),"GROUPS_TABLE_TITLE",null,params.getLocale()));
+        tableConfig.setTableTitle("部门列表");
         tableConfig.disablePaginate();
         tableConfig.setSingleSelect(true);//单选
 

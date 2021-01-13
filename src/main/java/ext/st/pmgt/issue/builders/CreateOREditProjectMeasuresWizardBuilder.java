@@ -1,5 +1,6 @@
 package ext.st.pmgt.issue.builders;
 
+import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
@@ -11,6 +12,7 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import ext.st.pmgt.issue.datahandlers.DutyGroupDataHandler;
 import ext.st.pmgt.issue.datahandlers.UserPickerExpandDataHandler;
 import ext.st.pmgt.issue.model.STProjectMeasures;
+import ext.st.pmgt.issue.model.STProjectRisk;
 
 public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentBuilder {
     @Override
@@ -52,10 +54,22 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
             StepConfig stepConfig2 = wizardConfig.newStep();
             stepConfig2.setId("createProjectMeasureStep2");
             stepConfig2.setTitle("设置附件");
-            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
+            setStep(componentData,stepConfig2);
+//            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
+//            stepConfig2.setStepAction("contentHolder", "uploadAttachment");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return wizardConfig;
+    }
+
+
+    private void setStep(Object componentData, StepConfig stepConfig) {
+        if (componentData instanceof STProjectMeasures) {//编辑
+            stepConfig.setStepAction("attachments", "createOrEditAttachments");
+        }else if (componentData instanceof STProjectRisk){ //创建
+            stepConfig.setStepAction("contentHolder", "uploadAttachment");
+        }
+
     }
 }

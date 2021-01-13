@@ -60,7 +60,7 @@ public class ProjectManagerUserTableWizardBulider extends AbstractComponentBuild
     private TableConfig getTableConfig(Object componentData, ComponentParams params, ComponentConfigFactory componentConfigFactory){
         TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
         tableConfig.setId("projectManagerUserTable");
-        tableConfig.setTableTitle("筛选结果");
+        tableConfig.setTableTitle("项目经理");
         tableConfig.setEntities(componentData);
         tableConfig.enableSearch();
         tableConfig.enableSelect();

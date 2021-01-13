@@ -63,6 +63,13 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deleteInvolveDepartments_04 = "pi-pmgt-project-copy.deleteInvolveDepartments.moreurlinfo";
 
+    @RBEntry("departmentListPicker")
+    public static final String PRIVATE_CONSTANT_951112 = "pi-pmgt-project-copy.departmentListPicker.description";
+    @RBEntry("departmentListPicker")
+    public static final String PRIVATE_CONSTANT_952223 = "pi-pmgt-project-copy.departmentListPicker.tooltip";
+
+
+
     /*--------------------------------------------------------------------------------*/
     @RBEntry("ProjectRisks")
     public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProjectCopy.description";
@@ -170,6 +177,21 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deleteProjectRiskCopy_04 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.moreurlinfo";
 
+    @RBEntry("projectManagerUserListPicker")
+    public static final String projectManagerUserListPicker_01 = "pi-pmgt-risk-copy.projectManagerUserListPicker.description";
+    @RBEntry("projectManagerUserListPicker")
+    public static final String projectManagerUserListPicker_02 = "pi-pmgt-risk-copy.projectManagerUserListPicker.tooltip";
+
+    @RBEntry("proposingDepartmentListPicker")
+    public static final String proposingDepartmentListPicker_01 = "pi-pmgt-risk-copy.proposingDepartmentListPicker.description";
+    @RBEntry("proposingDepartmentListPicker")
+    public static final String proposingDepartmentListPicker_02 = "pi-pmgt-risk-copy.proposingDepartmentListPicker.tooltip";
+    @RBEntry("affectedDepartmentListPicker")
+    public static final String affectedDepartmentListPicker_01 = "pi-pmgt-risk-copy.affectedDepartmentListPicker.description";
+    @RBEntry("affectedDepartmentListPicker")
+    public static final String affectedDepartmentListPicker_02 = "pi-pmgt-risk-copy.affectedDepartmentListPicker.tooltip";
+
+
     /*--------------------------------------------------------------------------------*/
     @RBEntry("riskInformation")
     public static final String riskInformation_01 = "st-pmgt-risk.riskInformation.description";
@@ -209,6 +231,17 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String measure_Edit_03 = "st-pmgt-measures.measure_Edit.icon";
     @RBEntry("height=900,width=750")
     public static final String measure_Edit_04 = "st-pmgt-measures.measure_Edit.moreurlinfo";
+
+
+    @RBEntry("measure_Delete")
+    public static final String measure_Delete_01 = "st-pmgt-measures.measure_Delete.description";
+    @RBEntry("measure_Delete")
+    public static final String measure_Delete_02 = "st-pmgt-measures.measure_Delete.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String measure_Delete_03 = "st-pmgt-measures.measure_Delete.icon";
+    @RBEntry("height=900,width=750")
+    public static final String measure_Delete_04 = "st-pmgt-measures.measure_Delete.moreurlinfo";
+
 
     @RBEntry("details")
     public static final String measures_details_01= "st-pmgt-measures.details.description";

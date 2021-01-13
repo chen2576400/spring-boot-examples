@@ -63,7 +63,13 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String deleteInvolveDepartments_03 = "pi-pmgt-project-copy.deleteInvolveDepartments.icon";
     @RBEntry("height=900,width=750")
     public static final String deleteInvolveDepartments_04 = "pi-pmgt-project-copy.deleteInvolveDepartments.moreurlinfo";
-/*-----------------------------------------------------------------------------------------------*/
+
+    @RBEntry("部门展示")
+    public static final String PRIVATE_CONSTANT_951112 = "pi-pmgt-project-copy.departmentListPicker.description";
+    @RBEntry("部门展示")
+    public static final String PRIVATE_CONSTANT_952223 = "pi-pmgt-project-copy.departmentListPicker.tooltip";
+
+    /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("风险")
     public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProjectCopy.description";
     @RBEntry("风险")
@@ -164,6 +170,21 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deleteProjectRiskCopy_04 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.moreurlinfo";
 
+    @RBEntry("人员展示")
+    public static final String projectManagerUserListPicker_01 = "pi-pmgt-risk-copy.projectManagerUserListPicker.description";
+    @RBEntry("人员展示")
+    public static final String projectManagerUserListPicker_02 = "pi-pmgt-risk-copy.projectManagerUserListPicker.tooltip";
+
+    @RBEntry("提出部门展示")
+    public static final String proposingDepartmentListPicker_01 = "pi-pmgt-risk-copy.proposingDepartmentListPicker.description";
+    @RBEntry("提出部门展示")
+    public static final String proposingDepartmentListPicker_02 = "pi-pmgt-risk-copy.proposingDepartmentListPicker.tooltip";
+    @RBEntry("受影响部门展示")
+    public static final String affectedDepartmentListPicker_01 = "pi-pmgt-risk-copy.affectedDepartmentListPicker.description";
+    @RBEntry("受影响部门展示")
+    public static final String affectedDepartmentListPicker_02 = "pi-pmgt-risk-copy.affectedDepartmentListPicker.tooltip";
+
+
     /*-----------------------------------------------------------------------------------------------*/
 
     @RBEntry("风险详情")
@@ -205,6 +226,18 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String measure_Edit_03 = "st-pmgt-measures.measure_Edit.icon";
     @RBEntry("height=900,width=750")
     public static final String measure_Edit_04 = "st-pmgt-measures.measure_Edit.moreurlinfo";
+
+    @RBEntry("删除")
+    public static final String measure_Delete_01 = "st-pmgt-measures.measure_Delete.description";
+    @RBEntry("删除")
+    public static final String measure_Delete_02 = "st-pmgt-measures.measure_Delete.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String measure_Delete_03 = "st-pmgt-measures.measure_Delete.icon";
+    @RBEntry("height=900,width=750")
+    public static final String measure_Delete_04 = "st-pmgt-measures.measure_Delete.moreurlinfo";
+
+
+
 
 
     @RBEntry("详细信息")

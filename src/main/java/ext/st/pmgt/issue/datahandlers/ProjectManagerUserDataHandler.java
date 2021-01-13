@@ -9,6 +9,7 @@ import com.pisx.tundra.netfactory.mvc.components.img.ImgElement;
 import com.pisx.tundra.netfactory.mvc.components.input.InputElement;
 import com.pisx.tundra.netfactory.mvc.handler.DefaultDataHandler;
 import com.pisx.tundra.netfactory.util.misc.URLFactory;
+import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectRisk;
 
@@ -54,6 +55,8 @@ public class ProjectManagerUserDataHandler extends DefaultDataHandler {
             return ((STProjectRisk) sourceObject).getProject();
         }else if (sourceObject instanceof STProjectIssue){
             return ((STProjectIssue) sourceObject).getProject();
+        }else if (sourceObject instanceof PIProject){
+            return (PIProject)sourceObject;
         }
         return null;
     }

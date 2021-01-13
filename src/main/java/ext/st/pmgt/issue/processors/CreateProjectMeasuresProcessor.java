@@ -40,7 +40,7 @@ public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
                 getJSONObject("create_project_measures_wizard_step1").
                 getJSONObject("create_project_measures_layout").getJSONObject("fieldMeta");
 
-        STProjectMeasures stProjectMeasures=getSTProjectMeasures(jsonObject,risk);
+        STProjectMeasures stProjectMeasures = getSTProjectMeasures(jsonObject, risk);
         PIPrincipalReference creator = PIPrincipalReference.newPIPrincipalReference(SessionHelper.service.getPrincipal());
         stProjectMeasures.setCreator(creator);
 
@@ -49,17 +49,20 @@ public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
         JSONObject ajaxData = params.getAjaxData();
         JSONObject componentsData = ajaxData.getJSONObject("componentsData");
         JSONObject createProjectmMasureStep2 = componentsData.getJSONObject("create_project_measure_step2");
-        JSONObject contextHolderAttachmentsTable = createProjectmMasureStep2.getJSONObject("createoreditattachmentstable1");
-        String  rows = contextHolderAttachmentsTable.getJSONArray("rows").toJSONString();
-        ContentHolder contentHolder=stProjectMeasures;
+        JSONObject contextHolderAttachmentsTable = createProjectmMasureStep2.getJSONObject("createoreditattachmentstable1");//编辑
+        if (contextHolderAttachmentsTable == null) {
+            contextHolderAttachmentsTable = createProjectmMasureStep2.getJSONObject("attachment_table");////创建
+        }
+        String rows = contextHolderAttachmentsTable.getJSONArray("rows").toJSONString();
+        ContentHolder contentHolder = stProjectMeasures;
 
         PersistenceHelper.service.save(stProjectMeasures);
-        PIProjectChangeHelper.service.addAndUpdateSecondData(contentHolder,creator, second,rows,null);
+        PIProjectChangeHelper.service.addAndUpdateSecondData(contentHolder, creator, second, rows, null);
         return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, null, null);
     }
 
 
-    private STProjectMeasures getSTProjectMeasures(JSONObject object,STProjectRisk risk) throws PIException, PIPropertyVetoException {
+    private STProjectMeasures getSTProjectMeasures(JSONObject object, STProjectRisk risk) throws PIException, PIPropertyVetoException {
         String name = null; //名称
         Boolean confirmStatus = false;  //项目经理确认
         Boolean involveGroupStatus = false; //涉及部门确认

@@ -91,6 +91,9 @@ public class CreateProjectIssueProcessor extends DefaultCreateFormProcessor {
         JSONObject componentsData = ajaxData.getJSONObject("componentsData");
         JSONObject createProjectRiskStep2 = componentsData.getJSONObject("create_project_issue_step2");
         JSONObject contextHolderAttachmentsTable = createProjectRiskStep2.getJSONObject("createoreditattachmentstable1");
+        if (contextHolderAttachmentsTable == null) {
+            contextHolderAttachmentsTable = createProjectRiskStep2.getJSONObject("attachment_table");////创建
+        }
         String  rows = contextHolderAttachmentsTable.getJSONArray("rows").toJSONString();
 
         issue = (STProjectIssue) PersistenceHelper.service.save(issue);

@@ -1,5 +1,7 @@
 package ext.st.pmgt.issue.builders;
 
+import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.collections.PIArrayList;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.org.model.PIGroup;
@@ -20,7 +22,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * 风险相关受影响部门
+ */
 public class ProjectRiskAffectedDepartmentTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
@@ -69,10 +73,14 @@ public class ProjectRiskAffectedDepartmentTableBuilder extends AbstractComponent
     }
 
 
-    private List<PIGroup> piGroups(Collection collection) {
+    private List<PIGroup> piGroups(Collection collection) throws PIException {
         if (collection.isEmpty()) return null;
         List<STProjectRiskAffectedGroupLink> groupLinks = (List<STProjectRiskAffectedGroupLink>) collection;
-        List<PIGroup> piGroups = groupLinks.stream().map(stProjectRiskAffectedGroupLink -> {
+
+        PIArrayList removeLists = new PIArrayList(){{addAll(groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+        PersistenceHelper.service.delete(removeLists);
+
+        List<PIGroup> piGroups = groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() != null).map(stProjectRiskAffectedGroupLink -> {
             return stProjectRiskAffectedGroupLink.getRoleBObject();
         }).collect(Collectors.toList());
         return piGroups;

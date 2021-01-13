@@ -114,14 +114,14 @@
         <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
         <action name="listProjectResources" type="pi-pmgt-project"/>
         <!-- 原问题   -->
-        <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
+        <!-- <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>-->
         <!-- 原风险    -->
-        <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
+        <!-- <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>-->
         <action name="folderTreeBrowser" type="folder"/>
         <!--新问题-->
-        <!--        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>-->
+        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>
         <!--新风险-->
-        <!--        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>-->
+        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>
     </model>
 
     <model name="pi-pmgtPlanInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
@@ -335,6 +335,7 @@
     <!-- 措施编辑-->
     <model name="MeasuresMenus">
         <action name="measure_Edit" type="st-pmgt-measures"/>
+        <action name="measure_Delete" type="st-pmgt-measures"/>
     </model>
 
     <model name="measureInfopageTabSet">

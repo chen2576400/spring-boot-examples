@@ -9,10 +9,13 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.change.datahandlers.PlanActivityDataHandler;
+import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.resource.datahandlers.UserPickerDataHandler;
 import com.pisx.tundra.pmgt.risk.datahandlers.ResourceDataHandler;
 import ext.st.pmgt.issue.datahandlers.*;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectMeasures;
+import ext.st.pmgt.issue.model.STProjectRisk;
 
 import java.sql.Timestamp;
 
@@ -63,7 +66,7 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
                     .addField("importanceType")//重要度
                     .addField("urgencyType")//紧急度
                     .addField("closeStamp")//关闭时间
-                    .addField("projectManagerUserReference",new ProjectManagerUserDataHandler())//项目经理
+                    .addField("projectManagerUserReference", new ProjectManagerUserDataHandler())//项目经理
             ;
 
 
@@ -72,11 +75,23 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
             StepConfig stepConfig2 = wizardConfig.newStep();
             stepConfig2.setId("createProjectIssueStep2");
             stepConfig2.setTitle("设置附件");
-            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
+            setStep(componentData, stepConfig2);
+//            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return wizardConfig;
     }
+
+
+    private void setStep(Object componentData, StepConfig stepConfig) {
+        if (componentData instanceof STProjectIssue) {//编辑
+            stepConfig.setStepAction("attachments", "createOrEditAttachments");
+        } else if (componentData instanceof PIProject) { //创建
+            stepConfig.setStepAction("contentHolder", "uploadAttachment");
+        }
+
+    }
+
 }

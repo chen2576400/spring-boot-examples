@@ -41,25 +41,28 @@ public class ProjectRiskProposingGroupTableBulider extends AbstractComponentBuil
                 currentUser = (PIUser) objectReference.getObject();
             }
         }
-        Collection qr = PersistenceHelper.service.navigate(currentUser, "roleA", MembershipLink.class, true);
+        //  parm1查询条件  parm2查询对象   parm3 link表  parm4   fasle(查询的是link对象) true或者不写差的是parm2对象
+        Collection qr = PersistenceHelper.service.navigate(currentUser, "roleA", MembershipLink.class,true);
         List<PIGroup> groups = null;
         if (!CollectionUtils.isEmpty(qr)) {
             groups = (List) qr;
             groups.removeIf(piGroup -> piGroup.getInternal() == true);//移除
-            if (!CollectionUtils.isEmpty(groups))  groups=Arrays.asList(groups.get(0)); //只取第一个
         }
-        List<Row> rowList = new ArrayList<>();
-        Iterator iter = groups.iterator();
-        while (iter.hasNext()) {
-            PIGroup group = (PIGroup) iter.next();
-            Row row = new Row();
-            row.setRowSingleEntity(group);
-            row.put("name", group.getName());
-            row.put("id", group.getObjectIdentifier().getId());
-            row.put("containerReference", ((OrgContainer) group.getContainerReference().getObject()).getOrganizationName());
-            rowList.add(row);
+        if (!CollectionUtils.isEmpty(groups)){
+            List<Row> rowList = new ArrayList<>();
+            Iterator iter = groups.iterator();
+            while (iter.hasNext()) {
+                PIGroup group = (PIGroup) iter.next();
+                Row row = new Row();
+                row.setRowSingleEntity(group);
+                row.put("name", group.getName());
+                row.put("id", group.getObjectIdentifier().getId());
+                row.put("containerReference", ((OrgContainer) group.getContainerReference().getObject()).getOrganizationName());
+                rowList.add(row);
+            }
+            return rowList;
         }
-        return rowList;
+          return  null;
     }
 
     @Override
