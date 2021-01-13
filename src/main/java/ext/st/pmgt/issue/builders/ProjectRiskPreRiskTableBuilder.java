@@ -1,5 +1,7 @@
 package ext.st.pmgt.issue.builders;
 
+import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.collections.PIArrayList;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
@@ -17,6 +19,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 风险的前置风险
+ */
 public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
@@ -62,10 +67,14 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
     }
 
 
-    private List<STProjectRisk> stProjectRisks(Collection collection) {
+    private List<STProjectRisk> stProjectRisks(Collection collection) throws PIException {
         if (collection.isEmpty()) return null;
         List<STProjectRiskPreRiskLink> riskLinks = (List<STProjectRiskPreRiskLink>) collection;
-        List<STProjectRisk> riskList = riskLinks.stream().map(STProjectRiskPreRiskLink -> {
+
+        PIArrayList removeLists = new PIArrayList(){{addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+        PersistenceHelper.service.delete(removeLists);
+
+        List<STProjectRisk> riskList = riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() != null).map(STProjectRiskPreRiskLink -> {
             return STProjectRiskPreRiskLink.getRoleBObject();
         }).collect(Collectors.toList());
         return riskList;
