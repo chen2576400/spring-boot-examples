@@ -36,10 +36,10 @@ import java.util.stream.Collectors;
 public class AddRatingProcessor extends DefaultObjectFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-//        boolean flag = havePrivilege(params);
-//        if (!flag) {//资源没有分配到任务 无法添加评定
-//            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
-//        }
+        boolean flag = havePrivilege(params);
+        if (!flag) {//资源没有分配到任务 无法添加评定
+            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
+        }
 
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) sourceObject;

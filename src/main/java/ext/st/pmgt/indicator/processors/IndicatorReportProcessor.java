@@ -39,10 +39,10 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-//        boolean flag = havePrivilege(params);
-//        if (!flag) {//资源没有分配到任务 无法汇报指标
-//            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
-//        }
+        boolean flag = havePrivilege(params);
+        if (!flag) {//资源没有分配到任务 无法汇报指标
+            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
+        }
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         PIPlanDeliverable deliverable = null;
         if (sourceObject instanceof PIPlanDeliverable) {
