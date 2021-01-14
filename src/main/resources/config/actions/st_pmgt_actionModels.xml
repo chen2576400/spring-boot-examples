@@ -112,14 +112,14 @@
         <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
         <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
         <!-- 原问题   -->
-        <!-- <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>-->
+        <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
         <!-- 原风险    -->
-        <!-- <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>-->
+        <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
         <action name="folderTreeBrowser" type="folder"/>
-        <!--新问题-->
-        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>
-        <!--新风险-->
-        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>
+        <!--        &lt;!&ndash;新问题&ndash;&gt;-->
+        <!--        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>-->
+        <!--        &lt;!&ndash;新风险&ndash;&gt;-->
+        <!--        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>-->
     </model>
 
     <model name="pi-pmgtPlanInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
