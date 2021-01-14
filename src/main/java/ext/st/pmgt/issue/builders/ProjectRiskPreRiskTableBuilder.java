@@ -4,6 +4,7 @@ import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.collections.PIArrayList;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
+import com.pisx.tundra.foundation.org.model.MembershipLink;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
@@ -14,6 +15,7 @@ import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import ext.st.pmgt.issue.model.STProjectRiskPreRiskLink;
+import ext.st.pmgt.issue.service.STProjectRiskPreRiskLinkService;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +31,11 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
         STProjectRisk stProjectRisk = null;
         if (sourceObject instanceof STProjectRisk) {
             stProjectRisk = (STProjectRisk) sourceObject;
+
             Collection collection = STRiskHelper.preRiskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
+
+//            Collection qr = PersistenceHelper.service.navigate(stProjectRisk, "roleB", STProjectRiskPreRiskLink.class,false);
+
             List<STProjectRisk> riskList = stProjectRisks(collection);
             return riskList;
         }
@@ -71,7 +77,9 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
         if (collection.isEmpty()) return null;
         List<STProjectRiskPreRiskLink> riskLinks = (List<STProjectRiskPreRiskLink>) collection;
 
-        PIArrayList removeLists = new PIArrayList(){{addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+        PIArrayList removeLists = new PIArrayList() {{
+            addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));
+        }};
         PersistenceHelper.service.delete(removeLists);
 
         List<STProjectRisk> riskList = riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() != null).map(STProjectRiskPreRiskLink -> {

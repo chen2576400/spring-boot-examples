@@ -13,6 +13,7 @@ import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,23 +23,24 @@ import java.util.List;
 public class DeleteRiskMeasuresProcessor extends DefaultObjectFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        List<STProjectMeasures> measures=(List)params.getNfCommandBean().getSelectedObjects();//批量按钮删除
+        List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();//批量按钮删除
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
-        for (STProjectMeasures projectMeasures:measures){
-            PersistenceHelper.service.delete(projectMeasures);
-            ContentHolder contentHolder=projectMeasures;
-            List<ContentHolder> contentHolderList=new ArrayList<>();
-            contentHolderList.add(contentHolder);
-            PIProjectChangeHelper.service.deleteAttachmentData(contentHolderList);
-        }
-
-        if (sourceObject instanceof STProjectMeasures){  //编辑删除
-            STProjectMeasures stProjectMeasures=(STProjectMeasures)sourceObject;
+        if (sourceObject instanceof STProjectMeasures) {  //编辑删除
+            STProjectMeasures stProjectMeasures = (STProjectMeasures) sourceObject;
             PersistenceHelper.service.delete(stProjectMeasures);
-            ContentHolder contentHolder=stProjectMeasures;
-            List<ContentHolder> contentHolderList=new ArrayList<>();
+            ContentHolder contentHolder = stProjectMeasures;
+            List<ContentHolder> contentHolderList = new ArrayList<>();
             contentHolderList.add(contentHolder);
             PIProjectChangeHelper.service.deleteAttachmentData(contentHolderList);
+        } else if (!CollectionUtils.isEmpty(selectedObjects)) {
+            List<STProjectMeasures> measures = (List) selectedObjects;
+            for (STProjectMeasures projectMeasures : measures) {
+                PersistenceHelper.service.delete(projectMeasures);
+                ContentHolder contentHolder = projectMeasures;
+                List<ContentHolder> contentHolderList = new ArrayList<>();
+                contentHolderList.add(contentHolder);
+                PIProjectChangeHelper.service.deleteAttachmentData(contentHolderList);
+            }
         }
 
 //        if (selectedObjects!=null&&selectedObjects.size()>0&&sourceObject instanceof PIProject) {

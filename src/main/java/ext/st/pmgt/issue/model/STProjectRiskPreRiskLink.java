@@ -45,7 +45,7 @@ public class STProjectRiskPreRiskLink extends ObjectToObjectLink implements Seri
     public void setSTProjectRisk(STProjectRisk stProjectRisk) throws PIException {
         setRoleAObject(stProjectRisk);
     }
-    public STProjectRisk getstProjectRisk()
+    public STProjectRisk getStProjectRisk()
     {
         return getRoleAObject();
     }
