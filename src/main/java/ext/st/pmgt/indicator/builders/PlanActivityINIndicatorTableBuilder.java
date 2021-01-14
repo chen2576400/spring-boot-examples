@@ -62,38 +62,46 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
         columnconfig.haveInfoPageLink();
+        columnconfig.enableSort();
         tableConfig.addColumn(columnconfig);
 
         ColumnConfig columnconfig3 = componentConfigFactory.newColumnConfig();
         columnconfig3.setName("description");
+        columnconfig3.enableSort();
         tableConfig.addColumn(columnconfig3);
 
 
         ColumnConfig columnconfig32 = componentConfigFactory.newColumnConfig();
         columnconfig32.setName("standardDeviationValue");
+        columnconfig32.enableSort();
         tableConfig.addColumn(columnconfig32);
 
         ColumnConfig columnconfig33 = componentConfigFactory.newColumnConfig();
         columnconfig33.setName("standardDifficultyValue");
+        columnconfig33.enableSort();
         tableConfig.addColumn(columnconfig33);
 
         ColumnConfig columnconfig4 = componentConfigFactory.newColumnConfig();
         columnconfig4.setName("deviationReport");
+        columnconfig4.enableSort();
         tableConfig.addColumn(columnconfig4);
 
         ColumnConfig columnconfig5 = componentConfigFactory.newColumnConfig();
         columnconfig5.setName("difficultyReport");
+        columnconfig5.enableSort();
         tableConfig.addColumn(columnconfig5);
 
         ColumnConfig columnconfig6 = componentConfigFactory.newColumnConfig();
         columnconfig6.setName("planDeliverable.name");
         columnconfig6.setLabel("交付物");
         columnconfig6.haveInfoPageLink();
+        columnconfig6.enableSort();
         tableConfig.addColumn(columnconfig6);
 
 
         ColumnConfig columnconfig7 = componentConfigFactory.newColumnConfig();
         columnconfig7.setName("reportTime");
+        columnconfig7.enableSort();
         tableConfig.addColumn(columnconfig7);
 
         return tableConfig;

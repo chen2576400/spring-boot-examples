@@ -44,7 +44,7 @@ public class RatingReportDataHandler extends DefaultDataHandler {
         if (deviationOptions.size() > 0) {
             selectElement0.setDefaultOption(deviationOptions.get(0));
         }
-        selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:100px;"));
+        selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:300px;"));
         return selectElement0;
 
     }

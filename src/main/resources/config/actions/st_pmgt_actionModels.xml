@@ -90,7 +90,6 @@
     <model name="folderContentsTableToolbar"
            resourceBundle="com.pisx.tundra.foundation.folder.resources.folderActionsRB">
         <action name="createDocument" type="document" shortcut="true"/>
-        <action name="copyObjects" type="uiComponent" shortcut="true"/>
         <action name="createSubFolder" type="folder" shortcut="true"/>
         <action name="setObjectsLcState" type="topLcState" shortcut="true"/>
         <action name="exportExcel" type="uiComponent" shortcut="false"/>
