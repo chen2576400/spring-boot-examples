@@ -36,7 +36,7 @@ public class StandardDeviationValuePickerHandler extends DefaultDataHandler {
         if (deviationOptions.size() > 0) {
             selectElement0.setDefaultItem(deviationOptions.get(0));
         }
-        selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:200px;"));
+        selectElement0.attribute(elementAttribute -> elementAttribute.addStyle("width:300px;"));
         return selectElement0;
     }
 }

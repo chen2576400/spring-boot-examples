@@ -78,8 +78,7 @@
         <action name="createOTIndicator" type="st-pmgt-ot" shortcut="true"/>
         <action name="deleteOTIndicator" type="st-pmgt-ot" shortcut="true"/>
     </model>
-    <model name="DeviationValueAndDifficultyValueMenu"
-           resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+    <model name="DeviationValueAndDifficultyValueMenu" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="pickDeviationValueAndDifficultyValue" type="st-pmgt-indicator" shortcut="true"/>
     </model>
     <model name="indicatorRatingTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">

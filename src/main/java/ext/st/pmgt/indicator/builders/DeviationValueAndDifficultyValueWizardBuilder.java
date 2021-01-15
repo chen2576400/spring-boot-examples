@@ -27,7 +27,7 @@ public class DeviationValueAndDifficultyValueWizardBuilder extends AbstractCompo
         StepConfig step = wizardConfig.newStep();
         step.setId("deviationValueAndDifficultyValueWizardStep");
         LayoutConfig layout = componentConfigFactory.newLayoutConfig(params);
-        layout.setPrimaryClassName(STProjectInstanceOTIndicator.class);
+        layout.setPrimaryClass(STProjectInstanceOTIndicator.class);
         layout.setId("adeviationValueAndDifficultyValueLayout1");
         layout.addField("standardDeviationValue", new StandardDeviationValuePickerHandler())
                 .addField("standardDifficultyValue", new StandardDifficultyValuePickerHandler());
