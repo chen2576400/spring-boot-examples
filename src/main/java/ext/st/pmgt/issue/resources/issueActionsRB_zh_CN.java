@@ -39,6 +39,16 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssueCopy.moreurlinfo";
 
+    @RBEntry("操作")
+    public static final String confirmProjectIssue_01 = "pi-pmgt-project-copy.confirmProjectIssue.description";
+    @RBEntry("操作")
+    public static final String confirmProjectIssue_02 = "pi-pmgt-project-copy.confirmProjectIssue.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String confirmProjectIssue_03 = "pi-pmgt-project-copy.confirmProjectIssue.icon";
+    @RBEntry("height=200,width=400")
+    public static final String confirmProjectIssue_04 = "pi-pmgt-project-copy.confirmProjectIssue.moreurlinfo";
+
+
 
     @RBEntry("涉及部门列表")
     public static final String involveGroup_431= "pi-pmgt-project-copy.involveGroupList.description";

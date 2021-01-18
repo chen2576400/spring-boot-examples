@@ -120,6 +120,12 @@
             <command className="ext.st.pmgt.issue.processors.DeleteProjectIssuesProcessor"/>
         </action>
 
+        <!--确认 -->
+        <action name="confirmProjectIssue">
+            <component name="ext.st.pmgt.issue.builders.ConfirmProjectIssueWizardBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.ConfirmProjectIssueProcessor"/>
+        </action>
 
         <!-- 责任部门展示-->
         <action name="departmentListPicker">

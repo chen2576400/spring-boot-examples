@@ -234,10 +234,16 @@
     <!--###################################重汽未用到action屏蔽############################-->
 
 
-    <!-- 编辑/删除 问题 -->
+    <!-- 编辑/删除 问题 普通用户-->
     <model name="projectRelatedIssuesMenusCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="editProjectIssue" type="pi-pmgt-project-copy"/>
         <action name="deleteProjectIssueCopy" type="pi-pmgt-project-copy"/>
+    </model>
+    <!-- 编辑/删除/确认  问题  项目经理-->
+    <model name="projectRelatedIssuesMenusCopyByManager" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="editProjectIssue" type="pi-pmgt-project-copy"/>
+        <action name="deleteProjectIssueCopy" type="pi-pmgt-project-copy"/>
+        <action name="confirmProjectIssue" type="pi-pmgt-project-copy"/>
     </model>
 
 
