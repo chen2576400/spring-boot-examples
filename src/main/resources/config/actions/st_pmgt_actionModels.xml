@@ -344,9 +344,16 @@
 
 
     <!-- 措施编辑-->
-    <model name="MeasuresMenus">
+    <model name="measuresMenus">
         <action name="measure_Edit" type="st-pmgt-measures"/>
         <action name="measure_Delete" type="st-pmgt-measures"/>
+    </model>
+
+    <!-- 措施编辑  项目经理-->
+    <model name="measuresMenusByManager">
+        <action name="measure_Edit" type="st-pmgt-measures"/>
+        <action name="measure_Delete" type="st-pmgt-measures"/>
+        <action name="confirmProjectMeasure" type="st-pmgt-measures"/>
     </model>
 
     <model name="measureInfopageTabSet">

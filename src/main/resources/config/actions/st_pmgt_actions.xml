@@ -122,9 +122,9 @@
 
         <!--确认 -->
         <action name="confirmProjectIssue">
-            <component name="ext.st.pmgt.issue.builders.ConfirmIssueORRiskWizardBuilder"
+            <component name="ext.st.pmgt.issue.builders.ConfirmIssuesORRiskORMeasuresWizardBuilder"
                        windowType="popup"/>
-            <command className="ext.st.pmgt.issue.processors.ConfirmIssueORRiskProcessor"/>
+            <command className="ext.st.pmgt.issue.processors.ConfirmIssuesORRiskORMeasuresProcessor"/>
         </action>
 
         <!-- 责任部门展示-->
@@ -250,9 +250,9 @@
 
 
         <action name="confirmProjectRisk">
-            <component name="ext.st.pmgt.issue.builders.ConfirmIssueORRiskWizardBuilder"
+            <component name="ext.st.pmgt.issue.builders.ConfirmIssuesORRiskORMeasuresWizardBuilder"
                        windowType="popup"/>
-            <command className="ext.st.pmgt.issue.processors.ConfirmIssueORRiskProcessor"/>
+            <command className="ext.st.pmgt.issue.processors.ConfirmIssuesORRiskORMeasuresProcessor"/>
         </action>
 
         <action name="projectManagerUserListPicker">
@@ -261,13 +261,6 @@
             <command className="ext.st.pmgt.issue.processors.ProjectManagerUserProcessor"/>
         </action>
     </actionsgroup>
-
-
-    <!--    <actionsgroup name="st-pmgt-risk" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">-->
-    <!--        <action name="riskInformation">-->
-    <!--            <component name="ext.st.pmgt.issue.builders.ProjectRisksInformationTableBuilder"/>-->
-    <!--        </action>-->
-    <!--    </actionsgroup>-->
 
 
     <actionsgroup name="st-pmgt-measures" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
@@ -293,6 +286,13 @@
 
         <action name="measure_Delete" beforeJS="buttonEvent">
             <command className="ext.st.pmgt.issue.processors.DeleteRiskMeasuresProcessor"/>
+        </action>
+
+
+        <action name="confirmProjectMeasure">
+            <component name="ext.st.pmgt.issue.builders.ConfirmIssuesORRiskORMeasuresWizardBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.ConfirmIssuesORRiskORMeasuresProcessor"/>
         </action>
 
         <action name="details">

@@ -166,6 +166,9 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     public static final String STProjectMeasures_05 = "STProjectMeasures.involveGroupStatus.value";
     @RBEntry("责任人")
     public static final String STProjectMeasures_06 = "STProjectMeasures.dutyUserReference.value";
+    @RBEntry("关闭时间")
+    public static final String STProjectMeasures_08 = "STProjectMeasures.closeStamp.value";
+
 
 
 }

@@ -258,7 +258,14 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String measure_Delete_04 = "st-pmgt-measures.measure_Delete.moreurlinfo";
 
 
-
+    @RBEntry("操作")
+    public static final String confirmProjectMeasure_01 = "st-pmgt-measures.confirmProjectMeasure.description";
+    @RBEntry("操作")
+    public static final String confirmProjectMeasure_02 = "st-pmgt-measures.confirmProjectMeasure.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String confirmProjectMeasure_03 = "st-pmgt-measures.confirmProjectMeasure.icon";
+    @RBEntry("height=200,width=400")
+    public static final String confirmProjectMeasure_04 = "st-pmgt-measures.confirmProjectMeasure.moreurlinfo";
 
 
     @RBEntry("详细信息")
