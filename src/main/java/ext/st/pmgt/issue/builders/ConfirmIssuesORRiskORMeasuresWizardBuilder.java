@@ -9,13 +9,14 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.netfactory.util.misc.AlertType;
 import ext.st.pmgt.issue.datahandlers.ConfirmRadioDataHandler;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectMeasures;
 import ext.st.pmgt.issue.model.STProjectRisk;
 
 /**
  * @author: Mr.Chen
  * @create: 2021-01-18 14:25
  **/
-public class ConfirmIssueORRiskWizardBuilder extends AbstractComponentBuilder {
+public class ConfirmIssuesORRiskORMeasuresWizardBuilder extends AbstractComponentBuilder {
 
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
@@ -43,6 +44,14 @@ public class ConfirmIssueORRiskWizardBuilder extends AbstractComponentBuilder {
             STProjectRisk risk=(STProjectRisk)componentData;
             if (risk.getConfirmStatus()){
                 NotifySupport.alert(AlertType.WARN, "该风险已被确认开启，不能再次操作");
+                return wizardConfig;
+            }
+        }
+        else if (componentData instanceof STProjectMeasures){
+            beanClass=STProjectMeasures.class;
+            STProjectMeasures measures=(STProjectMeasures)componentData;
+            if (measures.getConfirmStatus()){
+                NotifySupport.alert(AlertType.WARN, "该措施已被确认开启，不能再次操作");
                 return wizardConfig;
             }
         }
