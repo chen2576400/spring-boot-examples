@@ -122,9 +122,9 @@
 
         <!--确认 -->
         <action name="confirmProjectIssue">
-            <component name="ext.st.pmgt.issue.builders.ConfirmProjectIssueWizardBuilder"
+            <component name="ext.st.pmgt.issue.builders.ConfirmIssueORRiskWizardBuilder"
                        windowType="popup"/>
-            <command className="ext.st.pmgt.issue.processors.ConfirmProjectIssueProcessor"/>
+            <command className="ext.st.pmgt.issue.processors.ConfirmIssueORRiskProcessor"/>
         </action>
 
         <!-- 责任部门展示-->
@@ -246,6 +246,13 @@
         <action name="deleteProjectRiskCopy" beforeJS="buttonEvent">
             <command className="ext.st.pmgt.issue.processors.DeleteProjectRiskProcessorCopy"/>
             <!--<includeFilter name="pmgtGeneralAccessFilter" functionCode="112"/>-->
+        </action>
+
+
+        <action name="confirmProjectRisk">
+            <component name="ext.st.pmgt.issue.builders.ConfirmIssueORRiskWizardBuilder"
+                       windowType="popup"/>
+            <command className="ext.st.pmgt.issue.processors.ConfirmIssueORRiskProcessor"/>
         </action>
 
         <action name="projectManagerUserListPicker">

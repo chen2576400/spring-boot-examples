@@ -187,6 +187,18 @@ public class issueActionsRB extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deleteProjectRiskCopy_04 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.moreurlinfo";
 
+
+    @RBEntry("confirmProjectRisk")
+    public static final String confirmProjectRisk_01 = "pi-pmgt-risk-copy.confirmProjectRisk.description";
+    @RBEntry("confirmProjectRisk")
+    public static final String confirmProjectRisk_02 = "pi-pmgt-risk-copy.confirmProjectRisk.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String confirmProjectRisk_03 = "pi-pmgt-risk-copy.confirmProjectRisk.icon";
+    @RBEntry("height=200,width=400")
+    public static final String confirmProjectRisk_04 = "pi-pmgt-risk-copy.confirmProjectRisk.moreurlinfo";
+
+
+
     @RBEntry("projectManagerUserListPicker")
     public static final String projectManagerUserListPicker_01 = "pi-pmgt-risk-copy.projectManagerUserListPicker.description";
     @RBEntry("projectManagerUserListPicker")

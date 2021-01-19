@@ -52,7 +52,7 @@ public class CreateOREditProjectRiskWizardBuilder extends AbstractComponentBuild
                     .addField("riskDescription")
                     .addField("riskToType")
                     .addField("identifiedByReference", new UserPickerExpandDataHandler())
-                    .addField("riskTypeReference", new RiskTypeDataHandler())
+                    .addField("riskTypeReference", new RiskTypeExpandDataHandler())
                     .addField("riskCause")
                     .addField("riskEffect")
                     .addField("rsrcReference", new ResourceExpandDataHandler())
@@ -68,11 +68,11 @@ public class CreateOREditProjectRiskWizardBuilder extends AbstractComponentBuild
                     .addField("postRspCostProbability")
                     .addField("proposingGroupReference", new ProposingGroupDataHandler())//提出部门
                     .addField("affectedGroupReference", new AffectedGroupDataHandler())//主要受影响部门
-                    .addField("closeStamp")//风险关闭时间
+//                    .addField("closeStamp")//风险关闭时间
                     .addField("importanceType")//重要度
                     .addField("urgencyType")//紧急度
-                    .addField("confirmStatus")//是否确认
-                    .addField("projectManagerUserReference", new ProjectManagerUserDataHandler())//项目经理
+//                    .addField("confirmStatus")//是否确认
+//                    .addField("projectManagerUserReference", new ProjectManagerUserDataHandler())//项目经理
             ;
             step.addLayout(layout);
 

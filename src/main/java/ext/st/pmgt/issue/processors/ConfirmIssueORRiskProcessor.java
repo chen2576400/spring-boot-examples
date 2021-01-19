@@ -10,6 +10,7 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultObjectFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectRisk;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -20,34 +21,49 @@ import java.util.List;
  * @create: 2021-01-18 15:56
  **/
 @Component
-public class ConfirmProjectIssueProcessor extends DefaultObjectFormProcessor {
+public class ConfirmIssueORRiskProcessor extends DefaultObjectFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        STProjectIssue projectIssue=null;
-        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
-        if (sourceObject instanceof STProjectIssue){
-            projectIssue=(STProjectIssue)sourceObject;
-        }
         String s = params.getAjaxData().getJSONObject("componentsData").getJSONObject("confirm_project_issue_wizard_step1").
                 getJSONObject("confirm_project_issue_layout").getJSONObject("fieldMeta").
                 getJSONObject("confirmStatus").get("value").toString();
-        Boolean m=Boolean.valueOf(s);
+        Boolean m = Boolean.valueOf(s);
 
-        STProjectIssue issue=setSTProjectIssue(projectIssue,m);
-        PersistenceHelper.service.save(issue);
+        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
+        if (sourceObject instanceof STProjectIssue) {
+            STProjectIssue projectIssue = (STProjectIssue) sourceObject;
+            STProjectIssue issue = setSTProjectIssue(projectIssue, m);
+            PersistenceHelper.service.save(issue);
+        } else if (sourceObject instanceof STProjectRisk) {
+            STProjectRisk projectRisk = (STProjectRisk) sourceObject;
+            STProjectRisk risk = setSTProjectRisk(projectRisk, m);
+            PersistenceHelper.service.save(risk);
+        }
+
         return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, null, null);
     }
 
 
-    private STProjectIssue setSTProjectIssue(STProjectIssue projectIssue,Boolean m) throws PIException {
+    private STProjectIssue setSTProjectIssue(STProjectIssue projectIssue, Boolean m) throws PIException {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         PIUser piUser = (PIUser) SessionHelper.service.getPrincipal();
 
         projectIssue.setProjectManagerUserReference(ObjectReference.newObjectReference(piUser));
         projectIssue.setConfirmStatus(m);
-        if (!m){
+        if (!m) {
             projectIssue.setCloseStamp(timestamp);
         }
-          return  projectIssue;
+        return projectIssue;
+    }
+
+    private STProjectRisk setSTProjectRisk(STProjectRisk risk, Boolean m) throws PIException {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        PIUser piUser = (PIUser) SessionHelper.service.getPrincipal();
+        risk.setProjectManagerUserReference(ObjectReference.newObjectReference(piUser));
+        risk.setConfirmStatus(m);
+        if (!m) {
+            risk.setCloseStamp(timestamp);
+        }
+        return risk;
     }
 }

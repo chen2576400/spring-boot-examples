@@ -12,8 +12,8 @@
         <action name="resourceHours" type="pi-pmgt-act"/>
         <action name="listDeliverablesForActivity" type="pi-pmgt-act"/>
         <action name="planActivityExpenses" type="pi-pmgt-act"/>
-<!--        <action name="listProjectIssuesForActivity" type="pi-pmgt-act"/>-->
-<!--        <action name="listProjectRisksForAct" type="pi-pmgt-risk"/>-->
+        <!--        <action name="listProjectIssuesForActivity" type="pi-pmgt-act"/>-->
+        <!--        <action name="listProjectRisksForAct" type="pi-pmgt-risk"/>-->
         <!--   OT IN指标table     -->
         <action name="planActivityOTIndicator" type="st-pmgt-indicator"/>
         <action name="planActivityINIndicator" type="st-pmgt-indicator"/>
@@ -78,7 +78,8 @@
         <action name="createOTIndicator" type="st-pmgt-ot" shortcut="true"/>
         <action name="deleteOTIndicator" type="st-pmgt-ot" shortcut="true"/>
     </model>
-    <model name="DeviationValueAndDifficultyValueMenu" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
+    <model name="DeviationValueAndDifficultyValueMenu"
+           resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="pickDeviationValueAndDifficultyValue" type="st-pmgt-indicator" shortcut="true"/>
     </model>
     <model name="indicatorRatingTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
@@ -331,8 +332,16 @@
         <!-- 风险编辑-->
         <action name="risk_EditCopy" type="pi-pmgt-risk-copy"/>
         <action name="deleteProjectRiskCopy" type="pi-pmgt-risk-copy"/>
-        <action name="setObjectLcState" type="topLcState"/>
+        <!-- <action name="setObjectLcState" type="topLcState"/>-->
     </model>
+
+    <!-- 风险编辑  项目经理-->
+    <model name="projectRisksMenusCopyByManager" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="risk_EditCopy" type="pi-pmgt-risk-copy"/>
+        <action name="deleteProjectRiskCopy" type="pi-pmgt-risk-copy"/>
+        <action name="confirmProjectRisk" type="pi-pmgt-risk-copy"/>
+    </model>
+
 
     <!-- 措施编辑-->
     <model name="MeasuresMenus">

@@ -16,11 +16,12 @@ import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
 import com.pisx.tundra.pmgt.risk.resources.riskResource;
 import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.model.STProjectRisk;
+import ext.st.pmgt.issue.util.ProjectPermissionUtil;
 
 public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder {
+    PIProject project = null;
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-        PIProject project = null;
         Object contextObj = params.getNfCommandBean().getSourceObject();
         if (contextObj instanceof PIProjectContainer) {
             project = PIProjectHelper.service.getProjectFromContainer((PIProjectContainer) contextObj);
@@ -42,9 +43,13 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
         tableConfig.setTableTitle(PIMessage.getLocalizedMessage(riskResource.class.getName(),"PROJECT_RISKS_FOR_PROJECT_TABLE_TITLE",null, params.getLocale()));
         tableConfig.enableSelect();//设置单选多选
         tableConfig.setToolbarActionModel("projectRisksTableToolbarSetCopy");
-        tableConfig.setRightMenuName("projectRisksMenusCopy", params);
 
 
+        if (isManager(project)) {
+            tableConfig.setRightMenuName("projectRisksMenusCopyByManager", params);
+        } else {
+            tableConfig.setRightMenuName("projectRisksMenusCopy", params);
+        }
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("riskCode");
@@ -147,5 +152,9 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
 
 
         return tableBrowserConfig;
+    }
+
+    private Boolean isManager (PIProject project) throws PIException {
+        return ProjectPermissionUtil.isProjectRole(project, null, "yfdb");
     }
 }
