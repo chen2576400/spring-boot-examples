@@ -15,22 +15,25 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.change.resources.changeResource;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
+import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.issue.STProjectMeasuresHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 import ext.st.pmgt.issue.model.STProjectRisk;
+import ext.st.pmgt.issue.util.ProjectPermissionUtil;
 
 public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
+    PIProject project = null;
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-
         Persistable persistable = params.getNfCommandBean().getSourceObject();
         STProjectRisk risk = null;
         if (persistable instanceof STProjectRisk) {
             risk = (STProjectRisk) persistable;
+            project = risk.getProject();
             return STProjectMeasuresHelper.measuresService.findByProjectRiskReference(ObjectReference.newObjectReference(risk));
         }
-        return  null;
+        return null;
     }
 
     @Override
@@ -43,9 +46,13 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         tableConfig.setPrimaryObjectType(STProjectMeasures.class);
         tableConfig.enableSearch();
         tableConfig.enableSelect();
-        if (isSelect(params)){
-            tableConfig.setToolbarActionModel("projectRiskMeasuresToolBar",params);
-            tableConfig.setRightMenuName("MeasuresMenus", params);
+        if (isSelect(params)) {
+            tableConfig.setToolbarActionModel("projectRiskMeasuresToolBar", params);
+            if (isManager(project)) {
+                tableConfig.setRightMenuName("measuresMenusByManager", params);
+            } else {
+                tableConfig.setRightMenuName("measuresMenus", params);
+            }
         }
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
@@ -73,19 +80,34 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         column5.setName("persistInfo.createStamp");
         column5.setLabel("创建时间");
         column5.enableSort();
-        tableConfig.addColumn(column5);
+
+
+        ColumnConfig column6 = componentConfigFactory.newColumnConfig();
+        column6.setName("confirmStatus");
+        tableConfig.addColumn(column6);
+
+        ColumnConfig column7 = componentConfigFactory.newColumnConfig();
+        column7.setName("closeStamp");
+        tableConfig.addColumn(column7);
+
+        ColumnConfig column8 = componentConfigFactory.newColumnConfig();
+        column8.setName("projectManagerUser.fullName");
+        column8.setLabel("项目经理");
+        tableConfig.addColumn(column8);
         return tableConfig;
 
 
     }
 
     private boolean isSelect(ComponentParams params) throws PIException {
-//        String sourceOid = params.getNfCommandBean().getSourceOid().toString();
-//        Persistable persistable = WorkflowUtil.getObjectByOid(sourceOid);
         Persistable persistable = params.getNfCommandBean().getSourceObject();
         if (persistable instanceof STProjectRisk) {
             return true;
         }
         return false;
+    }
+
+    private Boolean isManager(PIProject project) throws PIException {
+        return ProjectPermissionUtil.isProjectRole(project, null, "yfdb");
     }
 }

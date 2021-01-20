@@ -39,6 +39,16 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String ROLE_3394 = "pi-pmgt-project-copy.deleteProjectIssueCopy.moreurlinfo";
 
+    @RBEntry("操作")
+    public static final String confirmProjectIssue_01 = "pi-pmgt-project-copy.confirmProjectIssue.description";
+    @RBEntry("操作")
+    public static final String confirmProjectIssue_02 = "pi-pmgt-project-copy.confirmProjectIssue.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String confirmProjectIssue_03 = "pi-pmgt-project-copy.confirmProjectIssue.icon";
+    @RBEntry("height=200,width=400")
+    public static final String confirmProjectIssue_04 = "pi-pmgt-project-copy.confirmProjectIssue.moreurlinfo";
+
+
 
     @RBEntry("涉及部门列表")
     public static final String involveGroup_431= "pi-pmgt-project-copy.involveGroupList.description";
@@ -170,6 +180,17 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String deleteProjectRiskCopy_04 = "pi-pmgt-risk-copy.deleteProjectRiskCopy.moreurlinfo";
 
+
+    @RBEntry("操作")
+    public static final String confirmProjectRisk_01 = "pi-pmgt-risk-copy.confirmProjectRisk.description";
+    @RBEntry("操作")
+    public static final String confirmProjectRisk_02 = "pi-pmgt-risk-copy.confirmProjectRisk.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String confirmProjectRisk_03 = "pi-pmgt-risk-copy.confirmProjectRisk.icon";
+    @RBEntry("height=200,width=400")
+    public static final String confirmProjectRisk_04 = "pi-pmgt-risk-copy.confirmProjectRisk.moreurlinfo";
+
+
     @RBEntry("人员展示")
     public static final String projectManagerUserListPicker_01 = "pi-pmgt-risk-copy.projectManagerUserListPicker.description";
     @RBEntry("人员展示")
@@ -237,7 +258,14 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String measure_Delete_04 = "st-pmgt-measures.measure_Delete.moreurlinfo";
 
 
-
+    @RBEntry("操作")
+    public static final String confirmProjectMeasure_01 = "st-pmgt-measures.confirmProjectMeasure.description";
+    @RBEntry("操作")
+    public static final String confirmProjectMeasure_02 = "st-pmgt-measures.confirmProjectMeasure.tooltip";
+    @RBEntry("img/foundation/delete.gif")
+    public static final String confirmProjectMeasure_03 = "st-pmgt-measures.confirmProjectMeasure.icon";
+    @RBEntry("height=200,width=400")
+    public static final String confirmProjectMeasure_04 = "st-pmgt-measures.confirmProjectMeasure.moreurlinfo";
 
 
     @RBEntry("详细信息")

@@ -23,6 +23,7 @@ import com.pisx.tundra.pmgt.model.PIPmgtObject;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Vector;
 
 @Entity
@@ -104,6 +105,26 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
     })
     ObjectReference projectRiskReference;
 
+
+    /**
+     * 项目经理
+     */
+
+    @Embedded   //引入该实体
+    @AttributeOverrides({
+            @AttributeOverride(name = "key.id", column = @Column(name = "projectManagerUserRefId", nullable = true)),
+            @AttributeOverride(name = "key.classname", column = @Column(name = "projectManagerUserRefClass", nullable = true))
+    })
+    ObjectReference projectManagerUserReference;
+
+
+    /**
+     * 措施关闭时间
+     */
+    @Column(updatable = true, nullable = true)
+    Timestamp closeStamp;
+
+
     @Transient
     boolean inheritedDomain;
     @Transient
@@ -113,6 +134,31 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
 
     @Transient
     Vector httpVector;
+
+
+    public ObjectReference getProjectManagerUserReference() {
+        return projectManagerUserReference;
+    }
+
+    public void setProjectManagerUserReference(ObjectReference projectManagerUserReference) {
+        this.projectManagerUserReference = projectManagerUserReference;
+    }
+
+    public PIUser getProjectManagerUser() {
+        return projectManagerUserReference!=null?(PIUser) projectManagerUserReference.getObject():null;
+
+    }
+    public void setProjectManagerUser(PIUser piUser) throws PIException {
+        this.projectManagerUserReference = ObjectReference.newObjectReference(piUser);;
+    }
+
+    public Timestamp getCloseStamp() {
+        return closeStamp;
+    }
+
+    public void setCloseStamp(Timestamp closeStamp) {
+        this.closeStamp = closeStamp;
+    }
 
     @Embedded
     @AttributeOverrides({
@@ -414,6 +460,8 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
         this.lTDTypeDefinitionReference = lTDTypeDefinitionReference;
 
     }
+
+
 
     @Override
     public TeamReference getTeamReference() {
