@@ -53,7 +53,7 @@
 
     <!--项目风险系数报表入口-->
     <model name="projectsTableToolBar" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <action name="createPIProject" type="pi-pmgt-project" shortcut="true"/>
+        <action name="createSTProject" type="st-pmgt-project" shortcut="true"/>
         <action name="exportExcel" type="uiComponent"/>
         <action name="projectRiskReport" type="st-report" shortcut="true"/>
     </model>

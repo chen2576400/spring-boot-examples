@@ -288,4 +288,13 @@
         </action>
     </actionsgroup>
 
+    <!--重写创建项目action-->
+    <actionsgroup name="st-pmgt-project" resourceBundle="ext.st.pmgt.project.resources.projectActionsRB">
+        <action name="createSTProject">
+            <component name="ext.st.pmgt.project.builders.CreateProjectWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.project.processors.CreateSTProjectProcessor"/>
+            <includeFilter name="createProjectFilter" functionCode="80"/>
+        </action>
+    </actionsgroup>
+
 </listofactions>
