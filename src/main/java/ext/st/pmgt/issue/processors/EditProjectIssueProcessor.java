@@ -29,6 +29,10 @@ public class EditProjectIssueProcessor extends DefaultUpdateFormProcessor {
         List<STProjectIssue> issuesList = (List<STProjectIssue>) list.stream().filter(item -> item instanceof STProjectIssue).collect(Collectors.toList());
         STProjectIssue issue = issuesList.get(0);
 
+        Map<String, Object> layoutFields = params.getNfCommandBean().getLayoutFields();
+        String treatmentPlan = (String) layoutFields.get("treatmentPlan");
+        issue.setTreatmentPlan(treatmentPlan);
+
         PIPrincipalReference piPrincipalReference = SessionHelper.service.getPrincipalReference();
         Map<String, List<Part>> files = params.getFiles();
         List<Part> second = files.get("secondFile");//有数据都是新增的

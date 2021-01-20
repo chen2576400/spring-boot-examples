@@ -8,14 +8,9 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
-import com.pisx.tundra.pmgt.change.datahandlers.PlanActivityDataHandler;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import com.pisx.tundra.pmgt.resource.datahandlers.UserPickerDataHandler;
-import com.pisx.tundra.pmgt.risk.datahandlers.ResourceDataHandler;
 import ext.st.pmgt.issue.datahandlers.*;
 import ext.st.pmgt.issue.model.STProjectIssue;
-import ext.st.pmgt.issue.model.STProjectMeasures;
-import ext.st.pmgt.issue.model.STProjectRisk;
 
 import java.sql.Timestamp;
 
@@ -61,7 +56,7 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
                     .addField("responsibleUserReference", new UserPickerExpandDataHandler())
                     .addField("description")
 //                    .addField("confirmStatus")//是否确认
-                    .addField("treatmentPlan")//处理方案
+                    .addField("treatmentPlan", new TextAreaDataHandler())//处理方案
                     .addField("dutyGroupReference", new DutyGroupDataHandler())//责任部门
                     .addField("importanceType")//重要度
                     .addField("urgencyType")//紧急度
