@@ -213,7 +213,6 @@
         <action name="listBaselines" type="pi-pmgt-project"/>
         <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
         <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
-        <action name="listProjectResources" type="pi-pmgt-project"/>
         <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
         <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
         <action name="folderTreeBrowser" type="folder"/>
