@@ -7,6 +7,7 @@ import com.pisx.tundra.netfactory.mvc.components.div.DivElement;
 import com.pisx.tundra.netfactory.mvc.components.textarea.TextAreaElement;
 import com.pisx.tundra.netfactory.mvc.handler.DefaultDataHandler;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectMeasures;
 
 /**
  * @author: Mr.Chen
@@ -20,8 +21,8 @@ public class TextAreaDataHandler extends DefaultDataHandler {
         textAreaElement.attribute(elementAttribute -> {
             elementAttribute.addStyle("width:300px;height:150px");
         });
-        if (datum!=null){
-            setDefaultValue(textAreaElement,datum);
+        if (datum != null) {
+            setDefaultValue(textAreaElement, datum);
         }
         DivElement content = DivElement.instance();
         content.attribute(attr -> attr.setStyle("display:initial"));
@@ -31,13 +32,19 @@ public class TextAreaDataHandler extends DefaultDataHandler {
     }
 
 
-    public  void setDefaultValue(TextAreaElement textAreaElement,Object datum){
+    public void setDefaultValue(TextAreaElement textAreaElement, Object datum) {
         if (datum instanceof STProjectIssue) {
             STProjectIssue issue = (STProjectIssue) datum;
             String treatmentPlan = issue.getTreatmentPlan();
             if (treatmentPlan != null) {
                 textAreaElement.setValue(treatmentPlan);
-                }
+            }
+        } else if (datum instanceof STProjectMeasures) {
+            STProjectMeasures measures = (STProjectMeasures) datum;
+            String precaution = measures.getPrecaution();
+            if (precaution != null) {
+                textAreaElement.setValue(precaution);
+            }
         }
     }
 }

@@ -28,6 +28,11 @@ public class EditProjectMeasuresProcessor extends DefaultUpdateFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         STProjectMeasures measures = (STProjectMeasures) list.get(0);
+        Map<String, Object> layoutFields = params.getNfCommandBean().getLayoutFields();
+        String precaution = (String) layoutFields.get("precaution");
+        measures.setPrecaution(precaution);
+
+
         PIPrincipalReference piPrincipalReference = SessionHelper.service.getPrincipalReference();
 
         Map<String, List<Part>> files = params.getFiles();

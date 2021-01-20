@@ -10,6 +10,7 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import ext.st.pmgt.issue.datahandlers.DutyGroupDataHandler;
+import ext.st.pmgt.issue.datahandlers.TextAreaDataHandler;
 import ext.st.pmgt.issue.datahandlers.UserPickerExpandDataHandler;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 import ext.st.pmgt.issue.model.STProjectRisk;
@@ -44,7 +45,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
             layout.setTitle("创建风险措施");
             layout.addField("name")
                     .addField("involveGroupReference", new DutyGroupDataHandler())
-                    .addField("precaution")
+                    .addField("precaution",new TextAreaDataHandler())//预防措施
 //                    .addField("confirmStatus")
                     .addField("involveGroupStatus")
                     .addField("dutyUserReference", new UserPickerExpandDataHandler())

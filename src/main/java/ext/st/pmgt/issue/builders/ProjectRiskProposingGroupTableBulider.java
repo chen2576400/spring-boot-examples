@@ -32,15 +32,16 @@ public class ProjectRiskProposingGroupTableBulider extends AbstractComponentBuil
 
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
-        PIUser currentUser = null;      //(PIUser) SessionHelper.service.getPrincipal();//当前用户
-        {
-            String s = "com.pisx.tundra.foundation.org.model.PIUser:49312";//测试用户
-            ObjectIdentifier objectIdentifier = new ObjectIdentifier(s);
-            ObjectReference objectReference = ObjectReference.newObjectReference(objectIdentifier);
-            if (objectReference != null) {
-                currentUser = (PIUser) objectReference.getObject();
-            }
-        }
+//        PIUser currentUser = null;      //(PIUser) SessionHelper.service.getPrincipal();//当前用户
+//        {
+//            String s = "com.pisx.tundra.foundation.org.model.PIUser:49312";//测试用户
+//            ObjectIdentifier objectIdentifier = new ObjectIdentifier(s);
+//            ObjectReference objectReference = ObjectReference.newObjectReference(objectIdentifier);
+//            if (objectReference != null) {
+//                currentUser = (PIUser) objectReference.getObject();
+//            }
+//        }
+        PIUser currentUser =(PIUser)SessionHelper.service.getPrincipal();
         //  parm1查询条件  parm2查询对象   parm3 link表  parm4   fasle(查询的是link对象) true或者不写差的是parm2对象
         Collection qr = PersistenceHelper.service.navigate(currentUser, "roleA", MembershipLink.class,true);
         List<PIGroup> groups = null;
