@@ -87,11 +87,14 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
     private void setStep(Object componentData, StepConfig stepConfig) {
         if (componentData instanceof STProjectIssue) {//编辑
             stepConfig.setStepAction("attachments", "createOrEditAttachments");
-        } else if (componentData instanceof PIProject) { //创建
-            stepConfig.setStepAction("contentHolder", "uploadAttachment");
-        }else if (componentData instanceof PIPlanActivity) { //创建
+        } else {
             stepConfig.setStepAction("contentHolder", "uploadAttachment");
         }
+//        else if (componentData instanceof PIProject) { //创建
+//            stepConfig.setStepAction("contentHolder", "uploadAttachment");
+//        }else if (componentData instanceof PIPlanActivity) { //创建
+//            stepConfig.setStepAction("contentHolder", "uploadAttachment");
+//        }
 
     }
 
