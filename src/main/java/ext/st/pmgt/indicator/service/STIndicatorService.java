@@ -82,6 +82,6 @@ public interface STIndicatorService {
     public Collection getAllIndicatorByCompetence(PIGroup piGroup, Boolean enable) throws PIException;
 
     public Collection findINIndicatorByOtCode(String otCode,ObjectReference planReference) throws PIException;
-    public void saveSTProjectIndicatorReportDifference(STProjectInstanceOTIndicator otIndicator) throws PIException;
-    public void saveSTProjectIndicatorReportDifference(STProjectInstanceINIndicator stProjectInstanceINIndicator, STRating stRating) throws PIException;
+    public boolean saveSTProjectIndicatorReportDifference(STProjectInstanceOTIndicator otIndicator) throws PIException;
+    public boolean saveSTProjectIndicatorReportDifference(STProjectInstanceINIndicator stProjectInstanceINIndicator, STRating stRating) throws PIException;
 }

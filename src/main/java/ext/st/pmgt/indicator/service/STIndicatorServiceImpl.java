@@ -651,7 +651,8 @@ public class STIndicatorServiceImpl implements STIndicatorService {
      * 偏差汇报时
      * 保存汇报偏差和评定偏差差异
      */
-    public void saveSTProjectIndicatorReportDifference(STProjectInstanceOTIndicator otIndicator) throws PIException {
+    public boolean saveSTProjectIndicatorReportDifference(STProjectInstanceOTIndicator otIndicator) throws PIException {
+        boolean flag=false;
         if (otIndicator != null) {
             Collection inindicators = projectINIndicatorDao.findByOtCodeAndPlanReference(otIndicator.getCode(), otIndicator.getPlanReference());
             if (!CollectionUtils.isEmpty(inindicators)) {
@@ -681,17 +682,20 @@ public class STIndicatorServiceImpl implements STIndicatorService {
                             stProjectIndicatorReportDifference.setInRatedescription(stRating.getDescription());
                             stProjectIndicatorReportDifference.setRateTime(stRating.getReportTime());
                             PersistenceHelper.service.save(stProjectIndicatorReportDifference);
+                            flag=true;
                         }
                     }
                 }
             }
         }
+        return flag;
     }
     /**
      * 指标评定后
      * 保存汇报偏差和评定偏差差异
      */
-    public void saveSTProjectIndicatorReportDifference(STProjectInstanceINIndicator stProjectInstanceINIndicator,STRating stRating) throws PIException{
+    public boolean saveSTProjectIndicatorReportDifference(STProjectInstanceINIndicator stProjectInstanceINIndicator,STRating stRating) throws PIException{
+        boolean flag=false;
         if(stProjectInstanceINIndicator!=null&&stRating!=null){
 
             List<STProjectInstanceOTIndicator> otindicators = (List)projectOTIndicatorDao.findByCodeAndAndPlanReference(stProjectInstanceINIndicator.getOtCode(), stProjectInstanceINIndicator.getProjectPlanInstanceRef());
@@ -721,9 +725,12 @@ public class STIndicatorServiceImpl implements STIndicatorService {
                         stProjectIndicatorReportDifference.setInRatedescription(stRating.getDescription());
                         stProjectIndicatorReportDifference.setRateTime(stRating.getReportTime());
                         PersistenceHelper.service.save(stProjectIndicatorReportDifference);
+                        flag =true;
                     }
                 }
             }
         }
+        return flag;
     }
+
 }
