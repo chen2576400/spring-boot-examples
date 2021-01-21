@@ -9,12 +9,14 @@ import com.taobao.api.FileItem;
 import java.util.List;
 
 public class DingTalkUtils {
-//    需要重汽开通权限得到相应的APPKEY，APPSECRET，AGENTID
-    private static String APPKEY = "dingrnmcpd2mgtbubxgn";//(这里是应用的AppKey)
-    private static String APPSECRET = "cnCuXRVuqYIrpDTQGXdb4bZOFxLckCuvWUhfJmUSJGmQ1jWHpR8_c_ALLTkAxYgF";//(这里是应用的APPSECRET )
-    private static Long AGENTID = 1044570466L;//(这是申请的应用id）
-
-
+////    需要重汽开通权限得到相应的APPKEY，APPSECRET，AGENTID
+//    private static final String APPKEY = "dingrnmcpd2mgtbubxgn";//(这里是应用的AppKey)
+//    private static final String APPSECRET = "cnCuXRVuqYIrpDTQGXdb4bZOFxLckCuvWUhfJmUSJGmQ1jWHpR8_c_ALLTkAxYgF";//(这里是应用的APPSECRET )
+//    private static final Long AGENTID = 1044570466L;//(这是申请的应用id）
+//重汽
+    private static final String APPKEY = "dinge9tvgvc28q6xg0dh";//(这里是应用的AppKey)
+    private static final String APPSECRET = "rA8LqBd7aLDIZsj75vEk8ltUNn5cKsuKzoj7ux00GEEAouvcenkVCmXmpkmWe2qF";//(这里是应用的APPSECRET )
+    private static final Long AGENTID = 1069269974L;//(这是申请的应用id）
 
     /**
      * 获取部门下的所有用户列

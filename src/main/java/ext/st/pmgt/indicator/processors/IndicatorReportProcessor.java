@@ -1,6 +1,7 @@
 package ext.st.pmgt.indicator.processors;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dingtalk.api.request.OapiMessageCorpconversationAsyncsendV2Request;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.PIReference;
@@ -18,6 +19,7 @@ import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
+import ext.st.pmgt.indicator.dingTalk.DingTalkUtils;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import org.springframework.stereotype.Component;
 
@@ -114,7 +116,28 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
                     newOT.setReportTime(new Timestamp(System.currentTimeMillis()));
                     newOT.setReporter(SessionHelper.service.getPrincipalReference());
                    // 更新汇报差异
-                    STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(newOT);
+                    boolean b = STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(newOT);
+                    //如果存在汇报和评定差异，发送钉钉消息
+                    if(b){
+                        PIPlanActivity activity = (PIPlanActivity)newOT.getPlanActivity();
+                        PIUser reviewer = activity.getReviewer();
+                        if(reviewer!=null){
+                            try {
+                                String useridBymobile = DingTalkUtils.getUseridBymobile(reviewer.getTelephone());
+                                PIUser piUser = (PIUser)SessionHelper.service.getPrincipalReference().getObject();
+                                String message=activity.getName()+"的输出指标："+newOT.getCode()+"，指标汇报与评定发生差异";
+                                List list1 = new ArrayList();
+                                OapiMessageCorpconversationAsyncsendV2Request.Form form = new OapiMessageCorpconversationAsyncsendV2Request.Form();
+                                form.setKey("汇报人:");
+                                form.setValue(piUser.getFullName());
+                                list1.add(form);
+                                DingTalkUtils.sendOAMessage(useridBymobile,false,"OT指标汇报","OT指标汇报",
+                                        list1,message,null,null,"重汽精细化管理平台" );
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                     result.add(newOT);
                 } catch (Exception e) {
                     e.printStackTrace();
