@@ -12,12 +12,14 @@
         <action name="resourceHours" type="pi-pmgt-act"/>
         <action name="listDeliverablesForActivity" type="pi-pmgt-act"/>
         <action name="planActivityExpenses" type="pi-pmgt-act"/>
-        <!--        <action name="listProjectIssuesForActivity" type="pi-pmgt-act"/>-->
-        <!--        <action name="listProjectRisksForAct" type="pi-pmgt-risk"/>-->
         <!--   OT IN指标table     -->
         <action name="planActivityOTIndicator" type="st-pmgt-indicator"/>
         <action name="planActivityINIndicator" type="st-pmgt-indicator"/>
         <action name="indicatorRating" type="st-pmgt-indicator"/>
+
+        <!-- 活动问题风险-->
+        <!--        <action name="listProjectIssuesForActivity" type="pi-pmgt-act"/>-->
+        <!--        <action name="listProjectRisksForAct" type="pi-pmgt-risk"/>-->
     </model>
 
     <!--pert报表入口-->
@@ -127,6 +129,11 @@
         <action name="planTree2" type="pi-pmgt-project"/>
         <action name="listDeliverablesForPlan" type="pi-pmgt-project"/>
         <action name="listAssignments" type="pi-pmgt-project"/>
+
+        <!-- 计划页面问题风险-->
+<!--        <action name="listProjectRisksForPlan" type="pi-pmgt-risk"/>-->
+<!--        <action name="listProjectIssuesForPlan" type="pi-pmgt-project"/>-->
+
     </model>
 
     <model name="projectRelatedIssuesToolBarCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">

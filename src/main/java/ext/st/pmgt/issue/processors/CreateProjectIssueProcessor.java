@@ -19,11 +19,13 @@ import com.pisx.tundra.netfactory.mvc.components.DefaultCreateFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.change.PIProjectChangeHelper;
+import com.pisx.tundra.pmgt.common.util.CommonUtils;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
+import com.pisx.tundra.pmgt.resource.model.PIResource;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import org.springframework.stereotype.Component;
 
@@ -52,6 +54,7 @@ public class CreateProjectIssueProcessor extends DefaultCreateFormProcessor {
             ref = piProject.getContainerReference();
         } else if (contextObj instanceof PIPlanActivity) {
             act = (PIPlanActivity) contextObj;
+            issue.setPlanActivity(act);//项目界面创建问题时选中活动就已经存在值
             piProject = act.getProject();
             ref = piProject.getContainerReference();
         }else if (contextObj instanceof PIResourceAssignment) {
@@ -63,6 +66,7 @@ public class CreateProjectIssueProcessor extends DefaultCreateFormProcessor {
             piProject=plan.getProject();
             ref=piProject.getContainerReference();
         }
+        issue.setProject(piProject);
 
         AdministrativeDomain domain = AdministrativeDomainHelper.service.getDomain("/Default", ref);
         issue.setDomainRef(AdminDomainRef.newAdminDomainRef(domain));
@@ -72,10 +76,20 @@ public class CreateProjectIssueProcessor extends DefaultCreateFormProcessor {
         if (act != null) {
             piPlan = (PIPlan) act.getRootReference().getObject();
         }
-        issue.setProject(piProject);
+
         if (piPlan!=null){
             issue.setRoot(piPlan);
         }
+
+        Map<String,Object> textbMap = params.getNfCommandBean().getLayoutFields();
+        JSONObject rsrscJSON = (JSONObject) textbMap.get("rsrcReference");
+        String resouce = rsrscJSON.getString("value");
+        PIResource res = null;//资源
+        if (resouce!=null&&!"".equals(resouce)) {
+            res = (PIResource) CommonUtils.getPIObjectByOid(resouce);
+        }
+        issue.setRsrc(res);
+
         issue.setResponsibleUser(owner);
         PIPrincipalReference creator = PIPrincipalReference.newPIPrincipalReference(SessionHelper.service.getPrincipal());
         issue.setCreator(creator);
