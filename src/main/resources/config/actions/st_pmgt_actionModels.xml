@@ -46,10 +46,10 @@
 
 
     <model name="deliverablesForActivityMenus" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <!--        <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
-        <!--        <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
-        <!--        <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
-        <!--        <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>-->
+<!--                <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
+<!--                <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
+<!--                <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
+                <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>
         <action name="indicatorReport" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
