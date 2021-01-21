@@ -153,6 +153,11 @@
             <command className="ext.st.pmgt.issue.processors.DeleteInvolveDepartmentsProcessor"/>
         </action>
 
+        <!-- 计划问题展示-->
+        <action name="listProjectIssuesForPlanCopy">
+            <component name="ext.st.pmgt.issue.builders.PlanIssuesTableBuilder" windowType="page"/>
+        </action>
+
     </actionsgroup>
 
 
@@ -307,6 +312,15 @@
             <component name="ext.st.pmgt.project.builders.CreateProjectWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.project.processors.CreateSTProjectProcessor"/>
             <includeFilter name="createProjectFilter" functionCode="80"/>
+        </action>
+    </actionsgroup>
+
+
+
+
+    <actionsgroup name="pi-pmgt-act-copy" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
+        <action name="listProjectIssuesForActivityCopy">
+            <component name="ext.st.pmgt.issue.builders.PlanActivityIssuesTableBuilder" windowType="page"/>
         </action>
     </actionsgroup>
 

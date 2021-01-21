@@ -79,6 +79,18 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String PRIVATE_CONSTANT_952223 = "pi-pmgt-project-copy.departmentListPicker.tooltip";
 
 
+    @RBEntry("listProjectIssuesForPlanCopy")
+    public static final String project_132 = "pi-pmgt-project-copy.listProjectIssuesForPlanCopy.description";
+    @RBEntry("listProjectIssuesForPlanCopy")
+    public static final String project_133 = "pi-pmgt-project-copy.listProjectIssuesForPlanCopy.tooltip";
+
+    /*-----------------------------------------------------------------------------------------------*/
+
+    @RBEntry("listProjectIssuesForActivityCopy")
+    public static final String projectIssuesForActivity_01 = "pi-pmgt-act-copy.listProjectIssuesForActivityCopy.description";
+    @RBEntry("listProjectIssuesForActivityCopy")
+    public static final String projectIssuesForActivity_02 = "pi-pmgt-act-copy.listProjectIssuesForActivityCopy.tooltip";
+
 
     /*--------------------------------------------------------------------------------*/
     @RBEntry("ProjectRisks")

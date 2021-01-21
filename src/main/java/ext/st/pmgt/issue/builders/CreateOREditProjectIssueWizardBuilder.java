@@ -8,6 +8,7 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
+import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.issue.datahandlers.*;
 import ext.st.pmgt.issue.model.STProjectIssue;
@@ -39,7 +40,10 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
             if (issue == null) {
                 issue = new STProjectIssue();
                 issue.setAddDate(new Timestamp(System.currentTimeMillis()));
-
+                if (componentData instanceof PIPlanActivity){  //如果创建界面是活动界面  活动列默认为当前活动
+                    PIPlanActivity activity=(PIPlanActivity)componentData;
+                    issue.setPlanActivity(activity);
+                }
             }
             layout.setEntity(issue);
             layout.setPrimaryClassName(STProjectIssue.class);
@@ -84,6 +88,8 @@ public class CreateOREditProjectIssueWizardBuilder extends AbstractComponentBuil
         if (componentData instanceof STProjectIssue) {//编辑
             stepConfig.setStepAction("attachments", "createOrEditAttachments");
         } else if (componentData instanceof PIProject) { //创建
+            stepConfig.setStepAction("contentHolder", "uploadAttachment");
+        }else if (componentData instanceof PIPlanActivity) { //创建
             stepConfig.setStepAction("contentHolder", "uploadAttachment");
         }
 

@@ -79,6 +79,20 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("部门展示")
     public static final String PRIVATE_CONSTANT_952223 = "pi-pmgt-project-copy.departmentListPicker.tooltip";
 
+
+    @RBEntry("问题")
+    public static final String project_132 = "pi-pmgt-project-copy.listProjectIssuesForPlanCopy.description";
+    @RBEntry("问题")
+    public static final String project_133 = "pi-pmgt-project-copy.listProjectIssuesForPlanCopy.tooltip";
+
+    /*-----------------------------------------------------------------------------------------------*/
+
+    @RBEntry("问题")
+    public static final String projectIssuesForActivity_01 = "pi-pmgt-act-copy.listProjectIssuesForActivityCopy.description";
+    @RBEntry("问题")
+    public static final String projectIssuesForActivity_02 = "pi-pmgt-act-copy.listProjectIssuesForActivityCopy.tooltip";
+
+
     /*-----------------------------------------------------------------------------------------------*/
     @RBEntry("风险")
     public static final String risk_01 = "pi-pmgt-risk-copy.listProjectRisksForProjectCopy.description";
