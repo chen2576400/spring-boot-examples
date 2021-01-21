@@ -8,6 +8,7 @@ import com.pisx.tundra.netfactory.mvc.components.img.ImgElement;
 import com.pisx.tundra.netfactory.mvc.components.input.InputElement;
 import com.pisx.tundra.netfactory.util.misc.URLFactory;
 import com.pisx.tundra.pmgt.change.datahandlers.PlanActivityDataHandler;
+import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.plan.model.PIPlannable;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import ext.st.pmgt.issue.model.STProjectIssue;
@@ -53,6 +54,8 @@ public class PlanActivityExpandDataHandler extends PlanActivityDataHandler {
             return (PIProject) sourceObject;
         }else if (sourceObject instanceof STProjectIssue){
             return ((STProjectIssue) sourceObject).getProject();
+        }else if (sourceObject instanceof PIPlanActivity){
+            return ((PIPlanActivity) sourceObject).getProject();
         }
         return null;
     }
@@ -71,6 +74,7 @@ public class PlanActivityExpandDataHandler extends PlanActivityDataHandler {
                 e.printStackTrace();
             }
         }
+
 
     }
 }

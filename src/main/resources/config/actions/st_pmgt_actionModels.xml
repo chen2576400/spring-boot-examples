@@ -16,10 +16,12 @@
         <action name="planActivityOTIndicator" type="st-pmgt-indicator"/>
         <action name="planActivityINIndicator" type="st-pmgt-indicator"/>
         <action name="indicatorRating" type="st-pmgt-indicator"/>
-
-        <!-- 活动问题风险-->
+        <!-- 原活动问题风险-->
         <!--        <action name="listProjectIssuesForActivity" type="pi-pmgt-act"/>-->
         <!--        <action name="listProjectRisksForAct" type="pi-pmgt-risk"/>-->
+
+        <!-- 新活动问题风险-->
+        <action name="listProjectIssuesForActivityCopy" type="pi-pmgt-act-copy"/>
     </model>
 
     <!--pert报表入口-->
@@ -129,10 +131,13 @@
         <action name="planTree2" type="pi-pmgt-project"/>
         <action name="listDeliverablesForPlan" type="pi-pmgt-project"/>
         <action name="listAssignments" type="pi-pmgt-project"/>
+        <!-- 原计划页面问题风险-->
+        <!-- <action name="listProjectRisksForPlan" type="pi-pmgt-risk"/>-->
+        <!-- <action name="listProjectIssuesForPlan" type="pi-pmgt-project"/>-->
 
-        <!-- 计划页面问题风险-->
-<!--        <action name="listProjectRisksForPlan" type="pi-pmgt-risk"/>-->
-<!--        <action name="listProjectIssuesForPlan" type="pi-pmgt-project"/>-->
+        <!--      新计划页面问题风险-->
+        <action name="listProjectIssuesForPlanCopy" type="pi-pmgt-project-copy"/>
+
 
     </model>
 
@@ -143,6 +148,10 @@
         <action name="exportExcel" type="uiComponent"/>
     </model>
 
+    <model name="projectRelatedIssuesToolBarCopyByPlan" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="copyObjects" type="uiComponent" shortcut="true"/>
+        <action name="deleteProjectIssueCopy" type="pi-pmgt-project-copy" shortcut="true"/>
+    </model>
 
     <model name="projectRisksTableToolbarSetCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="risk_CreateCopy" type="pi-pmgt-risk-copy" shortcut="true"/>
