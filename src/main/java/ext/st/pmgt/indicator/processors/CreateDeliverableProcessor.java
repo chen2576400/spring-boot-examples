@@ -1,7 +1,11 @@
 package ext.st.pmgt.indicator.processors;
 
+import com.pisx.tundra.foundation.doc.model.PIDocument;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.PIObject;
+import com.pisx.tundra.foundation.meta.type.TypeHelper;
+import com.pisx.tundra.foundation.meta.type.model.LTDTypeDefinition;
 import com.pisx.tundra.foundation.org.model.PIPrincipalReference;
 import com.pisx.tundra.foundation.session.SessionHelper;
 import com.pisx.tundra.foundation.util.PIException;
@@ -75,6 +79,10 @@ public class CreateDeliverableProcessor extends DefaultCreateFormProcessor {
                 deliverable.setRoot(act.getRoot());
                 deliverable.setCreator(principalReference);
                 deliverable.setModifier(principalReference);
+
+                //todo 重汽暂时交付物类型都为文档类型
+                LTDTypeDefinition ltdTypeDefinition = TypeHelper.service.findType(PIDocument.class.getName());
+                deliverable.setDeliverableTypeReference(ObjectReference.newObjectReference(ltdTypeDefinition));
 
 
                 //save deliverable
