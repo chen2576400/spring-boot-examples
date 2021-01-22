@@ -49,10 +49,10 @@
 
 
     <model name="deliverablesForActivityMenus" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-<!--                <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
-<!--                <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
-<!--                <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
-                <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>
+        <!--                <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
+        <!--                <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
+        <!--                <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
+        <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>
         <action name="indicatorReport" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
@@ -138,6 +138,7 @@
 
         <!--      新计划页面问题风险-->
         <action name="listProjectIssuesForPlanCopy" type="pi-pmgt-project-copy"/>
+        <action name="listProjectRisksForPlanCopy" type="pi-pmgt-risk-copy"/>
 
 
     </model>
@@ -160,6 +161,12 @@
         <action name="copyObjects" type="uiComponent" shortcut="true"/>
         <action name="pasteProjectRisksForProject" type="pi-pmgt-risk" shortcut="true"/>
         <action name="exportExcel" type="uiComponent" shortcut="true"/>
+    </model>
+
+
+    <model name="projectRisksTableToolbarSetCopyByPlan" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="deleteProjectRiskCopy" type="pi-pmgt-risk-copy" shortcut="true"/>
+        <action name="copyObjects" type="uiComponent" shortcut="true"/>
     </model>
 
     <model name="ratingTableToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">

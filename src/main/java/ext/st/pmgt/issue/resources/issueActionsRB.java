@@ -226,9 +226,14 @@ public class issueActionsRB extends PIListResourceBundle {
     public static final String affectedDepartmentListPicker_02 = "pi-pmgt-risk-copy.affectedDepartmentListPicker.tooltip";
 
     @RBEntry("listProjectRisksForActCopy")
-    public static final String listProjectRisksForPlan_01 = "pi-pmgt-risk-copy.listProjectRisksForActCopy.description";
+    public static final String listProjectRisksForActCopy_01 = "pi-pmgt-risk-copy.listProjectRisksForActCopy.description";
     @RBEntry("listProjectRisksForActCopy")
-    public static final String listProjectRisksForPlan_02 = "pi-pmgt-risk-copy.listProjectRisksForActCopy.tooltip";
+    public static final String listProjectRisksForActCopy_02 = "pi-pmgt-risk-copy.listProjectRisksForActCopy.tooltip";
+
+    @RBEntry("listProjectRisksForPlanCopy")
+    public static final String listProjectRisksForPlan_01 = "pi-pmgt-risk-copy.listProjectRisksForPlanCopy.description";
+    @RBEntry("listProjectRisksForPlanCopy")
+    public static final String listProjectRisksForPlan_02 = "pi-pmgt-risk-copy.listProjectRisksForPlanCopy.tooltip";
 
 
     /*--------------------------------------------------------------------------------*/

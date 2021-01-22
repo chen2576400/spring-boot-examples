@@ -271,6 +271,11 @@
             <component name="ext.st.pmgt.issue.builders.PlanActivityRisksTableBuilder" windowType="page"/>
         </action>
 
+
+        <action name="listProjectRisksForPlanCopy">
+            <component name="ext.st.pmgt.issue.builders.PlanRisksTableBuilder" windowType="page"/>
+
+        </action>
     </actionsgroup>
 
 
