@@ -14,6 +14,7 @@ import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import ext.st.pmgt.issue.STProjectIssueHelper;
 import ext.st.pmgt.issue.model.STProjectIssue;
+import ext.st.pmgt.issue.model.STProjectIssueInvolveGroupLink;
 import ext.st.pmgt.issue.model.STProjectIssueInvolveRiskLink;
 import ext.st.pmgt.issue.model.STProjectRisk;
 
@@ -32,11 +33,13 @@ public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
         STProjectIssue stProjectIssue = null;
         if (sourceObject instanceof STProjectIssue) {
             stProjectIssue = (STProjectIssue) sourceObject;
+            //Collection collection = STProjectIssueHelper.riskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectIssue));
+            //return riskList(collection);
+            Collection qr = PersistenceHelper.service.navigate(stProjectIssue, "roleB", STProjectIssueInvolveRiskLink.class, true);
+            return qr;
         }
-        if (stProjectIssue != null) {
-            Collection collection = STProjectIssueHelper.riskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectIssue));
-            return riskList(collection);
-        }
+
+
         return null;
     }
 
@@ -81,18 +84,18 @@ public class ProjectRiskListTableBuilder extends AbstractComponentBuilder {
     }
 
 
-    private List<STProjectRisk> riskList(Collection collection) throws PIException {
-        if (collection.isEmpty()) return null;
-        List<STProjectIssueInvolveRiskLink> riskLinks = (List<STProjectIssueInvolveRiskLink>) collection;
-
-        PIArrayList removeLists = new PIArrayList(){{addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));}};
-        PersistenceHelper.service.delete(removeLists);
-
-        List<STProjectRisk> riskList = riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() != null).map(riskLink -> {
-            return riskLink.getRoleBObject();
-        }).collect(Collectors.toList());
-        return riskList;
-    }
+//    private List<STProjectRisk> riskList(Collection collection) throws PIException {
+//        if (collection.isEmpty()) return null;
+//        List<STProjectIssueInvolveRiskLink> riskLinks = (List<STProjectIssueInvolveRiskLink>) collection;
+//
+//        PIArrayList removeLists = new PIArrayList(){{addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+//        PersistenceHelper.service.delete(removeLists);
+//
+//        List<STProjectRisk> riskList = riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() != null).map(riskLink -> {
+//            return riskLink.getRoleBObject();
+//        }).collect(Collectors.toList());
+//        return riskList;
+//    }
 
 
 }

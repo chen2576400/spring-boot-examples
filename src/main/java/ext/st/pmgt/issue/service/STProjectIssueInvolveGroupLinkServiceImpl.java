@@ -10,10 +10,10 @@ import java.util.Collection;
 public class STProjectIssueInvolveGroupLinkServiceImpl implements  STProjectIssueInvolveGroupLinkService{
     @Autowired
     STProjectIssueInvolveGroupLinkDao linkDao;
-    @Override
-    public Collection findByRoleAObjectRef(ObjectReference reference) {
-        return linkDao.findByRoleAObjectRef(reference);
-    }
+//    @Override
+//    public Collection findByRoleAObjectRef(ObjectReference reference) {
+//        return linkDao.findByRoleAObjectRef(reference);
+//    }
 
     @Override
     public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
