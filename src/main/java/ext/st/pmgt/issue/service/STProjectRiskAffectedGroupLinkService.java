@@ -1,14 +1,11 @@
 package ext.st.pmgt.issue.service;
 
+import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 
 import java.util.Collection;
 
 public interface STProjectRiskAffectedGroupLinkService {
-//    Collection findByRoleAObjectRef(ObjectReference reference);
-
-    void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB);
-
-    void deleteByRoleAObjectRef(ObjectReference referenceA);
+    PICollection findByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB);
 
 }

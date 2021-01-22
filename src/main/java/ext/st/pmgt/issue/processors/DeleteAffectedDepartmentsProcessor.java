@@ -1,6 +1,8 @@
 package ext.st.pmgt.issue.processors;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectIdentifier;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
@@ -34,7 +36,8 @@ public class DeleteAffectedDepartmentsProcessor extends DefaultObjectFormProcess
             Integer id = Integer.valueOf((String) row.get("pi_row_id"));
             ObjectIdentifier objectIdentifier = new ObjectIdentifier(PIGroup.class, id.longValue());
             ObjectReference objectReference = ObjectReference.newObjectReference(objectIdentifier);
-            STRiskHelper.linkService.deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference.newObjectReference(projectRisk),objectReference);
+            PICollection collection = STRiskHelper.linkService.findByRoleAObjectRefAndRoleBObjectRef(ObjectReference.newObjectReference(projectRisk), objectReference);
+            PersistenceHelper.service.delete(collection);
         }
 
         return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, "删除成功！", null);
