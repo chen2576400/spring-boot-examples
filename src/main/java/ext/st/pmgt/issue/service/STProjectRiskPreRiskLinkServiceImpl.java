@@ -1,5 +1,8 @@
 package ext.st.pmgt.issue.service;
 
+import com.pisx.tundra.foundation.fc.collections.PICollection;
+import com.pisx.tundra.foundation.fc.collections.PIHashSet;
+import com.pisx.tundra.foundation.fc.collections.PISet;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import ext.st.pmgt.issue.dao.STProjectRiskPreRiskLinkDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +15,11 @@ public class STProjectRiskPreRiskLinkServiceImpl implements STProjectRiskPreRisk
     @Autowired
     private STProjectRiskPreRiskLinkDao dao;
 
-//    @Override
-//    public Collection findByRoleAObjectRef(ObjectReference reference) {
-//        return dao.findByRoleAObjectRef(reference);
-//    }
 
     @Override
-    public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
-        dao.deleteByRoleAObjectRefAndRoleBObjectRef(referenceA, referenceB);
+    public PICollection findByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
+        PISet set=new PIHashSet();
+        set.addAll(dao.findByRoleAObjectRefAndRoleBObjectRef(referenceA,referenceB));
+        return set;
     }
-
-    @Override
-    public void deleteByRoleAObjectRef(ObjectReference referenceA) {
-        dao.deleteByRoleAObjectRef(referenceA);
-    }
-
-
 }

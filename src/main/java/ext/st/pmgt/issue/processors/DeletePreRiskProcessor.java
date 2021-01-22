@@ -1,5 +1,7 @@
 package ext.st.pmgt.issue.processors;
 
+import com.pisx.tundra.foundation.fc.PersistenceHelper;
+import com.pisx.tundra.foundation.fc.collections.PICollection;
 import com.pisx.tundra.foundation.fc.model.ObjectIdentifier;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
@@ -23,7 +25,8 @@ public class DeletePreRiskProcessor  extends DefaultObjectFormProcessor {
         for (Persistable persistable:persistableList){
             ObjectIdentifier objectIdentifier2 = persistable.getObjectIdentifier();
             ObjectReference objectReference2 = ObjectReference.newObjectReference(objectIdentifier2);
-            STRiskHelper.preRiskLinkService.deleteByRoleAObjectRefAndRoleBObjectRef(objectReference1,objectReference2);
+            PICollection collection = STRiskHelper.preRiskLinkService.findByRoleAObjectRefAndRoleBObjectRef(objectReference1, objectReference2);
+            PersistenceHelper.service.delete(collection);
         }
 
         return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, "删除成功！", null);

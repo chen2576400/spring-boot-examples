@@ -33,7 +33,7 @@ public class AddAffectedDepartmentsProcessor extends DefaultObjectFormProcessor 
         if (!CollectionUtils.isEmpty(persistableList)) {
             for (Persistable per : persistableList) {
                 PIGroup group = (PIGroup) per;
-                if (isExist(projectRisk, group)) {
+                if (!isExist(projectRisk, group)) {
                     STProjectRiskAffectedGroupLink groupLink = STProjectRiskAffectedGroupLink.newSTProjectRiskAffectedGroupLink(projectRisk, group);
                     PersistenceHelper.service.save(groupLink);
                 }
