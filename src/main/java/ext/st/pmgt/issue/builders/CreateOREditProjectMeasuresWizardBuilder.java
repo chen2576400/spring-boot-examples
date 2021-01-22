@@ -45,7 +45,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
             layout.setTitle("创建风险措施");
             layout.addField("name")
                     .addField("involveGroupReference", new DutyGroupDataHandler())
-                    .addField("precaution",new TextAreaDataHandler())//预防措施
+                    .addField("precaution", new TextAreaDataHandler())//预防措施
 //                    .addField("confirmStatus")
                     .addField("involveGroupStatus")
                     .addField("dutyUserReference", new UserPickerExpandDataHandler())
@@ -55,7 +55,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
             StepConfig stepConfig2 = wizardConfig.newStep();
             stepConfig2.setId("createProjectMeasureStep2");
             stepConfig2.setTitle("设置附件");
-            setStep(componentData,stepConfig2);
+            setStep(componentData, stepConfig2);
 //            stepConfig2.setStepAction("attachments", "createOrEditAttachments");
 //            stepConfig2.setStepAction("contentHolder", "uploadAttachment");
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
     private void setStep(Object componentData, StepConfig stepConfig) {
         if (componentData instanceof STProjectMeasures) {//编辑
             stepConfig.setStepAction("attachments", "createOrEditAttachments");
-        }else if (componentData instanceof STProjectRisk){ //创建
+        } else { //创建
             stepConfig.setStepAction("contentHolder", "uploadAttachment");
         }
 

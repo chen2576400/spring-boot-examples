@@ -22,6 +22,7 @@
 
         <!-- 新活动问题风险-->
         <action name="listProjectIssuesForActivityCopy" type="pi-pmgt-act-copy"/>
+        <action name="listProjectRisksForActCopy" type="pi-pmgt-risk-copy"/>
     </model>
 
     <!--pert报表入口-->

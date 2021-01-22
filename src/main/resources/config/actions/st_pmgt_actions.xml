@@ -265,6 +265,12 @@
                        windowType="popup"/>
             <command className="ext.st.pmgt.issue.processors.ProjectManagerUserProcessor"/>
         </action>
+
+
+        <action name="listProjectRisksForActCopy">
+            <component name="ext.st.pmgt.issue.builders.PlanActivityRisksTableBuilder" windowType="page"/>
+        </action>
+
     </actionsgroup>
 
 

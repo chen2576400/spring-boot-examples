@@ -220,6 +220,13 @@ public class issueActionsRB_zh_CN extends PIListResourceBundle {
     public static final String affectedDepartmentListPicker_02 = "pi-pmgt-risk-copy.affectedDepartmentListPicker.tooltip";
 
 
+    @RBEntry("风险")
+    public static final String listProjectRisksForPlan_01 = "pi-pmgt-risk-copy.listProjectRisksForActCopy.description";
+    @RBEntry("风险")
+    public static final String listProjectRisksForPlan_02 = "pi-pmgt-risk-copy.listProjectRisksForActCopy.tooltip";
+
+
+
     /*-----------------------------------------------------------------------------------------------*/
 
     @RBEntry("风险详情")

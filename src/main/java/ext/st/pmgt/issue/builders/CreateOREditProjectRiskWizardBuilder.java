@@ -93,7 +93,7 @@ public class CreateOREditProjectRiskWizardBuilder extends AbstractComponentBuild
     private void setStep(Object componentData, StepConfig stepConfig) {
         if (componentData instanceof STProjectRisk) {//编辑
             stepConfig.setStepAction("attachments", "createOrEditAttachments");
-        } else if (componentData instanceof PIProject) { //创建
+        } else { //创建
             stepConfig.setStepAction("contentHolder", "uploadAttachment");
         }
 

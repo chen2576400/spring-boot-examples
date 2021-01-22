@@ -25,7 +25,9 @@ import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
+import com.pisx.tundra.pmgt.risk.model.PIPlanActivityRiskLink;
 import com.pisx.tundra.pmgt.risk.resources.riskResource;
+import ext.st.pmgt.issue.model.STPIPlanActivityRiskLink;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -93,6 +95,11 @@ public class CreateProjectRiskProcessor extends DefaultCreateFormProcessor {
         ///////////
 
         risk = (STProjectRisk) PersistenceHelper.service.save(risk);
+
+        if(pipa!=null) {
+            STPIPlanActivityRiskLink riskLink = STPIPlanActivityRiskLink.newPIPlanActivityRiskLink(pipa, risk);
+            riskLink = PersistenceHelper.service.save(riskLink);
+        }
         ContentHolder contentHolder=risk;
         PIProjectChangeHelper.service.addAndUpdateSecondData(contentHolder,creator, second,rows,null);
         return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, null, null);

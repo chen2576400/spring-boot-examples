@@ -8,13 +8,16 @@ import com.pisx.tundra.foundation.fc.model.ObjectReference;
 
 import com.pisx.tundra.foundation.util.PIException;
 
+import com.pisx.tundra.pmgt.plan.model.AbstractPIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.risk.dao.PIPmgtRiskTypeDao;
 
+import com.pisx.tundra.pmgt.risk.model.PIPlanActivityRiskLink;
 import ext.st.pmgt.issue.STProjectMeasuresHelper;
 import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.dao.STProjectRiskDao;
 
+import ext.st.pmgt.issue.model.STPIPlanActivityRiskLink;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import ext.st.pmgt.issue.model.STProjectRiskPreRiskLink;
@@ -41,7 +44,13 @@ public class STRiskServiceImpl implements STRiskService {
         return risks;
     }
 
-//    /**
+    @Override
+    public Collection getProjectRisks(AbstractPIPlanActivity act) throws PIException {
+        return PersistenceHelper.service.navigate(act,"roleB", STPIPlanActivityRiskLink.class,true);
+    }
+
+
+    //    /**
 //     * 删除风险时 删除相关受影响部门、前置风险、措施详情
 //     * @param stProjectRisk
 //     */
