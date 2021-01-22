@@ -1,5 +1,8 @@
 package ext.st.pmgt.issue.service;
 
+import com.pisx.tundra.foundation.fc.collections.PICollection;
+import com.pisx.tundra.foundation.fc.collections.PIHashSet;
+import com.pisx.tundra.foundation.fc.collections.PISet;
 import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import ext.st.pmgt.issue.dao.STProjectIssueInvolveGroupLinkDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +13,11 @@ import java.util.Collection;
 public class STProjectIssueInvolveGroupLinkServiceImpl implements  STProjectIssueInvolveGroupLinkService{
     @Autowired
     STProjectIssueInvolveGroupLinkDao linkDao;
-//    @Override
-//    public Collection findByRoleAObjectRef(ObjectReference reference) {
-//        return linkDao.findByRoleAObjectRef(reference);
-//    }
 
     @Override
-    public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
-         linkDao.deleteByRoleAObjectRefAndRoleBObjectRef(referenceA,referenceB);
-    }
-
-    @Override
-    public void deleteByRoleAObjectRef(ObjectReference referenceA) {
-        linkDao.deleteByRoleAObjectRef(referenceA);
+    public PICollection findByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
+        PISet set=new PIHashSet();
+        set.addAll(linkDao.findByRoleAObjectRefAndRoleBObjectRef(referenceA,referenceB));
+        return set;
     }
 }
