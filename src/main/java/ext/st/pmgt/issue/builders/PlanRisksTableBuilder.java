@@ -27,7 +27,7 @@ public class PlanRisksTableBuilder extends AbstractComponentBuilder {
     public Object buildComponentData(ComponentParams params) throws PIException {
         PIPlan piPlan= (PIPlan)params.getNfCommandBean().getSourceObject();
         project=piPlan.getProject();
-        return STRiskHelper.service.getProjectRisks(piPlan);
+        return STRiskHelper.service.getAllProjectRisks(piPlan);
     }
 
     @Override
