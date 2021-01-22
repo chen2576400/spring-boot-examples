@@ -11,10 +11,10 @@ public class STProjectRiskAffectedGroupLinkServiceImpl implements STProjectRiskA
     @Autowired
     private STProjectRiskAffectedGroupLinkDao linkDao;
 
-    @Override
-    public Collection findByRoleAObjectRef(ObjectReference reference) {
-        return linkDao.findByRoleAObjectRef(reference);
-    }
+//    @Override
+//    public Collection findByRoleAObjectRef(ObjectReference reference) {
+//        return linkDao.findByRoleAObjectRef(reference);
+//    }
 
     @Override
     public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {

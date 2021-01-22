@@ -29,7 +29,9 @@ public class AddPreRiskProcessor extends DefaultObjectFormProcessor {
         }
 
         if (!CollectionUtils.isEmpty(persistableList)) {
+            //添加前将该风险的前置风险删除
             STRiskHelper.preRiskLinkService.deleteByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
+
             for (Persistable per : persistableList) {
                 STProjectRisk preRisk = (STProjectRisk) per;
                 STProjectRiskPreRiskLink link = STProjectRiskPreRiskLink.newSTProjectRiskPreRiskLink(stProjectRisk, preRisk);

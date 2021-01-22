@@ -32,12 +32,12 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
         if (sourceObject instanceof STProjectRisk) {
             stProjectRisk = (STProjectRisk) sourceObject;
 
-            Collection collection = STRiskHelper.preRiskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
+//            Collection collection = STRiskHelper.preRiskLinkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
+//            List<STProjectRisk> riskList = stProjectRisks(collection);
+//            return riskList;
+            Collection qr = PersistenceHelper.service.navigate(stProjectRisk, "roleB", STProjectRiskPreRiskLink.class, true);
+            return qr;
 
-//            Collection qr = PersistenceHelper.service.navigate(stProjectRisk, "roleB", STProjectRiskPreRiskLink.class,false);
-
-            List<STProjectRisk> riskList = stProjectRisks(collection);
-            return riskList;
         }
         return null;
     }
@@ -73,20 +73,20 @@ public class ProjectRiskPreRiskTableBuilder extends AbstractComponentBuilder {
     }
 
 
-    private List<STProjectRisk> stProjectRisks(Collection collection) throws PIException {
-        if (collection.isEmpty()) return null;
-        List<STProjectRiskPreRiskLink> riskLinks = (List<STProjectRiskPreRiskLink>) collection;
-
-        PIArrayList removeLists = new PIArrayList() {{
-            addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));
-        }};
-        PersistenceHelper.service.delete(removeLists);
-
-        List<STProjectRisk> riskList = riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() != null).map(STProjectRiskPreRiskLink -> {
-            return STProjectRiskPreRiskLink.getRoleBObject();
-        }).collect(Collectors.toList());
-        return riskList;
-    }
+//    private List<STProjectRisk> stProjectRisks(Collection collection) throws PIException {
+//        if (collection.isEmpty()) return null;
+//        List<STProjectRiskPreRiskLink> riskLinks = (List<STProjectRiskPreRiskLink>) collection;
+//
+//        PIArrayList removeLists = new PIArrayList() {{
+//            addAll(riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() == null).collect(Collectors.toList()));
+//        }};
+//        PersistenceHelper.service.delete(removeLists);
+//
+//        List<STProjectRisk> riskList = riskLinks.stream().filter(riskLink -> riskLink.getRoleBObject() != null).map(STProjectRiskPreRiskLink -> {
+//            return STProjectRiskPreRiskLink.getRoleBObject();
+//        }).collect(Collectors.toList());
+//        return riskList;
+//    }
 
     private boolean isSelect(ComponentParams params) throws PIException {
         Persistable persistable = params.getNfCommandBean().getSourceObject();

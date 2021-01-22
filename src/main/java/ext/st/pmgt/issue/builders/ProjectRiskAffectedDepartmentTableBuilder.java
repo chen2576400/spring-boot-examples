@@ -1,26 +1,19 @@
 package ext.st.pmgt.issue.builders;
 
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
-import com.pisx.tundra.foundation.fc.collections.PIArrayList;
-import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.org.model.PIGroup;
 import com.pisx.tundra.foundation.util.PIException;
-import com.pisx.tundra.foundation.workflow.util.WorkflowUtil;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import com.pisx.tundra.netfactory.util.beans.NfOid;
-import ext.st.pmgt.issue.STRiskHelper;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import ext.st.pmgt.issue.model.STProjectRiskAffectedGroupLink;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 风险相关受影响部门
@@ -32,9 +25,11 @@ public class ProjectRiskAffectedDepartmentTableBuilder extends AbstractComponent
         STProjectRisk stProjectRisk = null;
         if (sourceObject instanceof STProjectRisk) {
             stProjectRisk = (STProjectRisk) sourceObject;
-            Collection collection = STRiskHelper.linkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
-            List<PIGroup> piGroups = piGroups(collection);
-            return piGroups;
+//            Collection collection = STRiskHelper.linkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectRisk));
+//            List<PIGroup> piGroups = piGroups(collection);
+//            return piGroups;
+            Collection qr = PersistenceHelper.service.navigate(stProjectRisk, "roleB", STProjectRiskAffectedGroupLink.class, true);
+            return qr;
         }
 
         return null;
@@ -73,18 +68,18 @@ public class ProjectRiskAffectedDepartmentTableBuilder extends AbstractComponent
     }
 
 
-    private List<PIGroup> piGroups(Collection collection) throws PIException {
-        if (collection.isEmpty()) return null;
-        List<STProjectRiskAffectedGroupLink> groupLinks = (List<STProjectRiskAffectedGroupLink>) collection;
-
-        PIArrayList removeLists = new PIArrayList(){{addAll(groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() == null).collect(Collectors.toList()));}};
-        PersistenceHelper.service.delete(removeLists);
-
-        List<PIGroup> piGroups = groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() != null).map(stProjectRiskAffectedGroupLink -> {
-            return stProjectRiskAffectedGroupLink.getRoleBObject();
-        }).collect(Collectors.toList());
-        return piGroups;
-    }
+//    private List<PIGroup> piGroups(Collection collection) throws PIException {
+//        if (collection.isEmpty()) return null;
+//        List<STProjectRiskAffectedGroupLink> groupLinks = (List<STProjectRiskAffectedGroupLink>) collection;
+//
+//        PIArrayList removeLists = new PIArrayList(){{addAll(groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+//        PersistenceHelper.service.delete(removeLists);
+//
+//        List<PIGroup> piGroups = groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() != null).map(stProjectRiskAffectedGroupLink -> {
+//            return stProjectRiskAffectedGroupLink.getRoleBObject();
+//        }).collect(Collectors.toList());
+//        return piGroups;
+//    }
 
     private boolean isSelect(ComponentParams params) throws PIException {
 //        String sourceOid = params.getNfCommandBean().getSourceOid().toString();

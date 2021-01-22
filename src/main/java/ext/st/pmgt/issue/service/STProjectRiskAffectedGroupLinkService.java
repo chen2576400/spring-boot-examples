@@ -5,7 +5,7 @@ import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import java.util.Collection;
 
 public interface STProjectRiskAffectedGroupLinkService {
-    Collection findByRoleAObjectRef(ObjectReference reference);
+//    Collection findByRoleAObjectRef(ObjectReference reference);
 
     void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB);
 

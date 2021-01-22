@@ -26,7 +26,9 @@ public class AddAffectedDepartmentsProcessor extends DefaultObjectFormProcessor 
             projectRisk = (STProjectRisk) persistable;
         }
         if (!CollectionUtils.isEmpty(persistableList)) {
+            //添加之前将该风险下所有受影响部门删除
             STRiskHelper.linkService.deleteByRoleAObjectRef(ObjectReference.newObjectReference(projectRisk));
+
             for (Persistable per : persistableList) {
                 PIGroup group = (PIGroup) per;
                 STProjectRiskAffectedGroupLink groupLink = STProjectRiskAffectedGroupLink.newSTProjectRiskAffectedGroupLink(projectRisk, group);

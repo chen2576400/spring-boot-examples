@@ -12,10 +12,10 @@ public class STProjectRiskPreRiskLinkServiceImpl implements STProjectRiskPreRisk
     @Autowired
     private STProjectRiskPreRiskLinkDao dao;
 
-    @Override
-    public Collection findByRoleAObjectRef(ObjectReference reference) {
-        return dao.findByRoleAObjectRef(reference);
-    }
+//    @Override
+//    public Collection findByRoleAObjectRef(ObjectReference reference) {
+//        return dao.findByRoleAObjectRef(reference);
+//    }
 
     @Override
     public void deleteByRoleAObjectRefAndRoleBObjectRef(ObjectReference referenceA, ObjectReference referenceB) {
