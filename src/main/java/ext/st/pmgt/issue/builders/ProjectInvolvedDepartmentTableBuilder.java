@@ -30,10 +30,10 @@ public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuil
         STProjectIssue stProjectIssue = null;
         if (sourceObject instanceof STProjectIssue) {
             stProjectIssue = (STProjectIssue) sourceObject;
-            //  Collection qr = PersistenceHelper.service.navigate(stProjectIssue, "roleB", STProjectIssueInvolveGroupLink.class, false);
-            Collection collection = STProjectIssueHelper.linkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectIssue));
-            List<PIGroup> piGroups = piGroups(collection);
-            return piGroups;
+              Collection qr = PersistenceHelper.service.navigate(stProjectIssue, "roleB", STProjectIssueInvolveGroupLink.class, true);
+//            Collection collection = STProjectIssueHelper.linkService.findByRoleAObjectRef(ObjectReference.newObjectReference(stProjectIssue));
+//            List<PIGroup> piGroups = piGroups(collection);
+            return qr;
         }
         return null;
     }
@@ -69,18 +69,18 @@ public class ProjectInvolvedDepartmentTableBuilder extends AbstractComponentBuil
     }
 
 
-    private List<PIGroup> piGroups(Collection collection) throws PIException {
-        if (collection.isEmpty()) return null;
-        List<STProjectIssueInvolveGroupLink> groupLinks = (List<STProjectIssueInvolveGroupLink>) collection;
-
-        PIArrayList removeLists = new PIArrayList(){{addAll(groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() == null).collect(Collectors.toList()));}};
-        PersistenceHelper.service.delete(removeLists);
-
-        List<PIGroup> piGroups = groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() != null).map(stProjectIssueInvolveGroupLink -> {
-            return stProjectIssueInvolveGroupLink.getRoleBObject();
-        }).collect(Collectors.toList());
-        return piGroups;
-    }
+//    private List<PIGroup> piGroups(Collection collection) throws PIException {
+//        if (collection.isEmpty()) return null;
+//        List<STProjectIssueInvolveGroupLink> groupLinks = (List<STProjectIssueInvolveGroupLink>) collection;
+//
+//        PIArrayList removeLists = new PIArrayList(){{addAll(groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() == null).collect(Collectors.toList()));}};
+//        PersistenceHelper.service.delete(removeLists);
+//
+//        List<PIGroup> piGroups = groupLinks.stream().filter(groupLink -> groupLink.getRoleBObject() != null).map(stProjectIssueInvolveGroupLink -> {
+//            return stProjectIssueInvolveGroupLink.getRoleBObject();
+//        }).collect(Collectors.toList());
+//        return piGroups;
+//    }
 
 
     private boolean isSelect(ComponentParams params) throws PIException {

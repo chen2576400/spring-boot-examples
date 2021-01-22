@@ -21,13 +21,6 @@ import java.util.Map;
 public class AddInvolveDepartmentsProcessor extends DefaultObjectFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-/*        Object o = params.getAjaxData().getJSONObject("componentsData").getJSONObject("involve_departmentstep").
-                getJSONObject("add_involve_departments_builder").
-                get("sourceOid");
-        String sourceOid = (String)o;
-        Persistable persistable = WorkflowUtil.getObjectByOid(sourceOid);
-        if (persistable instanceof STProjectIssue){
-        }*/
         Persistable persistable = params.getNfCommandBean().getSourceObject();
         List<Persistable> persistableList = params.getNfCommandBean().getSelectedObjects();
         STProjectIssue projectIssue = null;
@@ -35,7 +28,11 @@ public class AddInvolveDepartmentsProcessor extends DefaultObjectFormProcessor {
             projectIssue = (STProjectIssue) persistable;
         }
         if (!CollectionUtils.isEmpty(persistableList)) {
+
+            //添加之前将之前选中的该问题下所有涉及部门删除
             STProjectIssueHelper.linkService.deleteByRoleAObjectRef(ObjectReference.newObjectReference(projectIssue));
+
+
             for (Persistable per : persistableList) {
                 PIGroup group = (PIGroup) per;
                 STProjectIssueInvolveGroupLink groupLink = STProjectIssueInvolveGroupLink.newSTProjectIssueInvolveGroupLink(projectIssue, group);
