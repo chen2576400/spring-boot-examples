@@ -18,7 +18,6 @@ import ext.st.pmgt.issue.model.STProjectRisk;
 public class UserPickerExpandDataHandler extends UserPickerDataHandler {
     @Override
     public Object getDataValue(String columnName, Object datum, ComponentParams params) throws PIException {
-        Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         InputElement inputElement = InputElement.instance(columnName);
         if (datum != null) {//编辑页面是需要回填到input框
             getInputValue(datum, inputElement);
@@ -38,7 +37,7 @@ public class UserPickerExpandDataHandler extends UserPickerDataHandler {
         });
 
         //componentId 传给objpicker
-        NfAction action = NfActionHelper.service.getActionByActionsgroupAndActionName("commonPickers", "userPicker");
+        NfAction action = NfActionHelper.service.getActionByActionsgroupAndActionName("st-pmgt-commonPickers", "stUserPicker");
         String url = URLFactory.getActionHREF(action);
         rightImg.backFill(url, columnName);
 
@@ -55,7 +54,7 @@ public class UserPickerExpandDataHandler extends UserPickerDataHandler {
             try {
                 PIUser responsibleUser = context.getResponsibleUser();
                 if (responsibleUser != null) {
-                    inputElement.setValue(responsibleUser.getOid(), responsibleUser.getName());
+                    inputElement.setValue(responsibleUser.getOid(), responsibleUser.getFullName());
                 }
             } catch (PIException e) {
                 e.printStackTrace();
@@ -65,7 +64,7 @@ public class UserPickerExpandDataHandler extends UserPickerDataHandler {
             try {
                 PIUser identifiedBy = context.getIdentifiedBy();
                 if (identifiedBy != null) {
-                    inputElement.setValue(identifiedBy.getOid(), identifiedBy.getName());
+                    inputElement.setValue(identifiedBy.getOid(), identifiedBy.getFullName());
                 }
             } catch (PIException e) {
                 e.printStackTrace();

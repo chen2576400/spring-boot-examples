@@ -42,7 +42,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
             layout.setEntity(measures);
             layout.setPrimaryClassName(STProjectMeasures.class);
             layout.setId("createProjectMeasuresLayout");
-            layout.setTitle("创建风险措施");
+            layout.setTitle("创建预防措施");
             layout.addField("name")
                     .addField("involveGroupReference", new DutyGroupDataHandler())
                     .addField("precaution", new TextAreaDataHandler())//预防措施
