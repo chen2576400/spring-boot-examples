@@ -8,6 +8,7 @@ import com.pisx.tundra.netfactory.mvc.components.textarea.TextAreaElement;
 import com.pisx.tundra.netfactory.mvc.handler.DefaultDataHandler;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectMeasures;
+import ext.st.pmgt.issue.model.STProjectRisk;
 
 /**
  * @author: Mr.Chen
@@ -44,6 +45,12 @@ public class TextAreaDataHandler extends DefaultDataHandler {
             String precaution = measures.getPrecaution();
             if (precaution != null) {
                 textAreaElement.setValue(precaution);
+            }
+        }else if (datum instanceof STProjectRisk){
+            STProjectRisk risk = (STProjectRisk) datum;
+            String riskDescription = risk.getRiskDescription();
+            if (riskDescription != null) {
+                textAreaElement.setValue(riskDescription);
             }
         }
     }

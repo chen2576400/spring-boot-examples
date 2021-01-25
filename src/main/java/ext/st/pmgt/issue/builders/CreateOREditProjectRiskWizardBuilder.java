@@ -49,17 +49,17 @@ public class CreateOREditProjectRiskWizardBuilder extends AbstractComponentBuild
             layout.setTitle("attribute");
 
             layout.addField("riskName")
-                    .addField("riskDescription")
+                    .addField("riskDescription",new TextAreaDataHandler())
                     .addField("riskToType")
                     .addField("identifiedByReference", new UserPickerExpandDataHandler())
                     .addField("riskTypeReference", new RiskTypeExpandDataHandler())
                     .addField("riskCause")
-                    .addField("riskEffect")
+                    /*.addField("riskEffect")*///效果屏蔽
                     .addField("rsrcReference", new ResourceExpandDataHandler())
-                    .addField("notes")
+                    /*.addField("notes")*/ //记录屏蔽
                     .addField("addDate")
                     .addField("responseType")
-                    .addField("responseText")
+                    /*.addField("responseText")*/ //相应内容屏蔽
                     .addField("preRspProbability")
                     .addField("preRspSchdProbability")
                     .addField("preRspCostProbability")

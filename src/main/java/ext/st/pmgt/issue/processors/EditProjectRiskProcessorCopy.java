@@ -26,6 +26,11 @@ public class EditProjectRiskProcessorCopy extends DefaultUpdateFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         STProjectRisk risk = (STProjectRisk) list.get(0);
+
+        Map<String, Object> layoutFields = params.getNfCommandBean().getLayoutFields();
+        String riskDescription = (String) layoutFields.get("riskDescription");
+        risk.setRiskDescription(riskDescription);
+
         PIPrincipalReference piPrincipalReference = SessionHelper.service.getPrincipalReference();
 
         Map<String, List<Part>> files = params.getFiles();
