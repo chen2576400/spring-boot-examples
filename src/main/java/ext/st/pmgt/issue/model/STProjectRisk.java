@@ -1003,7 +1003,8 @@ public class STProjectRisk extends PIPmgtObject
      * 项目经理确认(0未确认、1确认)
      */
     @Column(nullable = true, unique = false)
-    private Boolean confirmStatus = Boolean.FALSE;
+    private Boolean confirmStatus ;
+
 
 
 

@@ -34,24 +34,27 @@ public class ConfirmIssuesORRiskORMeasuresWizardBuilder extends AbstractComponen
         if (componentData instanceof STProjectIssue){
             beanClass=STProjectIssue.class;
             STProjectIssue issue=(STProjectIssue)componentData;
-            if (issue.getConfirmStatus()){
-                NotifySupport.alert(AlertType.WARN, "该问题已被确认开启，不能再次操作");
+            if (issue.getConfirmStatus()!=null){
+                String msg=issue.getConfirmStatus()==false?"关闭":"开启";
+                NotifySupport.alert(AlertType.WARN, "该问题已被确认"+msg+"，不能再次操作");
                 return wizardConfig;
             }
         }
         else if (componentData instanceof STProjectRisk){
             beanClass=STProjectRisk.class;
             STProjectRisk risk=(STProjectRisk)componentData;
-            if (risk.getConfirmStatus()){
-                NotifySupport.alert(AlertType.WARN, "该风险已被确认开启，不能再次操作");
+            if (risk.getConfirmStatus()!=null){
+                String msg=risk.getConfirmStatus()==false?"关闭":"开启";
+                NotifySupport.alert(AlertType.WARN, "该问题已被确认"+msg+"，不能再次操作");
                 return wizardConfig;
             }
         }
         else if (componentData instanceof STProjectMeasures){
             beanClass=STProjectMeasures.class;
             STProjectMeasures measures=(STProjectMeasures)componentData;
-            if (measures.getConfirmStatus()){
-                NotifySupport.alert(AlertType.WARN, "该措施已被确认开启，不能再次操作");
+            if (measures.getConfirmStatus()!=null){
+                String msg=measures.getConfirmStatus()==false?"关闭":"开启";
+                NotifySupport.alert(AlertType.WARN, "该问题已被确认"+msg+"，不能再次操作");
                 return wizardConfig;
             }
         }

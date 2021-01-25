@@ -64,6 +64,15 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         column2.setName("precaution");
         tableConfig.addColumn(column2);
 
+        ColumnConfig column8 = componentConfigFactory.newColumnConfig();
+        column8.setName("projectManagerUser.fullName");
+        column8.setLabel("项目经理");
+        tableConfig.addColumn(column8);
+
+        ColumnConfig column6 = componentConfigFactory.newColumnConfig();
+        column6.setName("confirmStatus");
+        tableConfig.addColumn(column6);
+
         ColumnConfig column3 = componentConfigFactory.newColumnConfig();
         column3.setName("involveGroup.name");
         column3.setLabel("涉及部门");
@@ -82,18 +91,10 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         column5.enableSort();
 
 
-        ColumnConfig column6 = componentConfigFactory.newColumnConfig();
-        column6.setName("confirmStatus");
-        tableConfig.addColumn(column6);
-
         ColumnConfig column7 = componentConfigFactory.newColumnConfig();
         column7.setName("closeStamp");
         tableConfig.addColumn(column7);
 
-        ColumnConfig column8 = componentConfigFactory.newColumnConfig();
-        column8.setName("projectManagerUser.fullName");
-        column8.setLabel("项目经理");
-        tableConfig.addColumn(column8);
         return tableConfig;
 
 

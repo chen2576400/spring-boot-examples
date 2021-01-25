@@ -67,6 +67,12 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
         column20.setName("projectManagerUser.fullName");
         tableConfig.addColumn(column20);
 
+        ColumnConfig column21 = componentConfigFactory.newColumnConfig();
+        column21.setName("confirmStatus");
+        column21.setLabel("是否确认");
+        tableConfig.addColumn(column21);
+
+
         ColumnConfig column4 = componentConfigFactory.newColumnConfig();
         column4.setName("riskToType");
         tableConfig.addColumn(column4);
