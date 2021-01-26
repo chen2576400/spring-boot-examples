@@ -12,6 +12,7 @@ import com.pisx.tundra.pmgt.project.datahandlers.CalendarSelectDataHandler;
 import com.pisx.tundra.pmgt.project.datahandlers.ProjectGroupDataHandler;
 import com.pisx.tundra.pmgt.project.datahandlers.ProjectTemplateDataHandler;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import ext.st.pmgt.project.datahandlers.PriorityDataHandler;
 
 public class EditProjectWizardBuilder extends AbstractComponentBuilder {
     @Override
@@ -66,8 +67,8 @@ public class EditProjectWizardBuilder extends AbstractComponentBuilder {
                     //.addField("projectShortName")
                     .addField("projectAbbreviation")
                     .addField("projectName")
-                    .addField("priorityNum")
-                    .addField("strgyPriorityNum")
+                    .addField("priorityNum",new PriorityDataHandler())
+                    .addField("strgyPriorityNum",new PriorityDataHandler())
                     .addField("riskLevel")
                     .addField("calendarReference", new CalendarSelectDataHandler())
 //                    .addField("projectTemplateReference",new ProjectTemplateDataHandler())//项目模板
