@@ -90,6 +90,7 @@
     <model name="indicatorRatingTabSet" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="latestRating" type="st-pmgt-indicator" shortcut="true"/>
         <action name="allRating" type="st-pmgt-indicator" shortcut="true"/>
+        <action name="notRatingIndicator" type="st-pmgt-indicator" shortcut="true"/>
     </model>
 
     <model name="folderContentsTableToolbar"
@@ -178,6 +179,7 @@
 
     <model name="roleGroupMembersToolbarSet" resourceBundle="com.pisx.tundra.foundation.org.resources.orgActionsRB">
         <action name="addUsersToRole" type="group" shortcut="true"/>
+        <action name="addGroupsToRole" type="group" shortcut="true"/>
         <action name="removeUsersFromRole" type="group" shortcut="true"/>
         <action name="exportExcel" type="uiComponent" shortcut="true"/>
     </model>
@@ -234,11 +236,12 @@
         <action name="listProjectResources" type="pi-pmgt-project"/>
         <action name="attachments" type="pi-pmgt-enterprise"/>
         <action name="projectMilestoneInfoPage" type="pi-pmgt-project"/>
-        <action name="listBaselines" type="pi-pmgt-project"/>
         <submodel name="relatedAssignmentsForProject" type="pi-pmgt-project"/>
         <action name="listDeliverablesForProject" type="pi-pmgt-project"/>
-        <action name="listProjectIssuesForProject" type="pi-pmgt-project"/>
-        <action name="listProjectRisksForProject" type="pi-pmgt-risk"/>
+        <!--新问题-->
+        <action name="listProjectIssuesForProjectCopy" type="pi-pmgt-project-copy"/>
+        <!--新风险-->
+        <action name="listProjectRisksForProjectCopy" type="pi-pmgt-risk-copy"/>
         <action name="folderTreeBrowser" type="folder"/>
     </model>
     <model name="orgContainer-infoPageTabSet"
@@ -253,6 +256,23 @@
         <action name="rolesLoadTracking" type="pi-pmgt-enterprise"/>
         <action name="projectsStateTracking" type="pi-pmgt-enterprise"/>
         <action name="resourceWorkHourTracking" type="pi-pmgt-enterprise"/>
+    </model>
+
+    <model name="PIProject_info_page_menus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
+        <action name="copyObjects" type="uiComponent" shortcut="true"/>
+        <action name="createProjectContainer" type="pi-pmgt-project"/>
+        <action name="save_container_as_template" type="pi-pmgt-project"/>
+        <action name="renameProject" type="pi-pmgt-project"/>
+        <action name="setObjectLcState" type="topLcState" shortcut="true"/>
+        <!--<action name="SETSTATE" type="pdmObject"/>-->
+        <!--<action name="reassignLifeCycle" type="pi-pmgt-common"/>-->
+        <action name="createProjectBaseline" type="pi-pmgt-project"/>
+        <action name="editSTProject" type="st-pmgt-project"/>
+        <action name="checkoutPIProject" type="pi-pmgt-project"/>
+        <action name="checkinPIProject" type="pi-pmgt-project"/>
+        <action name="summarizeProject" type="pi-pmgt-tools"/>
+        <action name="progressProject" type="pi-pmgt-tools"/>
+        <action name="deleteProject" type="pi-pmgt-project"/>
     </model>
     <!--###################################重汽未用到action屏蔽############################-->
 
@@ -383,4 +403,6 @@
         <action name="details" type="st-pmgt-measures" shortcut="true"/>
         <action name="attachments" type="pi-pmgt-enterprise" shortcut="true"/>
     </model>
+
+
 </actionmodels>

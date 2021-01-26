@@ -33,6 +33,6 @@ public class PERTReportProcessor extends DefaultObjectFormProcessor {
         map.put("url","http://10.2.81.218:8088/report/pertReport?id="+id);
         map.put("width","1600px");
         map.put("height","900px");
-        return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);
+        return new ResponseWrapper(ResponseWrapper.Code.OPEN_WINDOW, "", map);
     }
 }

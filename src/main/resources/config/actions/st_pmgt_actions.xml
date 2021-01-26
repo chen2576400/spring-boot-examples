@@ -30,6 +30,9 @@
         <action name="allRating">
             <component name="ext.st.pmgt.indicator.builders.AllIndicatorRatingTableBuilder" windowType="popup"/>
         </action>
+        <action name="notRatingIndicator">
+            <component name="ext.st.pmgt.indicator.builders.NotRatingIndicatorTableBuilder" windowType="popup"/>
+        </action>
 
         <action name="pickDeviationValueAndDifficultyValue">
             <component name="ext.st.pmgt.indicator.builders.DeviationValueAndDifficultyValueWizardBuilder"
@@ -323,6 +326,12 @@
             <component name="ext.st.pmgt.project.builders.CreateProjectWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.project.processors.CreateSTProjectProcessor"/>
             <includeFilter name="createProjectFilter" functionCode="80"/>
+        </action>
+        <action name="editSTProject">
+            <component name="ext.st.pmgt.project.builders.EditProjectWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.project.processors.EditSTProjectProcessor"/>
+            <includeFilter name="editProjectFilter"/>
+            <includeFilter name="pmgtGeneralAccessFilter" functionCode="83"/>
         </action>
     </actionsgroup>
 

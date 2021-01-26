@@ -39,6 +39,6 @@ public class ProjectRiskReportProcessor extends DefaultObjectFormProcessor {
         map.put("url","http://10.2.81.218:8088/report/projectRisk?ids="+ids);
         map.put("width","900px");
         map.put("height","750px");
-        return new ResponseWrapper(ResponseWrapper.OPEN_WINDOW, "", map);
+        return new ResponseWrapper(ResponseWrapper.Code.OPEN_WINDOW, "", map);
     }
 }

@@ -9,7 +9,6 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
-import com.pisx.tundra.netfactory.util.misc.Collections;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
@@ -17,36 +16,31 @@ import ext.st.pmgt.indicator.model.STRating;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * @ClassName IndicatorRatingTableBuilder
+ * @ClassName NotRatingIndicatorTableBuilder
  * @Description:
  * @Author hma
- * @Date 2020/12/8
+ * @Date 2021/1/25
  * @Version V1.0
  **/
-public class AllIndicatorRatingTableBuilder extends AbstractComponentBuilder {
-
+public class NotRatingIndicatorTableBuilder extends AbstractComponentBuilder {
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         PIPlanActivity act = (PIPlanActivity) sourceObject;
-        List<STRating> ratings = new ArrayList<>();
-
+        List<STProjectInstanceINIndicator> result = new ArrayList<>();
         List<STProjectInstanceINIndicator> ins = (List) STIndicatorHelper.service.findProjectINIndicatorByPlanActivity(act);
-        if (Collections.isNotEmpty(ins)) {
-            for (STProjectInstanceINIndicator in : ins) {
-                List<STRating> ratings1 = (List) STIndicatorHelper.service.findRatingByIN(in);
-                if (ratings1.size() > 0) {
-                    ratings.addAll(ratings1);
-                }
+        for (STProjectInstanceINIndicator in : ins) {
+            Collection ratings = STIndicatorHelper.service.findRatingByIN(in);
+            if (ratings.isEmpty()){//说明指标未评定
+                result.add(in);
             }
-
         }
-        return ratings;
+
+        return result;
     }
 
     @Override
@@ -54,42 +48,25 @@ public class AllIndicatorRatingTableBuilder extends AbstractComponentBuilder {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
         tableConfig.setEntities(componentData);
-        tableConfig.setId("indicatorRatingTable");
-        tableConfig.setPrimaryObjectType(STRating.class);
-        tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "INDICATOR_RATING_TABLE", null, params.getLocale()));
+        tableConfig.setId("notRatingIndicatorTable");
+        tableConfig.setPrimaryObjectType(STProjectInstanceINIndicator.class);
+        tableConfig.setTableTitle(PIMessage.getLocalizedMessage(indicatorResource.class.getName(), "NOT_RATING_INDICATOR_TABLE", null, params.getLocale()));
         tableConfig.enableSelect();
         tableConfig.setPageSize(50);
-        tableConfig.setToolbarActionModel("ratingTableToolBarSet");
+        tableConfig.setRightMenuName("INTableMenu",params);
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
-        columnconfig.setName("inIndicator.otCode");
+        columnconfig.setName("otCode");
         columnconfig.setLabel("指标编码");
         columnconfig.enableSort();
         columnconfig.enableFilter();
         tableConfig.addColumn(columnconfig);
 
-        ColumnConfig columnconfig2 = componentConfigFactory.newColumnConfig();
-        columnconfig2.setName("otRating");
-        columnconfig2.enableSort();
-        tableConfig.addColumn(columnconfig2);
-
-
-        ColumnConfig columnconfig3 = componentConfigFactory.newColumnConfig();
-        columnconfig3.setName("description");
-        columnconfig3.enableSort();
-        tableConfig.addColumn(columnconfig3);
-
-        ColumnConfig columnconfig4 = componentConfigFactory.newColumnConfig();
-        columnconfig4.setName("reportTime");
-        columnconfig4.enableSort();
-        tableConfig.addColumn(columnconfig4);
-
-        ColumnConfig columnconfig5 = componentConfigFactory.newColumnConfig();
-        columnconfig5.setName("raterFullName");
-        columnconfig5.setLabel("评定人");
-        columnconfig5.enableSort();
-        tableConfig.addColumn(columnconfig5);
-
+        ColumnConfig column12 = componentConfigFactory.newColumnConfig();
+        column12.setName("persistInfo.createStamp");
+        column12.setLabel("创建时间");
+        column12.enableSort();
+        tableConfig.addColumn(column12);
 
         return tableConfig;
     }

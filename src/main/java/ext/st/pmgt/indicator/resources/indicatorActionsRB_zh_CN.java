@@ -152,4 +152,9 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     public static final String act_05233221 = "st-pmgt-indicator.pickDeviationValueAndDifficultyValue.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String act_06434331 = "st-pmgt-indicator.pickDeviationValueAndDifficultyValue.icon";
+
+    @RBEntry("未评定指标")
+    public static final String act_012111 = "st-pmgt-indicator.notRatingIndicator.description";
+    @RBEntry("未评定指标")
+    public static final String act_033221 = "st-pmgt-indicator.notRatingIndicator.tooltip";
 }

@@ -89,6 +89,12 @@ public class LatestIndicatorRatingTableBuilder extends AbstractComponentBuilder 
         columnconfig4.enableSort();
         tableConfig.addColumn(columnconfig4);
 
+        ColumnConfig columnconfig5 = componentConfigFactory.newColumnConfig();
+        columnconfig5.setName("raterFullName");
+        columnconfig5.setLabel("评定人");
+        columnconfig5.enableSort();
+        tableConfig.addColumn(columnconfig5);
+
         return tableConfig;
     }
 }

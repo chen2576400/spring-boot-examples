@@ -17,4 +17,7 @@ public final class indicatorResource_zh_CN extends PIListResourceBundle {
 
     @RBEntry("指标评定")
     public static final String PIPlanDeliverable_03 = "INDICATOR_RATING_TABLE";
+
+    @RBEntry("未评定指标")
+    public static final String PIPlanDeliverable_04 = "NOT_RATING_INDICATOR_TABLE";
 }

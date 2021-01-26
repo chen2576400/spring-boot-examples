@@ -116,6 +116,7 @@ public class STRating extends PIPmgtObject implements Serializable {
     public void setRater(PIUser rater) {
         this.rater = PIPrincipalReference.newPIPrincipalReference(rater);
     }
+    public String getRaterFullName(){return rater!=null?((PIUser) rater.getObject()).getFullName():null;}
     public void setRater(PIPrincipalReference rater) {
         this.rater = rater;
     }

@@ -23,4 +23,13 @@ public class projectActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String PRIVATE_CONSTANT_3439451 = "st-pmgt-project.createSTProject.moreurlinfo";
 
+    @RBEntry("编辑项目")
+    public static final String PRIVATE_CONSTANT_31336124 = "st-pmgt-project.editSTProject.description";
+    @RBEntry("编辑项目")
+    public static final String PRIVATE_CONSTANT_33247233 = "st-pmgt-project.editSTProject.tooltip";
+    @RBEntry("img/pmgt/edit.gif")
+    public static final String PRIVATE_CONSTANT_15330342 = "st-pmgt-project.editSTProject.icon";
+    @RBEntry("height=900,width=750")
+    public static final String PRIVATE_CONSTANT_3436451 = "st-pmgt-project.editSTProject.moreurlinfo";
+
 }

@@ -56,6 +56,9 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     @RBEntry("评定时间")
     public static final String INIndicator_06= "STRating.reportTime.value";
 
+    @RBEntry("评定人")
+    public static final String INIndicator_07= "STRating.rater.value";
+
     @RBEntry("指标编码")
     public static final String STProjectIndicator_01= "STProjectIndicator.code.value";
     @RBEntry("指标描述")

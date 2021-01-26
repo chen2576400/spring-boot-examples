@@ -45,20 +45,24 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor {
         }
 
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
-        STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) sourceObject;
-        PIPlanActivity activity=null;
+        PIPlanActivity activity = null;
         STProjectInstanceINIndicator in = null;
         String[] parentPageOids = params.getParamMap().get("parentPageOid");
         if (parentPageOids != null && parentPageOids.length > 0) {
             String parentPageOid = parentPageOids[0];
-             activity = (PIPlanActivity) new ReferenceFactory().getReference(parentPageOid).getObject();
+            activity = (PIPlanActivity) new ReferenceFactory().getReference(parentPageOid).getObject();
+        }
+        if (sourceObject instanceof STProjectInstanceOTIndicator) {//in指标table的右键添加评定
+            STProjectInstanceOTIndicator ot = (STProjectInstanceOTIndicator) sourceObject;
             in = STIndicatorHelper.service.getInByOT(ot, activity);
+            if (in == null) {
+                return new ResponseWrapper(ResponseWrapper.FAILED, "没有找到对应的in指标！", null);
+            }
+        } else {//未评定指标的table右键
+            in = (STProjectInstanceINIndicator) sourceObject;
         }
 
 
-        if (in == null) {
-            return new ResponseWrapper(ResponseWrapper.FAILED, "没有找到对应的in指标！", null);
-        }
         Map<String, Object> layoutFields = params.getNfCommandBean().getLayoutFields();
 
         JSONObject obj = (JSONObject) layoutFields.get("otRating");
@@ -76,21 +80,21 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor {
         boolean b = STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(in, rating);
 //        如果汇报和评定发生差异，则发送钉钉消息
 
-        if(b){
+        if (b) {
             PIUser reviewer = activity.getReviewer();
-            if(reviewer!=null){
+            if (reviewer != null) {
                 try {
                     String useridBymobile = DingTalkUtils.getUseridBymobile(reviewer.getTelephone());
-                    PIUser piUser = (PIUser)SessionHelper.service.getPrincipalReference().getObject();
-                    String message=activity.getName()+"的输入指标："+in.getOtCode()+"，指标评定与汇报发生差异";
+                    PIUser piUser = (PIUser) SessionHelper.service.getPrincipalReference().getObject();
+                    String message = activity.getName() + "的输入指标：" + in.getOtCode() + "，指标评定与汇报发生差异";
                     List list1 = new ArrayList();
                     OapiMessageCorpconversationAsyncsendV2Request.Form form = new OapiMessageCorpconversationAsyncsendV2Request.Form();
                     form.setKey("评定人:");
                     form.setValue(piUser.getFullName());
                     list1.add(form);
-                    DingTalkUtils.sendOAMessage(useridBymobile,false,"IN指标评定","IN指标评定",
-                            list1,message,null,null,"重汽精细化管理平台" );
-                }catch (Exception e){
+                    DingTalkUtils.sendOAMessage(useridBymobile, false, "IN指标评定", "IN指标评定",
+                            list1, message, null, null, "重汽精细化管理平台");
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
