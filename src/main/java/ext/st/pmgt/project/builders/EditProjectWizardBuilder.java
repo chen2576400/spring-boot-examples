@@ -70,7 +70,7 @@ public class EditProjectWizardBuilder extends AbstractComponentBuilder {
                     .addField("strgyPriorityNum")
                     .addField("riskLevel")
                     .addField("calendarReference", new CalendarSelectDataHandler())
-                    .addField("projectTemplateReference",new ProjectTemplateDataHandler())//项目模板
+//                    .addField("projectTemplateReference",new ProjectTemplateDataHandler())//项目模板
                     .addField("projectGroupReference", new ProjectGroupDataHandler())//所属组
 //                    .addField("projectUrl")
                     .addField("description");
