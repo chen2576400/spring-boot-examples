@@ -5,13 +5,12 @@ import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
-import com.pisx.tundra.netfactory.mvc.components.checkbox.CheckboxElement;
-import com.pisx.tundra.netfactory.mvc.components.label.LabelElement;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.project.datahandlers.*;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import ext.st.pmgt.project.datahandlers.PriorityDataHandler;
 
 /**
  * @ClassName CreateProjectWizardBuilder
@@ -68,8 +67,8 @@ public class CreateProjectWizardBuilder extends AbstractComponentBuilder {
             layout1.addField("projectShortName",new PIProjectNumberDataHandler())
                     .addField("projectAbbreviation")
                     .addField("projectName")
-                    .addField("priorityNum")
-                    .addField("strgyPriorityNum")
+                    .addField("priorityNum",new PriorityDataHandler())
+                    .addField("strgyPriorityNum",new PriorityDataHandler())
                     .addField("riskLevel")
                     .addField("calendarReference", new CalendarSelectDataHandler())
                     .addField("projectTemplateReference",new ProjectTemplateDataHandler())//项目模板
