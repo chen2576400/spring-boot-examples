@@ -113,16 +113,6 @@ public class EditProjectWizardBuilder extends AbstractComponentBuilder {
                     .addField("criticalDurationHourCount");
             step4.addLayout(layout4);
 
-            StepConfig step5 = wizardConfig.newStep();
-            step5.setId("editProjectStep5");
-            LayoutConfig layout5 = componentConfigFactory.newLayoutConfig(params);
-            layout5.setPrimaryClass(PIProject.class);
-            layout5.setEntity((PIProject) componentData);
-            layout5.setId("editProjectLayout5");
-            layout5.setTitle("calculation");
-            layout5.addField("defaultCostPerQty");
-            step5.addLayout(layout5);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

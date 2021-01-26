@@ -333,6 +333,10 @@
             <includeFilter name="editProjectFilter"/>
             <includeFilter name="pmgtGeneralAccessFilter" functionCode="83"/>
         </action>
+        <action name="details">
+            <component name="ext.st.pmgt.project.builders.PIProjectAttributesPanelBuilder" windowType="page"/>
+        </action>
+
     </actionsgroup>
 
 

@@ -108,7 +108,7 @@
 
 
     <model name="pi-pmgtProjectInfoPageTabSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="details" type="pi-pmgt-project"/>
+        <action name="details" type="st-pmgt-project"/>
         <action name="listPlans" type="pi-pmgt-project"/>
         <action name="containerTeamBrowser" type="containerTeam"/>
         <action name="listProjectResources" type="pi-pmgt-project"/>
@@ -230,7 +230,7 @@
     </model>
 
     <model name="pi-pmgtProjectContainerInfoPageTabSet" resourceBundle="com.pisx.pmgt.pmgtActionsRB">
-        <action name="details" type="pi-pmgt-project"/>
+        <action name="details" type="st-pmgt-project"/>
         <action name="listPlans" type="pi-pmgt-project"/>
         <action name="containerTeamBrowser" type="containerTeam"/>
         <action name="listProjectResources" type="pi-pmgt-project"/>

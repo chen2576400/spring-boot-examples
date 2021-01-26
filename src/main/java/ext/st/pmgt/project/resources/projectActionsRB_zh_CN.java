@@ -32,4 +32,9 @@ public class projectActionsRB_zh_CN extends PIListResourceBundle {
     @RBEntry("height=900,width=750")
     public static final String PRIVATE_CONSTANT_3436451 = "st-pmgt-project.editSTProject.moreurlinfo";
 
+    @RBEntry("详情")
+    public static final String PRIVATE_CONSTANT_3133456124 = "st-pmgt-project.details.description";
+    @RBEntry("详情")
+    public static final String PRIVATE_CONSTANT_332472333 = "st-pmgt-project.details.tooltip";
+
 }
