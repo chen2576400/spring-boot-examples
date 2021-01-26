@@ -344,4 +344,13 @@
         </action>
     </actionsgroup>
 
+
+
+    <actionsgroup name="st-pmgt-commonPickers">
+        <action name="stUserPicker">
+            <component name="ext.st.pmgt.issue.builders.STUserPickerWizardBuilder" windowType="popup"/>
+            <command  className="ext.st.pmgt.issue.processors.STObejctPickerProcessor"/>
+        </action>
+    </actionsgroup>
+
 </listofactions>

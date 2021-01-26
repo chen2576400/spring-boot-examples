@@ -71,9 +71,12 @@ public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
         String precaution = null;//预防措施
         STProjectMeasures stProjectMeasures = STProjectMeasures.newSTProjectMeasures();
 
-        name = object.get("name").toString();
-        precaution = object.get("precaution").toString();
-
+        if (object.get("name") != null) {
+            name= object.get("name").toString();
+        }
+        if (object.get("precaution")!=null){
+            precaution = object.get("precaution").toString();
+        }
 //        String s = object.getJSONObject("confirmStatus").get("value").toString();
 //        if (StringUtils.isNotEmpty(s)) {
 //            confirmStatus = Boolean.valueOf(s);

@@ -50,139 +50,141 @@ public class ProjectRelatedIssuesTableBuilder extends AbstractComponentBuilder {
         } else {
             tableConfig.setRightMenuName("projectRelatedIssuesMenusCopy", params);
         }
-            //定义每一个column及其属性
-            ColumnConfig column1 = componentConfigFactory.newColumnConfig();
-            column1.setName("issueNumber");
-            tableConfig.addColumn(column1);
+        //定义每一个column及其属性
+        ColumnConfig column1 = componentConfigFactory.newColumnConfig();
+        column1.setName("issueNumber");
+        tableConfig.addColumn(column1);
 
-            //定义每一个column及其属性
-            ColumnConfig column2 = componentConfigFactory.newColumnConfig();
-            column2.setName("name");
-            column2.haveInfoPageLink();
-            tableConfig.addColumn(column2);
+        //定义每一个column及其属性
+        ColumnConfig column2 = componentConfigFactory.newColumnConfig();
+        column2.setName("name");
+        column2.haveInfoPageLink();
+        tableConfig.addColumn(column2);
 
 
-            //定义每一个column及其属性
-            ColumnConfig column3 = componentConfigFactory.newColumnConfig();
-            column3.setName("issueType");
-            tableConfig.addColumn(column3);
+        ColumnConfig column20 = componentConfigFactory.newColumnConfig();
+        column20.setLabel("项目经理");
+        column20.setName("projectManagerUser.fullName");
+        tableConfig.addColumn(column20);
 
-            ColumnConfig column31 = componentConfigFactory.newColumnConfig();
-            column31.setName("project.projectName");
-            column31.setLabel("项目");
-            tableConfig.addColumn(column31);
+        ColumnConfig column14 = componentConfigFactory.newColumnConfig();
+        column14.setName("confirmStatus");
+        column14.setLabel("是否确认");
+        tableConfig.addColumn(column14);
 
-            ColumnConfig column30 = componentConfigFactory.newColumnConfig();
-            column30.setName("planActivity.name");
-            column30.setLabel("活动");
-            tableConfig.addColumn(column30);
+        //定义每一个column及其属性
+        ColumnConfig column3 = componentConfigFactory.newColumnConfig();
+        column3.setName("issueType");
+        tableConfig.addColumn(column3);
 
-            //定义每一个column及其属性
-            ColumnConfig column4 = componentConfigFactory.newColumnConfig();
-            column4.setName("state.state.stateName");
-            column4.setLabel("状态");
-            tableConfig.addColumn(column4);
+        ColumnConfig column31 = componentConfigFactory.newColumnConfig();
+        column31.setName("project.projectName");
+        column31.setLabel("项目");
+        tableConfig.addColumn(column31);
 
-            //定义每一个column及其属性
-            ColumnConfig column5 = componentConfigFactory.newColumnConfig();
-            column5.setName("addDate");
-            tableConfig.addColumn(column5);
+        ColumnConfig column30 = componentConfigFactory.newColumnConfig();
+        column30.setName("planActivity.name");
+        column30.setLabel("活动");
+        tableConfig.addColumn(column30);
+
+        //定义每一个column及其属性
+        ColumnConfig column4 = componentConfigFactory.newColumnConfig();
+        column4.setName("state.state.stateName");
+        column4.setLabel("状态");
+        tableConfig.addColumn(column4);
+
+        //定义每一个column及其属性
+        ColumnConfig column5 = componentConfigFactory.newColumnConfig();
+        column5.setName("addDate");
+        tableConfig.addColumn(column5);
 
 //        //定义每一个column及其属性
 //        ColumnConfig column6 = componentConfigFactory.newColumnConfig();
 //        column6.setName("addedBy");
 //        tableConfig.addColumn(column6);
 
-            //定义每一个column及其属性
-            ColumnConfig column7 = componentConfigFactory.newColumnConfig();
-            column7.setName("responsibleUser.name");
-            column7.setLabel("负责人");
-            tableConfig.addColumn(column7);
+        //定义每一个column及其属性
+        ColumnConfig column7 = componentConfigFactory.newColumnConfig();
+        column7.setName("responsibleUser.name");
+        column7.setLabel("负责人");
+        tableConfig.addColumn(column7);
 
-            ColumnConfig column71 = componentConfigFactory.newColumnConfig();
-            column71.setName("description");
-            tableConfig.addColumn(column71);
+        ColumnConfig column71 = componentConfigFactory.newColumnConfig();
+        column71.setName("description");
+        tableConfig.addColumn(column71);
 
-            ColumnConfig column72 = componentConfigFactory.newColumnConfig();
-            column72.setName("priorityType");
-            tableConfig.addColumn(column72);
+        ColumnConfig column72 = componentConfigFactory.newColumnConfig();
+        column72.setName("priorityType");
+        tableConfig.addColumn(column72);
 
-            //定义每一个column及其属性
-            ColumnConfig column8 = componentConfigFactory.newColumnConfig();
-            column8.setName("expectedSolutionDate");
-            tableConfig.addColumn(column8);
+        //定义每一个column及其属性
+        ColumnConfig column8 = componentConfigFactory.newColumnConfig();
+        column8.setName("expectedSolutionDate");
+        tableConfig.addColumn(column8);
 
-            ColumnConfig column9 = componentConfigFactory.newColumnConfig();
-            column9.setName("resolvedDate");
-            tableConfig.addColumn(column9);
+        ColumnConfig column9 = componentConfigFactory.newColumnConfig();
+        column9.setName("resolvedDate");
+        tableConfig.addColumn(column9);
 
-            ColumnConfig column10 = componentConfigFactory.newColumnConfig();
-            column10.setName("creator.name");
-            column10.setLabel("创建者");
-            tableConfig.addColumn(column10);
+        ColumnConfig column10 = componentConfigFactory.newColumnConfig();
+        column10.setName("creator.name");
+        column10.setLabel("创建者");
+        tableConfig.addColumn(column10);
 
-            ColumnConfig column11 = componentConfigFactory.newColumnConfig();
-            column11.setName("persistInfo.createStamp");
-            tableConfig.addColumn(column11);
+        ColumnConfig column11 = componentConfigFactory.newColumnConfig();
+        column11.setName("persistInfo.createStamp");
+        tableConfig.addColumn(column11);
 
-            ColumnConfig column12 = componentConfigFactory.newColumnConfig();
-            column12.setName("description");
-            column12.setLabel("描述");
-            tableConfig.addColumn(column12);
+        ColumnConfig column12 = componentConfigFactory.newColumnConfig();
+        column12.setName("description");
+        column12.setLabel("描述");
+        tableConfig.addColumn(column12);
 
-            ColumnConfig column13 = componentConfigFactory.newColumnConfig();
+        ColumnConfig column13 = componentConfigFactory.newColumnConfig();
 //        column12.setName("dutyGroupReference");
-            column13.setName("dutyGroup.name");
-            column13.setLabel("责任部门");
-            column13.haveInfoPageLink();
-            tableConfig.addColumn(column13);
-
-            ColumnConfig column14 = componentConfigFactory.newColumnConfig();
-            column14.setName("confirmStatus");
-            column14.setLabel("是否确认");
-            tableConfig.addColumn(column14);
-
-            ColumnConfig column15 = componentConfigFactory.newColumnConfig();
-            column15.setName("treatmentPlan");
-            column15.setLabel("处理方案");
-            tableConfig.addColumn(column15);
+        column13.setName("dutyGroup.name");
+        column13.setLabel("责任部门");
+        column13.haveInfoPageLink();
+        tableConfig.addColumn(column13);
 
 
-            ColumnConfig column16 = componentConfigFactory.newColumnConfig();
-            column16.setName("importanceType");
-            column16.setLabel("重要度");
-            tableConfig.addColumn(column16);
-
-            ColumnConfig column17 = componentConfigFactory.newColumnConfig();
-            column17.setName("urgencyType");
-            column17.setLabel("紧急度");
-            tableConfig.addColumn(column17);
-
-            ColumnConfig column18 = componentConfigFactory.newColumnConfig();
-            column18.setName("closeStamp");
-            column18.setLabel("关闭时间");
-            tableConfig.addColumn(column18);
-
-            ColumnConfig column20 = componentConfigFactory.newColumnConfig();
-            column20.setLabel("项目经理");
-            column20.setName("projectManagerUser.fullName");
-            tableConfig.addColumn(column20);
+        ColumnConfig column15 = componentConfigFactory.newColumnConfig();
+        column15.setName("treatmentPlan");
+        column15.setLabel("处理方案");
+        tableConfig.addColumn(column15);
 
 
-            //拆分上下结构
-            TableBrowserConfig tableBrowserConfig = componentConfigFactory.newTableBrowserConfig(params);
-            tableBrowserConfig.setId("ProjectRelatedIssuesTableBuilder");
-            tableBrowserConfig.tabSetName("involveGroupTabSet");//下方面板
-            tableBrowserConfig.setLayoutDirection(BrowserConfig.VERTICAL); //垂直布局
-            tableBrowserConfig.addComponentConfig(tableConfig);
+        ColumnConfig column16 = componentConfigFactory.newColumnConfig();
+        column16.setName("importanceType");
+        column16.setLabel("重要度");
+        tableConfig.addColumn(column16);
+
+        ColumnConfig column17 = componentConfigFactory.newColumnConfig();
+        column17.setName("urgencyType");
+        column17.setLabel("紧急度");
+        tableConfig.addColumn(column17);
+
+        ColumnConfig column18 = componentConfigFactory.newColumnConfig();
+        column18.setName("closeStamp");
+        column18.setLabel("关闭时间");
+        tableConfig.addColumn(column18);
 
 
-            return tableBrowserConfig;
-        }
 
-    private Boolean isManager (PIProject project) throws PIException {
+        //拆分上下结构
+        TableBrowserConfig tableBrowserConfig = componentConfigFactory.newTableBrowserConfig(params);
+        tableBrowserConfig.setId("ProjectRelatedIssuesTableBuilder");
+        tableBrowserConfig.tabSetName("involveGroupTabSet");//下方面板
+        tableBrowserConfig.setLayoutDirection(BrowserConfig.VERTICAL); //垂直布局
+        tableBrowserConfig.addComponentConfig(tableConfig);
+
+
+        return tableBrowserConfig;
+    }
+
+    private Boolean isManager(PIProject project) throws PIException {
         return ProjectPermissionUtil.isProjectRole(project, null, "yfdb");
     }
 
 
-    }
+}

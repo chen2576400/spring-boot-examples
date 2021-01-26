@@ -51,15 +51,27 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
             tableConfig.setRightMenuName("projectRisksMenusCopy", params);
         }
 
+
+
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("riskCode");
-//        column1.haveInfoPageLink();
         tableConfig.addColumn(column1);
 
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
         column2.setName("riskName");
         column2.haveInfoPageLink();
         tableConfig.addColumn(column2);
+
+        ColumnConfig column20 = componentConfigFactory.newColumnConfig();
+        column20.setLabel("项目经理");
+        column20.setName("projectManagerUser.fullName");
+        tableConfig.addColumn(column20);
+
+        ColumnConfig column21 = componentConfigFactory.newColumnConfig();
+        column21.setName("confirmStatus");
+        column21.setLabel("是否确认");
+        tableConfig.addColumn(column21);
+
 
         ColumnConfig column4 = componentConfigFactory.newColumnConfig();
         column4.setName("riskToType");
@@ -91,10 +103,6 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
         ColumnConfig column10 = componentConfigFactory.newColumnConfig();
         column10.setName("responseType");
         tableConfig.addColumn(column10);
-
-        ColumnConfig column11 = componentConfigFactory.newColumnConfig();
-        column11.setName("responseText");
-        tableConfig.addColumn(column11);
 
         ColumnConfig column12 = componentConfigFactory.newColumnConfig();
         column12.setName("resolvedDate");
@@ -134,10 +142,7 @@ public class ProjectRisksForProjectTableBuilder extends AbstractComponentBuilder
         column19.setName("urgencyType");
         tableConfig.addColumn(column19);
 
-        ColumnConfig column20 = componentConfigFactory.newColumnConfig();
-        column20.setLabel("项目经理");
-        column20.setName("projectManagerUser.fullName");
-        tableConfig.addColumn(column20);
+
 
 
 

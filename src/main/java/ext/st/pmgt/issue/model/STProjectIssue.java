@@ -992,7 +992,7 @@ public class STProjectIssue extends PIPmgtObject implements LTDTyped, ContentHol
      * 项目经理确认(0未确认、1确认)
      */
     @Column(nullable = true, unique = false)
-    private Boolean confirmStatus = Boolean.FALSE;
+    private Boolean confirmStatus;
 
 
     /**
