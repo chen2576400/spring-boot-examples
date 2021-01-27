@@ -20,6 +20,7 @@ public class PIDocumentPickerWizardBuilder extends AbstractComponentBuilder {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         ObjectPickerConfig objectPickerConfig = componentConfigFactory.newObjectPickerConfig(params);
         objectPickerConfig.setId("documentPicker");
+        objectPickerConfig.setTitle("文档搜索");
         objectPickerConfig.setTableSingleSelect(true);
         objectPickerConfig.setSearchObjectType(PIDocument.class);
         return objectPickerConfig;
