@@ -146,28 +146,28 @@
 
     <model name="projectRelatedIssuesToolBarCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="createProjectIssueCopy" type="pi-pmgt-project-copy" shortcut="true"/>
-        <action name="copyObjects" type="uiComponent" shortcut="true"/>
+<!--        <action name="copyObjects" type="uiComponent" shortcut="true"/>-->
         <action name="deleteProjectIssueCopy" type="pi-pmgt-project-copy" shortcut="true"/>
         <action name="exportExcel" type="uiComponent"/>
     </model>
 
     <model name="projectRelatedIssuesToolBarCopyByPlan" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
-        <action name="copyObjects" type="uiComponent" shortcut="true"/>
+<!--        <action name="copyObjects" type="uiComponent" shortcut="true"/>-->
         <action name="deleteProjectIssueCopy" type="pi-pmgt-project-copy" shortcut="true"/>
     </model>
 
     <model name="projectRisksTableToolbarSetCopy" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="risk_CreateCopy" type="pi-pmgt-risk-copy" shortcut="true"/>
         <action name="deleteProjectRiskCopy" type="pi-pmgt-risk-copy" shortcut="true"/>
-        <action name="copyObjects" type="uiComponent" shortcut="true"/>
-        <action name="pasteProjectRisksForProject" type="pi-pmgt-risk" shortcut="true"/>
+<!--        <action name="copyObjects" type="uiComponent" shortcut="true"/>-->
+<!--        <action name="pasteProjectRisksForProject" type="pi-pmgt-risk" shortcut="true"/>-->
         <action name="exportExcel" type="uiComponent" shortcut="true"/>
     </model>
 
 
     <model name="projectRisksTableToolbarSetCopyByPlan" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="deleteProjectRiskCopy" type="pi-pmgt-risk-copy" shortcut="true"/>
-        <action name="copyObjects" type="uiComponent" shortcut="true"/>
+<!--        <action name="copyObjects" type="uiComponent" shortcut="true"/>-->
     </model>
 
     <model name="ratingTableToolBarSet" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
@@ -392,7 +392,7 @@
         <action name="measure_Delete" type="st-pmgt-measures"/>
     </model>
 
-    <!-- 措施编辑  项目经理-->
+    <!-- 措施编辑  oo项目经理-->
     <model name="measuresMenusByManager">
         <action name="measure_Edit" type="st-pmgt-measures"/>
         <action name="measure_Delete" type="st-pmgt-measures"/>
