@@ -10,7 +10,9 @@ import com.pisx.tundra.netfactory.util.misc.URLFactory;
 import com.pisx.tundra.pmgt.change.datahandlers.PlanActivityDataHandler;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.plan.model.PIPlannable;
+import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
 import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectRisk;
 
@@ -21,8 +23,8 @@ public class PlanActivityExpandDataHandler extends PlanActivityDataHandler {
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
 
         InputElement inputElement = InputElement.instance(columnName);
-        if (datum!=null){//编辑页面是需要回填到input框
-            getInputValue(datum,inputElement);
+        if (datum != null) {//编辑页面是需要回填到input框
+            getInputValue(datum, inputElement);
         }
 
         inputElement.attribute(elementAttribute -> {
@@ -39,7 +41,7 @@ public class PlanActivityExpandDataHandler extends PlanActivityDataHandler {
         });
 
         //context传给objpicker
-        String url = URLFactory.getActionHref("pi-pmgt-enterprise", "requestActivityPicker",getContent(sourceObject));
+        String url = URLFactory.getActionHref("pi-pmgt-enterprise", "requestActivityPicker", getContent(sourceObject));
 
         rightImg.backFill(url, columnName);
 
@@ -49,25 +51,31 @@ public class PlanActivityExpandDataHandler extends PlanActivityDataHandler {
         return content;
     }
 
-    private Object getContent(Persistable sourceObject){
-        if (sourceObject instanceof PIProject){
+    private Object getContent(Persistable sourceObject) {
+        if (sourceObject instanceof PIProject) {
             return (PIProject) sourceObject;
-        }else if (sourceObject instanceof STProjectIssue){
+        } else if (sourceObject instanceof STProjectIssue) {
             return ((STProjectIssue) sourceObject).getProject();
-        }else if (sourceObject instanceof PIPlanActivity){
+        } else if (sourceObject instanceof PIPlanActivity) {
             return ((PIPlanActivity) sourceObject).getProject();
+        } else if (sourceObject instanceof PIProjectContainer) {
+            try {
+                return PIProjectHelper.service.getProjectFromContainer((PIProjectContainer) sourceObject);
+            } catch (PIException e) {
+                return null;
+            }
         }
         return null;
     }
 
 
-    public void getInputValue(Object datum, InputElement inputElement){
-        super.getInputValue(datum,inputElement);
+    public void getInputValue(Object datum, InputElement inputElement) {
+        super.getInputValue(datum, inputElement);
         if (datum instanceof STProjectIssue) {
             STProjectIssue context = (STProjectIssue) datum;
             try {
                 PIPlannable planActivity = context.getPlanActivity();
-                if(planActivity!=null){
+                if (planActivity != null) {
                     inputElement.setValue(planActivity.getOid(), planActivity.getName());
                 }
             } catch (PIException e) {

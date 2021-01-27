@@ -10,7 +10,9 @@ import com.pisx.tundra.netfactory.util.misc.URLFactory;
 import com.pisx.tundra.pmgt.change.model.PIProjectChangeRequest;
 import com.pisx.tundra.pmgt.change.model.PIProjectIssue;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import com.pisx.tundra.pmgt.project.PIProjectHelper;
 import com.pisx.tundra.pmgt.project.model.PIProject;
+import com.pisx.tundra.pmgt.project.model.PIProjectContainer;
 import com.pisx.tundra.pmgt.resource.model.PIResource;
 import com.pisx.tundra.pmgt.risk.datahandlers.ResourceDataHandler;
 import com.pisx.tundra.pmgt.risk.model.PIProjectRisk;
@@ -61,6 +63,12 @@ public class ResourceExpandDataHandler extends ResourceDataHandler {
             pageObject = ((STProjectRisk) sourceObject).getProject();
         }else if (sourceObject instanceof PIPlanActivity){
             pageObject = ((PIPlanActivity) sourceObject).getProject();
+        }else  if (sourceObject instanceof PIProjectContainer) {
+            try {
+                pageObject = PIProjectHelper.service.getProjectFromContainer((PIProjectContainer) sourceObject);
+            } catch (PIException e) {
+               return null;
+            }
         }
         return pageObject;
     }
