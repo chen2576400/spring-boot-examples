@@ -10,7 +10,6 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.project.datahandlers.*;
 import com.pisx.tundra.pmgt.project.model.PIProject;
-import ext.st.pmgt.project.datahandlers.PriorityDataHandler;
 
 /**
  * @ClassName CreateProjectWizardBuilder
@@ -67,8 +66,8 @@ public class CreateProjectWizardBuilder extends AbstractComponentBuilder {
             layout1.addField("projectShortName",new PIProjectNumberDataHandler())
                     .addField("projectAbbreviation")
                     .addField("projectName")
-                    .addField("priorityNum",new PriorityDataHandler())
-                    .addField("strgyPriorityNum",new PriorityDataHandler())
+                    .addField("priorityNum")
+                    .addField("strgyPriorityNum")
                     .addField("riskLevel")
                     .addField("calendarReference", new CalendarSelectDataHandler())
                     .addField("projectTemplateReference",new ProjectTemplateDataHandler())//项目模板
