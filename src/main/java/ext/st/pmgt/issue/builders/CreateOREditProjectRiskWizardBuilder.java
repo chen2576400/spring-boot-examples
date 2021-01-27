@@ -46,7 +46,7 @@ public class CreateOREditProjectRiskWizardBuilder extends AbstractComponentBuild
             layout.setEntity(risk);
             layout.setPrimaryClassName(STProjectRisk.class);
             layout.setId("createRiskTypeLayout");
-            layout.setTitle("attribute");
+            layout.setTitle("创建项目风险");
 
             layout.addField("riskName")
                     .addField("riskDescription",new TextAreaDataHandler())

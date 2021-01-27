@@ -23,6 +23,7 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         ObjectPickerConfig objectPickerConfig = componentConfigFactory.newObjectPickerConfig(params);
         objectPickerConfig.setId("userPicker");
+        objectPickerConfig.setTitle("添加用户");
         objectPickerConfig.setTableSingleSelect(true);
         objectPickerConfig.setSearchObjectType(PIUser.class);
         return objectPickerConfig;
