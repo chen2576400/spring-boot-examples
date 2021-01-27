@@ -95,7 +95,7 @@ public class CreateProjectIssueProcessor extends DefaultCreateFormProcessor {
         issue.setCreator(creator);
 
         //todo 部分字段页面没有填入但不能为空，先固定
-        issue.setState(LifeCycleState.newLifeCycleState(LifeCycleHelper.service.getLcStates().get(2)));
+        issue.setState(LifeCycleState.newLifeCycleState(LifeCycleHelper.service.getLcStates().get(3)));
         issue.setIssueNumber("PISU000000" + new Random().nextInt(1000));
 
 

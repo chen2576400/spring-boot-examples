@@ -91,7 +91,7 @@ public class CreateProjectRiskProcessor extends DefaultCreateFormProcessor {
 
         //todo state暂时随机
         risk.setRiskCode("RISK_"+System.currentTimeMillis());
-        risk.setState(LifeCycleState.newLifeCycleState(LifeCycleHelper.service.getLcStates().get(1)));
+        risk.setState(LifeCycleState.newLifeCycleState(LifeCycleHelper.service.getLcStates().get(3)));
         ///////////
 
         risk = (STProjectRisk) PersistenceHelper.service.save(risk);
