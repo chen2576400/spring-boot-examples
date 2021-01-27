@@ -109,6 +109,6 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
     }
 
     private Boolean isManager(PIProject project) throws PIException {
-        return ProjectPermissionUtil.isProjectRole(project, null, "yfdb");
+        return ProjectPermissionUtil.isProjectRole(project, null, "PM");
     }
 }
