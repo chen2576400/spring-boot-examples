@@ -80,9 +80,9 @@ public class CreateDeliverableProcessor extends DefaultCreateFormProcessor {
                 deliverable.setCreator(principalReference);
                 deliverable.setModifier(principalReference);
 
-                //todo 重汽暂时交付物类型都为文档类型
-                LTDTypeDefinition ltdTypeDefinition = TypeHelper.service.findType(PIDocument.class.getName());
-                deliverable.setDeliverableTypeReference(ObjectReference.newObjectReference(ltdTypeDefinition));
+//                //todo 重汽暂时交付物类型都为文档类型
+//                LTDTypeDefinition ltdTypeDefinition = TypeHelper.service.findType(PIDocument.class.getName());
+//                deliverable.setDeliverableTypeReference(ObjectReference.newObjectReference(ltdTypeDefinition));
 
 
                 //save deliverable

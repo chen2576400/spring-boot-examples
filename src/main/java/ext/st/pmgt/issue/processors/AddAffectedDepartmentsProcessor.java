@@ -40,7 +40,7 @@ public class AddAffectedDepartmentsProcessor extends DefaultObjectFormProcessor 
             }
 
         }
-        return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, "添加成功", null);
+        return new ResponseWrapper<>(ResponseWrapper.Code.REGIONAL_FLUSH, "添加成功", null);
 
     }
 

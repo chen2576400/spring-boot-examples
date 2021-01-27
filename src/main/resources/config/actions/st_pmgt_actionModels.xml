@@ -260,7 +260,7 @@
 
     <model name="PIProject_info_page_menus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="copyObjects" type="uiComponent" shortcut="true"/>
-        <action name="createProjectContainer" type="pi-pmgt-project"/>
+<!--        <action name="createProjectContainer" type="pi-pmgt-project"/>-->
         <action name="save_container_as_template" type="pi-pmgt-project"/>
         <action name="renameProject" type="pi-pmgt-project"/>
         <action name="setObjectLcState" type="topLcState" shortcut="true"/>
