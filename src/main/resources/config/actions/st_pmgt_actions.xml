@@ -44,8 +44,7 @@
 
     <actionsgroup name="st-pmgt-act" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
         <action name="reportExpectedFinishTime" selectRequired="true">
-            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder"
-                       windowType="popup"/>
+            <component name="ext.st.pmgt.indicator.builders.ReportPlanActivitySTExpectedFinishTimeWizardBuilder" windowType="popup"/>
             <command className="ext.st.pmgt.indicator.processors.ReportPlanActivitySTExpectedFinishTimeProcessor"/>
         </action>
         <action name="createDeliverable">
@@ -56,6 +55,16 @@
             <component name="ext.st.pmgt.indicator.builders.PIDocumentPickerWizardBuilder" windowType="popup"/>
             <command className="com.pisx.tundra.pmgt.project.processors.ObjectPickerCallBackProcessor"/>
         </action>
+        <action name="editDeliverable_new">
+            <component name="ext.st.pmgt.indicator.builders.EditDeliverableWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.STEditDeliverableFormProcessor"/>
+            <includeFilter name="createDeliverableFilter"/>
+        </action>
+        <action name="editDeliveryObject_new">
+            <component name="ext.st.pmgt.indicator.builders.EditDeliveryObjectWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.indicator.processors.STEditDeliveryObjectFormProcessor"/>
+        </action>
+
     </actionsgroup>
 
     <actionsgroup name="st-pmgt-ot" class="" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
@@ -340,8 +349,6 @@
     </actionsgroup>
 
 
-
-
     <actionsgroup name="pi-pmgt-act-copy" resourceBundle="ext.st.pmgt.issue.resources.issueActionsRB">
         <action name="listProjectIssuesForActivityCopy">
             <component name="ext.st.pmgt.issue.builders.PlanActivityIssuesTableBuilder" windowType="page"/>
@@ -349,11 +356,10 @@
     </actionsgroup>
 
 
-
     <actionsgroup name="st-pmgt-commonPickers">
         <action name="stUserPicker">
             <component name="ext.st.pmgt.issue.builders.STUserPickerWizardBuilder" windowType="popup"/>
-            <command  className="ext.st.pmgt.issue.processors.STObejctPickerProcessor"/>
+            <command className="ext.st.pmgt.issue.processors.STObejctPickerProcessor"/>
         </action>
     </actionsgroup>
 

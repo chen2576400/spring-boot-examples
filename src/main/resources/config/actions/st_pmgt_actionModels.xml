@@ -49,9 +49,8 @@
 
 
     <model name="deliverablesForActivityMenus" resourceBundle="ext.st.pmgt.indicator.resources.indicatorActionsRB">
-        <!--                <action name="refreshDeliverableSubjects" type="pi-pmgt-act" shortcut="true"/>-->
-        <!--                <action name="editDeliverable" type="pi-pmgt-act" shortcut="true"/>-->
-        <!--                <action name="editDeliveryObject" type="pi-pmgt-act" shortcut="true"/>-->
+        <action name="editDeliverable_new" type="st-pmgt-act" shortcut="true"/>
+        <action name="editDeliveryObject_new" type="st-pmgt-act" shortcut="true"/>
         <action name="createDeliverableDocument" type="pi-pmgt-act" shortcut="true"/>
         <action name="indicatorReport" type="st-pmgt-indicator" shortcut="true"/>
     </model>
@@ -260,7 +259,7 @@
 
     <model name="PIProject_info_page_menus" resourceBundle="com.pisx.tundra.pmgt.pmgtActionsRB">
         <action name="copyObject" type="uiComponent" shortcut="true"/>
-<!--        <action name="createProjectContainer" type="pi-pmgt-project"/>-->
+        <!--        <action name="createProjectContainer" type="pi-pmgt-project"/>-->
         <action name="save_container_as_template" type="pi-pmgt-project"/>
         <action name="renameProject" type="pi-pmgt-project"/>
         <action name="setObjectLcState" type="topLcState" shortcut="true"/>

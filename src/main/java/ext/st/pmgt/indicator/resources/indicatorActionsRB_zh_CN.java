@@ -157,4 +157,22 @@ public class indicatorActionsRB_zh_CN extends PIListResourceBundle {
     public static final String act_012111 = "st-pmgt-indicator.notRatingIndicator.description";
     @RBEntry("未评定指标")
     public static final String act_033221 = "st-pmgt-indicator.notRatingIndicator.tooltip";
+
+    @RBEntry("编辑交付物")
+    public static final String act_13014 = "st-pmgt-act.editDeliverable_new.description";
+    @RBEntry("编辑交付物")
+    public static final String act_04225= "st-pmgt-act.editDeliverable_new.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_0426125 = "st-pmgt-act.editDeliverable_new.icon";
+    @RBEntry("height=900,width=750")
+    public static final String act_0425125 = "st-pmgt-act.editDeliverable_new.moreurlinfo";
+
+    @RBEntry("提交交付物对象")
+    public static final String act_130141 = "st-pmgt-act.editDeliveryObject_new.description";
+    @RBEntry("提交交付物对象")
+    public static final String act_042252 = "st-pmgt-act.editDeliveryObject_new.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_04261253 = "st-pmgt-act.editDeliveryObject_new.icon";
+    @RBEntry("height=900,width=750")
+    public static final String act_04251254 = "st-pmgt-act.editDeliveryObject_new.moreurlinfo";
 }

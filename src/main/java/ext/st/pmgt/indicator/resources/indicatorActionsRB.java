@@ -178,4 +178,25 @@ public class indicatorActionsRB extends PIListResourceBundle {
     @RBEntry("notRatingIndicator")
     public static final String act_033221 = "st-pmgt-indicator.notRatingIndicator.tooltip";
 
+
+    @RBEntry("editDeliverable")
+    public static final String act_13014 = "st-pmgt-act.editDeliverable_new.description";
+    @RBEntry("editDeliverable")
+    public static final String act_04225= "st-pmgt-act.editDeliverable_new.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_0426125 = "st-pmgt-act.editDeliverable_new.icon";
+    @RBEntry("height=900,width=750")
+    public static final String act_0425125 = "st-pmgt-act.editDeliverable_new.moreurlinfo";
+
+    @RBEntry("editDeliveryObject")
+    public static final String act_130141 = "st-pmgt-act.editDeliveryObject_new.description";
+    @RBEntry("editDeliveryObject")
+    public static final String act_042252 = "st-pmgt-act.editDeliveryObject_new.tooltip";
+    @RBEntry("img/pmgt/report.gif")
+    public static final String act_04261253 = "st-pmgt-act.editDeliveryObject_new.icon";
+    @RBEntry("height=900,width=750")
+    public static final String act_04251254 = "st-pmgt-act.editDeliveryObject_new.moreurlinfo";
+
+
+
 }

@@ -13,6 +13,7 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.DefaultCreateFormProcessor;
 import com.pisx.tundra.netfactory.util.misc.ResponseWrapper;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
+import com.pisx.tundra.pmgt.common.util.CommonUtils;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverableLink;
 import com.pisx.tundra.pmgt.deliverable.model.deliverableResource;
@@ -31,24 +32,24 @@ public class CreateDeliverableProcessor extends DefaultCreateFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        Object object=params.getNfCommandBean().getSourceObject();
-        PIPlanActivity act=null;
-        if(object instanceof PIPlanActivity){
-            act=(PIPlanActivity)object;
-        }else if(object instanceof PIResourceAssignment){
-            PIResourceAssignment assignment=(PIResourceAssignment)object;
-            act=(PIPlanActivity) assignment.getPlannable();
-        }else{
+        Object object = params.getNfCommandBean().getSourceObject();
+        PIPlanActivity act = null;
+        if (object instanceof PIPlanActivity) {
+            act = (PIPlanActivity) object;
+        } else if (object instanceof PIResourceAssignment) {
+            PIResourceAssignment assignment = (PIResourceAssignment) object;
+            act = (PIPlanActivity) assignment.getPlannable();
+        } else {
             throw new PIException(" primary object type must be PIPlanActivity or PIResourceAssignment");
         }
-        if (list.size()>0){
+        if (list.size() > 0) {
             PIPlanDeliverable deliverable = (PIPlanDeliverable) list.get(0);
-            Map<String,Object> combMap=params.getNfCommandBean().getLayoutFields();
+            Map<String, Object> combMap = params.getNfCommandBean().getLayoutFields();
 
 //            String subjectOid = (String) combMap.get("subjectReference");
 //            String  typeName=(String)textbMap.get(CommonConstants.CONS_PICKER_TYPE_HIDDEN_ID);
 //            ArrayList<String> template=(ArrayList<String>)combMap.get("deliverableTemplateReference");
-            PIObject subObject=null;
+            PIObject subObject = null;
 //            if(subjectOid!=null&&subjectOid.length()>0) {
 //                NfOid groupOid = NfOid.parse(subjectOid);
 //                subObject =groupOid!=null? PIPlanDeliverableHelper.service.getPlanDeliverablesById(groupOid.getId()) : null;
@@ -67,11 +68,11 @@ public class CreateDeliverableProcessor extends DefaultCreateFormProcessor {
 
                 //set template
 //                if(template!=null&&template.size()>0){
-//                    String templateOid=(String)template.get(0);
-//                    if(templateOid!=null&&templateOid.trim().length()>0){
-//                        PIObject tempObject= CommonUtils.getPIObjectByOid(templateOid);
-//                        deliverable.setDeliverableTemplate(tempObject);
-//                    }
+                String templateOid = "";
+                if (templateOid != null && templateOid.trim().length() > 0) {
+                    PIObject tempObject = CommonUtils.getPIObjectByOid(templateOid);
+                    deliverable.setDeliverableTemplate(tempObject);
+                }
 //                }
                 PIPrincipalReference principalReference = PIPrincipalReference.newPIPrincipalReference(SessionHelper.service.getPrincipal());
                 deliverable.setProject(act.getProject());
@@ -81,29 +82,29 @@ public class CreateDeliverableProcessor extends DefaultCreateFormProcessor {
                 deliverable.setModifier(principalReference);
 
 //                //todo 重汽暂时交付物类型都为文档类型
-//                LTDTypeDefinition ltdTypeDefinition = TypeHelper.service.findType(PIDocument.class.getName());
-//                deliverable.setDeliverableTypeReference(ObjectReference.newObjectReference(ltdTypeDefinition));
+                LTDTypeDefinition ltdTypeDefinition = TypeHelper.service.findType(PIDocument.class.getName());
+                deliverable.setDeliverableTypeReference(ObjectReference.newObjectReference(ltdTypeDefinition));
 
 
                 //save deliverable
-                deliverable= PersistenceHelper.service.save(deliverable);
+                deliverable = PersistenceHelper.service.save(deliverable);
 
                 //create  deliverable link
-                PIPlanDeliverableLink link= PIPlanDeliverableLink.newPIPlanDeliverableLink(act, deliverable);
-                link= PersistenceHelper.service.save(link);
+                PIPlanDeliverableLink link = PIPlanDeliverableLink.newPIPlanDeliverableLink(act, deliverable);
+                link = PersistenceHelper.service.save(link);
 
                 //set modifier
                 act.setModifier(principalReference);
 
                 //set boolean value of plan activity
                 act.setHasDeliverable(Boolean.TRUE);
-                act= PersistenceHelper.service.save(act);
+                act = PersistenceHelper.service.save(act);
             } catch (PIException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 throw new PIException(e);
             }
-        }else{
+        } else {
             throw new PIException(" get deliverable object error,refresh the page and try again");
         }
 
