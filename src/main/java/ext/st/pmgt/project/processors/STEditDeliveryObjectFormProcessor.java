@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.processors;
+package ext.st.pmgt.project.processors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;

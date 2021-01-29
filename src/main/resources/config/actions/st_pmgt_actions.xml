@@ -52,17 +52,17 @@
             <command className="ext.st.pmgt.indicator.processors.CreateDeliverableProcessor"/>
         </action>
         <action name="documentPicker">
-            <component name="ext.st.pmgt.indicator.builders.PIDocumentPickerWizardBuilder" windowType="popup"/>
+            <component name="ext.st.pmgt.project.builders.PIDocumentPickerWizardBuilder" windowType="popup"/>
             <command className="com.pisx.tundra.pmgt.project.processors.ObjectPickerCallBackProcessor"/>
         </action>
         <action name="editDeliverable_new">
-            <component name="ext.st.pmgt.indicator.builders.EditDeliverableWizardBuilder" windowType="popup"/>
-            <command className="ext.st.pmgt.indicator.processors.STEditDeliverableFormProcessor"/>
+            <component name="ext.st.pmgt.project.builders.EditDeliverableWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.project.processors.STEditDeliverableFormProcessor"/>
             <includeFilter name="createDeliverableFilter"/>
         </action>
         <action name="editDeliveryObject_new">
-            <component name="ext.st.pmgt.indicator.builders.EditDeliveryObjectWizardBuilder" windowType="popup"/>
-            <command className="ext.st.pmgt.indicator.processors.STEditDeliveryObjectFormProcessor"/>
+            <component name="ext.st.pmgt.project.builders.EditDeliveryObjectWizardBuilder" windowType="popup"/>
+            <command className="ext.st.pmgt.project.processors.STEditDeliveryObjectFormProcessor"/>
         </action>
 
     </actionsgroup>

@@ -1,11 +1,8 @@
-package ext.st.pmgt.indicator.processors;
+package ext.st.pmgt.project.processors;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pisx.tundra.foundation.fc.PersistenceHelper;
-import com.pisx.tundra.foundation.fc.model.ObjectReference;
 import com.pisx.tundra.foundation.fc.model.PIObject;
-import com.pisx.tundra.foundation.meta.type.TypeHelper;
-import com.pisx.tundra.foundation.meta.type.model.LTDTypeDefinition;
 import com.pisx.tundra.foundation.meta.type.model.LTDTyped;
 import com.pisx.tundra.foundation.org.model.PIPrincipalReference;
 import com.pisx.tundra.foundation.session.SessionHelper;

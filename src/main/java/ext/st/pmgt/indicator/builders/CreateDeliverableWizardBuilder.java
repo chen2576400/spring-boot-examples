@@ -1,25 +1,18 @@
 package ext.st.pmgt.indicator.builders;
 
-import com.pisx.tundra.foundation.fc.collections.PICollection;
-import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
-import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
-import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
-import com.pisx.tundra.pmgt.deliverable.datahandlers.DeliverableTypePickerHandler;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
-import ext.st.pmgt.indicator.datahandlers.DeliverablePickerHandler;
-import ext.st.pmgt.indicator.model.STDeliverableType;
-import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import ext.st.pmgt.project.datahandlers.DeliverablePickerHandler;
 
 import java.util.Collection;
 import java.util.List;

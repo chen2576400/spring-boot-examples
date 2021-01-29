@@ -4,7 +4,6 @@ import com.pisx.tundra.foundation.doc.model.PIDocument;
 import com.pisx.tundra.foundation.enterprise.model.RevisionControlled;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.vc.VersionControlHelper;
-import com.pisx.tundra.foundation.vc.model.Versioned;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfigFactory;
@@ -19,18 +18,13 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.netfactory.util.misc.Option;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
-import com.pisx.tundra.pmgt.project.PIProjectHelper;
-import com.pisx.tundra.pmgt.project.model.PIPmgtBaselineType;
 import ext.st.pmgt.indicator.STIndicatorHelper;
-import ext.st.pmgt.indicator.datahandlers.DeliverablePickerHandler;
 import ext.st.pmgt.indicator.datahandlers.DeviationReportDataHandler;
 import ext.st.pmgt.indicator.datahandlers.DifficultyReportDataHandler;
-import ext.st.pmgt.indicator.datahandlers.SubjectNameDataHandler;
 import ext.st.pmgt.indicator.model.STDeliverableType;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**

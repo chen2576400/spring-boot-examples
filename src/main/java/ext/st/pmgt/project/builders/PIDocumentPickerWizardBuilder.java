@@ -1,4 +1,4 @@
-package ext.st.pmgt.indicator.builders;
+package ext.st.pmgt.project.builders;
 
 import com.pisx.tundra.foundation.doc.model.PIDocument;
 import com.pisx.tundra.foundation.util.PIException;

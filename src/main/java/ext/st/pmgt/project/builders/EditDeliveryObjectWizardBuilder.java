@@ -1,6 +1,5 @@
-package ext.st.pmgt.indicator.builders;
+package ext.st.pmgt.project.builders;
 
-import com.pisx.tundra.foundation.meta.type.datahandlers.LTDTypePickerDataHandler;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.AbstractComponentBuilder;
 import com.pisx.tundra.netfactory.mvc.components.ComponentConfig;
@@ -9,9 +8,8 @@ import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
 import com.pisx.tundra.netfactory.mvc.components.wizard.LayoutConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
-import com.pisx.tundra.pmgt.deliverable.datahandlers.PIDocumentPickerHandler;
 import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
-import ext.st.pmgt.indicator.datahandlers.DeliverablePickerHandler;
+import ext.st.pmgt.project.datahandlers.DeliverablePickerHandler;
 
 public class EditDeliveryObjectWizardBuilder extends AbstractComponentBuilder {
     @Override
