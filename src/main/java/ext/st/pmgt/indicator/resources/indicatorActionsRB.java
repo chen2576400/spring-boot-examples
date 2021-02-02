@@ -146,6 +146,8 @@ public class indicatorActionsRB extends PIListResourceBundle {
     public static final String in_002 = "st-pmgt-in.creatINIndicator.tooltip";
     @RBEntry("img/pmgt/add.gif")
     public static final String in_003 = "st-pmgt-in.creatINIndicator.icon";
+    @RBEntry("height=700,width=1000")
+    public static final String in_0031 = "st-pmgt-in.creatINIndicator.moreurlinfo";
 
     @RBEntry("INIndicatorPicker")
     public static final String in_004 = "st-pmgt-in.INIndicatorPicker.description";
