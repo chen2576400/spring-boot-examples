@@ -57,7 +57,7 @@ public class CreateOTIndicatorProcessor extends DefaultObjectFormProcessor {
         PersistenceHelper.service.save(stProjectInstanceOTIndicator);
         STIndicatorHelper.service.updateBreadthAndCriticality(stProjectIndicator.getCode(), piPlan);
 
-        return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "", null);
+        return new ResponseWrapper(ResponseWrapper.Code.PAGE_FLUSH, "t", null);
 
     }
 }

@@ -14,10 +14,12 @@ import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import com.pisx.tundra.pmgt.assignment.PIAssignmentHelper;
 import com.pisx.tundra.pmgt.assignment.model.PIResourceAssignment;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
+import com.pisx.tundra.pmgt.resource.model.PIResource;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,7 +67,8 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
         columnconfig.enableSort();
-        columnconfig.haveInfoPageLink();
+        if (havePrivilege(params))
+//        columnconfig.haveInfoPageLink();
         tableConfig.addColumn(columnconfig);
 
         ColumnConfig columnconfig3 = componentConfigFactory.newColumnConfig();
@@ -115,10 +118,19 @@ public class PlanActivityOTIndicatorTableBuilder extends AbstractComponentBuilde
         PIPlanActivity act = (PIPlanActivity) params.getNfCommandBean().getSourceObject();
         PIUser currentUser = (PIUser) SessionHelper.service.getPrincipal();
         List<PIResourceAssignment> assignments = (List) PIAssignmentHelper.service.getResourceAssignments(act);
-        List<PIUser> users = assignments.stream().map(item -> item.getRsrc().getUser()).collect(Collectors.toList());
+
+        List<PIUser> users = new ArrayList<>();
+        if (assignments.size() > 0) {
+            for (PIResourceAssignment assignment : assignments) {
+                PIResource resource = assignment.getRsrc();
+                if (resource.getUser() != null) {
+                    users.add(resource.getUser());
+                }
+            }
+        }
         if (users.contains(currentUser)) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
