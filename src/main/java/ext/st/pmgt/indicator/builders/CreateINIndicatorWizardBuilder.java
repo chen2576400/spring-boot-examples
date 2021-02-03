@@ -14,6 +14,7 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.plan.model.PIPlan;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
+import ext.st.pmgt.indicator.datahandlers.DefaultWeightValueDataHandle;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.resources.indicatorResource;
@@ -62,7 +63,7 @@ public class CreateINIndicatorWizardBuilder extends AbstractComponentBuilder {
             layout.setPrimaryClassName(STProjectInstanceINIndicator.class);
             layout.setId("creatinindicatorlayout");
             layout.setTitle("新增IN指标");
-            layout.addField("weights").required();
+            layout.addField("weights",new DefaultWeightValueDataHandle()).required();
             step.addLayout(layout);
             step.children(buildTable(componentData, params));
         } catch (Exception e) {
