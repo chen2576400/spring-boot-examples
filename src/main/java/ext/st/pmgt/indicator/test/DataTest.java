@@ -220,12 +220,13 @@ public class DataTest {
     //OT測試4
     @Test
     public void testOT() throws PIException {
+        Timestamp timestamp = Timestamp.valueOf("1970-01-01 08:00:00");
         Workbook wb = null;
         Sheet sheet = null;
         Row row = null;
         String cellData = null;
         wb = readExcel(filePath);
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
         if (wb != null) {
             sheet = wb.getSheet("OT指标ProjectInstanceOTIndicator");
             //获取最大行数
@@ -322,7 +323,7 @@ public class DataTest {
                                 break;
                             case 18: //汇报时间
 //                                stProjectInstanceOTIndicator.setReportTime(timestamp);
-                                stProjectInstanceOTIndicator.setReportTime(null);
+                                stProjectInstanceOTIndicator.setReportTime(timestamp);
                                 break;
 
                             default:
