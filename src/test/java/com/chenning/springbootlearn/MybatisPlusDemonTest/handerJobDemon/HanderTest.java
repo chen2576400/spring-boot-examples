@@ -24,6 +24,6 @@ public class HanderTest {
     public  void test() throws Exception {
         JobService jobService=new JobserviceImpl();
         autowireCapableBeanFactory.autowireBean(jobService);
-        jobService.statistic(1001);
+        jobService.statistic("1001");
     }
 }

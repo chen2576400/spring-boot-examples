@@ -5,5 +5,5 @@ package com.chenning.springbootlearn.handerJobDemon;
  * @create: 2021-02-03 16:31
  **/
 public interface JobService {
-    void statistic(Integer type) throws Exception;
+    void statistic(String type) throws Exception;
 }
