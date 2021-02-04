@@ -61,7 +61,6 @@ public class PlanActivityINIndicatorTableBuilder extends AbstractComponentBuilde
 
         ColumnConfig columnconfig = componentConfigFactory.newColumnConfig();
         columnconfig.setName("code");
-        columnconfig.haveInfoPageLink();
         columnconfig.enableSort();
         tableConfig.addColumn(columnconfig);
 
