@@ -41,7 +41,7 @@ public class DeleteProjectIssuesProcessor extends DefaultObjectFormProcessor {
 
         }
 
-        if (sourceObject instanceof PIProject && selectedObjects != null && selectedObjects.size() > 0) {//checkbox选中删除
+        if (selectedObjects != null && selectedObjects.size() > 0) {//checkbox选中删除
             PIHashSet deleteItem = new PIHashSet();
             deleteItem.addAll(selectedObjects);
             PersistenceHelper.service.delete(deleteItem);

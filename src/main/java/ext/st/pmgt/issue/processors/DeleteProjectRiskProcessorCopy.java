@@ -24,7 +24,7 @@ public class DeleteProjectRiskProcessorCopy extends DefaultObjectFormProcessor {
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         List<Persistable> selectedObjects = params.getNfCommandBean().getSelectedObjects();
-        if (selectedObjects==null&&sourceObject instanceof STProjectRisk){
+        if (selectedObjects==null&&sourceObject instanceof STProjectRisk){//右键删除
             PersistenceHelper.service.delete(sourceObject);
 
             ContentHolder contentHolder=(STProjectRisk)sourceObject;
@@ -34,7 +34,7 @@ public class DeleteProjectRiskProcessorCopy extends DefaultObjectFormProcessor {
 
 //            STRiskHelper.service.deleteAssociationLink((STProjectRisk)sourceObject);
         }
-        if (selectedObjects!=null&&selectedObjects.size()>0&&sourceObject instanceof PIProject) {
+        if (selectedObjects!=null&&selectedObjects.size()>0&&sourceObject instanceof PIProject) {//checkbox删除
             PIHashSet deleteItem = new PIHashSet();
             deleteItem.addAll(selectedObjects);
             PersistenceHelper.service.delete(deleteItem);
