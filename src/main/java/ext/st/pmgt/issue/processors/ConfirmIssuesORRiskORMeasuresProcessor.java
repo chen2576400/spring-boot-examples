@@ -74,8 +74,6 @@ public class ConfirmIssuesORRiskORMeasuresProcessor extends DefaultObjectFormPro
 
     private STProjectMeasures setSTProjectMeasures(STProjectMeasures measures, Boolean m) throws PIException {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        PIUser piUser = (PIUser) SessionHelper.service.getPrincipal();
-        measures.setProjectManagerUserReference(ObjectReference.newObjectReference(piUser));
         measures.setConfirmStatus(m);
         if (!m) {
             measures.setCloseStamp(timestamp);

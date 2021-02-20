@@ -46,8 +46,7 @@ public class CreateOREditProjectMeasuresWizardBuilder extends AbstractComponentB
             layout.addField("name")
                     .addField("involveGroupReference", new DutyGroupDataHandler())
                     .addField("precaution", new TextAreaDataHandler())//预防措施
-//                    .addField("confirmStatus")
-                    .addField("involveGroupStatus")
+//                    .addField("confirmStatus")//涉及部门确认
                     .addField("dutyUserReference", new UserPickerExpandDataHandler())
             ;
             step.addLayout(layout);

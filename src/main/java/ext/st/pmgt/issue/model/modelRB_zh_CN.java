@@ -160,10 +160,8 @@ public class modelRB_zh_CN extends PIListResourceBundle {
     public static final String STProjectMeasures_02 = "STProjectMeasures.involveGroupReference.value";
     @RBEntry("预防措施")
     public static final String STProjectMeasures_03 = "STProjectMeasures.precaution.value";
-    @RBEntry("项目经理确认")
-    public static final String STProjectMeasures_04 = "STProjectMeasures.confirmStatus.value";
     @RBEntry("涉及部门确认")
-    public static final String STProjectMeasures_05 = "STProjectMeasures.involveGroupStatus.value";
+    public static final String STProjectMeasures_04 = "STProjectMeasures.confirmStatus.value";
     @RBEntry("责任人")
     public static final String STProjectMeasures_06 = "STProjectMeasures.dutyUserReference.value";
     @RBEntry("关闭时间")

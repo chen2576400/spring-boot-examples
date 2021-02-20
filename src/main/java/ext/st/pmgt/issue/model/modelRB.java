@@ -160,8 +160,6 @@ public class modelRB extends PIListResourceBundle {
     public static final String STProjectMeasures_03 = "STProjectMeasures.precaution.value";
     @RBEntry("confirmStatus")
     public static final String STProjectMeasures_04 = "STProjectMeasures.confirmStatus.value";
-    @RBEntry("involveGroupStatus")
-    public static final String STProjectMeasures_05 = "STProjectMeasures.involveGroupStatus.value";
     @RBEntry("dutyUserReference")
     public static final String STProjectMeasures_06 = "STProjectMeasures.dutyUserReference.value";
     @RBEntry("closeStamp")

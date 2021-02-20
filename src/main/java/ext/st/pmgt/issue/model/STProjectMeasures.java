@@ -73,16 +73,10 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
 
 
     /**
-     * 项目经理确认(0未确认、1确认)
-     */
-    @Column(nullable = true, unique = false)
-    private Boolean confirmStatus;
-
-    /**
      * 涉及部门确认(0未确认、1确认)
      */
     @Column(nullable = true, unique = false)
-    private Boolean involveGroupStatus = Boolean.FALSE;
+    private Boolean confirmStatus;
 
 
     /**
@@ -107,16 +101,16 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
     ObjectReference projectRiskReference;
 
 
-    /**
-     * 项目经理
-     */
-
-    @Embedded   //引入该实体
-    @AttributeOverrides({
-            @AttributeOverride(name = "key.id", column = @Column(name = "projectManagerUserRefId", nullable = true)),
-            @AttributeOverride(name = "key.classname", column = @Column(name = "projectManagerUserRefClass", nullable = true))
-    })
-    ObjectReference projectManagerUserReference;
+//    /**
+//     * 项目经理
+//     */
+//
+//    @Embedded   //引入该实体
+//    @AttributeOverrides({
+//            @AttributeOverride(name = "key.id", column = @Column(name = "projectManagerUserRefId", nullable = true)),
+//            @AttributeOverride(name = "key.classname", column = @Column(name = "projectManagerUserRefClass", nullable = true))
+//    })
+//    ObjectReference projectManagerUserReference;
 
 
     /**
@@ -137,21 +131,21 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
     Vector httpVector;
 
 
-    public ObjectReference getProjectManagerUserReference() {
-        return projectManagerUserReference;
-    }
+//    public ObjectReference getProjectManagerUserReference() {
+//        return projectManagerUserReference;
+//    }
+//
+//    public void setProjectManagerUserReference(ObjectReference projectManagerUserReference) {
+//        this.projectManagerUserReference = projectManagerUserReference;
+//    }
 
-    public void setProjectManagerUserReference(ObjectReference projectManagerUserReference) {
-        this.projectManagerUserReference = projectManagerUserReference;
-    }
-
-    public PIUser getProjectManagerUser() {
-        return projectManagerUserReference!=null?(PIUser) projectManagerUserReference.getObject():null;
-
-    }
-    public void setProjectManagerUser(PIUser piUser) throws PIException {
-        this.projectManagerUserReference = ObjectReference.newObjectReference(piUser);;
-    }
+//    public PIUser getProjectManagerUser() {
+//        return projectManagerUserReference!=null?(PIUser) projectManagerUserReference.getObject():null;
+//
+//    }
+//    public void setProjectManagerUser(PIUser piUser) throws PIException {
+//        this.projectManagerUserReference = ObjectReference.newObjectReference(piUser);;
+//    }
 
     public Timestamp getCloseStamp() {
         return closeStamp;
@@ -259,13 +253,13 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
         this.confirmStatus = confirmStatus;
     }
 
-    public Boolean getInvolveGroupStatus() {
-        return involveGroupStatus;
-    }
-
-    public void setInvolveGroupStatus(Boolean involveGroupStatus) {
-        this.involveGroupStatus = involveGroupStatus;
-    }
+//    public Boolean getInvolveGroupStatus() {
+//        return involveGroupStatus;
+//    }
+//
+//    public void setInvolveGroupStatus(Boolean involveGroupStatus) {
+//        this.involveGroupStatus = involveGroupStatus;
+//    }
 
     public ObjectReference getDutyUserReference() {
         return dutyUserReference;

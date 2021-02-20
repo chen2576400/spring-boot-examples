@@ -77,14 +77,6 @@ public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
         if (object.get("precaution")!=null){
             precaution = object.get("precaution").toString();
         }
-//        String s = object.getJSONObject("confirmStatus").get("value").toString();
-//        if (StringUtils.isNotEmpty(s)) {
-//            confirmStatus = Boolean.valueOf(s);
-//        }
-        String s1 = object.getJSONObject("involveGroupStatus").get("value").toString();
-        if (StringUtils.isNotEmpty(s1)) {
-            involveGroupStatus = Boolean.valueOf(s1);
-        }
 
         String involveGroupOid = (object.getJSONObject("involveGroupReference").get("value").toString());
         if (StringUtils.isNotEmpty(involveGroupOid)) {
@@ -99,8 +91,6 @@ public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
         }
 
         stProjectMeasures.setName(name);
-//        stProjectMeasures.setConfirmStatus(confirmStatus);
-        stProjectMeasures.setInvolveGroupStatus(involveGroupStatus);
         stProjectMeasures.setPrecaution(precaution);
         stProjectMeasures.setProjectReference(risk.getProjectReference());
         stProjectMeasures.setProjectRiskReference(ObjectReference.newObjectReference(risk));

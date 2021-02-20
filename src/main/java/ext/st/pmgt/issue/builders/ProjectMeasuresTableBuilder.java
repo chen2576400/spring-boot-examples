@@ -23,14 +23,13 @@ import ext.st.pmgt.issue.model.STProjectRisk;
 import ext.st.pmgt.issue.util.ProjectPermissionUtil;
 
 public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
-    PIProject project = null;
     @Override
     public Object buildComponentData(ComponentParams params) throws PIException {
         Persistable persistable = params.getNfCommandBean().getSourceObject();
         STProjectRisk risk = null;
         if (persistable instanceof STProjectRisk) {
             risk = (STProjectRisk) persistable;
-            project = risk.getProject();
+            PIProject project = risk.getProject();
             return STProjectMeasuresHelper.measuresService.findByProjectRiskReference(ObjectReference.newObjectReference(risk));
         }
         return null;
@@ -48,11 +47,12 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         tableConfig.enableSelect();
         if (isSelect(params)) {
             tableConfig.setToolbarActionModel("projectRiskMeasuresToolBar", params);
-            if (isManager(project)) {
-                tableConfig.setRightMenuName("measuresMenusByManager", params);
-            } else {
-                tableConfig.setRightMenuName("measuresMenus", params);
-            }
+            tableConfig.setRightMenuName("measuresMenusByManager", params);
+//            if (isManager(project)) {
+//                tableConfig.setRightMenuName("measuresMenusByManager", params);
+//            } else {
+//                tableConfig.setRightMenuName("measuresMenus", params);
+//            }
         }
 
         ColumnConfig column1 = componentConfigFactory.newColumnConfig();
@@ -63,11 +63,6 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         ColumnConfig column2 = componentConfigFactory.newColumnConfig();
         column2.setName("precaution");
         tableConfig.addColumn(column2);
-
-        ColumnConfig column8 = componentConfigFactory.newColumnConfig();
-        column8.setName("projectManagerUser.fullName");
-        column8.setLabel("项目经理");
-        tableConfig.addColumn(column8);
 
         ColumnConfig column6 = componentConfigFactory.newColumnConfig();
         column6.setName("confirmStatus");
@@ -97,7 +92,6 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
 
         return tableConfig;
 
-
     }
 
     private boolean isSelect(ComponentParams params) throws PIException {
@@ -108,7 +102,4 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         return false;
     }
 
-    private Boolean isManager(PIProject project) throws PIException {
-        return ProjectPermissionUtil.isProjectRole(project, null, "PM");
-    }
 }
