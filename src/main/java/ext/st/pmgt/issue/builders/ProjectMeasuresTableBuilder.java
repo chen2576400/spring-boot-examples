@@ -84,7 +84,7 @@ public class ProjectMeasuresTableBuilder extends AbstractComponentBuilder {
         column5.setName("persistInfo.createStamp");
         column5.setLabel("创建时间");
         column5.enableSort();
-
+        tableConfig.addColumn(column5);
 
         ColumnConfig column7 = componentConfigFactory.newColumnConfig();
         column7.setName("closeStamp");

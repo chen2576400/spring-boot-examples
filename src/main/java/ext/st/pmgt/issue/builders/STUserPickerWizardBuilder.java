@@ -18,8 +18,13 @@ import com.pisx.tundra.pmgt.resource.model.PIResourceProjectLink;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import org.apache.commons.collections.CollectionUtils;
+
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -50,14 +55,13 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
         WizardConfig wizardConfig = componentConfigFactory.newWizardConfig(params);
         wizardConfig.setId("projectManagerUserTableWizard");
         StepConfig stepConfig = wizardConfig.newStep();
-        stepConfig.children(getTableConfig(componentData,params,componentConfigFactory));
+        stepConfig.children(getTableConfig(componentData, params, componentConfigFactory));
         return wizardConfig;
 
     }
 
 
-
-    private TableConfig getTableConfig(Object componentData, ComponentParams params, ComponentConfigFactory componentConfigFactory){
+    private TableConfig getTableConfig(Object componentData, ComponentParams params, ComponentConfigFactory componentConfigFactory) {
         TableConfig tableConfig = componentConfigFactory.newTableConfig(params);
         tableConfig.setId("projectManagerUserTable");
         tableConfig.setTableTitle("项目成员");
@@ -68,25 +72,21 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
         tableConfig.setSingleSelect(true);//单选
         tableConfig.setPrimaryObjectType(PIUser.class);
 
-        ColumnConfig column1= componentConfigFactory.newColumnConfig();
+        ColumnConfig column1 = componentConfigFactory.newColumnConfig();
         column1.setName("fullName");
         column1.enableSort();
         tableConfig.addColumn(column1);
 
-        ColumnConfig column2= componentConfigFactory.newColumnConfig();
+        ColumnConfig column2 = componentConfigFactory.newColumnConfig();
         column2.setName("name");
         column2.enableSort();
         tableConfig.addColumn(column2);
 
-        ColumnConfig column3= componentConfigFactory.newColumnConfig();
+        ColumnConfig column3 = componentConfigFactory.newColumnConfig();
         column3.setName("email");
         column3.enableSort();
         tableConfig.addColumn(column3);
 
-        ColumnConfig column4= componentConfigFactory.newColumnConfig();
-        column4.setName("organizationReference");
-        column4.enableSort();
-        tableConfig.addColumn(column4);
         return tableConfig;
 
     }
@@ -103,9 +103,14 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
 //        return null;
         List<PIUser> piUsers = ((List<PIResource>) collection)
                 .stream().map(piResource -> piResource.getUser())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                .stream()
+                .filter(distinctByKey(PIUser::getName)).collect(Collectors.toList());
         return piUsers;
     }
 
-
+    public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+    }
 }
