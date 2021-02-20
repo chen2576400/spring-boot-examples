@@ -20,6 +20,7 @@ import com.pisx.tundra.foundation.team.model.TeamReference;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.foundation.util.PIPropertyVetoException;
 import com.pisx.tundra.pmgt.model.PIPmgtObject;
+import com.pisx.tundra.pmgt.project.model.PIProject;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -205,6 +206,13 @@ public class STProjectMeasures extends PIPmgtObject  implements LTDTyped, Conten
         return projectReference;
     }
 
+    public PIProject getProject() {
+        return this.projectReference != null ? (PIProject) this.projectReference.getObject() : null;
+    }
+
+    public void setProject(PIProject the_project) throws PIException {
+        this.setProjectReference(the_project == null ? null : ObjectReference.newObjectReference(the_project));
+    }
     public void setProjectReference(ObjectReference projectReference) {
         this.projectReference = projectReference;
     }

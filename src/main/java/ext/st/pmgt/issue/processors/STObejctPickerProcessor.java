@@ -44,31 +44,6 @@ public class STObejctPickerProcessor extends DefaultObjectFormProcessor {
             pickerObjOid = productContainer.getOid();
             displayVaule = productContainer.getName();
         }
-//        if (selectedObject instanceof PICalendar) {
-//            PICalendar calendar = (PICalendar) selectedObject;
-//            pickerObjOid = calendar.getOid();
-//            displayVaule = calendar.getCalendarName();
-//        }
-//        if (selectedObject instanceof PIResourceShiftPeriod) {
-//            PIResourceShiftPeriod shiftPeriod = (PIResourceShiftPeriod) selectedObject;
-//            pickerObjOid = shiftPeriod.getOid();
-//            displayVaule = shiftPeriod.getShiftStartHourNum().toString();
-//        }
-//        if (selectedObject instanceof PIResourceShift) {
-//            PIResourceShift resourceShift = (PIResourceShift) selectedObject;
-//            pickerObjOid = resourceShift.getOid();
-//            displayVaule = resourceShift.getShiftName();
-//        }
-//        if (selectedObject instanceof PICurrencyType) {
-//            PICurrencyType currencyType = (PICurrencyType) selectedObject;
-//            pickerObjOid = currencyType.getOid();
-//            displayVaule = currencyType.getCurrencyShortName();
-//        }
-//        if (selectedObject instanceof PIMeasureUnit) {
-//            PIMeasureUnit measureUnit = (PIMeasureUnit) selectedObject;
-//            pickerObjOid = measureUnit.getOid();
-//            displayVaule = measureUnit.getUnitName();
-//        }
 
         //将需要回填展示的字段和对象oid传给父页面
         Option load = new Option(pickerObjOid,displayVaule);

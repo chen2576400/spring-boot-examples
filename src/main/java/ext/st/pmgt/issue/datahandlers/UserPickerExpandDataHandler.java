@@ -1,6 +1,5 @@
 package ext.st.pmgt.issue.datahandlers;
 
-import com.pisx.tundra.foundation.fc.model.Persistable;
 import com.pisx.tundra.foundation.org.model.PIUser;
 import com.pisx.tundra.foundation.util.PIException;
 import com.pisx.tundra.netfactory.mvc.components.ComponentParams;
@@ -37,8 +36,9 @@ public class UserPickerExpandDataHandler extends UserPickerDataHandler {
         });
 
         //componentId 传给objpicker
-        NfAction action = NfActionHelper.service.getActionByActionsgroupAndActionName("st-pmgt-commonPickers", "stUserPicker");
-        String url = URLFactory.getActionHREF(action);
+//        NfAction action = NfActionHelper.service.getActionByActionsgroupAndActionName("st-pmgt-commonPickers", "stUserPicker");
+//        String url = URLFactory.getActionHREF(action);
+        String url = URLFactory.getActionHref("st-pmgt-commonPickers", "stUserPicker", params.getNfCommandBean().getSourceObject());
         rightImg.backFill(url, columnName);
 
         DivElement content = DivElement.instance();
