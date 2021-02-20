@@ -20,12 +20,11 @@ import ext.st.pmgt.indicator.dingTalk.DingTalkUtils;
 import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
 import ext.st.pmgt.indicator.model.STRating;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -39,10 +38,10 @@ import java.util.stream.Collectors;
 public class AddRatingProcessor extends DefaultObjectFormProcessor {
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        boolean flag = havePrivilege(params);
-        if (!flag) {//资源没有分配到任务 无法添加评定
-            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
-        }
+//        boolean flag = havePrivilege(params);
+//        if (!flag) {//资源没有分配到任务 无法添加评定
+//            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
+//        }
 
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         PIPlanActivity activity = null;
@@ -76,29 +75,56 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor {
         stRating.setRater((PIUser) principal);
         stRating.setReportTime(new Timestamp(System.currentTimeMillis()));
         STRating rating = PersistenceHelper.service.save(stRating);
-//        保存评定汇报差异
-        boolean b = STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(in, rating);
-//        如果汇报和评定发生差异，则发送钉钉消息
 
-        if (b) {
-            PIUser reviewer = activity.getReviewer();
-            if (reviewer != null) {
+        //        保存评定汇报差异
+        STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(in, rating);
+//        通过in指标得到对应ot指标的所属任务的所属用户
+        List<STProjectInstanceOTIndicator> ots = (List<STProjectInstanceOTIndicator>) STIndicatorHelper.service.getOTByIN(in);
+        Set activitySet = new HashSet();
+        Set<PIUser> userSet = new HashSet();
+        if (!CollectionUtils.isEmpty(ots)) {
+            for (STProjectInstanceOTIndicator otIndicator : ots) {
+                activitySet.add(otIndicator.getPlanActivity());
+            }
+        }
+        if (!CollectionUtils.isEmpty(activitySet)) {
+            for (Object o : activitySet) {
+                List<PIResourceAssignment> resourceAssignments = (List<PIResourceAssignment>) PIAssignmentHelper.service.getResourceAssignments((PIPlanActivity) o);
+                if (!CollectionUtils.isEmpty(resourceAssignments)) {
+                    for (PIResourceAssignment resourceAssignment : resourceAssignments) {
+                        userSet.add(resourceAssignment.getRsrc().getUser());
+                    }
+                }
+            }
+        }
+        //得到需要发送消息的UseridList
+        StringBuffer sb = new StringBuffer();
+        if (!CollectionUtils.isEmpty(userSet)) {
+            for (PIUser user : userSet) {
                 try {
-                    String useridBymobile = DingTalkUtils.getUseridBymobile(reviewer.getTelephone());
-                    PIUser piUser = (PIUser) SessionHelper.service.getPrincipalReference().getObject();
-                    String message = activity.getName() + "的输入指标：" + in.getOtCode() + "，指标评定与汇报发生差异";
-                    List list1 = new ArrayList();
-                    OapiMessageCorpconversationAsyncsendV2Request.Form form = new OapiMessageCorpconversationAsyncsendV2Request.Form();
-                    form.setKey("评定人:");
-                    form.setValue(piUser.getFullName());
-                    list1.add(form);
-                    DingTalkUtils.sendOAMessage(useridBymobile, false, "IN指标评定", "IN指标评定",
-                            list1, message, null, null, "重汽精细化管理平台");
+                    sb.append("," + DingTalkUtils.getUseridBymobile(user.getTelephone()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
+        String userid = sb.toString().substring(1);
+//      发送消息
+        try {
+            PIUser piUser = (PIUser) SessionHelper.service.getPrincipalReference().getObject();
+            String message = "任务：" + activity.getName() + "，输入指标：" + in.getOtCode() + "，指标评定完成";
+            List list1 = new ArrayList();
+            OapiMessageCorpconversationAsyncsendV2Request.Form form = new OapiMessageCorpconversationAsyncsendV2Request.Form();
+            form.setKey("评定人:");
+            form.setValue(piUser.getFullName());
+            list1.add(form);
+            DingTalkUtils.sendOAMessage(userid, false, "IN指标评定", "IN指标评定",
+                    list1, message, null, null, "重汽精细化管理平台");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 //        return new ResponseWrapper(ResponseWrapper.PAGE_FLUSH, "添加成功！", null);
         return new ResponseWrapper(ResponseWrapper.REGIONAL_FLUSH, "添加成功！", null);
     }

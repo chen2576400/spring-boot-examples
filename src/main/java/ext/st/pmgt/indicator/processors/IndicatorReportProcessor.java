@@ -20,13 +20,13 @@ import com.pisx.tundra.pmgt.deliverable.model.PIPlanDeliverable;
 import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import ext.st.pmgt.indicator.STIndicatorHelper;
 import ext.st.pmgt.indicator.dingTalk.DingTalkUtils;
+import ext.st.pmgt.indicator.model.STProjectInstanceINIndicator;
 import ext.st.pmgt.indicator.model.STProjectInstanceOTIndicator;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -41,10 +41,10 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
 
     @Override
     public ResponseWrapper<?> doOperation(ComponentParams params, List list) throws PIException {
-        boolean flag = havePrivilege(params);
-        if (!flag) {//资源没有分配到任务 无法汇报指标
-            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
-        }
+//        boolean flag = havePrivilege(params);
+//        if (!flag) {//资源没有分配到任务 无法汇报指标
+//            return new ResponseWrapper(ResponseWrapper.FAILED, "没有汇报的权限！", null);
+//        }
         Persistable sourceObject = params.getNfCommandBean().getSourceObject();
         PIPlanDeliverable deliverable = null;
         if (sourceObject instanceof PIPlanDeliverable) {
@@ -115,29 +115,57 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
                     newOT.setDifficultyReport(Double.valueOf(difficultyReport));
                     newOT.setReportTime(new Timestamp(System.currentTimeMillis()));
                     newOT.setReporter(SessionHelper.service.getPrincipalReference());
-                   // 更新汇报差异
-                    boolean b = STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(newOT);
-                    //如果存在汇报和评定差异，发送钉钉消息
-                    if(b){
-                        PIPlanActivity activity = (PIPlanActivity)newOT.getPlanActivity();
-                        PIUser reviewer = activity.getReviewer();
-                        if(reviewer!=null){
+                    // 更新汇报差异
+                    STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(newOT);
+
+                    //发送钉钉消息
+                    PIPlanActivity activity = (PIPlanActivity) newOT.getPlanActivity();
+                    Set activitySet = new HashSet();
+                    Set<PIUser> userSet = new HashSet();
+                    List<STProjectInstanceINIndicator> inByOTAndPlan = (List<STProjectInstanceINIndicator>) STIndicatorHelper.service.getInByOTAndPlan(newOT, newOT.getPlan());
+                    if (!CollectionUtils.isEmpty(inByOTAndPlan)) {
+                        for (STProjectInstanceINIndicator stProjectInstanceINIndicator : inByOTAndPlan) {
+                            activitySet.add(stProjectInstanceINIndicator.getPlanActivity());
+                        }
+                    }
+                    if (!CollectionUtils.isEmpty(activitySet)) {
+                        for (Object o : activitySet) {
+                            List<PIResourceAssignment> resourceAssignments = (List<PIResourceAssignment>) PIAssignmentHelper.service.getResourceAssignments((PIPlanActivity) o);
+                            if (!CollectionUtils.isEmpty(resourceAssignments)) {
+                                for (PIResourceAssignment resourceAssignment : resourceAssignments) {
+                                    userSet.add(resourceAssignment.getRsrc().getUser());
+                                }
+                            }
+                        }
+                    }
+                    //得到需要发送消息的UseridList
+                    StringBuffer sb = new StringBuffer();
+                    if (!CollectionUtils.isEmpty(userSet)) {
+                        for (PIUser user : userSet) {
                             try {
-                                String useridBymobile = DingTalkUtils.getUseridBymobile(reviewer.getTelephone());
-                                PIUser piUser = (PIUser)SessionHelper.service.getPrincipalReference().getObject();
-                                String message=activity.getName()+"的输出指标："+newOT.getCode()+"，指标汇报与评定发生差异";
-                                List list1 = new ArrayList();
-                                OapiMessageCorpconversationAsyncsendV2Request.Form form = new OapiMessageCorpconversationAsyncsendV2Request.Form();
-                                form.setKey("汇报人:");
-                                form.setValue(piUser.getFullName());
-                                list1.add(form);
-                                DingTalkUtils.sendOAMessage(useridBymobile,false,"OT指标汇报","OT指标汇报",
-                                        list1,message,null,null,"重汽精细化管理平台" );
-                            }catch (Exception e){
+                                sb.append("," + DingTalkUtils.getUseridBymobile(user.getTelephone()));
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
                     }
+                    String userid = sb.toString().substring(1);
+
+                    //发送消息
+                    try {
+                        PIUser piUser = (PIUser) SessionHelper.service.getPrincipalReference().getObject();
+                        String message = activity.getName() + "的输出指标：" + newOT.getCode() + "，指标汇报完成";
+                        List list1 = new ArrayList();
+                        OapiMessageCorpconversationAsyncsendV2Request.Form form = new OapiMessageCorpconversationAsyncsendV2Request.Form();
+                        form.setKey("汇报人:");
+                        form.setValue(piUser.getFullName());
+                        list1.add(form);
+                        DingTalkUtils.sendOAMessage(userid, false, "OT指标汇报", "OT指标汇报",
+                                list1, message, null, null, "重汽精细化管理平台");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     result.add(newOT);
                 } catch (Exception e) {
                     e.printStackTrace();
