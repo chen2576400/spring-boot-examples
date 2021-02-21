@@ -78,7 +78,8 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor {
 
         //        保存评定汇报差异
         STIndicatorHelper.service.saveSTProjectIndicatorReportDifference(in, rating);
-//        通过in指标得到对应ot指标的所属任务的所属用户
+
+        //        通过in指标得到对应ot指标的所属任务的所属用户
         List<STProjectInstanceOTIndicator> ots = (List<STProjectInstanceOTIndicator>) STIndicatorHelper.service.getOTByIN(in);
         Set activitySet = new HashSet();
         Set<PIUser> userSet = new HashSet();
@@ -97,20 +98,11 @@ public class AddRatingProcessor extends DefaultObjectFormProcessor {
                 }
             }
         }
-        //得到需要发送消息的UseridList
-        StringBuffer sb = new StringBuffer();
-        if (!CollectionUtils.isEmpty(userSet)) {
-            for (PIUser user : userSet) {
-                try {
-                    sb.append("," + DingTalkUtils.getUseridBymobile(user.getTelephone()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        String userid = sb.toString().substring(1);
+
 //      发送消息
         try {
+            //得到需要发送消息的UseridList
+            String userid = DingTalkUtils.getUseridList(userSet);
             PIUser piUser = (PIUser) SessionHelper.service.getPrincipalReference().getObject();
             String message = "任务：" + activity.getName() + "，输入指标：" + in.getOtCode() + "，指标评定完成";
             List list1 = new ArrayList();

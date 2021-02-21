@@ -4,9 +4,13 @@ import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
+import com.pisx.tundra.foundation.org.model.PIUser;
+import com.pisx.tundra.netfactory.util.misc.Strings;
 import com.taobao.api.FileItem;
+import org.apache.commons.collections.CollectionUtils;
 
 import java.util.List;
+import java.util.Set;
 
 public class DingTalkUtils {
 ////    需要重汽开通权限得到相应的APPKEY，APPSECRET，AGENTID
@@ -379,5 +383,19 @@ public class DingTalkUtils {
         request.setTaskId(taskId);
         OapiMessageCorpconversationGetsendresultResponse response = client.execute(request, getAccessToken());
          return response;
+    }
+
+    public static String getUseridList(Set<PIUser> userSet) throws Exception {
+        StringBuffer sb = new StringBuffer();
+        if (!CollectionUtils.isEmpty(userSet)) {
+            for (PIUser user : userSet) {
+                if (Strings.isNotBlank(user.getTelephone())) {
+                    sb.append("," + getUseridBymobile(user.getTelephone()));
+                }
+            }
+            String useridList = sb.toString().substring(1);
+            return useridList;
+        }
+        return null;
     }
 }

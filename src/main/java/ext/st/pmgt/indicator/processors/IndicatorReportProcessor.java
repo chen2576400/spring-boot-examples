@@ -138,21 +138,11 @@ public class IndicatorReportProcessor extends DefaultObjectFormProcessor {
                             }
                         }
                     }
-                    //得到需要发送消息的UseridList
-                    StringBuffer sb = new StringBuffer();
-                    if (!CollectionUtils.isEmpty(userSet)) {
-                        for (PIUser user : userSet) {
-                            try {
-                                sb.append("," + DingTalkUtils.getUseridBymobile(user.getTelephone()));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    String userid = sb.toString().substring(1);
 
                     //发送消息
                     try {
+                        //得到需要发送消息的UseridList
+                        String userid = DingTalkUtils.getUseridList(userSet);
                         PIUser piUser = (PIUser) SessionHelper.service.getPrincipalReference().getObject();
                         String message = activity.getName() + "的输出指标：" + newOT.getCode() + "，指标汇报完成";
                         List list1 = new ArrayList();
