@@ -45,6 +45,7 @@ public class ProjectPermissionUtil {
             Collection<Persistable> roleB = PersistenceHelper.service.navigate(group, "roleB", MembershipLink.class, true);
             persistables.addAll(roleB);
         }
+        persistables.removeAll(Collections.singleton(null));
         List<PIUser> piUsers = new ArrayList<>(Arrays.asList(persistables.toArray(new PIUser[0])));
         PIUser finalPiUser = piUser;
         boolean m = piUsers.stream().anyMatch(user -> user.getName().equals(finalPiUser.getName()));
