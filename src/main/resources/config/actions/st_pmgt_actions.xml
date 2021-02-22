@@ -272,11 +272,11 @@
             <command className="ext.st.pmgt.issue.processors.ConfirmIssuesORRiskORMeasuresProcessor"/>
         </action>
 
-        <action name="projectManagerUserListPicker">
-            <component name="ext.st.pmgt.issue.builders.ProjectManagerUserTableWizardBulider"
-                       windowType="popup"/>
-            <command className="ext.st.pmgt.issue.processors.ProjectManagerUserProcessor"/>
-        </action>
+<!--        <action name="projectManagerUserListPicker">-->
+<!--            <component name="ext.st.pmgt.issue.builders.ProjectManagerUserTableWizardBulider"-->
+<!--                       windowType="popup"/>-->
+<!--            <command className="ext.st.pmgt.issue.processors.ProjectManagerUserProcessor"/>-->
+<!--        </action>-->
 
 
         <action name="listProjectRisksForActCopy">
