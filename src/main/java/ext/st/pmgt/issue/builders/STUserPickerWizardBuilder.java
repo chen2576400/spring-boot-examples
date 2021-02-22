@@ -15,6 +15,7 @@ import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.resource.model.PIResource;
 import com.pisx.tundra.pmgt.resource.model.PIResourceProjectLink;
+import ext.st.pmgt.issue.model.STProjectIssue;
 import ext.st.pmgt.issue.model.STProjectMeasures;
 import ext.st.pmgt.issue.model.STProjectRisk;
 import org.apache.commons.collections.CollectionUtils;
@@ -40,6 +41,10 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
             piProject = ((STProjectRisk) sourceObject).getProject();
         } else if (sourceObject instanceof STProjectMeasures) {
             piProject = ((STProjectMeasures) sourceObject).getProject();
+        }else if (sourceObject instanceof PIProject){
+            piProject=((PIProject) sourceObject);
+        }else if (sourceObject instanceof STProjectIssue){
+            piProject=((STProjectIssue)sourceObject).getProject();
         }
         Collection qr = PersistenceHelper.service.navigate(piProject, "roleA", PIResourceProjectLink.class, true);
         if (!CollectionUtils.isEmpty(qr)) {
@@ -54,6 +59,7 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
         ComponentConfigFactory componentConfigFactory = ComponentConfigFactory.getInstance();
         WizardConfig wizardConfig = componentConfigFactory.newWizardConfig(params);
         wizardConfig.setId("projectManagerUserTableWizard");
+        wizardConfig.setTitle("负责人");
         StepConfig stepConfig = wizardConfig.newStep();
         stepConfig.children(getTableConfig(componentData, params, componentConfigFactory));
         return wizardConfig;
