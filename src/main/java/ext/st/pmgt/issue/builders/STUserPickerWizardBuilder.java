@@ -107,6 +107,7 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
 //            return piUsers;
 //        }
 //        return null;
+        ((List<PIResource>) collection).removeIf(piResource -> piResource.getUser()==null);
         List<PIUser> piUsers = ((List<PIResource>) collection)
                 .stream().map(piResource -> piResource.getUser())
                 .collect(Collectors.toList())
