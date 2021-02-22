@@ -515,6 +515,28 @@ public class STIndicatorServiceImpl implements STIndicatorService {
     }
 
     @Override
+    public Collection getInByOTAndPlan(STProjectInstanceOTIndicator ot, PIPlan plan) {
+        List result = new ArrayList();
+        EntityManager em = PersistenceHelper.service.getEntityManager();
+
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery criteriaQuery = cb.createQuery();
+            Root root = criteriaQuery.from(STProjectInstanceINIndicator.class);
+            Path key1 = root.get("otCode");
+            Path key3 = root.get("planReference").get("key");
+            Predicate p1 = cb.equal(key1, ot.getCode());
+            Predicate p2= cb.equal(key3, ot.getPlan().getObjectIdentifier());
+            criteriaQuery.select(root).where(p1, p2);
+            TypedQuery query = em.createQuery(criteriaQuery);
+            result.addAll(query.getResultList());
+        } finally {
+            //em.close();
+        }
+
+        return result;
+    }
+    @Override
     public Object getDataByProjectIdAndUserId(String projectId, String userId) throws PIException {
         String projectOid = PIProject.class.getName() + ":" + projectId;
         String userOid = PIUser.class.getName() + ":" + userId;
