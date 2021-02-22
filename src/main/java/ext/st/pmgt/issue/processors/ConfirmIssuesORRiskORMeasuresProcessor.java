@@ -64,6 +64,7 @@ public class ConfirmIssuesORRiskORMeasuresProcessor extends DefaultObjectFormPro
                 Collection<PIUser> roleB = (List)PersistenceHelper.service.navigate(group, "roleB", MembershipLink.class, true);
                 userSet.addAll(roleB);
             }
+            userSet.removeAll(Collections.singleton(null));
             STProjectRisk stProjectRisk=((STProjectRisk)projectMeasures.getProjectRiskReference().getObject());
             userSet.add((PIUser)(stProjectRisk.getCreator().getObject()));
             //发送消息
