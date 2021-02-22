@@ -5,6 +5,7 @@ import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.pisx.tundra.foundation.org.model.PIUser;
+import com.pisx.tundra.netfactory.util.misc.StringUtils;
 import com.pisx.tundra.netfactory.util.misc.Strings;
 import com.taobao.api.FileItem;
 import org.apache.commons.collections.CollectionUtils;
@@ -393,8 +394,10 @@ public class DingTalkUtils {
                     sb.append("," + getUseridBymobile(user.getTelephone()));
                 }
             }
-            String useridList = sb.toString().substring(1);
-            return useridList;
+            if (StringUtils.isNotBlank(sb)){
+                String useridList = sb.toString().substring(1);
+                return useridList;
+            }
         }
         return null;
     }
