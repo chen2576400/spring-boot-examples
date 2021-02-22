@@ -78,6 +78,7 @@ public class CreateProjectMeasuresProcessor extends DefaultObjectFormProcessor {
             Collection<PIUser> roleB = (List)PersistenceHelper.service.navigate(group, "roleB", MembershipLink.class, true);
             userSet.addAll(roleB);
         }
+        userSet.removeAll(Collections.singleton(null));
         //得到需要发送消息的UseridList
         String userid = DingTalkUtils.getUseridList(userSet);
 
