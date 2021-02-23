@@ -34,12 +34,11 @@ public class DeleteProjectRiskProcessorCopy extends DefaultObjectFormProcessor {
 
 //            STRiskHelper.service.deleteAssociationLink((STProjectRisk)sourceObject);
         }
-        if (selectedObjects!=null&&selectedObjects.size()>0&&sourceObject instanceof PIProject) {//checkbox删除
+        if (selectedObjects!=null&&selectedObjects.size()>0) {//checkbox删除
             PIHashSet deleteItem = new PIHashSet();
             deleteItem.addAll(selectedObjects);
             PersistenceHelper.service.delete(deleteItem);
             PIProjectChangeHelper.service.deleteAttachmentData(new ArrayList(new HashSet(selectedObjects)));
-
         }
         return new ResponseWrapper<>(ResponseWrapper.REGIONAL_FLUSH, null, null);
     }

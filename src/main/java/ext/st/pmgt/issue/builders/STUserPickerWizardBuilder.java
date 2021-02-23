@@ -12,6 +12,7 @@ import com.pisx.tundra.netfactory.mvc.components.table.config.ColumnConfig;
 import com.pisx.tundra.netfactory.mvc.components.table.config.TableConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.StepConfig;
 import com.pisx.tundra.netfactory.mvc.components.wizard.WizardConfig;
+import com.pisx.tundra.pmgt.plan.model.PIPlanActivity;
 import com.pisx.tundra.pmgt.project.model.PIProject;
 import com.pisx.tundra.pmgt.resource.model.PIResource;
 import com.pisx.tundra.pmgt.resource.model.PIResourceProjectLink;
@@ -45,6 +46,8 @@ public class STUserPickerWizardBuilder extends AbstractComponentBuilder {
             piProject=((PIProject) sourceObject);
         }else if (sourceObject instanceof STProjectIssue){
             piProject=((STProjectIssue)sourceObject).getProject();
+        }else if (sourceObject instanceof PIPlanActivity){
+            piProject=((PIPlanActivity)sourceObject).getProject();
         }
         Collection qr = PersistenceHelper.service.navigate(piProject, "roleA", PIResourceProjectLink.class, true);
         if (!CollectionUtils.isEmpty(qr)) {
