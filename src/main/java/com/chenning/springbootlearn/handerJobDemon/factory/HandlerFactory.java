@@ -10,7 +10,7 @@ import com.chenning.springbootlearn.handerJobDemon.handler.BaseHandler;
 public class HandlerFactory {
     public  static BaseHandler getStatisticalHandler(Integer type) throws Exception{
         Class<BaseHandler> clazz= (Class<BaseHandler>) Class.forName("com.chenning.springbootlearn.handerJobDemon.handler.Handler"+type);
-        BaseHandler newInstance = clazz.newInstance();
+        BaseHandler newInstance = clazz.newInstance(); //就相当于new对象
         return newInstance;
     }
 }
